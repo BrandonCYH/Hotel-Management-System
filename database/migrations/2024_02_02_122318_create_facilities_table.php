@@ -10,14 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('hotel_event', function (Blueprint $table) {
-            $table->id();
-            $table->string('Promote_ID');
-            $table->string('Photo', 300);
-            $table->string('Room_Type');
-            $table->integer('Original_Price');
-            $table->integer('Promotion');
-            $table->integer('Remaining');
+        Schema::create('facilities', function (Blueprint $table) {
+            // $table->id();
+            $table->string("facility_id");
+            $table->string("facility_name");
+            $table->string("description");
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('hotel_event');
+        Schema::dropIfExists('facilities');
     }
 };

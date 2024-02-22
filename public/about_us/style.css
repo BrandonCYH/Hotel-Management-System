@@ -4,6 +4,44 @@
     box-sizing: border-box;
 }
 
+.nav-item a {
+    color: black;
+}
+
+.navbar-nav .nav-item {
+    transition: background-color 0.3s ease;
+}
+
+.navbar-nav .nav-item a:hover {
+    color: #191970;
+}
+
+.navbar-nav .nav-item a.active {
+    color: #000080;
+    font-weight: bold;
+}
+
+.navbar {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar.scrolled {
+    background-color: #1B1212 !important;
+    color: white !important;
+}
+
+.carousel-inner {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.carousel-item {
+    scroll-snap-align: start;
+    min-width: 100%;
+}
+
 .CEO {
     height: 300px;
     width: 300px;
@@ -36,17 +74,22 @@
 }
 
 .certificate {
+    background-color: white;
+    border: 2px solid #000;
+    /* Set the border color and width */
+    border-radius: 10px;
+    /* Optional: Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
     max-width: 600px;
     margin: 30px auto;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .certificate h2 {
     text-align: center;
-    color: #007bff;
+    color: #333;
 }
 
 .certificate p {
@@ -63,15 +106,6 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../images/hall_of_fame.jpg');
     background-size: cover;
     background-position: center;
-}
-
-#footer {
-    height: 100vh;
-    position: relative;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../images/footer_bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
 }
 
 @media (max-width: 767px) {

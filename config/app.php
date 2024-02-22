@@ -185,4 +185,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 ];

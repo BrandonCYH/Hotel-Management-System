@@ -3,10 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="/index/style.css">
+
+    {{-- website icon --}}
+    <link rel="icon" href="../images/ocean_heaven.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/ocean_heaven.png" type="image/x-icon">
 
     {{-- bootstrap CSS cdn --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -32,29 +36,31 @@
                 <a class="navbar-brand" href="{{ route('main-page') }}"
                     style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Ocean
                     Heaven</a>
-                <button class="navbar-toggler mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                <button class="navbar-toggler mx-1" style="background-color: white; border: 1px solid white;"
+                    type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link text-dark mx-2" style="font-size: 17px;"
+                        <li class="nav-item">
+                            <a class="nav-link active mx-2" style="font-size: 17px;"
                                 href="{{ route('main-page') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark mx-2" style="font-size: 17px;"
-                                href="{{ route('about-us') }}">About
+                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('about-us') }}">About
                                 Us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark mx-2" style="font-size: 17px;" href="#">Room</a>
+                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('hotel-room') }}">Room</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-dark mx-2" style="font-size: 17px;" href="#">News</a>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" style="font-size: 17px;"
+                                href="{{ route('hotel-restaurant') }}">Dining</a>
                         </li>
-                        <li class="nav-item active">
-                            <a class="nav-link text-dark mx-2" style="font-size: 17px;" href="#">Contact</a>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2" style="font-size: 17px;"
+                                href="{{ route('exclusive-member') }}">Member</a>
                         </li>
                         <!-- Add more items as needed -->
                     </ul>
@@ -63,6 +69,31 @@
         </nav>
     </div>
     {{-- end of nav bar --}}
+
+    {{-- modal popup for leaving comment --}}
+    <div class="modal fade" id="modal_leave_comment" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Leave Comment</h5>
+                    <span aria-hidden="true"><i class="fa-solid fa-x" data-bs-dismiss="modal"
+                            style="cursor: pointer;"></i></span>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Write down your comment...</label>
+                        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="{{ route('google.login') }}" type="button" class="btn btn-success">Comment with Google</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end of modal popup for leaving comment --}}
 
     {{-- banner --}}
     <div class="jumbotron p-5" id="banner">
@@ -114,77 +145,97 @@
     {{-- end of banner --}}
 
     {{-- first content --}}
-    <div class="container-fluid">
+    <div class="container-fluid" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
         <div class="row">
             <div class="d-flex justify-content-center">
                 <div class="col-md-8">
                     <div class="card mt-4">
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-header text-center">
-                                            Check In Date
+                            <form action="{{ route('room-availability') }}" method="POST">
+                                @csrf
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <div class="card-header text-center">
+                                                Check In Date
+                                            </div>
+                                            <div class="card-body">
+                                                <input type="date" name="checkInDate" class="form-control"
+                                                    required>
+                                            </div>
                                         </div>
-                                        <div class="card-body">
-                                            <input type="date" class="form-control">
+                                        <br>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <div class="card-header text-center">
+                                                Check Out Date
+                                            </div>
+                                            <div class="card-body">
+                                                <input type="date" id="check_out_date" name="checkOutDate"
+                                                    class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <div class="card-header text-center">
+                                                Room
+                                            </div>
+                                            <div class="card-body">
+                                                <select class="form-control form-select" name="roomType" required>
+                                                    <option disabled selected></option>
+                                                    <option>Single Room</option>
+                                                    <option>Double Room</option>
+                                                    <option>Residential Room</option>
+                                                    <option>VIP Room</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card">
+                                            <div class="card-header text-center">
+                                                Guest
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="dropright">
+                                                    <input type="text" class="form-control dropdown-toggle"
+                                                        required readonly data-bs-toggle="dropdown" id="guestDropdown"
+                                                        placeholder="How many Guest?" aria-describedby="amount_guest">
+                                                    <div class="dropdown-menu p-4" aria-labelledby="guestDropdown">
+                                                        <div class="form-group">
+                                                            <label for="adultsInput">Adults</label>
+                                                            <input type="number"
+                                                                class="form-control mt-1 guest-input-field"
+                                                                id="adultsInput" required value="1"
+                                                                min="1">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="childrenInput" class="mt-2">Children</label>
+                                                            <input type="number"
+                                                                class="form-control mt-1 guest-input-field"
+                                                                id="childrenInput" required value="0"
+                                                                min="0">
+                                                        </div>
+                                                        <button type="button" class="btn btn-success w-100 mt-2"
+                                                            id="applyGuestsBtn">Done</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <br>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-header text-center">
-                                            Check Out Date
-                                        </div>
-                                        <div class="card-body">
-                                            <input type="date" class="form-control">
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-header text-center">
-                                            Room
-                                        </div>
-                                        <div class="card-body">
-                                            <select class="form-control form-select">
-                                                <option>Single Room</option>
-                                                <option>Double Room</option>
-                                                <option>Residential Room</option>
-                                                <option>VIP Room</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="card">
-                                        <div class="card-header text-center">
-                                            Guest
-                                        </div>
-                                        <div class="card-body">
-                                            <select class="form-control form-select">
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="d-flex justify-content-center">
-                                        <button type="button" class="btn btn-success w-100">Check
+                                        <button type="submit" class="btn btn-success w-100">Check
                                             Availability</button>
                                     </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -211,6 +262,7 @@
                                 <div class="card">
                                     <img class="card-img-top" src="../images/gym_centre.jpg" alt="Card image cap">
                                     <div class="card-body">
+                                        <h5 class="text-center">Gym Workout</h5>
                                         <p class="card-text">Welcome to our hotel gym! Get ready to elevate your
                                             fitness journey during your stay with us. Enjoy your workout!</p>
                                     </div>
@@ -222,6 +274,7 @@
                                     <img class="card-img-top" src="../images/pet_accomodation.jpg"
                                         alt="Card image cap">
                                     <div class="card-body">
+                                        <h5 class="text-center">Pet Accomodation</h5>
                                         <p class="card-text">Welcome to our pet-friendly hotel! We're thrilled to have
                                             both you and your furry friend with us.</p>
                                     </div>
@@ -232,6 +285,7 @@
                                 <div class="card">
                                     <img class="card-img-top" src="../images/spa.jpg" alt="Card image cap">
                                     <div class="card-body">
+                                        <h5 class="text-center">SPA Service</h5>
                                         <p class="card-text">We're delighted to have
                                             you here. Relax, rejuvenate, and indulge in our soothing spa services.</p>
                                     </div>
@@ -244,6 +298,7 @@
                                 <div class="card">
                                     <img class="card-img-top" src="../images/entertainment.jpg" alt="Card image cap">
                                     <div class="card-body">
+                                        <h5 class="text-center">Entertainment</h5>
                                         <p class="card-text">Whether you're in the mood for live music, gaming, or a
                                             delightful show, we've got it all.</p>
                                     </div>
@@ -254,6 +309,7 @@
                                 <div class="card">
                                     <img class="card-img-top" src="../images/parking_lot.jpg" alt="Card image cap">
                                     <div class="card-body">
+                                        <h5 class="text-center">Secure Parking Lot</h5>
                                         <p class="card-text">Feel free to use our secure parking lot, ensuring a
                                             hassle-free and easy stay. Enjoys your time with us!</p>
                                     </div>
@@ -265,6 +321,7 @@
                                     <img class="card-img-top" src="../images/transportation.jpg"
                                         alt="Card image cap">
                                     <div class="card-body">
+                                        <h5 class="text-center">Car Service</h5>
                                         <p class="card-text">
                                             Our travelling team is here to ensure your journeys are
                                             seamless so you can focus on enjoying your stay.</p>
@@ -284,11 +341,13 @@
     <div class="jumbotron p-5" id="room_image">
         <div class="row">
             <div class="col-md-5">
-                <h1 class="display-4 mt-5 text-light" id="room_title">Single Room</h1>
+                <h1 class="display-4 mt-2 text-light" id="room_title">Single Room</h1>
                 <p class="lead text-light" id="room_description">Experience comfort and relaxation in our cozy and
                     stylish hotel rooms designed for your most convenience. Providing modern amenities and a welcoming
                     ambiance for a delightful stay.
                 </p>
+                <a href="{{ route('hotel-room') }}" type="button" class="btn btn-outline-light btn-lg"
+                    data-mdb-ripple-init data-mdb-ripple-color="dark">View Room</a>
                 <hr class="my-4 text-light">
                 <p class="text-light">Come, stay and enjoy your day.</p>
             </div>
@@ -298,8 +357,8 @@
 
     {{-- testimonial --}}
     <div class="container-fluid">
-        <div class="row mt-5">
-            <div class="col-md-6">
+        <div class="row mt-5 mb-5">
+            <div class="col-md-6" data-aos="fade-in" data-aos-duration="1000">
                 <div class="d-flex justify-content-center">
                     <h4 class="text-center fs-3" style="font-family: cursive;">
                         Your FeedBack Are Valuable For Us
@@ -310,11 +369,12 @@
                         <h5 class="text-center">We believe in client satisfaction. Here are some testimonials by our
                             worthy clients.</h5>
                         <button type="button" class="btn btn-success w-100 mt-2">View Testimonial</button>
-                        <button type="button" class="btn btn-info w-100 mt-3">Leave a comment</button><br><br>
+                        <button type="button" class="btn btn-info w-100 mt-3" data-bs-toggle="modal"
+                            data-bs-target="#modal_leave_comment">Leave a comment</button><br><br>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" data-aos="zoom-in-down" data-aos-duration="1000">
                 <div id="cardCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <!-- First Set of Cards -->
@@ -323,37 +383,40 @@
                                 <div class="row row-cols-1 row-cols-md-3 g-4">
                                     <!-- Card 1 -->
                                     <div class="col">
-                                        <div class="card">
-                                            <img src="https://via.placeholder.com/300" class="card-img-top"
-                                                alt="Card Image 1">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Card 1</h5>
-                                                <p class="card-text">Some text for Card 1.</p>
-                                            </div>
+                                        <div class="testimonial-card">
+                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                                class="testimonial-img">
+                                            <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+                                                magna aliqua."</p>
+                                            <p class="testimonial-name">John Doe</p>
+                                            <p>Company XYZ</p>
                                         </div>
                                     </div>
 
                                     <!-- Card 2 -->
                                     <div class="col">
-                                        <div class="card">
-                                            <img src="https://via.placeholder.com/300" class="card-img-top"
-                                                alt="Card Image 2">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Card 2</h5>
-                                                <p class="card-text">Some text for Card 2.</p>
-                                            </div>
+                                        <div class="testimonial-card">
+                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                                class="testimonial-img">
+                                            <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+                                                magna aliqua."</p>
+                                            <p class="testimonial-name">John Doe</p>
+                                            <p>Company XYZ</p>
                                         </div>
                                     </div>
 
                                     <!-- Card 3 -->
                                     <div class="col">
-                                        <div class="card">
-                                            <img src="https://via.placeholder.com/300" class="card-img-top"
-                                                alt="Card Image 3">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Card 3</h5>
-                                                <p class="card-text">Some text for Card 3.</p>
-                                            </div>
+                                        <div class="testimonial-card">
+                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                                class="testimonial-img">
+                                            <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+                                                magna aliqua."</p>
+                                            <p class="testimonial-name">John Doe</p>
+                                            <p>Company XYZ</p>
                                         </div>
                                     </div>
                                 </div>
@@ -366,37 +429,40 @@
                                 <div class="row row-cols-1 row-cols-md-3 g-4">
                                     <!-- Card 5 -->
                                     <div class="col">
-                                        <div class="card">
-                                            <img src="https://via.placeholder.com/300" class="card-img-top"
-                                                alt="Card Image 5">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Card 5</h5>
-                                                <p class="card-text">Some text for Card 5.</p>
-                                            </div>
+                                        <div class="testimonial-card">
+                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                                class="testimonial-img">
+                                            <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+                                                magna aliqua."</p>
+                                            <p class="testimonial-name">John Doe</p>
+                                            <p>Company XYZ</p>
                                         </div>
                                     </div>
 
                                     <!-- Card 6 -->
                                     <div class="col">
-                                        <div class="card">
-                                            <img src="https://via.placeholder.com/300" class="card-img-top"
-                                                alt="Card Image 6">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Card 6</h5>
-                                                <p class="card-text">Some text for Card 6.</p>
-                                            </div>
+                                        <div class="testimonial-card">
+                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                                class="testimonial-img">
+                                            <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+                                                magna aliqua."</p>
+                                            <p class="testimonial-name">John Doe</p>
+                                            <p>Company XYZ</p>
                                         </div>
                                     </div>
 
                                     <!-- Card 7 -->
                                     <div class="col">
-                                        <div class="card">
-                                            <img src="https://via.placeholder.com/300" class="card-img-top"
-                                                alt="Card Image 7">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Card 7</h5>
-                                                <p class="card-text">Some text for Card 7.</p>
-                                            </div>
+                                        <div class="testimonial-card">
+                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                                class="testimonial-img">
+                                            <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
+                                                adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
+                                                magna aliqua."</p>
+                                            <p class="testimonial-name">John Doe</p>
+                                            <p>Company XYZ</p>
                                         </div>
                                     </div>
                                     <!-- Add more cards as needed -->
@@ -421,431 +487,6 @@
         </div>
     </div>
     {{-- end of testimonial --}}
-
-    {{-- hotel restaurant --}}
-    <div class="container-fluid" id="restaurant">
-        <div class="row mt-5">
-            <div class="col-md-12">
-                <div class="d-flex justify-content-center">
-                    <h2 class="text-center text-light mt-4">
-                        We provide a wonderful services for you
-                    </h2>
-                </div>
-            </div>
-            <div class="col-md-12 mt-3">
-                <div class="d-flex justify-content-center">
-                    <button type="button" class="btn btn-outline-light mx-2" data-bs-ripple-init
-                        data-bs-ripple-color="dark" onclick="show_mainMenu()">Food Menu</button>
-                    <button type="button" class="btn btn-outline-light mx-2" data-bs-ripple-init
-                        data-bs-ripple-color="dark" onclick="show_drinksMenu()">Drink Menu</button>
-                    <button type="button" class="btn btn-info mx-2">Food Menu</button>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center">
-                <div class="col-md-8">
-                    <div class="container-xl mt-4">
-                        <div class="row" id="main_menu">
-                            {{-- start of first row of restaurant menu --}}
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/burger.jpg" style="object-fit: cover;"
-                                                class="card-img-top w-100 h-100" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            Burger</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-text"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $12.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Our burgers: Delicious, juicy, and made just right. Each bite is
-                                                    a
-                                                    burst of flavor.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/egg_omelette.jpg" class="card-img h-100"
-                                                style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            Egg Omelette</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-title"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $11.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Simple, savory, and made your way — our omelettes, your perfect
-                                                    start to any day.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            {{-- end of first row of restaurant menu --}}
-
-                            {{-- start of second row of restaurant menu --}}
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/french_toast.jpg" class="card-img h-100"
-                                                style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            French Toast</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-title"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $11.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Golden slices of delight – our French Toast is a sweet start to
-                                                    your
-                                                    morning or a treat
-                                                    any time of day.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/pancake.jpg" class="card-img h-100"
-                                                style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            Pancake</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-title"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $9.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Fluffy stacks of joy – our pancakes are a delightfully sweet way
-                                                    to
-                                                    start your day or
-                                                    indulge at any moment.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            {{-- end of second row of restaurant menu --}}
-
-                            {{-- start of third row of restaurant menu --}}
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/vegie_omelette.jpg" class="card-img h-100"
-                                                style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            Vegie Omelette</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-title"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $12.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Wholesome goodness in every fold - our veggie omelette, a
-                                                    nutritious
-                                                    and flavorful way
-                                                    to kickstart your day.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/fried_chicken.jpg" class="card-img h-100"
-                                                style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            Fried Chicken</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-title"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $14.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Crunchy, juicy perfection - our fried chicken is a delicious
-                                                    comfort
-                                                    that always hits
-                                                    the spot.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            {{-- end of third row of restaurant menu --}}
-                        </div>
-
-                        {{-- start of drink menu --}}
-                        <div class="row d-none" id="drinks_menu">
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/coca_cola.jpg" class="card-img h-100"
-                                                style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            Coca Cola</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-title"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $12.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Refreshing moments, fizzy delight - Coca-Cola, a timeless
-                                                    sip of happiness.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/orange_fanta.jpg" class="card-img h-100"
-                                                style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            Orange Fanta</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-title"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $12.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Zesty, bubbly sunshine - Orange Fanta, a burst of citrus
-                                                    refreshment in every sip.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/chocolate_juice.jpg" class="card-img h-100"
-                                                style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            Chocolate Juice</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-title"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $12.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Rich indulgence in every sip - Chocolate juice, a decadent
-                                                    twist on refreshment.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/green_tea.jpg" class="card-img h-100"
-                                                style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            Green Tea</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-title"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $12.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Sip tranquility, embrace vitality - Green Tea, nature's
-                                                    elixir for a rejuvenating moment.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/lemonade.jpg" class="card-img h-100"
-                                                style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            Lemonade</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-title"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $12.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Zesty and crisp, a sip of sunshine - Lemonade, the perfect
-                                                    thirst-quenching delight.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card"
-                                    style="background-color:#000000; border-width: 4px; border-style: solid; border-image: linear-gradient(to right, #00ffff, #099fff) 1;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-5">
-                                            <img src="../images/mocktails.jpg" class="card-img h-100"
-                                                style="object-fit: cover;" alt="Image">
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-8">
-                                                        <h5 class="card-title"
-                                                            style="color: #ffff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            Mocktails</h5>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <h5 class="card-title"
-                                                            style="color: #00ff00; text-shadow: 3px 3px 4px #000000, -2px 1px 4px #000000;">
-                                                            $12.99</h5>
-                                                    </div>
-                                                </div>
-                                                <p class="card-text text-light">
-                                                    Vibrant, alcohol-free joyrides - Mocktails, refreshing
-                                                    every celebration.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- end of drink menu --}}
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- end of hotel restaurant --}}
 
     <!-- Footer -->
     <footer class="text-center text-lg-start text-white bg-dark">
@@ -873,16 +514,26 @@
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                         <h6 class="text-uppercase mb-4 font-weight-bold">Services</h6>
                         <p>
-                            <a class="text-white" href="{{ route('about-us') }}">About Us</a>
+                            <a class="text-white" style="text-decoration: none;"
+                                href="{{ route('main-page') }}">Home
+                            </a>
                         </p>
                         <p>
-                            <a class="text-white">Room</a>
+                            <a class="text-white" style="text-decoration: none;"
+                                href="{{ route('about-us') }}">About
+                                Us</a>
                         </p>
                         <p>
-                            <a class="text-white">BrandFlow</a>
+                            <a class="text-white" style="text-decoration: none;"
+                                href="{{ route('hotel-room') }}">Room</a>
                         </p>
                         <p>
-                            <a class="text-white">Bootstrap Angular</a>
+                            <a class="text-white" style="text-decoration: none;"
+                                href="{{ route('hotel-restaurant') }}">Dinning</a>
+                        </p>
+                        <p>
+                            <a class="text-white" style="text-decoration: none;"
+                                href="{{ route('exclusive-member') }}">Member</a>
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -895,8 +546,8 @@
                     <!-- Grid column -->
                     <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                         <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
-                        <p><i class="fas fa-home mr-3"></i> New York, NY 10012, US</p>
-                        <p><i class="fas fa-envelope mr-3"></i> info@gmail.com</p>
+                        <p><i class="fas fa-home mr-3"></i> Austin, Texas</p>
+                        <p><i class="fas fa-envelope mr-3"></i> oceanHeaven231@gmail.com</p>
                         <p><i class="fas fa-phone mr-3"></i> + 01 234 567 88</p>
                         <p><i class="fas fa-print mr-3"></i> + 01 234 567 89</p>
                     </div>
@@ -934,16 +585,57 @@
         </div>
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
             © 2024 Copyright:
-            <a class="text-white" href="#">Danny CYH</a>
+            <a class="text-white" href="https://github.com/BrandonCYH">Danny CYH</a>
         </div>
     </footer>
+    {{-- end of footer --}}
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
 </script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <script src="/index/index.js"></script>
+
+<script>
+    $(document).ready(function() {
+        var adults = $('#adultsInput').val();
+        var children = $('#childrenInput').val();
+
+        adults = 1;
+        children = 0;
+
+        var guest_selected = "Adults: " + adults + ", Children: " + children;
+
+        $('#guestDropdown').val(guest_selected);
+
+
+        // Get the current path of the URL
+        var currentPath = window.location.pathname;
+
+        // Add "active" class to the corresponding menu item
+        $('.navbar-nav a[href="' + currentPath + '"]').addClass('active');
+
+        // Handle click event to set "active" class
+        $('.navbar-nav a').on('click', function() {
+            $('.navbar-nav a').removeClass('active');
+            $(this).addClass('active');
+        });
+    });
+
+    $(document).ready(function() {
+        $('#applyGuestsBtn').click(function() {
+            var adults = $('#adultsInput').val();
+            var children = $('#childrenInput').val();
+
+            var guest_selected = "Adults: " + adults + ", Children: " + children;
+
+            $('#guestDropdown').val(guest_selected);
+            // You can perform any action with the values here
+        });
+    });
+</script>
 
 {{-- aos library cdn --}}
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
