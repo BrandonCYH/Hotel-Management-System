@@ -12,6 +12,5 @@ class facilities extends Model
     protected $fillable = [
         'facility_id',
         'facility_name',
-        'description',
     ];
 }

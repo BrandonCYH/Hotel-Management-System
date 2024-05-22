@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class invoices extends Model
+class room extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'invoices_id',
-        'booking_id',
-        'invoices_date',
-        'total_amount',
-        'due_date',
-        'status'
+        'room_id',
+        'room_number',
+        'room_type_id',
+        'availability_status',
     ];
 }

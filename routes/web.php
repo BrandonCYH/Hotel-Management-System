@@ -28,13 +28,18 @@ Route::prefix('google')->name('google.')->group(function () {
 Route::view('/future-hotel-management-system', 'index')->name("main-page");
 
 // Route for User View
-Route::get('/guest-info/{data}', [User_Controller::class, 'guest_info'])->name('guest-info');
 Route::view('/about-us', 'User_Page.about_us')->name('about-us');
-Route::view('/hotel-room', 'User_Page.rooms')->name('hotel-room');
+
+Route::get('/hotel-room', [User_Controller::class, 'hotel_room'])->name('hotel-room');
+Route::get('hotel-room/fetch_data', [User_Controller::class, 'fetch_data']);
+Route::post('/hotel-selection', [User_Controller::class, 'hotel_selection'])->name('hotel-selection');
+Route::get('/room-booking/{room_type_name}', [User_Controller::class, 'room_booking'])->name('room-booking');
+Route::post('/booking-confirmation', [User_Controller::class, 'booking_confirmation'])->name('booking-confirmation');
+Route::post('/booking-receipt', [User_Controller::class, 'booking_receipt'])->name('booking-receipt');
+
+
 Route::view('/hotel-restaurant', 'User_Page.restaurant')->name('hotel-restaurant');
 Route::view('/exclusive-member', 'User_Page.member')->name('exclusive-member');
-
-Route::post('/room-availability', [User_Controller::class, 'room_availability'])->name('room-availability');
 
 // Route for Admin View
 Route::get('/admin-dashboard', [Admin_Controller::class, 'dashboard'])->name('admin-dashboard');

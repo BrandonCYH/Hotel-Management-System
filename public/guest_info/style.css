@@ -1,9 +1,0 @@
-#form {
-    margin: 100px 100px;
-}
-
-@media (max-width: 576px) {
-    #form {
-        margin: 0;
-    }
-}

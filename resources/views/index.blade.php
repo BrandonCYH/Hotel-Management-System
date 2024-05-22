@@ -144,112 +144,13 @@
     </div>
     {{-- end of banner --}}
 
-    {{-- first content --}}
-    <div class="container-fluid" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
-        <div class="row">
-            <div class="d-flex justify-content-center">
-                <div class="col-md-8">
-                    <div class="card mt-4">
-                        <div class="card-body">
-                            <form action="{{ route('room-availability') }}" method="POST">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-header text-center">
-                                                Check In Date
-                                            </div>
-                                            <div class="card-body">
-                                                <input type="date" name="checkInDate" class="form-control"
-                                                    required>
-                                            </div>
-                                        </div>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-header text-center">
-                                                Check Out Date
-                                            </div>
-                                            <div class="card-body">
-                                                <input type="date" id="check_out_date" name="checkOutDate"
-                                                    class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-header text-center">
-                                                Room
-                                            </div>
-                                            <div class="card-body">
-                                                <select class="form-control form-select" name="roomType" required>
-                                                    <option disabled selected></option>
-                                                    <option>Single Room</option>
-                                                    <option>Double Room</option>
-                                                    <option>Residential Room</option>
-                                                    <option>VIP Room</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <br>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="card">
-                                            <div class="card-header text-center">
-                                                Guest
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="dropright">
-                                                    <input type="text" class="form-control dropdown-toggle"
-                                                        required readonly data-bs-toggle="dropdown" id="guestDropdown"
-                                                        placeholder="How many Guest?" aria-describedby="amount_guest">
-                                                    <div class="dropdown-menu p-4" aria-labelledby="guestDropdown">
-                                                        <div class="form-group">
-                                                            <label for="adultsInput">Adults</label>
-                                                            <input type="number"
-                                                                class="form-control mt-1 guest-input-field"
-                                                                id="adultsInput" required value="1"
-                                                                min="1">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="childrenInput" class="mt-2">Children</label>
-                                                            <input type="number"
-                                                                class="form-control mt-1 guest-input-field"
-                                                                id="childrenInput" required value="0"
-                                                                min="0">
-                                                        </div>
-                                                        <button type="button" class="btn btn-success w-100 mt-2"
-                                                            id="applyGuestsBtn">Done</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="d-flex justify-content-center">
-                                        <button type="submit" class="btn btn-success w-100">Check
-                                            Availability</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- end of first content --}}
-
     {{-- start of services --}}
     <div class="container-fluid">
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="d-flex justify-content-center">
-                    <h4 class="text-center fs-3" style="font-family: cursive;">
+                    <h4 class="text-center fs-3" style="font-family: cursive;" data-aos="zoom-in"
+                        data-aos-duration="1000">
                         We provide a wonderful services for you
                     </h4>
                 </div>
@@ -257,7 +158,7 @@
             <div class="d-flex justify-content-center">
                 <div class="col-md-8">
                     <div class="container-xl mt-4">
-                        <div class="row" data-aos="zoom-out" data-aos-duration="1000">
+                        <div class="row" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="1000">
                             <div class="col-md-4">
                                 <div class="card">
                                     <img class="card-img-top" src="../images/gym_centre.jpg" alt="Card image cap">
@@ -600,17 +501,6 @@
 
 <script>
     $(document).ready(function() {
-        var adults = $('#adultsInput').val();
-        var children = $('#childrenInput').val();
-
-        adults = 1;
-        children = 0;
-
-        var guest_selected = "Adults: " + adults + ", Children: " + children;
-
-        $('#guestDropdown').val(guest_selected);
-
-
         // Get the current path of the URL
         var currentPath = window.location.pathname;
 
@@ -621,18 +511,6 @@
         $('.navbar-nav a').on('click', function() {
             $('.navbar-nav a').removeClass('active');
             $(this).addClass('active');
-        });
-    });
-
-    $(document).ready(function() {
-        $('#applyGuestsBtn').click(function() {
-            var adults = $('#adultsInput').val();
-            var children = $('#childrenInput').val();
-
-            var guest_selected = "Adults: " + adults + ", Children: " + children;
-
-            $('#guestDropdown').val(guest_selected);
-            // You can perform any action with the values here
         });
     });
 </script>
