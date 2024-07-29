@@ -1,0 +1,62 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar-scrolled {
+    background-color: blanchedalmond;
+    /* Change this to your desired background color */
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* #menu .card {
+    height: 10rem;
+    flex-direction: row;
+}
+
+#menu .card img {
+    width: 35%;
+    object-fit: cover;
+} */
+
+#banner {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../images/ocean_heaven_hotel.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#room_image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../images/single_room_bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#restaurant {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../images/restaurant.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+@keyframes fadeInUp {
+    0% {
+        /* transform: translate(0px, 100px); */
+        opacity: 0;
+    }
+
+    100% {
+        /* transform: translate(0px, 0); */
+        opacity: 1;
+    }
+}
+
+
+#footer {
+    height: 100vh;
+    position: relative;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../images/footer_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
