@@ -4,6 +4,22 @@
     box-sizing: border-box;
 }
 
+.logo-image {
+    width: 100px;
+    height: 100px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.navbar {
+    height: 80px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
 .nav-item a {
     color: black;
 }
@@ -21,79 +37,35 @@
     font-weight: bold;
 }
 
-.navbar {
-    transition: background-color 0.3s, color 0.3s;
-}
-
 .navbar.scrolled {
     background-color: #1B1212 !important;
     color: white !important;
 }
 
-.carousel-inner {
-    display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+.hover-dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
 }
 
-.carousel-item {
-    scroll-snap-align: start;
-    min-width: 100%;
+/* Back to Top Button Styling */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1000;
 }
 
-.CEO {
-    height: 300px;
-    width: 300px;
-    background-image: url('../images/CEO.jpg');
-    background-position: center;
-    background-size: cover;
-    overflow: hidden;
-    position: relative;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
-        15px 15px 15px rgba(0, 0, 0, 0.1),
-        inset -5px -5px 5px rgba(255, 255, 255, 0.2),
-        inset 5px 5px 5px rgba(0, 0, 0, 0.1);
-}
-
-.frame {
-    height: 150px;
-    width: 200px;
-    background-position: center;
-    background-size: cover;
-    overflow: hidden;
-    position: relative;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: -15px -15px 15px rgba(255, 255, 255, 0.2),
-        15px 15px 15px rgba(0, 0, 0, 0.1),
-        inset -5px -5px 5px rgba(255, 255, 255, 0.2),
-        inset 5px 5px 5px rgba(0, 0, 0, 0.1);
-}
-
-.certificate {
-    background-color: white;
-    border: 2px solid #000;
-    /* Set the border color and width */
-    border-radius: 10px;
-    /* Optional: Add rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    max-width: 600px;
-    margin: 30px auto;
-    padding: 20px;
-}
-
-.certificate h2 {
-    text-align: center;
-    color: #333;
-}
-
-.certificate p {
-    text-align: justify;
+/* Optional: Hover Effect */
+.back-to-top-btn:hover {
+    background-color: #0056b3;
 }
 
 #banner {
@@ -102,17 +74,25 @@
     background-position: center;
 }
 
-#certificate {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../images/hall_of_fame.jpg');
+#archievement {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../images/archievement_bg.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
+    height: 35vh;
 }
 
 @media (max-width: 767px) {
+    .logo-image {
+        width: 70px;
+        height: 70px;
+    }
 
-    /* Styles for screens smaller than 768px (Bootstrap's small and extra small sizes) */
-    .frame {
-        width: 100%;
-        /* Set the width to 100% for smaller screens */
+    .navbar {
+        height: auto;
+    }
+
+    #archievement {
+        height: auto;
     }
 }

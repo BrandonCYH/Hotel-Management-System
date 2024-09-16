@@ -30,12 +30,13 @@ Route::view('/future-hotel-management-system', 'index')->name("main-page");
 // Route for User View
 Route::view('/about-us', 'User_Page.about_us')->name('about-us');
 
+Route::get('/terms-and-conditions', [User_Controller::class, 'terms_and_conditions'])->name('terms-and-conditions');
 Route::get('/hotel-room', [User_Controller::class, 'hotel_room'])->name('hotel-room');
 Route::get('hotel-room/fetch_data', [User_Controller::class, 'fetch_data']);
 Route::post('/hotel-selection', [User_Controller::class, 'hotel_selection'])->name('hotel-selection');
 Route::get('/room-booking/{room_type_name}', [User_Controller::class, 'room_booking'])->name('room-booking');
-Route::post('/booking-confirmation', [User_Controller::class, 'booking_confirmation'])->name('booking-confirmation');
-Route::post('/booking-receipt', [User_Controller::class, 'booking_receipt'])->name('booking-receipt');
+Route::get('/booking-confirmation', [User_Controller::class, 'booking_confirmation'])->name('booking-confirmation');
+Route::get('/booking-registration', [User_Controller::class, 'booking_registration'])->name('booking-registration');
 
 
 Route::view('/hotel-restaurant', 'User_Page.restaurant')->name('hotel-restaurant');

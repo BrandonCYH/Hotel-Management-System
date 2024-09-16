@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    {{-- link with other css file --}}
     <link rel="stylesheet" href="/about_us/style.css">
 
     {{-- website icon --}}
@@ -30,88 +31,74 @@
 
 <body>
     {{-- start of nav bar --}}
-    <div class="container-xl">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('main-page') }}"
-                    style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Ocean
-                    Heaven</a>
-                <button class="navbar-toggler mx-1" style="background-color: white; border: 1px solid white;"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('main-page') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2 active" style="font-size: 17px;"
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="../images/ocean_heaven.png" class="logo-image">
+            <a class="navbar-brand mt-2 " href="{{ route('main-page') }}">
+                <h5 class="font-weight-bold" style="margin: 0px !important;">OCEAN HEAVEN</h5>
+                <h5 class="font-weight-normal" style="font-size: 15px;">WORLD 1 FIRST CLASS HOTEL</h5>
+            </a>
+            <button class="navbar-toggler" style="background-color: white; border: 1px solid white;" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('main-page') }}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown hover-dropdown">
+                        <a class="nav-link active mx-2 dropdown-toggle" style="font-size: 17px;" href="#"
+                            id="features_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Features
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="features_menu">
+                            <a class="dropdown-item" style="font-size: 17px; color: #000080; font-weight: bold;"
                                 href="{{ route('about-us') }}">About
                                 Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('hotel-room') }}">Room</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;"
-                                href="{{ route('hotel-restaurant') }}">Dining</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;"
-                                href="{{ route('exclusive-member') }}">Member</a>
-                        </li>
-                        <!-- Add more items as needed -->
-                    </ul>
-                </div>
+                            <a class="dropdown-item" style="font-size: 17px;" href="#">Gallery</a>
+                            <a class="dropdown-item" style="font-size: 17px;"
+                                href="{{ route('terms-and-conditions') }}">Terms And Conditions</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown hover-dropdown">
+                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#"
+                            id="facilities_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Facilities
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="facilities_menu">
+                            <a class="dropdown-item" style="font-size: 17px;" href="{{ route('hotel-room') }}">Our
+                                Room</a>
+                            <a class="dropdown-item" style="font-size: 17px;" href="#">Our Hall</a>
+                        </div>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" style="font-size: 17px;"
+                            href="{{ route('hotel-restaurant') }}">Dining</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" style="font-size: 17px;"
+                            href="{{ route('exclusive-member') }}">Member</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                    </li>
+                    <!-- Add more items as needed -->
+                </ul>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
     {{-- end of nav bar --}}
 
-    {{-- banner --}}
-    <div class="jumbotron p-5" id="banner">
-        <div class="row">
-            <div class="col-md-12 d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000">
-                <h1 class="display-4 mt-5 text-light text-center">About Us</h1>
-            </div>
-            <div class="row">
-                <div class="d-flex justify-content-center">
-                    <div class="col-md-6 d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000"
-                        data-aos-delay="1000">
-                        <p class="lead text-light text-center">
-                            Welcome to Ocean Heaven Hotel! We're your cozy retreat by the sea. Since 2018, we've been
-                            all about great stays and happy guests. Enjoy comfy rooms, tasty eats, and awesome views. We
-                            care about the planet too! Thanks for considering us for your next trip. Come chill with
-                            us!</p>
-                        <hr class="my-4 text-light">
-                        <p class="text-light text-center">Come, stay and enjoy your day.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    {{-- button to back to top --}}
+    <button id="back-to-top" class="btn btn-info back-to-top-btn">
+        <i class="fa-solid fa-angles-up"></i>
+    </button>
+    {{-- end of button back to top --}}
 
-        <!-- Mobile View -->
-        <div class="col-sm-12 d-md-none" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="text-center mb-4">
-                <h1 class="fs-1 display-4 mt-5 text-light">About Us</h1>
-            </div>
-            <div class="col-sm-6 mx-auto">
-                <p class="lead text-light text-center">Welcome to Ocean Heaven Hotel! We're your cozy retreat by the
-                    sea. Since 2018, we've been
-                    all about great stays and happy guests. Enjoy comfy rooms, tasty eats, and awesome views. We
-                    care about the planet too! Thanks for considering us for your next trip. Come chill with
-                    us!</p>
-                <hr class="my-4 text-light">
-                <p class="text-light text-center">Come, stay and enjoy your day.</p>
-            </div>
-        </div>
-        <!-- End of Mobile View -->
-    </div>
-    {{-- end of banner --}}
-
-    {{-- history of Ocean Heaven Hotel --}}
+    {{-- Vision of Ocean Heaven Hotel --}}
     <div class="container-fluid">
         <div class="row mt-4" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
             <div class="col-md-12">
@@ -150,284 +137,68 @@
                                         <p class="card-text">Ocean Heaven Hotel partners with local charities to give
                                             back to the community and the environment.</p>
                                     </div>
-                                </div><br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- end of history of Ocean Heaven Hotel --}}
-
-    {{-- Greeting from CEO --}}
-    <div class="container-fluid">
-        <div class="row mt-4">
-            <div class="col-md-12">
-                <div class="d-flex justify-content-center">
-                    <h4 class="text-center fs-3" style="font-family: cursive;">
-                        Greeting From CEO Of Ocean Heaven Hotel
-                    </h4>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center mt-4">
-                <div class="col-md-8">
-                    <div class="container-xl mt-2">
-                        <div class="row">
-                            <div class="col-md-5" data-aos="fade-right" data-aos-duration="1000">
-                                <div class="d-flex justify-content-center">
-                                    <div class="CEO"></div>
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-md-7 d-none d-md-block" data-aos="fade-left" data-aos-duration="1000">
-                                <h4 class="text-center">Welcome to Ocean Heaven Hotel</h4>
-                                <p>
-                                    Hi Everyone,
-
-                                    I'm Danny, the CEO of Ocean Heaven Hotel. A big welcome to you!
-
-                                    We're thrilled to have you on board as our customer. If there's anything you need or
-                                    if you have questions, feel free to reach out. We're here to make your experience
-                                    with us top-notch.
-
-                                    Thanks for choosing our hotel. We look forward to serving you!
-                                    <br><br>
-                                    Best,
-                                    Danny
-                                    <br>
-                                    CEO of Ocean Heaven Hotel
-                                    <br><br>
-                                    <i class="fa-solid fa-signature fs-3"></i>
-                                </p>
-                            </div>
-
-                            {{-- mobile view --}}
-                            <div class="col-12 d-md-none">
-                                <h4 class="text-center">Welcome to Ocean Heaven Hotel</h4>
-                                <p class="text-center">
-                                    Hi Everyone,
-
-                                    I'm Danny, the CEO of Ocean Heaven Hotel. A big welcome to you!
-
-                                    We're thrilled to have you on board as our customer. If there's anything you need or
-                                    if you have questions, feel free to reach out. We're here to make your experience
-                                    with us top-notch.
-
-                                    Thanks for choosing our hotel. We look forward to serving you!
-                                    <br><br>
-                                    Best,
-                                    Danny
-                                    <br>
-                                    CEO of Ocean Heaven Hotel
-                                    <i class="fa-solid fa-signature fs-3"></i>
-                                </p>
-                            </div>
-                            {{-- end of mobile view --}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    {{-- end of greeting from CEO --}}
+    {{-- end of vision of Ocean Heaven Hotel --}}
 
-    {{-- Certificate of Ocean Heaven Hotel --}}
-    <div class="container-fluid" id="certificate">
-        <div class="row mt-3">
-            <div class="d-flex justify-content-center mt-3">
-                <div class="col-md-12">
-                    <div class="container-xl">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="d-flex justify-content-center">
-                                    <h4 class="text-center text-light fs-3" style="font-family: cursive;">
-                                        Awards Of Ocean Heaven Hotel
-                                    </h4>
-                                </div>
-                            </div>
-                            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-carousel-init
-                                data-aos="zoom-in-up" data-aos-duration="1000">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0"
-                                        class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"
-                                        aria-label="Slide 2"></button>
-                                </div>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="certificate">
-                                                    <h3>Certificate of Achievement</h3>
-                                                    <p>This is to certify that</p>
-                                                    <h3 class="text-center">OCEAN HEAVEN HOTEL</h3>
-                                                    <p>has successfully received an achievement of</p>
-                                                    <h4 class="text-center">HOSPITALITY ASSURED</h4>
-                                                    <p>Recognizes hotels for excellence in service quality, business
-                                                        processes, and
-                                                        employee development.</p>
-                                                    <p>awarded on <b>10.07.2019</b></p>
-                                                    <p>Signature: <i class="fa-solid fa-signature fs-4 mt-1"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="certificate">
-                                                    <h3>Certificate of Achievement</h3>
-                                                    <p>This is to certify that</p>
-                                                    <h3 class="text-center">OCEAN HEAVEN HOTEL</h3>
-                                                    <p>has successfully received an achievement of</p>
-                                                    <h4 class="text-center">EXCELLENCE OF SERVICES</h4>
-                                                    <p>Recognizing outstanding reviews and ratings from guests on
-                                                        platforms like TripAdvisor or Booking.com.</p>
-                                                    <p>awarded on <b>23.10.2015</b></p>
-                                                    <p>Signature: <i class="fa-solid fa-signature fs-4 mt-1"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="certificate">
-                                                    <h3>Certificate of Achievement</h3>
-                                                    <p>This is to certify that</p>
-                                                    <h3 class="text-center">OCEAN HEAVEN HOTEL</h3>
-                                                    <p>has successfully received an achievement of</p>
-                                                    <h4 class="text-center">GUEST SATISFACTION AWARD</h4>
-                                                    <p>Consistently receive positive feedback and high satisfaction
-                                                        scores from guests.</p>
-                                                    <p>awarded on <b>13.08.2017</b></p>
-                                                    <p>Signature: <i class="fa-solid fa-signature fs-4 mt-1"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="certificate">
-                                                    <h3>Certificate of Achievement</h3>
-                                                    <p>This is to certify that</p>
-                                                    <h3 class="text-center">OCEAN HEAVEN HOTEL</h3>
-                                                    <p>has successfully received an achievement of</p>
-                                                    <h4 class="text-center">GREEN CERTIFICATION</h4>
-                                                    <p>Implementing environmentally friendly practices and
-                                                        sustainability initiatives, such as energy conservation.</p>
-                                                    <p>awarded on <b>13.03.2020</b></p>
-                                                    <p>Signature: <i class="fa-solid fa-signature fs-4 mt-1"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="certificate">
-                                                    <h3>Certificate of Achievement</h3>
-                                                    <p>This is to certify that</p>
-                                                    <h3 class="text-center">OCEAN HEAVEN HOTEL</h3>
-                                                    <p>has successfully received an achievement of</p>
-                                                    <h4 class="text-center">SOCIAL RESPONSIBILITY</h4>
-                                                    <p>Recognizing efforts in community engagement, philanthropy, and
-                                                        social responsibility initiatives.</p>
-                                                    <p>awarded on <b>20.04.2023</b></p>
-                                                    <p>Signature: <i class="fa-solid fa-signature fs-4 mt-1"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="certificate">
-                                                    <h3>Certificate of Achievement</h3>
-                                                    <p>This is to certify that</p>
-                                                    <h3 class="text-center">OCEAN HEAVEN HOTEL</h3>
-                                                    <p>has successfully received an achievement of</p>
-                                                    <h4 class="text-center">SAFETY AND HYGIENE</h4>
-                                                    <p>Demonstrating adherence to strict safety and hygiene protocols,
-                                                        especially in hospitality industry.
-                                                    </p>
-                                                    <p>awarded on <b>13.12.2021</b></p>
-                                                    <p>Signature: <i class="fa-solid fa-signature fs-4 mt-1"></i>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Add more carousel items here -->
-                                <a class="carousel-control-prev" href="#myCarousel" role="button"
-                                    data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#myCarousel" role="button"
-                                    data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- end of certificate Ocean Heaven Hotel --}}
-
-    {{-- start of news of ocean heaven hotel --}}
+    {{-- Features of the hotel --}}
     <div class="container-fluid">
-        <div class="row mt-5">
-            <div class="col-md-12">
-                <div class="d-flex justify-content-center">
-                    <h4 class="text-center fs-3" style="font-family: cursive;">
-                        Latest News from Ocean Heaven Hotel
-                    </h4>
-                </div>
-            </div>
+        <div class="row">
             <div class="d-flex justify-content-center">
                 <div class="col-md-8">
-                    <div class="container-xl mt-4">
-                        <div class="row" data-aos="fade-up" data-aos-duration="1000">
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="../images/special_offer.jpg" class="card-img-top" alt="News Image">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center">🌟 Limited Time Offer 🌟<br>Recieve Limited
-                                            Gift From Us</h5>
-                                        <p class="card-text">
-                                            Receive a limited gift with your stay! Simply book directly with us to
-                                            qualify. Make your stay at Ocean
-                                            Heaven Hotel even more memorable!</p>
-                                        <a href="#" class="btn btn-primary w-100">Read More</a>
-                                    </div>
+                    <div class="container-xl">
+                        <div class="card card-body border border-white">
+                            <div class="row">
+                                <!-- Accommodation Options (Image Left, Text Right on Desktop; Image First on Mobile) -->
+                                <div class="col-md-6 order-1 order-md-1">
+                                    <img class="card-img-top img-fluid mt-4" src="../images/accommodation.jpg"
+                                        alt="Accommodation Options">
                                 </div>
-                                <br>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="../images/travel_tips.jpg" class="card-img-top" alt="News Image">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center">🌟 Explore Like a Local: 🌟<br>Tips for Your
-                                            Next
-                                            Adventure!</h5>
-                                        <p class="card-text">Looking to discover the hidden gems of our vibrant city?
-                                            we've curated a
-                                            list of must-visit spots that will make your stay unforgettable.</p>
-                                        <a href="#" class="btn btn-primary w-100">Read More</a>
-                                    </div>
+                                <div class="col-md-6 order-2 order-md-2">
+                                    <br>
+                                    <h3>Accommodation Options</h3>
+                                    <p class="text-justify">Our hotel features a range of luxurious rooms and suites,
+                                        each designed with comfort and style in mind. Whether you choose our Deluxe Room
+                                        with city views or the opulent Presidential Suite, your stay promises to be
+                                        nothing short of extraordinary.</p>
                                 </div>
-                                <br>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card">
-                                    <img src="../images/charity_events.jpg" class="card-img-top" alt="News Image">
-                                    <div class="card-body">
-                                        <h5 class="card-title text-center">🌟 Compassion in Action: 🌟<br>Waves of
-                                            Change
-                                        </h5>
-                                        <p class="card-text">Our upcoming charity event
-                                            will be joining hands with our guests and partners to make a positive
-                                            impact in our local community. </p>
-                                        <a href="#" class="btn btn-primary w-100">Read More</a>
-                                    </div>
+
+                                <!-- Dining Options (Image Left, Text Right on Desktop; Image First on Mobile) -->
+                                <div class="col-md-6 order-4 order-md-3">
+                                    <br>
+                                    <h3>Dining Options</h3>
+                                    <p class="text-justify">Savor culinary delights at our signature restaurant, The
+                                        Vista Lounge, offering an eclectic menu of international and local cuisines. For
+                                        a more casual setting, visit The Terrace Café, where you can enjoy a light meal
+                                        with stunning ocean views.</p>
                                 </div>
-                                <br>
+                                <div class="col-md-6 order-3 order-md-4">
+                                    <br>
+                                    <img class="card-img-top img-fluid" src="../images/dining.jpg"
+                                        alt="Dining Options">
+                                </div>
+
+                                <!-- Swimming Pool (Image Left, Text Right on Desktop; Image First on Mobile) -->
+                                <div class="col-md-6 order-5 order-md-6">
+                                    <br>
+                                    <img class="card-img-top img-fluid" src="../images/swimming_pool.jpg"
+                                        alt="Swimming Pool">
+                                </div>
+                                <div class="col-md-6 order-6 order-last">
+                                    <br>
+                                    <h3>Leisure and Wellness</h3>
+                                    <p class="text-justify">Unwind at our tranquil spa, complete with massage therapy,
+                                        sauna, and steam rooms. Stay active in our fully equipped fitness center or take
+                                        a dip in our rooftop infinity pool, offering breathtaking views of the city
+                                        skyline.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -435,7 +206,81 @@
             </div>
         </div>
     </div>
-    {{-- end og news of ocean heaven hotel --}}
+    {{-- end of features of the hotel --}}
+
+    {{-- start of archievement by hotel --}}
+    <div class="container-fluid mt-3" id="archievement">
+        <div class="row mt-4 ">
+            <div class="col-md-12">
+                <h4 class="text-center text-light mt-3 fs-3" style="font-family: cursive;">Achievement Of The Year
+                </h4>
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+                <div class="col-md-8">
+                    <div class="container-xl">
+                        <div class="row">
+                            <h2 class="text-center text-light" style="font-size: 16px;">With over 100,000 positive
+                                reviews and
+                                multiple awards for our
+                                outstanding service, we are dedicated to making every stay unforgettable.
+                            </h2>
+                            <div class="col-md-4 col-12 mt-2" data-aos="fade-up" data-aos-duration="1000">
+                                <h4 class="text-center mt-2" style="color: antiquewhite;">Customer Satisfaction</h4>
+                                <h5 class="text-center" style="color: chartreuse;">95%</h5>
+                                <p class="text-center" style="color: azure;"><b>Sastifaction Over 50000 Guests</b></p>
+                            </div>
+                            <div class="col-md-4 col-12 mt-2" data-aos="fade-up" data-aos-duration="1000">
+                                <h4 class="text-center mt-2" style="color: antiquewhite;">Guest Loyalty</h4>
+                                <h5 class="text-center" style="color: chartreuse;">100,000</h5>
+                                <p class="text-center" style="color: azure;"><b>Returning Guests Annually</b></p>
+                            </div>
+                            <div class="col-md-4 col-12 mt-2" data-aos="fade-up" data-aos-duration="1000">
+                                <h4 class="text-center mt-2" style="color: antiquewhite;">Social Media</h4>
+                                <h5 class="text-center" style="color: chartreuse;">100,000</h5>
+                                <p class="text-center" style="color: azure;"><b>Followers On Instagram</b>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end of archievement by hotel --}}
+
+    {{-- start of connect with us --}}
+    <div class="container-fluid mt-3">
+        <div class="row mt-4 ">
+            <div class="d-flex justify-content-center mt-2">
+                <div class="col-md-8">
+                    <div class="container-xl">
+                        <div class="row">
+                            <div class="col-md-6 d-flex align-items-stretch">
+                                <img class="card-img-top img-fluid w-100 h-100" src="../images/reception.jpg"
+                                    alt="receptionist" style="object-fit: cover;">
+                            </div>
+                            <div class="col-md-6 d-flex flex-column justify-content-center mt-3 mt-md-0">
+                                <h3>Connect With Us</h3>
+                                <p>We strive to meet all your needs and exceed your expectations during your stay.
+                                    Please feel free to share any ideas or requests with us.</p>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Name">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Your Email">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <textarea class="form-control" placeholder="Tell us your destination idea..."></textarea>
+                                </div>
+                                <button type="button" class="btn btn-primary w-100 mt-auto">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end of connect with us --}}
 
     <!-- Footer -->
     <footer class="text-center text-lg-start text-white bg-dark mt-4">
@@ -538,11 +383,13 @@
     {{-- end of footer --}}
 </body>
 
+{{-- link with other js file --}}
+<script src="/about_us/about_us.js"></script>
+
+{{-- bootstrap javascript cdn --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
 </script>
-
-<script src="/about_us/about_us.js"></script>
 
 {{-- jquery cdn --}}
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -572,5 +419,6 @@
         disable: 'mobile'
     });
 </script>
+{{-- end of aos library cdn --}}
 
 </html>

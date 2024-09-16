@@ -1,22 +1,27 @@
-window.addEventListener('scroll', function () {
-    var navtitle = this.document.querySelector('.navbar-brand');
-    var navbar = document.querySelector('.navbar');
-    var navlinks = document.querySelectorAll('.nav-link');
-    var scrollPosition = window.scrollY;
+document.addEventListener("DOMContentLoaded", function () {
+    const backToTopButton = document.getElementById('back-to-top');
 
-    if (scrollPosition > 50) {
-        navtitle.classList.add('text-light');
-        navbar.classList.add('scrolled');
-        navlinks.forEach(function (link) {
-            link.classList.add('text-light');
-            link.classList.remove('text-dark');
-        });
-    } else {
-        navtitle.classList.remove('text-light');
-        navbar.classList.remove('scrolled');
-        navlinks.forEach(function (link) {
-            link.classList.remove('text-light');
-            link.classList.add('text-dark');
-        });
+    // Show or hide the button based on scroll position
+    window.onscroll = function () {
+        toggleBackToTopButton();
+    };
+
+    function toggleBackToTopButton() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
     }
+
+    // Scroll smoothly to the top when the button is clicked
+    backToTopButton.addEventListener('click', function () {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Initially hide the button
+    backToTopButton.style.display = "none";
 });

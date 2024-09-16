@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="/room_booking/style.css">
+    <link rel="stylesheet" href="/booking_confirmation/style.css">
 
     {{-- website icon --}}
     <link rel="icon" href="../images/ocean_heaven.png" type="image/x-icon">
@@ -32,145 +32,126 @@
 </head>
 
 <body>
-    {{-- progress bar --}}
-    <div class="container" style="margin-top: 100px;">
-        <div class="row step justify-content-center">
-            <a style="text-decoration: none;"
-                href="{{ route('room-booking', ['room_type_name' => $selected_roomName]) }}" id="div1"
-                class="col-md-2 mx-3">
-                <span class="fa fa-house" style="color: black;"></span>
-                <p class="text-dark">Room Registration</p>
-            </a>
-            <div class="col-md-2 mx-3 activestep">
-                <span class="fa fa-info"></span>
-                <p>Guest Information</p>
+    {{-- start of nav bar --}}
+    <div class="container-xl">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="{{ route('main-page') }}"
+                    style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Ocean
+                    Heaven</a>
             </div>
-            <div class="col-md-2 mx-3">
-                <span class="fa fa-receipt"></span>
-                <p>Booking Receipt</p>
+        </nav>
+    </div>
+    {{-- end of nav bar --}}
+
+    <div class="jumbotron p-5" id="banner">
+        <div class="row">
+            <div class="col-md-12 text-center d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000">
+                <h1 class="display-4 mt-5 text-light">Ocean Heaven Hotel</h1>
+            </div>
+            <div class="row">
+                <div class="d-flex justify-content-center">
+                    <div class="col-md-6 d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000"
+                        data-aos-delay="1000">
+                        <p class="lead text-light text-center">Where comfort meets personalized care, our hotel is a
+                            sanctuary of
+                            hospitality. From the warm welcome at arrival to the attentive service during your stay, we
+                            strive
+                            to create memorable experiences that linger long after you've departed.</p>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Mobile View -->
+        <div class="col-sm-12 d-md-none" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="text-center mb-4">
+                <h1 class="fs-1 display-4 mt-5 text-light">Ocean Heaven Hotel</h1>
+            </div>
+            <div class="col-sm-6 mx-auto">
+                <p class="lead text-light text-center">Where comfort meets personalized care, our hotel is a
+                    sanctuary of
+                    hospitality. From the warm welcome at arrival to the attentive service during your stay, we
+                    strive
+                    to create memorable experiences that linger long after you've departed.</p>
+                <hr class="my-4 text-light">
+                <p class="text-light text-center">Come, stay and enjoy your day.</p>
+                <p class="lead text-center">
+                    <a href="{{ route('about-us') }}" type="button" class="btn btn-outline-light btn-lg"
+                        data-mdb-ripple-init data-mdb-ripple-color="dark">More About Us</a>
+                </p>
+            </div>
+        </div>
+        <!-- End of Mobile View -->
     </div>
-    {{-- end of progress bar --}}
+    {{-- end of banner --}}
 
     {{-- start of booking confirmation receipt --}}
     <div class="container mt-3">
-
         <div class="row">
-            <div class="col-md-7">
-                <div class="card card-body">
-                    <div class="row">
-                        <div class="col-8">
-                            <h4>Ocean Heaven Hotel</h4>
-                            <h5>Austin, Texas</h5>
-                            <h5>+ 01 234 567 88</h5>
-                        </div>
-                        <div class="col-4">
-                            <h4>Date: </h4>
-                            <h5 id="booking-id">Booking ID: {{ $bookingId }}</h5>
-                        </div>
-                        <div class="col-12 mt-3">
-                            <h5>Guest Name : {{ $guest_name }}</h5>
-                            <h5>Guest Email : {{ $guest_email }}</h5>
-                            <h5>Guest Phone : {{ $guest_phoneNumber }}</h5>
-                        </div>
-                        <hr>
-
-                        <h5 class="text-center text-warning"><b>Room Service</b></h5>
-                        @if (!empty($each_selectedServices))
-                            <div class="row">
-                                <div class="col-9">
-                                    <h5>Item</h5>
-                                    @foreach ($each_selectedServices as $services)
-                                        <p><b>Room Service : {{ $services }}</b></p>
-                                    @endforeach
-                                </div>
-                                <div class="col-3">
-                                    <h5>Price</h5>
-                                    @foreach ($each_selected_priceServices as $price_services)
-                                        <p class="text-success"><b>$ {{ $price_services }}.00</b></p>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @else
-                            <p class="text-center">No service selected</p>
-                        @endif
-                        <hr>
-
-                        <h5 class="text-center">Special Offer</h5>
-                        @foreach ($each_selectedOffer as $offer)
-                            @foreach ($each_selected_priceOffer as $price_offer)
-                                @if (!empty($offer) && !empty($price_offer))
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h5>Item</h5>
-                                            <p><b>Special Offer: {{ $offer }}</b></p>
-                                        </div>
-                                        <div class="col-3">
-                                            <h5>Price</h5>
-                                            <p class="text-success"><b>$ {{ $price_offer }}</b></p>
-                                        </div>
-                                    </div>
-                                @else
-                                    <p class="text-center">No offer selected</p>
-                                @endif
-                            @endforeach
-                        @endforeach
-                        <hr>
-
-                        <h5 class="text-center text-warning">Parking Services</h5>
-                        @if (!empty($selectedParking))
-                            <div class="row">
-                                <div class="col-9">
-                                    <h5>Item</h5>
-                                    <p><b>Parking Type: {{ $selectedParking }}</b></p>
-                                </div>
-                                <div class="col-3">
-                                    <h5>Parking Price</h5>
-                                    @if ($selectedParking == 'Default')
-                                        <p class="text-success"><b>Free of Charge</b></p>
-                                    @else
-                                        <p class="text-success"><b>$ {{ $selected_parkingPrice }}</b></p>
-                                    @endif
-                                </div>
-                            </div>
-                        @else
-                            <p class="text-center">No parking selected</p>
-                        @endif
+            <div class="col-5">
+                <div class="card card-body" style="position: relative; top: -20%;">
+                    <div class="check-icon">
+                        <i class="fas fa-check-circle fs-1 d-flex justify-content-center" style="color: green;"></i>
                     </div>
+                    <h3 class="text-success text-center mt-1">Booking Successfully</h3>
+                    <h5 class="text-center">Congratulation! Your booking process is complete</h5>
+                    <hr class="text-success">
+                    <h5 class="text-success text-center"><b>Booked on</b></h5>
+                    <hr class="text-success">
+                    <h5 class="text-success text-center"><b>Booked on</b></h5>
                 </div>
-                <br>
             </div>
-            <div class="col-md-5">
+            <div class="col-7">
+                <h3>Dear</h3>
+                <h4>Your Booking For is confirmed.</h4>
+                <p>Team Ocean Heaven Hotel.</p>
+            </div>
+
+            {{-- start of room information --}}
+            <div class="col-12">
                 <div class="card">
-                    <img src="{{ asset('../images/' . $selected_roomName . '.jpg') }}" class="card-img-top"
-                        style="height: 100%;" alt="...">
+                    <div class="card-header">
+                        Room Information
+                    </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <h5 class="card-title">Room Name : </h5>
-                                <h5 class="card-title">Room Number : </h5>
-                                <h5 class="card-title">Check In Date : </h5>
-                                <h5 class="card-title">Check Out Date : </h5>
-                                <h5 class="card-title">Total Price : </h5>
-                            </div>
-                            <div class="col-6">
-                                <h5 class="text-success d-flex justify-content-end">{{ $selected_roomName }}</h5>
-                                @foreach ($random_room_number as $random_roomNumber)
-                                    <h5 class="text-success d-flex justify-content-end">
-                                        {{ $random_roomNumber->room_number }}</h5>
-                                @endforeach
-                                <h5 class="text-success d-flex justify-content-end">{{ $guest_check_in_date }}</h5>
-                                <h5 class="text-success d-flex justify-content-end">{{ $guest_check_out_date }}
-                                </h5>
-                                <h5 class="text-success d-flex justify-content-end">$ {{ $room_price }}</h5>
-                            </div>
-                        </div>
-                        <button id="confirm-booking" class="btn btn-success w-100 mt-3">Confirm Booking</button>
+                        <h4></h4>
+                        <h5 class="font-weight-light">Traveller: </h5>
                     </div>
                 </div>
                 <br>
             </div>
+            {{-- end of room information --}}
+
+            {{-- start of hotel policy --}}
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        CANCELLATION POLICY
+                    </div>
+                    <div class="card-body">
+                        <h4></h4>
+                        <h5 class="font-weight-light">Traveller: </h5>
+                    </div>
+                </div>
+                <br>
+            </div>
+            {{-- end of hotel policy --}}
+
+            {{-- amount payable --}}
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        Amount Payable
+                    </div>
+                    <div class="card-body">
+                        <h4></h4>
+                        <h5 class="font-weight-light">Traveller: </h5>
+                    </div>
+                </div>
+                <br>
+            </div>
+            {{-- end of amount payable --}}
         </div>
     </div>
     {{-- end of booking confirmation receipt --}}
@@ -205,8 +186,7 @@
                             </a>
                         </p>
                         <p>
-                            <a class="text-white" style="text-decoration: none;"
-                                href="{{ route('about-us') }}">About
+                            <a class="text-white" style="text-decoration: none;" href="{{ route('about-us') }}">About
                                 Us</a>
                         </p>
                         <p>
@@ -276,5 +256,14 @@
     </footer>
     {{-- end of footer --}}
 </body>
+<script src="/booking_confirmation/index.js"></script>
+
+{{-- aos library cdn --}}
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        disable: 'mobile'
+    });
+</script>
 
 </html>

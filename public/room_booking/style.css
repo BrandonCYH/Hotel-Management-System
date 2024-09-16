@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.navbar {
+    height: 80px;
+}
+
 .nav-item a {
     color: black;
 }
@@ -30,46 +34,50 @@
     color: white !important;
 }
 
-.step {
-    text-align: center;
+.hover-dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
 }
 
-.step .col-md-2 {
-    background-color: #fff;
-    border: 1px solid #C0C0C0;
+.card-img-top {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
 }
 
-.step .col-md-2:last-child {
-    border: 1px solid #C0C0C0;
+#room_image {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../images/Single Room.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
-.step .col-md-2:first-child {
-    border-radius: 5px 0 0 5px;
+#footer {
+    height: 100vh;
+    position: relative;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../images/footer_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-.step .col-md-2:last-child {
-    border-radius: 0 5px 5px 0;
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
-.step .col-md-2:hover {
-    color: #F58723;
-    cursor: pointer;
-}
+/* Adjust height for mobile devices */
+@media (max-width: 767.98px) {
+    .logo-image {
+        width: 70px;
+        height: 70px;
+    }
 
-.step .activestep {
-    color: #F58723;
-    height: 100px;
-    border-left: 6px solid #5CB85C !important;
-    border-right: 6px solid #5CB85C !important;
-    border-top: 3px solid #5CB85C !important;
-    border-bottom: 3px solid #5CB85C !important;
-}
-
-.step .fa {
-    padding-top: 15px;
-    font-size: 40px;
-}
-
-.card.selected {
-    border: 2px solid blue;
+    .navbar {
+        height: auto;
+    }
 }

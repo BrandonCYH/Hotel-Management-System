@@ -34,51 +34,78 @@
 
 <body>
     {{-- start of nav bar --}}
-    <div class="container-xl">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('main-page') }}"
-                    style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Ocean
-                    Heaven</a>
-                <button class="navbar-toggler mx-1" style="background-color: white; border: 1px solid white;"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('main-page') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('about-us') }}">About
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="../images/ocean_heaven.png" class="logo-image">
+            <a class="navbar-brand mt-2 " href="{{ route('main-page') }}">
+                <h5 class="font-weight-bold" style="margin: 0px !important;">OCEAN HEAVEN</h5>
+                <h5 class="font-weight-normal" style="font-size: 15px;">WORLD 1 FIRST CLASS HOTEL</h5>
+            </a>
+            <button class="navbar-toggler" style="background-color: white; border: 1px solid white;" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('main-page') }}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown hover-dropdown">
+                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#"
+                            id="features_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Features
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="features_menu">
+                            <a class="dropdown-item" style="font-size: 17px;" href="{{ route('about-us') }}">About
                                 Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2 active" style="font-size: 17px;"
-                                href="{{ route('hotel-room') }}">Room</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;"
-                                href="{{ route('hotel-restaurant') }}">Dining</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;"
-                                href="{{ route('exclusive-member') }}">Member</a>
-                        </li>
-                        <!-- Add more items as needed -->
-                    </ul>
-                </div>
+                            <a class="dropdown-item" style="font-size: 17px;" href="#">Gallery</a>
+                            <a class="dropdown-item" style="font-size: 17px;"
+                                href="{{ route('terms-and-conditions') }}">Terms And Conditions</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown hover-dropdown">
+                        <a class="nav-link active mx-2 dropdown-toggle" style="font-size: 17px;" href="#"
+                            id="facilities_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Facilities
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="facilities_menu">
+                            <a class="dropdown-item" style="font-size: 17px; color: #000080; font-weight: bold;"
+                                href="{{ route('hotel-room') }}">Our
+                                Room</a>
+                            <a class="dropdown-item" style="font-size: 17px;" href="#">Our Hall</a>
+                        </div>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" style="font-size: 17px;"
+                            href="{{ route('hotel-restaurant') }}">Dining</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" style="font-size: 17px;"
+                            href="{{ route('exclusive-member') }}">Member</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                    </li>
+                    <!-- Add more items as needed -->
+                </ul>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
     {{-- end of nav bar --}}
+
+    {{-- button to back to top --}}
+    <button id="back-to-top" class="btn btn-info back-to-top-btn">
+        <i class="fa-solid fa-angles-up"></i>
+    </button>
+    {{-- end of button back to top --}}
 
     {{-- intro of the hotel --}}
     <div class="jumbotron p-5" id="room_image">
         <div class="row">
             <div class="col-md-12 text-center" data-aos="zoom-in" data-aos-duration="1000">
-                <h1 class="display-4 mt-5 text-light" id="room_title">Single Room</h1>
+                <h1 class="display-4 text-light" id="room_title">Single Room</h1>
             </div>
             <div class="d-flex justify-content-center">
                 <div class="col-md-5" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
@@ -98,41 +125,79 @@
     {{-- end of intro of the hotel --}}
 
     {{-- Each Hotel room description --}}
-    <div class="container-fluid" id="filter">
+    <div class="container-fluid">
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="d-flex justify-content-center">
-                    <h4 class="text-center fs-3" style="font-family: cursive;" data-aos="zoom-in"
-                        data-aos-duration="1000">
+                    <h4 class="text-center fs-3" data-aos="zoom-in" data-aos-duration="1000">
                         Our Hotel Have Many Type Of Guest Room That Can Fufill Your Needs
                     </h4>
                 </div>
             </div>
             <div class="d-flex justify-content-center">
                 <div class="col-md-10">
-                    <div class="container-xl mt-4">
+                    <div class="container-xl mt-lg-5 mt-md-3 mt-3">
                         <div class="row">
+                            {{-- start of filter hotel room form --}}
                             <div class="col-md-3">
                                 <div class="card" data-aos="fade-right" data-aos-duration="1000"
                                     data-aos-delay="1000">
                                     <div class="card-header">Choose Your Hotel Room</div>
                                     <div class="card-body">
-                                        <div class="form-group">
-                                            <label for="check_in_date">Check In Date:</label>
-                                            <div class="input-group date mt-2">
-                                                <input type="date" id="check_in_date" class="form-control">
+                                        {{-- start of list services --}}
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input class="form-check-input mx-1" type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Air Conditioners
+                                                </label>
+                                            </div>
+                                            <div class="col-12 mt-1">
+                                                <input class="form-check-input mx-1" type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Swimming Pool
+                                                </label>
+                                            </div>
+                                            <div class="col-12 mt-1">
+                                                <input class="form-check-input mx-1" type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Pet Accommodation
+                                                </label>
+                                            </div>
+                                            <div class="col-12 mt-1">
+                                                <input class="form-check-input mx-1" type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Room Purification
+                                                </label>
+                                            </div>
+                                            <div class="col-12 mt-1">
+                                                <input class="form-check-input mx-1" type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Computer Facility
+                                                </label>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="check_out_date" class="mt-2">Check Out Date:</label>
-                                            <div class="input-group date mt-1">
-                                                <input type="date" id="check_out_date" class="form-control">
-                                            </div>
+                                        <hr>
+                                        {{-- end of list services --}}
+
+                                        {{-- start of guest capacity --}}
+                                        <label for="guest-capacity">Guest Capacity</label>
+                                        <div class="input-group mt-2">
+                                            <button class="btn btn-outline-secondary" type="button"
+                                                id="button-decrement">-</button>
+                                            <input type="number" class="form-control text-center" id="number"
+                                                value="0" min="0" max="100">
+                                            <button class="btn btn-outline-secondary" type="button"
+                                                id="button-increment">+</button>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="form-label mt-2" for="typeNumber">Guest</label>
-                                            <input type="number" id="guest" class="form-control" />
-                                        </div>
+                                        {{-- end of guest capacity --}}
+
+                                        {{-- start of price range --}}
                                         <div class="form-group">
                                             <label for="priceRange" class="mt-2">Price Range:</label>
                                             <div class="input-group mt-2">
@@ -147,6 +212,8 @@
                                             <input type="range" class="custom-range" id="priceSlider"
                                                 min="0" max="1000" step="10" value="1000">
                                         </div>
+                                        {{-- end of price range --}}
+
                                         <input type="submit" id="hotel-selection" class="btn btn-success w-100 mt-2"
                                             value="Search Room"><br>
                                         <div id="pagination-links" class="pagination-links">
@@ -159,23 +226,23 @@
                                 </div>
                                 <br>
                             </div>
+                            {{-- end of filter hotel room form --}}
+
                             <div class="col-md-9" id="room_card">
                                 {{-- start of single room card (desktop view) --}}
                                 @foreach ($room_data as $room_d)
                                     <div class="card shadow p-3 bg-white rounded d-none d-md-block"
                                         data-aos="fade-left" data-aos-duration="1000">
                                         <div class="row no-gutters">
-                                            <div class="col-md-4">
+                                            <div class="col-lg-4">
                                                 <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
                                                     class="card-img-top" style="height: 100%;" alt="...">
                                             </div>
-                                            <div class="col-md-8">
-                                                <div class="card-body">
+                                            <div class="col-lg-8">
+                                                <div class="card card-body border border-white">
                                                     <div class="row">
-                                                        <div class="col-8">
-                                                            <h3 class="card-title">
-                                                                {{ $room_d->room_type_name }}
-                                                            </h3>
+                                                        <div class="col-lg-8">
+                                                            <h3>{{ $room_d->room_type_name }}</h3>
                                                             <div class="row">
                                                                 @php
                                                                     $available_count = 0;
@@ -190,7 +257,7 @@
                                                                     @endif
                                                                 @endforeach
                                                                 @if ($available_count > 0)
-                                                                    <div class="col-7">
+                                                                    <div class="col-lg-7">
                                                                         <h5 style="font-size: 15px;">
                                                                             <i class="fa-solid fa-bell mt-1"
                                                                                 style="color: crimson; font-size: 17px;"></i>
@@ -198,7 +265,7 @@
                                                                         </h5>
                                                                     </div>
                                                                 @else
-                                                                    <div class="col-7">
+                                                                    <div class="col-lg-7">
                                                                         <h5 style="font-size: 15px;">
                                                                             <i class="fa-solid fa-bell mt-1"
                                                                                 style="color: crimson; font-size: 17px;"></i>
@@ -206,22 +273,22 @@
                                                                         </h5>
                                                                     </div>
                                                                 @endif
-                                                                <div class="col-5">
+                                                                <div class="col-lg-5">
                                                                     <h5 style="font-size: 15px;">
                                                                         <i class="fa-solid fa-user mt-1"
                                                                             style="color: black; font-size: 17px;"></i>
                                                                         Guest : {{ $room_d->guest }}
                                                                     </h5>
                                                                 </div>
-                                                                <div class="col-7">
+                                                                <div class="col-lg-7">
                                                                     <h5 style="font-size: 15px;">
-                                                                        <i class="fa-solid fa-tag mt-1"
+                                                                        <i class="fa-solid fa-circle-up mt-1"
                                                                             style="color: orange; font-size: 17px;"></i>
-                                                                        Special Offer : <span
-                                                                            class="text-success">Available</span>
+                                                                        Upgrade: <span
+                                                                            class="text-success"><b>Available</b></span>
                                                                     </h5>
                                                                 </div>
-                                                                <div class="col-5">
+                                                                <div class="col-lg-5">
                                                                     <h5 class="text-success" style="font-size: 15px;">
                                                                         <i class="fa-solid fa-check mt-1"
                                                                             style="font-size: 15px; color: green;"></i>
@@ -229,7 +296,7 @@
                                                                     </h5>
                                                                 </div>
                                                                 <hr>
-                                                                <div class="col-12">
+                                                                <div class="col-lg-12">
                                                                     <h5 style="font-size: 15px;">
                                                                         <i class="fa-solid fa-money-check-dollar mt-1"
                                                                             style="color: green; font-size: 17px;"></i>
@@ -239,9 +306,9 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-4">
+                                                        <div class="col-lg-4">
                                                             <div class="d-flex justify-content-center">
-                                                                <h2 class="card-title text-success">$
+                                                                <h2 class="text-success">$
                                                                     {{ $room_d->price_per_night }}</h2>
                                                             </div>
                                                             <h5 class="text-secondary text-center fs-5"><i>per
@@ -280,7 +347,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- start of single room card (mobile view) --}}
+                                    {{-- end of room card (desktop view) --}}
+
+                                    {{-- start of room card (mobile view) --}}
                                     <div
                                         class="card border border-secondary shadow-lg shadow-light shadow-offset-down-sm shadow-intensity-lg bg-white rounded d-md-none">
                                         <div class="row no-gutters">
@@ -291,20 +360,8 @@
                                             <div class="col-md-8">
                                                 <div class="card-body">
                                                     <div class="row">
-                                                        <div class="col-md-8">
-                                                            <div class="row d-flex">
-                                                                <div class="col-6">
-                                                                    <h3 class="card-title">
-                                                                        {{ $room_d->room_type_name }}</h3>
-                                                                </div>
-                                                                <div class="col-6 d-flex justify-content-end">
-                                                                    <h2 class="card-title text-success"
-                                                                        style="font-size: 23px;">
-                                                                        ${{ $room_d->price_per_night }} / <small
-                                                                            class="text-dark">night</small>
-                                                                    </h2>
-                                                                </div>
-                                                            </div>
+                                                        <div class="col-md-12">
+                                                            <h3>{{ $room_d->room_type_name }}</h3>
                                                             <div class="row mt-1">
                                                                 @php
                                                                     $available_count = 0;
@@ -344,10 +401,10 @@
                                                                 </div>
                                                                 <div class="col-7">
                                                                     <h5 style="font-size: 15px;">
-                                                                        <i class="fa-solid fa-tag mt-1"
+                                                                        <i class="fa-solid fa-circle-up mt-1"
                                                                             style="color: orange; font-size: 17px;"></i>
-                                                                        Special Offer : <span
-                                                                            class="text-success">Available</span>
+                                                                        Upgrade : <span
+                                                                            class="text-success"><b>Available</b></span>
                                                                     </h5>
                                                                 </div>
                                                                 <div class="col-5">
@@ -365,10 +422,17 @@
                                                                         Payment : {{ $room_d->deposit }}%
                                                                         deposit required
                                                                     </h5>
+                                                                    <h5 class="text-success" style="font-size: 15px;">
+                                                                        <i class="fa-solid fa-money-bill-1 mt-1"
+                                                                            style="color: green; font-size: 17px;"></i>
+                                                                        <b>Price : $ {{ $room_d->price_per_night }}</b>
+                                                                        /
+                                                                        <small class="text-dark">night</small>
+                                                                    </h5>
                                                                 </div>
                                                                 <div class="col-12">
                                                                     <div class="d-flex align-items-center">
-                                                                        <h5 class="mr-2 mt-1">Rating:</h5>
+                                                                        <h5 class="mr-2 mt-2">Rating:</h5>
                                                                         <div class="d-flex px-1">
                                                                             <i class="fa-solid fa-star"
                                                                                 style="color: orange; font-size: 17px;"></i>
@@ -384,7 +448,7 @@
                                                                     </div>
                                                                 </div>
                                                                 @if ($available_count > 0)
-                                                                    <div class="d-flex justify-content-center mt-4">
+                                                                    <div class="d-flex justify-content-center mt-2">
                                                                         <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
                                                                             type="button"
                                                                             class="btn btn-default text-light w-100"
@@ -392,7 +456,7 @@
                                                                             Room</a>
                                                                     </div>
                                                                 @else
-                                                                    <div class="d-flex justify-content-center mt-4">
+                                                                    <div class="d-flex justify-content-center mt-2">
                                                                         <a type="button" onclick="room_full()"
                                                                             class="btn btn-default bg-secondary w-100 text-light">Book
                                                                             Room</a>
@@ -602,7 +666,7 @@
                             htmlContent += '<div class="card-body">';
                             htmlContent += '<div class="row">';
                             htmlContent += '<div class="col-8">';
-                            htmlContent += '<h3 class="card-title">' +
+                            htmlContent += '<h3>' +
                                 room_d.data[i]
                                 .room_type_name + '</h3>';
                             htmlContent += '<div class="row mt-1">';
@@ -645,7 +709,7 @@
                                 htmlContent += '</div>';
                                 htmlContent += '<div class="col-7">';
                                 htmlContent +=
-                                    '<h5 style="font-size: 15px;"><i class="fa-solid fa-tag mt-1" style="color: orange; font-size: 17px;"></i> Special Offer: <span class="text-success">Available</span></h5>';
+                                    '<h5 style="font-size: 15px;"><i class="fa-solid fa-circle-up mt-1" style="color: orange; font-size: 17px;"></i> Upgrade: <span class="text-success">Available</span></h5>';
                                 htmlContent += '</div>';
                                 htmlContent += '<div class="col-5">';
                                 htmlContent +=
@@ -665,7 +729,7 @@
                                 htmlContent +=
                                     '<div class="d-flex justify-content-center">';
                                 htmlContent +=
-                                    '<h2 class="card-title text-success">$ ' + room_d.data[
+                                    '<h2 class="text-success">$ ' + room_d.data[
                                         i]
                                     .price_per_night +
                                     '</h2>';
@@ -727,17 +791,11 @@
                             htmlContent += '<div class="card-body">';
                             htmlContent += '<div class="row">';
                             htmlContent += '<div class="col-md-8">';
-                            htmlContent += '<div class="row d-flex">';
-                            htmlContent += '<div class="col-6">';
-                            htmlContent += '<h3 class="card-title">' + room_d.data[i]
+                            htmlContent += '<div class="row">';
+                            htmlContent += '<div class="col-12">';
+                            htmlContent += '<h3>' + room_d.data[i]
                                 .room_type_name +
                                 '</h3>';
-                            htmlContent += '</div>';
-                            htmlContent += '<div class="col-6 d-flex justify-content-end">';
-                            htmlContent +=
-                                '<h2 class="card-title text-success" style="font-size: 23px;">$' +
-                                room_d.data[i].price_per_night +
-                                ' / <small class="text-dark">night</small></h2>';
                             htmlContent += '</div>';
                             htmlContent += '</div>';
                             htmlContent += '<div class="row mt-1">';
@@ -779,7 +837,7 @@
                                 htmlContent += '</div>';
                                 htmlContent += '<div class="col-7">';
                                 htmlContent +=
-                                    '<h5 style="font-size: 15px;"><i class="fa-solid fa-tag mt-1" style="color: orange; font-size: 17px;"></i> Special Offer: <span class="text-success">Available</span></h5>';
+                                    '<h5 style="font-size: 15px;"><i class="fa-solid fa-circle-up mt-1" style="color: orange; font-size: 17px;"></i> Upgrade: <span class="text-success"><b>Available</b></span></h5>';
                                 htmlContent += '</div>';
                                 htmlContent += '<div class="col-5">';
                                 htmlContent +=
@@ -793,6 +851,10 @@
                                     room_d.data[i].deposit + '% deposit required';
                                 htmlContent += '</h5>';
                                 htmlContent += '</div>';
+                                htmlContent +=
+                                    '<h5 class="text-success" style="font-size: 15px;"><i class="fa-solid fa-money-bill-1 mt-1" style="color: green; font-size: 17px;"></i><b> Price : $ ' +
+                                    room_d.data[i].price_per_night +
+                                    '</b> / <small class="text-dark">night</small></h5>';
                                 htmlContent += '<div class="col-12">';
                                 htmlContent += '<div class="d-flex align-items-center">';
                                 htmlContent += '<h5 class="mr-2 mt-1">Rating:</h5>';
@@ -811,7 +873,7 @@
                                 htmlContent += '</div>';
                                 htmlContent += '</div>';
                                 htmlContent +=
-                                    '<div class="d-flex justify-content-center mt-4">';
+                                    '<div class="d-flex justify-content-center mt-2">';
                                 var roomTypeUrl =
                                     "{{ route('room-booking', ['room_type_name' => 'REPLACEROOMTYPE']) }}";
                                 roomTypeUrl = roomTypeUrl.replace('REPLACEROOMTYPE', room_d
@@ -834,6 +896,7 @@
                             htmlContent += '</div>';
                             htmlContent += '</div>';
                             htmlContent += '</div>';
+                            htmlContent += '<br>';
                             // end of room card (mobile view)
                         }
                     });
@@ -1017,16 +1080,10 @@
                         htmlContent += '<div class="row">';
                         htmlContent += '<div class="col-md-8">';
                         htmlContent += '<div class="row d-flex">';
-                        htmlContent += '<div class="col-6">';
-                        htmlContent += '<h3 class="card-title">' + room_d.data[i]
+                        htmlContent += '<div class="col-md-6">';
+                        htmlContent += '<h3>' + room_d.data[i]
                             .room_type_name +
                             '</h3>';
-                        htmlContent += '</div>';
-                        htmlContent += '<div class="col-6 d-flex justify-content-end">';
-                        htmlContent +=
-                            '<h2 class="card-title text-success" style="font-size: 23px;">$' +
-                            room_d.data[i].price_per_night +
-                            ' / <small class="text-dark">night</small></h2>';
                         htmlContent += '</div>';
                         htmlContent += '</div>';
                         htmlContent += '<div class="row mt-1">';
@@ -1084,6 +1141,10 @@
                             htmlContent += '</h5>';
                             htmlContent += '</div>';
                             htmlContent +=
+                                '<h5 class="text-success" style="font-size: 15px;"><i class="fa-solid fa-money-bill-1 mt-1" style="color: green; font-size: 17px;"></i><b>Price : $ ' +
+                                room_d.data[i].price_per_night +
+                                '</b> / <small class="text-dark">night</small></h5>';
+                            htmlContent +=
                                 '<div class="d-flex align-items-center">';
                             htmlContent += '<h5 class="mr-2 mt-1">Rating:</h5>';
                             htmlContent += '<div class="d-flex px-1">';
@@ -1101,7 +1162,7 @@
                             htmlContent += '</div>';
                             htmlContent += '</div>';
                             htmlContent +=
-                                '<div class="d-flex justify-content-center mt-4">';
+                                '<div class="d-flex justify-content-center mt-2">';
                             var roomTypeUrl =
                                 "{{ route('room-booking', ['room_type_name' => 'REPLACEROOMTYPE']) }}";
                             roomTypeUrl = roomTypeUrl.replace('REPLACEROOMTYPE',

@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use Stripe;
+use Session;
 
 class User_Controller extends Controller
 {
@@ -32,6 +33,11 @@ class User_Controller extends Controller
     public function about_us()
     {
         return view('User_Page.about_us');
+    }
+
+    public function terms_and_conditions()
+    {
+        return view('User_Page.terms_and_condition');
     }
 
     public function hotel_room(Request $request)
@@ -121,7 +127,7 @@ class User_Controller extends Controller
             ->where('room_type.room_type_name', '=', $room_name)
             ->get();
 
-        return view('User_Page.room_booking', ['room_data' => $room_data, 'room_facilities' => $room_facilities, 'room_info' => $room_info]);
+        return view('User_Page.room_booking_details', ['room_data' => $room_data, 'room_facilities' => $room_facilities, 'room_info' => $room_info]);
     }
 
     public function hotel_restaurant()
@@ -134,76 +140,13 @@ class User_Controller extends Controller
         return view('User_Page.member');
     }
 
-    public function booking_confirmation(Request $request)
+    public function booking_confirmation()
     {
-        $selected_roomName = $request->input('room-name');
-
-        $room_number = DB::table('rooms')
-            ->join('room_type', 'room_type.room_type_id', '=', 'rooms.room_type_id')
-            ->select('room_type.room_type_name', 'rooms.room_number', 'rooms.room_id')
-            ->orderBy('rooms.room_number')
-            ->where('room_type.room_type_name', '=', $selected_roomName)
-            ->get();
-
-        // randomly pickup the room number from query value
-        $random_room_number = $room_number->shuffle()->take(1);
-
-        // Generate a random booking ID
-        $bookingId = 'HTL_' . mt_rand(1000, 9999);
-
-        $guest_name = $request->input('guest_name');
-        $guest_email = $request->input('guest_email');
-        $guest_phoneNumber = $request->input('guest_phoneNumber');
-
-        $room_unit = $request->input('guest_roomUnit');
-        $room_price = $request->input('room-price');
-
-        $guest_check_in_date = $request->input('guest_checkIn_date');
-        $guest_check_out_date = $request->input('guest_checkOut_date');
-
-        $selectedParking = $request->input('parking-type');
-        $selected_parkingPrice = $request->input('parking-price');
-
-        $selectedServices = $request->input('service-type');
-        $selected_priceServices = $request->input('service-price');
-
-        $selectedOffer = $request->input('offer-type');
-        $selected_offerPrice = $request->input('offer-price');
-
-        $each_selectedServices = explode(', ', $selectedServices);
-        $each_selected_priceServices = explode(', ', $selected_priceServices);
-        $each_selectedOffer = explode(', ', $selectedOffer);
-        $each_selected_priceOffer = explode(', ', $selected_offerPrice);
-
-        // dump($random_room_number);
-
-        return view(
-            'User_Page.booking_confirmation',
-            compact(
-                'bookingId',
-                'guest_name',
-                'guest_email',
-                'guest_phoneNumber',
-                'selected_roomName',
-                'random_room_number',
-                'room_price',
-                'room_unit',
-                'guest_check_in_date',
-                'guest_check_out_date',
-                'selectedParking',
-                'selected_parkingPrice',
-                'each_selectedServices',
-                'each_selected_priceServices',
-                'each_selectedOffer',
-                'each_selected_priceOffer'
-            )
-        );
+        return view('User_Page.booking_confirmation');
     }
 
-    public function booking_receipt(Request $request)
+    public function booking_registration()
     {
-        $booking_id = $request->input('booking-id');
-        dump($booking_id);
-        // return view('User_Page.booking_receipt');
+        return view('User_Page.booking_registration');
     }
 }

@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.nav-item a {
+    color: black;
+}
+
+.navbar-nav .nav-item {
+    transition: background-color 0.3s ease;
+}
+
+.navbar-nav .nav-item a:hover {
+    color: #191970;
+}
+
+.navbar-nav .nav-item a.active {
+    color: #000080;
+    font-weight: bold;
+}
+
+.navbar {
+    height: 80px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar.scrolled {
+    background-color: #1B1212 !important;
+    color: white !important;
+}
+
+.hover-dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+.hidden-form {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .logo-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    .navbar {
+        height: auto;
+    }
+}
