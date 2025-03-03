@@ -12,9 +12,11 @@ class room_type extends Model
     protected $fillable = [
         'room_type_id',
         'room_type_name',
-        'price_per_night',
-        'facility_id',
-        'guest',
-        'offer',
+        'room_price',
+        'room_description',
+        'room_guest',
+        'room_bed',
+        'room_size',
+        'deposit',
     ];
 }

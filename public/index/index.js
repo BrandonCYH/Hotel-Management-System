@@ -25,3 +25,4 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initially hide the button
     backToTopButton.style.display = "none";
 });
+

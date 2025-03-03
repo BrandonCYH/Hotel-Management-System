@@ -21,23 +21,23 @@ Route::get('/', function () {
 
 //Route for everyone
 Route::get('/sign-in', [App\Http\Controllers\System_Controller::class, 'sign_in'])->name('sign-in');
-Route::prefix('google')->name('google.')->group(function () {
-    Route::get('login', [User_Controller::class, 'login_with_google'])->name('login');
-    Route::any('callback', [User_Controller::class, 'call_back_from_google'])->name('callback');
-});
-Route::view('/future-hotel-management-system', 'index')->name("main-page");
 
-// Route for User View
+// main page functions
+Route::get('/future-hotel-management-system', [User_Controller::class, 'home_page'])->name("main-page");
 Route::view('/about-us', 'User_Page.about_us')->name('about-us');
-
 Route::get('/terms-and-conditions', [User_Controller::class, 'terms_and_conditions'])->name('terms-and-conditions');
-Route::get('/hotel-room', [User_Controller::class, 'hotel_room'])->name('hotel-room');
-Route::get('hotel-room/fetch_data', [User_Controller::class, 'fetch_data']);
-Route::post('/hotel-selection', [User_Controller::class, 'hotel_selection'])->name('hotel-selection');
-Route::get('/room-booking/{room_type_name}', [User_Controller::class, 'room_booking'])->name('room-booking');
-Route::get('/booking-confirmation', [User_Controller::class, 'booking_confirmation'])->name('booking-confirmation');
-Route::get('/booking-registration', [User_Controller::class, 'booking_registration'])->name('booking-registration');
 
+// hotel rooms functions
+Route::get('/hotel-room', [User_Controller::class, 'hotel_room'])->name('hotel-room');
+Route::get('hotel-room/fetch_room_data', [User_Controller::class, 'fetch_room_data']);
+Route::post('/hotel-room-selection', [User_Controller::class, 'hotel_room_selection'])->name('hotel-room-selection');
+
+// hotel room bookings functions
+Route::get('/room-booking/{room_type_name}', [User_Controller::class, 'room_booking'])->name('room-booking');
+Route::get('/booking-registration/{room_type_name}', [User_Controller::class, 'booking_registration'])->name('booking-registration');
+
+Route::get('/booking-payment', [User_Controller::class, 'booking_payment'])->name('booking-payment');
+Route::get('/booking-confirmation', [User_Controller::class, 'booking_confirmation'])->name('booking-confirmation');
 
 Route::view('/hotel-restaurant', 'User_Page.restaurant')->name('hotel-restaurant');
 Route::view('/exclusive-member', 'User_Page.member')->name('exclusive-member');

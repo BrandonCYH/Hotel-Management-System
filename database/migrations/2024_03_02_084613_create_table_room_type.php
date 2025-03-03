@@ -13,8 +13,12 @@ return new class extends Migration {
         Schema::create('room_type', function (Blueprint $table) {
             $table->string('room_type_id')->primary();
             $table->string('room_type_name');
-            $table->integer('price_per_night');
-            $table->string('guest');
+            $table->integer('room_price');
+            $table->string('room_description');
+            $table->string('room_guest');
+            $table->integer('room_bed');
+            $table->integer('room_size');
+            $table->integer('deposit');
         });
     }
 

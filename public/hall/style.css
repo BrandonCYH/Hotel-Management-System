@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-.navbar {
-    height: 80px;
-}
-
 .nav-item a {
     color: black;
 }
@@ -26,6 +22,7 @@
 }
 
 .navbar {
+    height: 80px;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -39,20 +36,52 @@
     margin-top: 0;
 }
 
-.card-img-top {
-    width: 100%;
-    height: 12rem;
-    object-fit: cover;
+/* Back to Top Button Styling */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 1000;
+}
+
+/* Pagination styles */
+.pagination-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination-links .page-link {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-right: 5px;
+    border: 1px solid #dee2e6;
+    background-color: #ffffff;
+    color: #007bff;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.pagination-links .page-link:hover {
+    background-color: #f8f9fa;
+}
+
+.pagination-links .page-link.active {
+    background-color: #007bff;
+    color: #ffffff;
 }
 
 #room_image {
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../images/Single Room.jpg');
     background-size: cover;
     background-position: center;
-}
-
-#directBooking_form {
-    display: none;
 }
 
 #footer {
@@ -74,7 +103,7 @@
     }
 }
 
-/* Adjust height for mobile devices */
+/* Small devices (landscape phones, less than 768px) */
 @media (max-width: 767.98px) {
     .logo-image {
         width: 70px;

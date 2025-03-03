@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="../room/style.css">
+    <link rel="stylesheet" href="../hall/style.css">
 
     {{-- website icon --}}
     <link rel="icon" href="../images/ocean_heaven.png" type="image/x-icon">
@@ -30,7 +29,7 @@
     <!-- Animation On Scroll CDN -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <title>Hotel Room</title>
+    <title>Hotel Hall</title>
 </head>
 
 <body>
@@ -109,7 +108,7 @@
                 <h1 class="display-4 text-light" id="room_title">Single Room</h1>
             </div>
             <div class="d-flex justify-content-center">
-                <div class="col-lg-5 col-md-9" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+                <div class="col-md-5" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
                     <p class="lead text-light text-center" id="room_description">Experience comfort and relaxation in
                         our cozy and
                         stylish hotel rooms designed for your most convenience. Providing modern amenities and a
@@ -128,7 +127,7 @@
     {{-- Each Hotel room description --}}
     <div class="container-fluid">
         <div class="row mt-5">
-            <div class="col-lg-12">
+            <div class="col-md-12">
                 <div class="d-flex justify-content-center">
                     <h4 class="text-center fs-3" data-aos="zoom-in" data-aos-duration="1000">
                         Our Hotel Have Many Type Of Guest Room That Can Fufill Your Needs
@@ -136,11 +135,11 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <div class="col-lg-10 col-md-12">
+                <div class="col-md-10">
                     <div class="container-xl mt-lg-5 mt-md-3 mt-3">
                         <div class="row">
                             {{-- start of filter hotel room form --}}
-                            <div class="col-lg-3 col-md-12">
+                            <div class="col-md-3">
                                 <div class="card" data-aos="fade-right" data-aos-duration="1000"
                                     data-aos-delay="1000">
                                     <div class="card-header">Choose Your Hotel Room</div>
@@ -148,108 +147,38 @@
                                         {{-- start of list services --}}
                                         <div class="row">
                                             <div class="col-12">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Air Conditioners" id="flexCheckDefault"
-                                                    name="facilities[]">
-                                                <label class="form-check-label" for="Air_Conditioners">
+                                                <input class="form-check-input mx-1" type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
                                                     Air Conditioners
                                                 </label>
                                             </div>
                                             <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Computer Facility" id="flexCheckDefault"
-                                                    name="facilities[]">
-                                                <label class="form-check-label" for="Computer_Facility">
-                                                    Computer Facility
+                                                <input class="form-check-input mx-1" type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Swimming Pool
                                                 </label>
                                             </div>
                                             <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Coffee Maker" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Coffee_Maker">
-                                                    Coffee Maker
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Gaming Console" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Gamming_Console">
-                                                    Gaming Console
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="High Security" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="High_Security">
-                                                    High Security
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox" value="King Bed"
-                                                    id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="King_Bed">
-                                                    King Bed
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Laundry Service" id="flexCheckDefault"
-                                                    name="facilities[]">
-                                                <label class="form-check-label" for="Laundry_Service">
-                                                    Laundry Service
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Luggage Storage" id="flexCheckDefault"
-                                                    name="facilities[]">
-                                                <label class="form-check-label" for="Luggage_Storage">
-                                                    Luggage Storage
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Pet Accommodation" id="flexCheckDefault"
-                                                    name="facilities[]">
-                                                <label class="form-check-label" for="Pet_Accommodations">
+                                                <input class="form-check-input mx-1" type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
                                                     Pet Accommodation
                                                 </label>
                                             </div>
                                             <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Queen Bed" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Queen_Bed">
-                                                    Queen Bed
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Room Purification" id="flexCheckDefault"
-                                                    name="facilites[]">
-                                                <label class="form-check-label" for="Room Purification">
+                                                <input class="form-check-input mx-1" type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
                                                     Room Purification
                                                 </label>
                                             </div>
                                             <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox" value="Smart TV"
-                                                    id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Smart_TV">
-                                                    Smart TV
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Turndown Service" id="flexCheckDefault"
-                                                    name="facilities[]">
-                                                <label class="form-check-label" for="Turndown_Service">
-                                                    Turndown Service
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox" value="WI-FI"
-                                                    id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="WI-FI">
-                                                    WI-FI
+                                                <input class="form-check-input mx-1" type="checkbox" value=""
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Computer Facility
                                                 </label>
                                             </div>
                                         </div>
@@ -262,7 +191,7 @@
                                             <button class="btn btn-outline-secondary" type="button"
                                                 id="button-decrement">-</button>
                                             <input type="number" class="form-control text-center" id="number"
-                                                value="0" min="0" max="100" name="room_guest">
+                                                value="0" min="0" max="100">
                                             <button class="btn btn-outline-secondary" type="button"
                                                 id="button-increment">+</button>
                                         </div>
@@ -285,7 +214,7 @@
                                         </div>
                                         {{-- end of price range --}}
 
-                                        <input type="submit" id="btn_filterRoom" class="btn btn-success w-100 mt-2"
+                                        <input type="submit" id="hotel-selection" class="btn btn-success w-100 mt-2"
                                             value="Search Room"><br>
                                         <div id="pagination-links" class="pagination-links">
                                             @foreach ($room_data->links()->elements[0] as $page => $url)
@@ -299,20 +228,20 @@
                             </div>
                             {{-- end of filter hotel room form --}}
 
-                            <div class="col-lg-9 col-md-12" id="room_card">
+                            <div class="col-md-9" id="room_card">
                                 {{-- start of single room card (desktop view) --}}
                                 @foreach ($room_data as $room_d)
                                     <div class="card shadow p-3 bg-white rounded d-none d-md-block"
                                         data-aos="fade-left" data-aos-duration="1000">
                                         <div class="row no-gutters">
-                                            <div class="col-lg-4 col-md-4">
+                                            <div class="col-lg-4">
                                                 <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
-                                                    class="card-img-top" alt="{{ $room_d->room_type_name }}">
+                                                    class="card-img-top" style="height: 100%;" alt="...">
                                             </div>
-                                            <div class="col-lg-8 col-md-8">
+                                            <div class="col-lg-8">
                                                 <div class="card card-body border border-white">
                                                     <div class="row">
-                                                        <div class="col-lg-8 col-md-8">
+                                                        <div class="col-lg-8">
                                                             <h3>{{ $room_d->room_type_name }}</h3>
                                                             <div class="row">
                                                                 @php
@@ -328,7 +257,7 @@
                                                                     @endif
                                                                 @endforeach
                                                                 @if ($available_count > 0)
-                                                                    <div class="col-lg-7 col-md-7">
+                                                                    <div class="col-lg-7">
                                                                         <h5 style="font-size: 15px;">
                                                                             <i class="fa-solid fa-bell mt-1"
                                                                                 style="color: crimson; font-size: 17px;"></i>
@@ -336,7 +265,7 @@
                                                                         </h5>
                                                                     </div>
                                                                 @else
-                                                                    <div class="col-lg-7 col-md-7">
+                                                                    <div class="col-lg-7">
                                                                         <h5 style="font-size: 15px;">
                                                                             <i class="fa-solid fa-bell mt-1"
                                                                                 style="color: crimson; font-size: 17px;"></i>
@@ -344,14 +273,14 @@
                                                                         </h5>
                                                                     </div>
                                                                 @endif
-                                                                <div class="col-lg-5 col-md-5">
+                                                                <div class="col-lg-5">
                                                                     <h5 style="font-size: 15px;">
                                                                         <i class="fa-solid fa-user mt-1"
                                                                             style="color: black; font-size: 17px;"></i>
-                                                                        Guest : {{ $room_d->room_guest }}
+                                                                        Guest : {{ $room_d->guest }}
                                                                     </h5>
                                                                 </div>
-                                                                <div class="col-lg-7 col-md-7">
+                                                                <div class="col-lg-7">
                                                                     <h5 style="font-size: 15px;">
                                                                         <i class="fa-solid fa-circle-up mt-1"
                                                                             style="color: orange; font-size: 17px;"></i>
@@ -359,7 +288,7 @@
                                                                             class="text-success"><b>Available</b></span>
                                                                     </h5>
                                                                 </div>
-                                                                <div class="col-lg-5 col-md-5">
+                                                                <div class="col-lg-5">
                                                                     <h5 class="text-success" style="font-size: 15px;">
                                                                         <i class="fa-solid fa-check mt-1"
                                                                             style="font-size: 15px; color: green;"></i>
@@ -367,7 +296,7 @@
                                                                     </h5>
                                                                 </div>
                                                                 <hr>
-                                                                <div class="col-lg-12 col-md-12">
+                                                                <div class="col-lg-12">
                                                                     <h5 style="font-size: 15px;">
                                                                         <i class="fa-solid fa-money-check-dollar mt-1"
                                                                             style="color: green; font-size: 17px;"></i>
@@ -377,10 +306,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-4 col-md-4">
+                                                        <div class="col-lg-4">
                                                             <div class="d-flex justify-content-center">
                                                                 <h2 class="text-success">$
-                                                                    {{ $room_d->room_price }}</h2>
+                                                                    {{ $room_d->price_per_night }}</h2>
                                                             </div>
                                                             <h5 class="text-secondary text-center fs-5"><i>per
                                                                     night</i>
@@ -467,7 +396,7 @@
                                                                     <h5 style="font-size: 15px;">
                                                                         <i class="fa-solid fa-user mt-1"
                                                                             style="color: black; font-size: 17px;"></i>
-                                                                        Guest : {{ $room_d->room_guest }}
+                                                                        Guest : {{ $room_d->guest }}
                                                                     </h5>
                                                                 </div>
                                                                 <div class="col-7">
@@ -496,7 +425,7 @@
                                                                     <h5 class="text-success" style="font-size: 15px;">
                                                                         <i class="fa-solid fa-money-bill-1 mt-1"
                                                                             style="color: green; font-size: 17px;"></i>
-                                                                        <b>Price : $ {{ $room_d->room_price }}</b>
+                                                                        <b>Price : $ {{ $room_d->price_per_night }}</b>
                                                                         /
                                                                         <small class="text-dark">night</small>
                                                                     </h5>
@@ -699,7 +628,7 @@
         $('.page-link').removeClass('active');
         $(this).addClass('active');
         var page = $(this).attr('href').split('page=')[1];
-        fetch_room_data(page);
+        fetch_data(page);
     });
 </script>
 {{-- end of navigation bar function --}}

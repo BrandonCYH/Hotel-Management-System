@@ -16,8 +16,10 @@
     <link rel="shortcut icon" href="../images/ocean_heaven.png" type="image/x-icon">
 
     {{-- bootstrap CSS cdn --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="/bootstrap_css/bootstrap.min.css" rel="stylesheet">
+
+    {{-- bootstrap datepicker css cdn --}}
+    <link rel="stylesheet" href="/bootstrap_css/bootstrap-datepicker.min.css">
 
     {{-- bootstrap icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -26,11 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    {{-- bootstrap datepicker css cdn --}}
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link href="/bootstrap_css/aos.css" rel="stylesheet">
 
     <title>Ocean Heaven Hotel</title>
 </head>
@@ -41,8 +39,8 @@
         <div class="container">
             <img src="../images/ocean_heaven.png" class="logo-image">
             <a class="navbar-brand mt-2 " href="{{ route('main-page') }}">
-                <h5 class="font-weight-bold" style="margin: 0px !important;">OCEAN HEAVEN</h5>
-                <h5 class="font-weight-normal" style="font-size: 15px;">WORLD 1 FIRST CLASS HOTEL</h5>
+                <h5 class="font-weight-bold" style="margin: 1px 6px !important;">OCEAN HEAVEN</h5>
+                <h5 class="font-weight-normal mx-2" style="font-size: 0.95rem;">WORLD 1 FIRST CLASS HOTEL</h5>
             </a>
             <button class="navbar-toggler" style="background-color: white; border: 1px solid white;" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNavAltMarkup"
@@ -52,41 +50,38 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active mx-2" style="font-size: 17px;"
-                            href="{{ route('main-page') }}">Home</a>
+                        <a class="nav-link active mx-2" href="{{ route('main-page') }}">Home</a>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#"
-                            id="features_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="features_menu"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Features
                         </a>
                         <div class="dropdown-menu" aria-labelledby="features_menu">
-                            <a class="dropdown-item" style="font-size: 17px;" href="{{ route('about-us') }}">About
+                            <a class="dropdown-item" href="{{ route('about-us') }}">About
                                 Us</a>
-                            <a class="dropdown-item" style="font-size: 17px;" href="#">Gallery</a>
-                            <a class="dropdown-item" style="font-size: 17px;"
-                                href="{{ route('terms-and-conditions') }}">Terms And Conditions</a>
+                            <a class="dropdown-item" href="#">Gallery</a>
+                            <a class="dropdown-item" href="{{ route('terms-and-conditions') }}">Terms And
+                                Conditions</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#"
-                            id="facilities_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="facilities_menu"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Facilities
                         </a>
                         <div class="dropdown-menu" aria-labelledby="facilities_menu">
-                            <a class="dropdown-item" style="font-size: 17px;" href="{{ route('hotel-room') }}">Our
+                            <a class="dropdown-item" href="{{ route('hotel-room') }}">Our
                                 Room</a>
-                            <a class="dropdown-item" style="font-size: 17px;" href="#">Our Hall</a>
+                            <a class="dropdown-item" href="#">Our Hall</a>
                         </div>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" style="font-size: 17px;"
-                            href="{{ route('hotel-restaurant') }}">Dining</a>
+                        <a class="nav-link mx-2" style="" href="{{ route('hotel-restaurant') }}">Dining</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" style="font-size: 17px;"
-                            href="{{ route('exclusive-member') }}">Member</a>
+                        <a class="nav-link mx-2" style="" href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
@@ -132,7 +127,7 @@
                 <h1 class="fs-1 display-4 text-light">Ocean Heaven Hotel</h1>
             </div>
             <div class="col-sm-6 mx-auto">
-                <p class="lead text-light text-center" style="font-size: 18px;">Where comfort meets personalized care,
+                <p class="lead text-light text-center" style="font-size: 1rem;">Where comfort meets personalized care,
                     our hotel is a
                     sanctuary of
                     hospitality. From the warm welcome at arrival to the attentive service during your stay, we
@@ -157,21 +152,18 @@
                             <div class="row">
                                 <div class="col-12 col-md-3 mb-3 mb-md-0">
                                     <div class="form-group" style="position: relative;">
-                                        {{-- <label for="input_from" class="text-light">From</label> --}}
                                         <input type="text" class="form-control mt-1" id="input_from"
                                             placeholder="Start Date">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3 mb-3 mb-md-0">
                                     <div class="form-group" style="position: relative;">
-                                        {{-- <label for="input_from" class="text-light">To</label> --}}
                                         <input type="text" class="form-control mt-1" id="input_to"
                                             placeholder="End Date">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3 mb-3 mb-md-0">
                                     <div class="form-group" style="position: relative;">
-                                        {{-- <label for="guest" class="text-light">Guest</label> --}}
                                         <input type="number" class="form-control mt-1" placeholder="Guest">
                                     </div>
                                 </div>
@@ -202,7 +194,7 @@
                             data-aos-duration="1000" data-aos-delay="1000">
                             <div class="col-lg-4 col-md-6">
                                 <div class="card">
-                                    <img class="card-img-top" src="../images/gym_centre.jpg" alt="Card image cap">
+                                    <img class="card-img-top" src="../images/gym_centre.jpg" alt="Gym Workout Image">
                                     <div class="card-body">
                                         <h5 class="text-center">Gym Workout</h5>
                                         <p class="card-text">Welcome to our hotel gym! Get ready to elevate your
@@ -214,7 +206,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="card" style="position: relative; z-index; -10;">
                                     <img class="card-img-top" src="../images/pet_accomodation.jpg"
-                                        alt="Card image cap">
+                                        alt="Pet Accomodation Image">
                                     <div class="card-body">
                                         <h5 class="text-center">Pet Accomodation</h5>
                                         <p class="card-text">Welcome to our pet-friendly hotel! We're thrilled to have
@@ -300,370 +292,62 @@
                             <div class="col-12">
                                 <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
-                                        {{-- start of the first row of the room introduction --}}
-                                        <div class="carousel-item active">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="card bg-light border border-dark">
-                                                        <img class="card-img-top" alt="100%x280"
-                                                            src="../images/Single Room.jpg">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">Single Room</h4>
-                                                            <h5 style="font-size: 13px;">Experience comfort and
-                                                                relaxation in our cozy, stylish rooms, designed for your
-                                                                convenience. Enjoy modern amenities and a welcoming
-                                                                ambiance for a delightful stay.</h5>
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$119.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-bed"></i> 1 Bed</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-user"></i> 2 Adults</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                                                        &radic;50
-                                                                </div>
-                                                            </div>
-                                                            <button type="button"
-                                                                class="btn btn-primary w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="card bg-light border border-dark">
-                                                        <img class="card-img-top" alt="100%x280"
-                                                            src="../images/Standard Room.jpg">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">Standard Room</h4>
-                                                            <h5 style="font-size: 13px;">a comfy space with modern
-                                                                decor. It has a queen or twin beds, a private bathroom,
-                                                                and a work desk. It's a cozy spot for your stay, whether
-                                                                you're here for work or play.</h5>
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$139.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-bed"></i> 2 Bed</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-user"></i> 4 Adults</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                                                        &radic;70
+                                        {{-- start of the room introduction --}}
+                                        @foreach ($room_data->chunk(3) as $index => $room_chunk)
+                                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                                <div class="row">
+                                                    @foreach ($room_chunk as $room_d)
+                                                        <div class="col-md-4">
+                                                            <div class="card bg-light border border-dark">
+                                                                <img class="card-img-top"
+                                                                    alt="{{ $room_d->room_type_name }} . image"
+                                                                    src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}">
+                                                                <div class="card-body">
+                                                                    <h4 class="card-title">
+                                                                        {{ $room_d->room_type_name }}
+                                                                    </h4>
+                                                                    <h5 style="font-size: 13px;">
+                                                                        {{ $room_d->room_description }}</h5>
+                                                                    </h5>
+                                                                    <h5 style="font-size: 18px;">Only <span
+                                                                            class="text-success"><b>$
+                                                                                {{ $room_d->room_price }}</b></span>
+                                                                        /
+                                                                        <small class="text-secondary">night</small>
+                                                                    </h5>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col-4 col-lg-4 col-md-6">
+                                                                            <h5 style="font-size: 14px;"><i
+                                                                                    class="fa fa-bed"></i>
+                                                                                {{ $room_d->room_bed }}
+                                                                                Bed</h5>
+                                                                        </div>
+                                                                        <div class="col-4 col-lg-4 col-md-6">
+                                                                            <h5 style="font-size: 14px;"><i
+                                                                                    class="fa fa-user"></i>
+                                                                                {{ $room_d->room_guest }} Guest
+                                                                            </h5>
+                                                                        </div>
+                                                                        <div class="col-4 col-lg-4 col-md-6">
+                                                                            <h5 style="font-size: 14px;"><i
+                                                                                    class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                                                                &radic;{{ $room_d->room_size }}
+                                                                        </div>
+                                                                    </div>
+                                                                    <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
+                                                                        type="button"
+                                                                        class="btn btn-primary w-100 mt-2">View
+                                                                        Details</a>
                                                                 </div>
                                                             </div>
-                                                            <button type="button"
-                                                                class="btn btn-primary w-100 mt-2">View
-                                                                Details</button>
+                                                            <br>
                                                         </div>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="card bg-light border border-dark">
-                                                        <img class="card-img-top" alt="100%x280"
-                                                            src="../images/Family Room.jpg">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">Family Room</h4>
-                                                            <h5 style="font-size: 13px;">Our family room is spacious
-                                                                and inviting, designed to comfortably fit families. It
-                                                                has plenty of space and amenities to make sure both
-                                                                adults and children have a pleasant stay.
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$179.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-bed"></i> 4 Bed</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-user"></i> 6 Adults</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                                                        &radic;100</h5>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button"
-                                                                class="btn btn-primary w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                    <br>
+                                                    @endforeach
                                                 </div>
                                             </div>
-                                        </div>
-                                        {{-- end of first row of the room introduction --}}
-
-                                        {{-- start of second row of the room introduction --}}
-                                        <div class="carousel-item">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="card bg-light border border-dark">
-                                                        <img class="card-img-top" alt="100%x280"
-                                                            src="../images/King Room.jpg">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">King Room</h4>
-                                                            <h5 style="font-size: 13px;">A spacious and luxurious
-                                                                choice for guests who want extra comfort. It includes a
-                                                                stylish private bathroom with a shower or bathtub and a
-                                                                cozy seating area for relaxation.</h5>
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$210.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-bed"></i> 1 Bed</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-user"></i> 2 Adults</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                                                        &radic;80</h5>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button"
-                                                                class="btn btn-primary w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="card bg-light border border-dark">
-                                                        <img class="card-img-top" alt="100%x280"
-                                                            src="../images/Residential Room.jpg">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">Residential Room</h4>
-                                                            <h5 style="font-size: 13px;">A residential room in our
-                                                                hotel provides a homely atmosphere and essential
-                                                                amenities for a comfortable long-term stay, making it
-                                                                feel like a home away from home.</h5>
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$160.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-bed"></i> 2 Bed</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-user"></i> 4 Adults</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                                                        &radic;70</h5>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button"
-                                                                class="btn btn-primary w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="card bg-light border border-dark">
-                                                        <img class="card-img-top" alt="100%x280"
-                                                            src="../images/VIP Room.jpg">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">VIP Room</h4>
-                                                            <h5 style="font-size: 13px;">The VIP room in our hotel is
-                                                                the pinnacle of luxury and comfort. The VIP room ensures
-                                                                an unforgettable experience, where every detail is
-                                                                curated to surpass expectations.
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$199.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-bed"></i> 2 Bed</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-user"></i> 4 Adults</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                                                        &radic;100</h5>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button"
-                                                                class="btn btn-primary w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- end of second row of the room introduction --}}
-
-                                        {{-- start of third row of the room introduction --}}
-                                        <div class="carousel-item">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="card bg-light border border-dark">
-                                                        <img class="card-img-top" alt="100%x280"
-                                                            src="../images/Deluxe Room.jpg">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">Deluxe Room</h4>
-                                                            <h5 style="font-size: 13px;">Designed to exceed
-                                                                expectations, our Deluxe Rooms offer an unparalleled
-                                                                blend of elegance and comfort, ensuring an unforgettable
-                                                                stay for our esteemed guests.</h5>
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$250.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-bed"></i> 2 Bed</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-user"></i> 4 Adults</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                                                        &radic;120</h5>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button"
-                                                                class="btn btn-primary w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="card bg-light border border-dark">
-                                                        <img class="card-img-top" alt="100%x280"
-                                                            src="../images/Executive Room.jpg">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">Executive Room</h4>
-                                                            <h5 style="font-size: 13px;">Designed for discerning
-                                                                travelers, this option offers refined luxury and
-                                                                unmatched comfort. Experience a world of exclusivity
-                                                                that caters to your every need during your stay.
-                                                            </h5>
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$270.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-bed"></i> 6 Bed</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-user"></i> 12 Adults</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                                                        &radic;180</h5>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button"
-                                                                class="btn btn-primary w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="card bg-light border border-dark">
-                                                        <img class="card-img-top" alt="100%x280"
-                                                            src="../images/Couple Room.jpg">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">Couple Room</h4>
-                                                            <h5 style="font-size: 13px;">
-                                                                Our Couple Rooms provide a serene escape for you and
-                                                                your loved one.
-                                                                Our Couple Rooms offer a tranquil retreat designed for
-                                                                deep connections and lasting memories.
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$250.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 15px;"><i
-                                                                            class="fa fa-bed"></i> 1 Bed</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 15px;"><i
-                                                                            class="fa fa-user"></i> 2 Adults</h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 15px;"><i
-                                                                            class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                                                        &radic;110</h5>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button"
-                                                                class="btn btn-primary w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                    <br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- end of third row of the room introduction --}}
+                                        @endforeach
+                                        {{-- end of the room introduction --}}
                                     </div>
                                 </div>
                             </div>
@@ -1210,11 +894,13 @@
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                         <h6 class="text-uppercase mb-4 font-weight-bold">Services</h6>
                         <p>
-                            <a class="text-white" style="text-decoration: none;" href="{{ route('main-page') }}">Home
+                            <a class="text-white" style="text-decoration: none;"
+                                href="{{ route('main-page') }}">Home
                             </a>
                         </p>
                         <p>
-                            <a class="text-white" style="text-decoration: none;" href="{{ route('about-us') }}">About
+                            <a class="text-white" style="text-decoration: none;"
+                                href="{{ route('about-us') }}">About
                                 Us</a>
                         </p>
                         <p>
@@ -1286,26 +972,26 @@
 </body>
 
 {{-- aos library cdn --}}
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="/bootstrap_js/aos.js"></script>
 
 {{-- Jquery cdn --}}
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/bootstrap_js/jquery.min.js"></script>
 
 {{-- Jquery popper cdn --}}
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
-
-{{-- bootstrap js cdn --}}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 
 {{-- Jquery pickadate cdn --}}
 <script src="/index/picker.js"></script>
 <script src="/index/picker.date.js"></script>
 
+{{-- bootstrap js cdn --}}
+<script src="/bootstrap_js/bootstrap.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
 {{-- bootstrap datepicker cdn --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="/bootstrap_js/bootstrap-datepicker.min.js"></script>
 
 {{-- link with index.js file --}}
 <script src="/index/main.js"></script>

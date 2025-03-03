@@ -100,7 +100,7 @@
     <div class="container-fluid">
         <div class="row mt-4">
             @foreach ($room_data as $room_d)
-                <div class="col-md-12 room-container" data-room-type="{{ $room_d->room_type_name }}">
+                <div class="col-md-12 room-description" data-room-type="{{ $room_d->room_type_name }}">
                     <h2 class="text-center">{{ $room_d->room_type_name }}</h2>
                     <div class="d-flex justify-content-center">
                         <div class="col-md-8">
@@ -109,39 +109,33 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-3">
-                    <div class="col-md-8">
+                    <div class="col-lg-8 col-md-12">
                         <div class="container-xl">
                             <div class="row">
-                                <div class="col-12 col-md-8">
+                                <div class="col-12 col-md-7">
                                     <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
-                                        class="card-img-top" style="height: 100%;" alt="...">
+                                        class="card-img-top" style="height: 100%;" alt="Single_Room image">
                                 </div>
-                                <div class="col-12 col-md-4">
+                                <div class="col-12 col-md-5">
                                     <div class="row">
                                         <div class="col-6 col-md-12 mb-md-3 mt-2 mt-md-0">
-                                            <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
-                                                class="card-img-top" style="height: 100%;" alt="...">
+                                            <img src="{{ asset('../images/' . $room_d->room_type_name . '_1.jpg') }}"
+                                                class="card-img-top" style="height: 100%;" alt="Single_Room image">
                                         </div>
                                         <div class="col-6 col-md-12 mt-2">
-                                            <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
-                                                class="card-img-top" style="height: 100%;" alt="...">
+                                            <img src="{{ asset('../images/' . $room_d->room_type_name . '_2.jpg') }}"
+                                                class="card-img-top" style="height: 100%;" alt="Single_Room image">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-8">
+                                <div class="col-12 col-md-7 room-overview"
+                                    data-room-type="{{ $room_d->room_type_name }}">
                                     {{-- start of the overview introduction --}}
                                     <br>
                                     <div class="card">
                                         <div class="card-header">Overview</div>
                                         <div class="card-body">
-                                            <p>The Single Room at Ocean Heaven Hotel is designed for solo travelers
-                                                looking
-                                                for comfort and convenience. It offers a cozy and well-appointed space
-                                                with
-                                                modern amenities, perfect for both business and leisure stays. The room
-                                                features contemporary decor with ocean-inspired accents, creating a
-                                                serene
-                                                and relaxing atmosphere.</p>
+                                            <p class="room_overview"></p>
                                         </div>
                                     </div>
                                     <br>
@@ -151,26 +145,16 @@
                                     <div class="card">
                                         <div class="card-header">Room Features</div>
                                         <div class="card-body">
-                                            <p><i class="fa-solid fa-hand-point-right" style="color: #dd4b39;"></i>
-                                                <span><b>Bed:</b></span> A comfortable single
-                                                bed with high-quality linens.
-                                            </p>
-                                            <p><i class="fa-solid fa-hand-point-right" style="color: #dd4b39;"></i>
-                                                <span><b>View:</b></span> Some rooms offer a stunning view of the ocean,
-                                                while others may overlook the city or hotel gardens.
-                                            </p>
-                                            <p><i class="fa-solid fa-hand-point-right" style="color: #dd4b39;"></i>
-                                                <span><b>Bathroom:</b></span> Private en-suite bathroom equipped with a
-                                                shower, complimentary toiletries, and fresh towels.
-                                            </p>
-                                            <p><i class="fa-solid fa-hand-point-right" style="color: #dd4b39;"></i>
-                                                <span><b>Work Area:</b></span> A functional desk with a chair, ideal for
-                                                working on a laptop or writing.
-                                            </p>
-                                            <p><i class="fa-solid fa-hand-point-right" style="color: #dd4b39;"></i>
-                                                <span><b>Entertainment:</b></span> A flat-screen TV with a variety of
-                                                local and international channels.
-                                            </p>
+                                            <div class="row">
+                                                @foreach ($room_facilities as $r_f)
+                                                    <div class="col-lg-4 col-md-6">
+                                                        <p><i class="fa-solid fa-hand-point-right"
+                                                                style="color: #dd4b39;"></i>
+                                                            <span><b>{{ $r_f->facility_name }}</b></span>
+                                                        </p>
+                                                    </div>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                     <br>
@@ -184,6 +168,8 @@
                                                 experience is seamless and enjoyable. Here are some important
                                                 details to keep in mind:
                                                 <br>
+                                                <span class="text-danger"><b>1. General
+                                                        Policy</b></span><br>
                                                 <i class="fa-solid fa-circle mt-1"
                                                     style="font-size: 9px; color: #333333;"></i>
                                                 Guests must be at least 18 years old to book a room.<br>
@@ -222,23 +208,33 @@
                                 </div>
 
                                 {{-- start of receipt overview --}}
-                                <div class="col-12 col-md-4">
+                                <div class="col-lg-5 col-md-5">
                                     <br>
                                     <div class="card card-body">
-                                        <h4 class="text-success text-center">$ {{ $room_d->price_per_night }} / <span
-                                                class="text-secondary">night</span></h4>
+                                        <h3 class="text-success text-center">$ {{ $room_d->room_price }} / <span
+                                                class="text-secondary">night</span></h3>
                                         <div class="d-flex justify-content-center mt-2">
-                                            <button type="button" style="font-size: 14px;"
-                                                class="btn btn-primary text-light">Check
+                                            <button type="button" style="font-size: 0.85rem;"
+                                                class="btn btn-primary text-light w-100"
+                                                onclick="call_checkAvailability_Form()">Check
                                                 Availability</button>
-                                            <button type="button" style="font-size: 14px;"
-                                                class="btn btn-secondary mx-2">Direct
+                                            <button type="button" style="font-size: 0.85rem;"
+                                                class="btn btn-secondary mx-2 w-100"
+                                                onclick="call_directBooking_Form()">Direct
                                                 Booking</button>
                                         </div>
-                                        <div class="card mt-3">
+                                        <div class="card mt-3" id="check_availability_form">
                                             <div class="card-header">Check Availability</div>
                                             <div class="card-body p-3">
-                                                <div class="form-group" style="position: relative;">
+                                                <div class="form-group">
+                                                    <label for="full_name">Full Name</label>
+                                                    <input type="text" class="form-control mt-1">
+                                                </div>
+                                                <div class="form-group mt-2">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" class="form-control mt-1">
+                                                </div>
+                                                <div class="form-group mt-2" style="position: relative;">
                                                     <label for="input_from">From</label>
                                                     <input type="text" class="form-control mt-1" id="input_from"
                                                         placeholder="Start Date">
@@ -249,9 +245,27 @@
                                                         placeholder="End Date">
                                                     <br>
                                                 </div>
-                                                <a href="{{ route('booking-registration') }}"
-                                                    class="btn btn-success w-100">See
-                                                    Result</a>
+                                                <a href="{{ route('booking-registration', ['room_type_name' => $room_d->room_type_name]) }}"
+                                                    class="btn btn-success w-100">Inquiry</a>
+                                            </div>
+                                        </div>
+                                        <div class="card mt-3" id="directBooking_form">
+                                            <div class="card-header">Direct Booking</div>
+                                            <div class="card-body p-3">
+                                                <div class="form-group mt-2" style="position: relative;">
+                                                    <label for="input_from">From</label>
+                                                    <input type="text" class="form-control mt-1" id="input_from"
+                                                        placeholder="Start Date">
+                                                </div>
+                                                <div class="form-group mt-2" style="position: relative;">
+                                                    <label for="input_to">To</label>
+                                                    <input type="text" class="form-control mt-1" id="input_to"
+                                                        placeholder="End Date">
+                                                    <br>
+                                                </div>
+                                                <a href="{{ route('booking-registration', ['room_type_name' => $room_d->room_type_name]) }}"
+                                                    class="btn btn-success w-100">Book Room
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

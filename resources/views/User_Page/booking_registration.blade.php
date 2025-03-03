@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     {{-- link with other css file --}}
@@ -95,148 +96,171 @@
     <div class="container-fluid">
         <div class="row mt-4">
             <div class="d-flex justify-content-center mt-3">
-                <div class="col-md-9">
+                <div class="col-lg-9 col-md-12">
                     <div class="container-xl">
-                        <div class="row">
-                            <div class="col-lg-7 col-md-12">
-                                <div class="card">
-                                    <div class="card-header">Guest Information</div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-12">
-                                                <label for="first_name">First Name</label>
-                                                <input type="text" class="form-control mt-1">
-                                            </div>
-                                            <div class="col-lg-6 col-md-12">
-                                                <label for="last_name">Last Name</label>
-                                                <input type="text" class="form-control mt-1">
-                                            </div>
-                                            <div class="col-lg-6 col-md-12 mt-2">
-                                                <label for="email">Email</label>
-                                                <input type="email" class="form-control mt-1">
-                                            </div>
-                                            <div class="col-lg-6 col-md-12 mt-2">
-                                                <label for="phone_number">Phone Number</label>
-                                                <input type="text" class="form-control mt-1">
-                                            </div>
-                                            <div class="col-lg-6 col-md-12 mt-2">
-                                                <label for="states">State</label>
-                                                <input type="text" class="form-control mt-1">
-                                            </div>
-                                            <div class="col-lg-6 col-md-12 mt-2">
-                                                <label for="city">City</label>
-                                                <input type="text" class="form-control mt-1">
-                                            </div>
-                                            <div class="col-12 mt-2">
-                                                <label for="special_request">Special Request</label>
-                                                <textarea class="form-control mt-2" placeholder="Feel free to tell us your needs..."></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                {{-- end of guest information --}}
-
-                                {{-- start of service and any request form --}}
-                                <div class="card">
-                                    <div class="card-header">Service And Request</div>
-                                    <div class="card-body">
-                                        <h5>Room Facilities</h5>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-4">
-                                                <p>Air Conditions</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Air Conditions</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Air Conditions</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Air Conditions</p>
-                                            </div>
-                                            <div class="col-4">
-                                                <p>Air Conditions</p>
-                                            </div>
-                                        </div>
-
-                                        <h5 class="mt-2">Additional Facilities And Service Request</h5>
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-8">
-                                                <h5 class="mt-1">1. Car Park </h5>
-                                                <span class="text-success"><b>$5.00</b> / each</span>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="input-group" style="width: 150px;">
-                                                    <button class="btn btn-outline-secondary" type="button"
-                                                        id="button-decrement">-</button>
-                                                    <input type="number" class="form-control text-center"
-                                                        id="number" value="0" min="0" max="100">
-                                                    <button class="btn btn-outline-secondary" type="button"
-                                                        id="button-increment">+</button>
+                        <form action="" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">Guest Information</div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-lg-6 col-md-12">
+                                                    <label for="first_name">First Name</label>
+                                                    <input type="text" name="first_name"
+                                                        class="form-control mt-1">
                                                 </div>
-                                            </div>
-                                            <div class="col-8 mt-2">
-                                                <h5 class="mt-1">2. Spa Service </h5>
-                                                <span class="text-success"><b>$10.00</b> / each</span>
-                                            </div>
-                                            <div class="col-4 mt-2">
-                                                <div class="input-group" style="width: 150px;">
-                                                    <button class="btn btn-outline-secondary" type="button"
-                                                        id="button-decrement">-</button>
-                                                    <input type="number" class="form-control text-center"
-                                                        id="number" value="0" min="0" max="100">
-                                                    <button class="btn btn-outline-secondary" type="button"
-                                                        id="button-increment">+</button>
+                                                <div class="col-lg-6 col-md-12">
+                                                    <label for="last_name">Last Name</label>
+                                                    <input type="text" name="last_name" class="form-control mt-1">
                                                 </div>
-                                            </div>
-                                            <div class="col-8 mt-2">
-                                                <h5 class="mt-1">3. Pet Accommodation </h5>
-                                                <span class="text-success"><b>$4.00</b> / each</span>
-                                            </div>
-                                            <div class="col-4 mt-2">
-                                                <div class="input-group" style="width: 150px;">
-                                                    <button class="btn btn-outline-secondary" type="button"
-                                                        id="button-decrement">-</button>
-                                                    <input type="number" class="form-control text-center"
-                                                        id="number" value="0" min="0" max="100">
-                                                    <button class="btn btn-outline-secondary" type="button"
-                                                        id="button-increment">+</button>
+                                                <div class="col-lg-6 col-md-12 mt-2">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" name="email" class="form-control mt-1">
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 mt-2">
+                                                    <label for="phone_number">Phone Number</label>
+                                                    <input type="tel" name="phone_number"
+                                                        class="form-control mt-1" id="phone_number">
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 mt-2">
+                                                    <label for="states">Country</label>
+                                                    <select name="country"
+                                                        class="selectpicker countrypicker form-select form-control mt-1">
+                                                    </select>
+                                                </div>
+                                                <div class="col-lg-6 col-md-12 mt-2">
+                                                    <label for="city">City</label>
+                                                    <input type="text" name="city" class="form-control mt-1">
+                                                </div>
+                                                <div class="col-12 mt-2">
+                                                    <label for="special_request">Special Request</label>
+                                                    <textarea class="form-control mt-2" name="special_request" placeholder="Feel free to tell us your needs..."></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
+                                    {{-- end of guest information --}}
+
+                                    {{-- start of service and any request form --}}
+                                    <div class="card">
+                                        <div class="card-header">Service And Request</div>
+                                        <div class="card-body">
+                                            <h5>Room Facilities</h5>
+                                            <hr>
+                                            <div class="row">
+                                                @foreach ($room_facilities as $room_f)
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <p><i class="fa-solid fa-circle-check"
+                                                                style="color: green;"></i>
+                                                            {{ $room_f->facility_name }}</p>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+
+                                            <h5 class="mt-2">Additional Facilities And Service Request</h5>
+                                            <hr>
+                                            <div class="row">
+                                                <div class="row" id="service-row">
+                                                    <div class="col-8">
+                                                        <h5 class="mt-1" data-service-name="Car Park"
+                                                            data-service-price="5.00">1. Car Park </h5>
+                                                        <span class="text-success"><b>$5.00</b> / each</span>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <div class="input-group" style="width: 150px;">
+                                                            <button class="btn btn-outline-secondary button-decrement"
+                                                                type="button">-</button>
+                                                            <input type="number"
+                                                                class="form-control text-center number-input"
+                                                                value="0" min="0" max="100">
+                                                            <button class="btn btn-outline-secondary button-increment"
+                                                                type="button">+</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8 mt-2">
+                                                        <h5 class="mt-1" data-service-name="Spa Service"
+                                                            data-service-price="10.00">2. Spa Service
+                                                        </h5>
+                                                        <span class="text-success"><b>$10.00</b> / each</span>
+                                                    </div>
+                                                    <div class="col-4 mt-2">
+                                                        <div class="input-group" style="width: 150px;">
+                                                            <button class="btn btn-outline-secondary button-decrement"
+                                                                type="button">-</button>
+                                                            <input type="number"
+                                                                class="form-control text-center number-input"
+                                                                value="0" min="0" max="100">
+                                                            <button class="btn btn-outline-secondary button-increment"
+                                                                type="button">+</button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-8 mt-2">
+                                                        <h5 class="mt-1" data-service-name="Pet Accommodation"
+                                                            data-service-price="5.00">3. Pet
+                                                            Accommodation
+                                                        </h5>
+                                                        <span class="text-success"><b>$5.00</b> / each</span>
+                                                    </div>
+                                                    <div class="col-4 mt-2">
+                                                        <div class="input-group" style="width: 150px;">
+                                                            <button class="btn btn-outline-secondary button-decrement"
+                                                                type="button">-</button>
+                                                            <input type="number"
+                                                                class="form-control text-center number-input"
+                                                                value="0" min="0" max="100">
+                                                            <button class="btn btn-outline-secondary button-increment"
+                                                                type="button">+</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    {{-- end of service and any request form --}}
                                 </div>
-                                <br>
-                                {{-- end of service and any request form --}}
+
+                                <div class="col-lg-5 col-md-12">
+                                    {{-- start of receipt overview --}}
+                                    <div class="card">
+                                        <img src="../images/Single Room.jpg" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p>Check In: </p>
+                                            <p>Check Out: </p>
+                                            <hr>
+                                            <h5>Price Details</h5>
+                                            <div class="row">
+                                                <div class="col-8">
+                                                    <h5 style="font-size: 15px;">Room Price (Include Tax) : </h5>
+                                                </div>
+                                                <div class="col-4">
+
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <h5>Additional Facilities And Service Request</h5>
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <h5 class="text-danger" id="output">No Service Selected</h5>
+                                                    <h5 id="service_name"></h5>
+                                                </div>
+                                                <div class="col-3">
+                                                    <h5 id="service_price"></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    {{-- end of receipt overview --}}
+                                    {{-- <input type="submit" class="btn btn-primary w-100" value="Checkout"> --}}
+                                    <a href="{{ route('booking-payment') }}"
+                                        class="btn btn-primary w-100">CheckOut</a>
+                                </div>
                             </div>
-
-                            <div class="col-lg-5 col-md-12">
-                                {{-- start of receipt overview --}}
-                                <div class="card">
-                                    <img src="../images/Single Room.jpg" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p>Check In: </p>
-                                        <p>Check Out: </p>
-                                        <hr>
-                                        <h5>Price Details</h5>
-                                        <div class="row">
-                                            <div class="col-8">
-                                                <h5 style="font-size: 15px;">Room Price: </h5>
-                                            </div>
-                                            <div class="col-4">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                {{-- end of receipt overview --}}
-                                <button type="button" class="btn btn-primary w-100">CheckOut</button>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -247,6 +271,9 @@
 
 {{-- jquery cdn --}}
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+{{-- bootstrap select country javascript cdn --}}
+<script src="//unpkg.com/bootstrap-select-country@4.0.0/dist/js/bootstrap-select-country.min.js"></script>
 
 {{-- bootstrap js cdn --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
