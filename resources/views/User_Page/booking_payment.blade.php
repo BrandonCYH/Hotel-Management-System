@@ -41,7 +41,8 @@
                                 <h3>Booking Payment</h3>
                             </div>
                             <div class="col-lg-2">
-                                <a href="{{ url()->previous() }}" class="btn btn-danger w-100">Cancel
+                                <a href="{{route('room-booking', ['room_type_name'=> $room_type_name])}}"
+                                    class="btn btn-danger w-100">Cancel
                                     Booking</a>
                             </div>
                             <div class="col-lg-7">
@@ -60,19 +61,19 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">Full Name: </p>
+                                                <p class="text-secondary">Full Name: {{$guest_fullName}}</p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">Email: </p>
+                                                <p class="text-secondary">Email: {{$guest_email}}</p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">Phone Number: </p>
+                                                <p class="text-secondary">Phone Number: {{$guest_phoneNumber}}</p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">State: </p>
+                                                <p class="text-secondary">Country: {{$guest_country}}</p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">City: </p>
+                                                <p class="text-secondary">City: {{$guest_city}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -115,9 +116,9 @@
                                     <div class="card-body">
                                         <h4>Summary</h4>
                                         <hr>
-                                        <h5 class="text-secondary">Room Name: </h5>
+                                        <h5 class="text-secondary">Room Name: {{$room_type_name}}</h5>
                                         <h5 class="text-secondary">Room Price: </h5>
-                                        <h5 class="text-secondary">Room Tax: </h5>
+                                        <h5 class="text-secondary">Room Tax: 6%</h5>
                                         <hr>
                                         <h4>Additional Service Price</h4>
                                     </div>

@@ -34,9 +34,9 @@ Route::post('/hotel-room-selection', [User_Controller::class, 'hotel_room_select
 
 // hotel room bookings functions
 Route::get('/room-booking/{room_type_name}', [User_Controller::class, 'room_booking'])->name('room-booking');
-Route::get('/booking-registration/{room_type_name}', [User_Controller::class, 'booking_registration'])->name('booking-registration');
+Route::post('/booking-registration/{room_type_name}', [User_Controller::class, 'booking_registration'])->name('booking-registration');
 
-Route::get('/booking-payment', [User_Controller::class, 'booking_payment'])->name('booking-payment');
+Route::post('/booking-payment/{room_type_name}', [User_Controller::class, 'booking_payment'])->name('booking-payment');
 Route::get('/booking-confirmation', [User_Controller::class, 'booking_confirmation'])->name('booking-confirmation');
 
 Route::view('/hotel-restaurant', 'User_Page.restaurant')->name('hotel-restaurant');

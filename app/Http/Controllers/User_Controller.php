@@ -130,8 +130,11 @@ class User_Controller extends Controller
         return view('User_Page.room_booking_details', ['room_data' => $room_data, 'room_facilities' => $room_facilities, 'room_info' => $room_info]);
     }
 
-    public function booking_registration($room_name)
+    public function booking_registration(Request $request, $room_name)
     {
+        $checkInDate = $request->checkIn_date;
+        $checkOutDate = $request->checkOut_date;
+
         $room_data = DB::table('room_type')
             ->where('room_type_name', '=', $room_name)
             ->get();
@@ -142,7 +145,7 @@ class User_Controller extends Controller
             ->where('room_type.room_type_name', '=', $room_name)
             ->get();
 
-        return view('User_Page.booking_registration', ['room_data' => $room_data, 'room_facilities' => $room_facilities]);
+        return view('User_Page.booking_registration', ['room_data' => $room_data, 'room_facilities' => $room_facilities, 'checkIn_date' => $checkInDate, 'checkOut_date' => $checkOutDate]);
     }
 
     public function booking_confirmation()
@@ -169,17 +172,30 @@ class User_Controller extends Controller
         return response()->json(['success' => true, 'message' => 'Services updated successfully']);
     }
 
-    public function booking_payment(Request $request)
+    public function booking_payment(Request $request, $room_type_name)
     {
         $guest_firstName = $request->first_name;
-        $guset_lastName = $request->last_name;
+        $guest_lastName = $request->last_name;
+
+        $guest_fullName = $guest_firstName . ' ' . $guest_lastName;
         $guest_email = $request->email;
         $guest_phoneNumber = $request->phone_number;
         $guest_country = $request->country;
         $guest_city = $request->city;
         $guest_specialRequest = $request->special_request;
 
-        return view('User_Page.booking_payment');
+        return view(
+            'User_Page.booking_payment',
+            [
+                'room_type_name' => $room_type_name,
+                'guest_fullName' => $guest_fullName,
+                'guest_email' => $guest_email,
+                'guest_phoneNumber' => $guest_phoneNumber,
+                'guest_country' => $guest_country,
+                'guest_city' => $guest_city,
+                'guest_specialRequest' => $guest_specialRequest,
+            ]
+        );
     }
 
     public function hotel_restaurant()

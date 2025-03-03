@@ -1,9 +1,9 @@
 $(function () {
 
-  var from_$input = $('#input_from').pickadate(),
+  var from_$input = $('.input_from').pickadate(),
     from_picker = from_$input.pickadate('picker')
 
-  var to_$input = $('#input_to').pickadate(),
+  var to_$input = $('.input_to').pickadate(),
     to_picker = to_$input.pickadate('picker')
 
 
