@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Carbon\Carbon;
+use Session;
 use Illuminate\Http\Request;
 
 class User_Controller extends Controller
@@ -153,49 +155,157 @@ class User_Controller extends Controller
         return view('User_Page.booking_confirmation');
     }
 
-    public function updateServices(Request $request)
+    private function generateGuestInfoID()
     {
-        // Retrieve the selected services from the request
-        $services = $request->input('services');
+        $prefix = "GUEST"; // Prefix for guest info
+        $randomNumber = mt_rand(10000, 99999); // Random 5-digit number
 
-        // Iterate over the services and handle the logic
-        foreach ($services as $service) {
-            $serviceName = $service['service_name'];
-            $servicePrice = $service['service_price'];
-            $quantity = $service['quantity'];
-
-            // Perform any logic you need with the service data
-            // For example, save to the database, update totals, etc.
-        }
-
-        // Return a response to the AJAX request
-        return response()->json(['success' => true, 'message' => 'Services updated successfully']);
+        return $prefix . $randomNumber;
     }
 
-    public function booking_payment(Request $request, $room_type_name)
+    private function generateBookingID()
     {
-        $guest_firstName = $request->first_name;
-        $guest_lastName = $request->last_name;
+        $prefix = "BKG"; // Prefix for booking
+        $randomNumber = mt_rand(10000, 99999); // Random 5-digit number
 
-        $guest_fullName = $guest_firstName . ' ' . $guest_lastName;
-        $guest_email = $request->email;
-        $guest_phoneNumber = $request->phone_number;
-        $guest_country = $request->country;
-        $guest_city = $request->city;
-        $guest_specialRequest = $request->special_request;
+        return $prefix . $randomNumber;
+    }
 
-        return view(
-            'User_Page.booking_payment',
-            [
-                'room_type_name' => $room_type_name,
-                'guest_fullName' => $guest_fullName,
-                'guest_email' => $guest_email,
-                'guest_phoneNumber' => $guest_phoneNumber,
-                'guest_country' => $guest_country,
-                'guest_city' => $guest_city,
-                'guest_specialRequest' => $guest_specialRequest,
-            ]
-        );
+    public function booking_payment(Request $request, $room_type_name, $checkInDate, $checkOutDate)
+    {
+        try {
+            $totalServicesPrice = 0; // Initialize total service price
+            $target_roomPrice = 0;
+
+            $formatted_checkInDate = Carbon::createFromFormat('j F, Y', $checkInDate)->format('Y-m-d');
+            $formatted_checkOutDate = Carbon::createFromFormat('j F, Y', $checkOutDate)->format('Y-m-d');
+
+            // Check if the booking ID already exists in the session
+            if (Session::has('booking_id') && Session::has('guest_id')) {
+                $booking_id = Session::get('booking_id');
+                $guest_id = Session::get('guest_id');
+                $target_roomID = Session::get('room_id');
+                $target_roomPrice = Session::get('room_price');
+            } else {
+                $booking_id = $this->generateBookingID();
+                $guest_id = $this->generateGuestInfoID();
+
+                $random_roomID = DB::table("rooms")
+                    ->join("room_type", 'room_type.room_type_id', '=', 'rooms.room_type_id')
+                    ->select('rooms.room_id', 'room_type.room_price')
+                    ->where('room_type.room_type_name', '=', $room_type_name)
+                    ->where('rooms.availability_status', '!=', "Not Available")
+                    ->inRandomOrder()
+                    ->first();
+
+                if ($random_roomID) {
+                    $target_roomID = $random_roomID->room_id;  // Use -> instead of []
+                    $target_roomPrice = $random_roomID->room_price;
+
+                    Session::put('booking_id', $booking_id);
+                    Session::put('guest_id', $guest_id);
+                    Session::put('room_id', $target_roomID);
+                    Session::put('room_price', $target_roomPrice);
+                }
+            }
+
+            $guest_firstName = $request->first_name;
+            $guest_lastName = $request->last_name;
+
+            $guest_fullName = $guest_firstName . ' ' . $guest_lastName;
+            $guest_email = $request->email;
+            $guest_phoneNumber = $request->phone_number;
+            $guest_country = $request->country;
+            $guest_city = $request->city;
+            $guest_specialRequest = $request->special_request;
+            $guest_requestServices = $request->services;
+
+            DB::table('guest_info')
+                ->updateOrInsert(
+                    [
+                        "guest_id" => $guest_id
+                    ],
+                    [
+                        "guest_name" => $guest_fullName,
+                        "guest_email" => $guest_email,
+                        "guest_phoneNumber" => $guest_phoneNumber,
+                        "guest_country" => $guest_country,
+                        "guest_city" => $guest_city,
+                        "guest_specialRequest" => $guest_specialRequest,
+                    ]
+                );
+
+            foreach ($guest_requestServices as $serviceName => $serviceDetails) {
+                $services_quantity = $serviceDetails['quantity']; // Get quantity
+                $services_price = $serviceDetails['price']; // Get price
+
+                if ($services_quantity > 0) {
+                    $serviceTotal = $services_quantity * $services_price; // Calculate total for this service
+                    $totalServicesPrice += $serviceTotal; // Add to total services price
+
+                    DB::table('guest_services')->updateOrInsert(
+                        [
+                            'guest_id' => $guest_id, // Store guest ID
+                            'services_name' => $serviceName, // Store service name
+                        ],
+                        [
+                            'quantity' => $services_quantity, // Store quantity
+                            'price' => $services_price, // Store price per unit
+                            'total_price' => $serviceTotal, // Store total price
+                        ]
+                    );
+                }
+            }
+
+            $totalBookingPrice = floatval($target_roomPrice) + floatval($totalServicesPrice);
+
+            DB::table('room_booking')
+                ->updateOrInsert(
+                    [
+                        'booking_id' => $booking_id,
+                    ],
+                    [
+                        'guest_id' => $guest_id,
+                        'room_id' => $target_roomID,
+                        'check_in_date' => $formatted_checkInDate,
+                        'check_out_date' => $formatted_checkOutDate,
+                        'total_price' => $totalBookingPrice,
+                        'booking_status' => "Pending",
+                    ]
+                );
+
+            DB::table("rooms")
+                ->where("room_id", '=', $target_roomID)
+                ->update(['availability_status' => 'Not Available']);
+
+            $guest_bookingInfo = DB::table("room_booking")
+                ->join("guest_info", 'guest_info.guest_id', '=', 'room_booking.guest_id')
+                ->where("room_booking.guest_id", '=', $guest_id)
+                ->where("guest_info.guest_id", '=', $guest_id)
+                ->get();
+
+            $guest_servicesInfo = DB::table("guest_services")
+                ->where("guest_id", $guest_id)
+                ->get();
+
+            $guest_roomInfo = DB::table("room_booking")
+                ->join("rooms", 'rooms.room_id', '=', 'room_booking.room_id')
+                ->get();
+
+            // dump($guest_roomInfo);
+
+            return view(
+                'User_Page.booking_payment',
+                [
+                    'room_type_name' => $room_type_name,
+                    'guest_bookingInfo' => $guest_bookingInfo,
+                    'guest_servicesInfo' => $guest_servicesInfo
+                ]
+            );
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->with('error', 'Booking Failed: ' . $e->getMessage());
+        }
     }
 
     public function hotel_restaurant()

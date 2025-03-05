@@ -36,7 +36,7 @@ Route::post('/hotel-room-selection', [User_Controller::class, 'hotel_room_select
 Route::get('/room-booking/{room_type_name}', [User_Controller::class, 'room_booking'])->name('room-booking');
 Route::post('/booking-registration/{room_type_name}', [User_Controller::class, 'booking_registration'])->name('booking-registration');
 
-Route::post('/booking-payment/{room_type_name}', [User_Controller::class, 'booking_payment'])->name('booking-payment');
+Route::post('/booking-payment/{room_type_name}/{checkInDate}/{checkOutDate}', [User_Controller::class, 'booking_payment'])->name('booking-payment');
 Route::get('/booking-confirmation', [User_Controller::class, 'booking_confirmation'])->name('booking-confirmation');
 
 Route::view('/hotel-restaurant', 'User_Page.restaurant')->name('hotel-restaurant');
@@ -47,4 +47,5 @@ Route::get('/admin-dashboard', [Admin_Controller::class, 'dashboard'])->name('ad
 
 // Route for adding the new room type
 Route::get('/add-room', [Admin_Controller::class, 'add_room'])->name('add-room');
-Route::post('/add-room-process', [Admin_Controller::class, 'add_room_process'])->name('add-room-process');
+Route::get('/add-room/fetch_room_data', [Admin_Controller::class, 'fetch_room_data']);
+Route::get("/add-room/{roomName}", [Admin_Controller::class, 'getHotelData'])->name('getHotelData');

@@ -46,7 +46,7 @@
                     <h2 class="card-title mt-3">Booking Confirmed!</h2>
                     <p class="card-text">Thank you for booking with us. Your reservation has been successfully
                         completed.</p>
-                    <a href="#" class="btn btn-success mt-3">Back to Home</a>
+                    <a href="{{route('main-page')}}" class="btn btn-success mt-3">Back to Home</a>
                 </div>
             </div>
 

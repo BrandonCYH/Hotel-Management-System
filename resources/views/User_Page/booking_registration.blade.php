@@ -99,7 +99,8 @@
                 <div class="col-lg-9 col-md-12">
                     <div class="container-xl">
                         @foreach ($room_data as $room_d )
-                        <form action="{{ route('booking-payment', ['room_type_name' => $room_d->room_type_name]) }}"
+                        <form
+                            action="{{ route('booking-payment', ['room_type_name' => $room_d->room_type_name, 'checkInDate' => $checkIn_date, 'checkOutDate' => $checkOut_date]) }}"
                             method="POST">
                             @csrf
                             <div class="row">
@@ -176,10 +177,12 @@
                                                                 type="button">-</button>
                                                             <input type="number"
                                                                 class="form-control text-center number-input" value="0"
-                                                                min="0" max="100">
+                                                                min="0" max="100" name="services[Car Park][quantity]">
                                                             <button class="btn btn-outline-secondary button-increment"
                                                                 type="button">+</button>
                                                         </div>
+                                                        <input type="hidden" name="services[Car Park][price]"
+                                                            value="5.00">
                                                     </div>
                                                     <div class="col-8 mt-2">
                                                         <h5 class="mt-1" data-service-name="Spa Service"
@@ -193,10 +196,13 @@
                                                                 type="button">-</button>
                                                             <input type="number"
                                                                 class="form-control text-center number-input" value="0"
-                                                                min="0" max="100">
+                                                                min="0" max="100"
+                                                                name="services[Spa Service][quantity]">
                                                             <button class="btn btn-outline-secondary button-increment"
                                                                 type="button">+</button>
                                                         </div>
+                                                        <input type="hidden" name="services[Spa Service][price]"
+                                                            value="10.00">
                                                     </div>
                                                     <div class="col-8 mt-2">
                                                         <h5 class="mt-1" data-service-name="Pet Accommodation"
@@ -211,10 +217,13 @@
                                                                 type="button">-</button>
                                                             <input type="number"
                                                                 class="form-control text-center number-input" value="0"
-                                                                min="0" max="100">
+                                                                min="0" max="100"
+                                                                name="services[Pet Accommodation][quantity]">
                                                             <button class="btn btn-outline-secondary button-increment"
                                                                 type="button">+</button>
                                                         </div>
+                                                        <input type="hidden" name="services[Pet Accommodation][price]"
+                                                            value="5.00">
                                                     </div>
                                                 </div>
                                             </div>

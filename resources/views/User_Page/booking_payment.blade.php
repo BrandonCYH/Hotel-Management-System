@@ -36,6 +36,7 @@
             <div class="d-flex justify-content-center mt-3">
                 <div class="col-md-9">
                     <div class="container-xl">
+                        @foreach ($guest_bookingInfo as $info)
                         <div class="row">
                             <div class="col-lg-10">
                                 <h3>Booking Payment</h3>
@@ -61,19 +62,19 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">Full Name: {{$guest_fullName}}</p>
+                                                <p class="text-secondary">Full Name: {{$info->guest_name}}</p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">Email: {{$guest_email}}</p>
+                                                <p class="text-secondary">Email: {{$info->guest_email}}</p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">Phone Number: {{$guest_phoneNumber}}</p>
+                                                <p class="text-secondary">Phone Number: {{$info->guest_phoneNumber}}</p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">Country: {{$guest_country}}</p>
+                                                <p class="text-secondary">Country: {{$info->guest_country}}</p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">City: {{$guest_city}}</p>
+                                                <p class="text-secondary">City: {{$info->guest_city}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -116,11 +117,22 @@
                                     <div class="card-body">
                                         <h4>Summary</h4>
                                         <hr>
-                                        <h5 class="text-secondary">Room Name: {{$room_type_name}}</h5>
+                                        <h5 class="text-secondary">Room Name: </h5>
                                         <h5 class="text-secondary">Room Price: </h5>
                                         <h5 class="text-secondary">Room Tax: 6%</h5>
                                         <hr>
                                         <h4>Additional Service Price</h4>
+                                        <div class="row">
+                                            @foreach ($guest_servicesInfo as $guest_serviceInfo)
+                                            <div class="col-9">
+                                                <h5 id="service_name">{{$guest_serviceInfo->services_name}} x
+                                                    {{$guest_serviceInfo->quantity}}</h5>
+                                            </div>
+                                            <div class="col-3">
+                                                <h5 id="service_price">{{$guest_serviceInfo->price}}</h5>
+                                            </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                                 <br>
@@ -146,6 +158,7 @@
                             </div>
                             {{-- end of summary --}}
                         </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

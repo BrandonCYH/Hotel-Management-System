@@ -22,7 +22,7 @@
             <nav class="navbar navbar-dark bg-dark">
                 <div class="container-fluid">
                     <!-- Navbar Brand (optional) -->
-                    <a class="navbar-brand ms-3" href="#">Your Expense</a>
+                    <a class="navbar-brand ms-3" href="#">Dashboard</a>
                     <!-- Sidebar Toggle Button -->
                     <button id="sidebarToggle" class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas"
                         data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
@@ -59,13 +59,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="add_expense.html" class="nav-link text-white d-flex align-items-center">
-                                    <i class="bi bi-patch-plus-fill me-2"></i> Add Expenses
+                                <a href="{{route('add-room')}}" class="nav-link text-white d-flex align-items-center">
+                                    <i class="bi bi-patch-plus-fill me-2"></i> Add Room
                                 </a>
                             </li>
                             <li>
-                                <a href="edit_expense.html" class="nav-link text-white d-flex align-items-center">
-                                    <i class="bi bi-pencil-square me-2"></i> Edit Expense
+                                <a href="#" class="nav-link text-white d-flex align-items-center">
+                                    <i class="bi bi-pencil-square me-2"></i> Edit Room
                                 </a>
                             </li>
                             <li>
