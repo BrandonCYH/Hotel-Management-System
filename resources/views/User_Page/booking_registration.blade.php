@@ -8,15 +8,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     {{-- link with other css file --}}
-    <link rel="stylesheet" href="/booking_registration/style.css">
+    <link rel="stylesheet" href="/User_Page/booking_registration/booking_registration.css">
 
     {{-- website icon --}}
     <link rel="icon" href="../images/ocean_heaven.png" type="image/x-icon">
     <link rel="shortcut icon" href="../images/ocean_heaven.png" type="image/x-icon">
 
     {{-- bootstrap CSS cdn --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/external_css_file/bootstrap.min.css">
 
     {{-- bootstrap icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -25,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="/external_css_file/aos.css" rel="stylesheet">
 
     <title>Booking Registration</title>
 </head>
@@ -35,7 +34,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <img src="../images/ocean_heaven.png" class="logo-image">
-            <a class="navbar-brand mt-2 " href="{{ route('main-page') }}">
+            <a class="navbar-brand mt-2 mx-2" href="{{ route('main-page') }}">
                 <h5 class="font-weight-bold" style="margin: 0px !important;">OCEAN HEAVEN</h5>
                 <h5 class="font-weight-normal" style="font-size: 15px;">WORLD 1 FIRST CLASS HOTEL</h5>
             </a>
@@ -94,7 +93,7 @@
 
     {{-- start of booking registration form --}}
     <div class="container-fluid">
-        <div class="row mt-4">
+        <div class="row mt-3">
             <div class="d-flex justify-content-center mt-3">
                 <div class="col-lg-9 col-md-12">
                     <div class="container-xl">
@@ -287,18 +286,21 @@
 </body>
 
 {{-- jquery cdn --}}
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/external_js_file/jquery.min.js"></script>
+
+{{-- bootstrap popper cdn --}}
+<script src="/external_js_file/popper.min.js"></script>
 
 {{-- bootstrap select country javascript cdn --}}
 <script src="//unpkg.com/bootstrap-select-country@4.0.0/dist/js/bootstrap-select-country.min.js"></script>
 
-{{-- bootstrap js cdn --}}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+{{-- bootstrap bundle cdn --}}
+<script src="/external_js_file/bootstrap.bundle.min.js"></script>
+
+{{-- bootstrap javascript cdn --}}
+<script src="/external_js_file/bootstrap.min.js"></script>
 
 {{-- link with other js file --}}
-<script src="/booking_registration/booking_registration.js"></script>
+<script src="/User_Page/booking_registration/booking_registration.js"></script>
 
 </html>

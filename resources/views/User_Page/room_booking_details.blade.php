@@ -7,17 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     {{-- link with other css file --}}
-    <link rel="stylesheet" href="/room_booking/style.css">
-    <link rel="stylesheet" href="/room_booking/classic.css">
-    <link rel="stylesheet" href="/room_booking/classic.date.css">
+    <link rel="stylesheet" href="/User_Page/room_booking_details/room_booking_details.css">
+    <link rel="stylesheet" href="/User_Page/room_booking_details/classic.css">
+    <link rel="stylesheet" href="/User_Page/room_booking_details/classic.date.css">
 
     {{-- website icon --}}
     <link rel="icon" href="../images/ocean_heaven.png" type="image/x-icon">
     <link rel="shortcut icon" href="../images/ocean_heaven.png" type="image/x-icon">
 
     {{-- bootstrap CSS cdn --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="/external_css_file/bootstrap.min.css" rel="stylesheet">
 
     {{-- bootstrap icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -25,11 +24,8 @@
     {{-- bootstrap font awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- intl-tel-input CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
-
     <!-- Animation On Scroll CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="/external_css_file/aos.css" rel="stylesheet">
 
     <title>Room Booking Details</title>
 </head>
@@ -39,7 +35,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <img src="../images/ocean_heaven.png" class="logo-image">
-            <a class="navbar-brand mt-2 " href="{{ route('main-page') }}">
+            <a class="navbar-brand mt-2 mx-2" href="{{ route('main-page') }}">
                 <h5 class="font-weight-bold" style="margin: 0px !important;">OCEAN HEAVEN</h5>
                 <h5 class="font-weight-normal" style="font-size: 15px;">WORLD 1 FIRST CLASS HOTEL</h5>
             </a>
@@ -118,11 +114,11 @@
                             </div>
                             <div class="col-12 col-md-5">
                                 <div class="row">
-                                    <div class="col-6 col-md-12 mb-md-3 mt-2 mt-md-0">
+                                    <div class="col-12 col-md-12 mb-md-3 mt-2 mt-md-0">
                                         <img src="{{ asset('../images/' . $room_d->room_type_name . '_1.jpg') }}"
                                             class="card-img-top" style="height: 100%;" alt="Single_Room image">
                                     </div>
-                                    <div class="col-6 col-md-12 mt-2">
+                                    <div class="col-12 col-md-12 mt-2">
                                         <img src="{{ asset('../images/' . $room_d->room_type_name . '_2.jpg') }}"
                                             class="card-img-top" style="height: 100%;" alt="Single_Room image">
                                     </div>
@@ -147,7 +143,7 @@
                                         <div class="row">
                                             @foreach ($room_facilities as $r_f)
                                             <div class="col-lg-4 col-md-6">
-                                                <p><i class="fa-solid fa-hand-point-right" style="color: #dd4b39;"></i>
+                                                <p><i class="fa-solid fa-check-square" style="color: #159f33;"></i>
                                                     <span><b>{{ $r_f->facility_name }}</b></span>
                                                 </p>
                                             </div>
@@ -159,7 +155,7 @@
                                 {{-- end of room features --}}
 
                                 {{-- start of booking policies --}}
-                                <div class="card">
+                                <div class="card mb-3">
                                     <div class="card-header">Booking Policies</div>
                                     <div class="card-body">
                                         <p>When booking a room at our hotel, we want to ensure that your
@@ -201,7 +197,6 @@
                                         </p>
                                     </div>
                                 </div>
-                                <br>
                                 {{-- end of booking polices --}}
                             </div>
 
@@ -386,32 +381,36 @@
     {{-- end of footer --}}
 </body>
 
-{{-- bootstrap javascript cdn --}}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-</script>
+{{-- aos library cdn --}}
+<script src="/external_js_file/aos.js"></script>
 
 {{-- Jquery CDN --}}
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/intlTelInput-jquery.min.js"></script>
+<script src="/external_js_file/jquery.min.js"></script>
 
-{{-- aos library cdn --}}
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+{{-- Jquery pickadate cdn --}}
+<script src="/User_Page/room_booking_details/picker.js"></script>
+<script src="/User_Page/room_booking_details/picker.date.js"></script>
+
+{{-- bootstrap popper cdn --}}
+<script src="/external_js_file/popper.min.js"></script>
+
+{{-- bootstrap datepicker cdn --}}
+<script src="/external_js_file/bootstrap-datepicker.min.js"></script>
+
+{{-- bootstrap javascript cdn --}}
+<script src="/external_js_file/bootstrap.min.js"></script>
+
+{{-- bootstrap bundle cdn --}}
+<script src="/external_js_file/bootstrap.bundle.min.js"></script>
+
+{{-- link with other javascript file --}}
+<script src="/User_Page/room_booking_details/room_booking_details.js"></script>
+<script src="/User_Page/room_booking_details/main.js"></script>
+
 <script>
     AOS.init({
         disable: 'mobile'
     });
 </script>
-
-{{-- Jquery pickadate cdn --}}
-<script src="/room_booking/picker.js"></script>
-<script src="/room_booking/picker.date.js"></script>
-
-{{-- bootstrap datepicker cdn --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
-{{-- link with other javascript file --}}
-<script src="/room_booking/index.js"></script>
-<script src="/room_booking/main.js"></script>
 
 </html>

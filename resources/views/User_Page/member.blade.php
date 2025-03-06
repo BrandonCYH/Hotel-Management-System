@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="/member/style.css">
+    <link rel="stylesheet" href="/User_Page/member/member.css">
 
     {{-- website icon --}}
     <link rel="icon" href="../images/ocean_heaven.png" type="image/x-icon">
     <link rel="shortcut icon" href="../images/ocean_heaven.png" type="image/x-icon">
 
     {{-- bootstrap CSS cdn --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/external_css_file/bootstrap.min.css">
 
     {{-- bootstrap icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -23,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="/external_css_file/aos.css" rel="stylesheet">
 
     <title>Exclusive Member</title>
 </head>
@@ -53,50 +52,69 @@
     {{-- end of form for becoming a member --}}
 
     {{-- start of nav bar --}}
-    <div class="container-xl">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('main-page') }}"
-                    style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Ocean
-                    Heaven</a>
-                <button class="navbar-toggler mx-1" style="background-color: white; border: 1px solid white;"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('main-page') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('about-us') }}">About
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="../images/ocean_heaven.png" class="logo-image">
+            <a class="navbar-brand mt-2 mx-2" href="{{ route('main-page') }}">
+                <h5 class="font-weight-bold" style="margin: 0px !important;">OCEAN HEAVEN</h5>
+                <h5 class="font-weight-normal" style="font-size: 15px;">WORLD 1 FIRST CLASS HOTEL</h5>
+            </a>
+            <button class="navbar-toggler" style="background-color: white; border: 1px solid white;" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="{{ route('main-page') }}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown hover-dropdown">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="features_menu" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Features
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="features_menu">
+                            <a class="dropdown-item" href="{{ route('about-us') }}">About
                                 Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('hotel-room') }}">Room</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;"
-                                href="{{ route('hotel-restaurant') }}">Dining</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active mx-2" style="font-size: 17px;"
-                                href="{{ route('exclusive-member') }}">Member</a>
-                        </li>
-                        <!-- Add more items as needed -->
-                    </ul>
-                </div>
+                            <a class="dropdown-item" href="#">Gallery</a>
+                            <a class="dropdown-item" href="{{ route('terms-and-conditions') }}">Terms And
+                                Conditions</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown hover-dropdown">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="facilities_menu" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Facilities
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="facilities_menu">
+                            <a class="dropdown-item" href="{{ route('hotel-room') }}">Our
+                                Room</a>
+                            <a class="dropdown-item" href="#">Our Hall</a>
+                        </div>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" style="" href="{{ route('hotel-restaurant') }}">Dining</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active mx-2" style="" href="{{ route('exclusive-member') }}">Member</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                    </li>
+                    <!-- Add more items as needed -->
+                </ul>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
     {{-- end of nav bar --}}
 
     {{-- banner --}}
     <div class="jumbotron p-5" id="banner">
         <div class="row">
             <div class="col-md-12 text-center d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000">
-                <h1 class="display-4 mt-5 text-light">Become Our Valueable Member</h1>
+                <h1 class="display-4 text-light">Become Our Valueable Member</h1>
             </div>
             <div class="row">
                 <div class="d-flex justify-content-center">
@@ -120,7 +138,7 @@
         <!-- Mobile View -->
         <div class="col-sm-12 d-md-none" data-aos="zoom-in" data-aos-duration="1000">
             <div class="text-center mb-4">
-                <h1 class="fs-1 display-4 mt-5 text-light">Ocean Heaven Hotel</h1>
+                <h1 class="fs-1 display-4 text-light">Ocean Heaven Hotel</h1>
             </div>
             <div class="col-sm-6 mx-auto">
                 <p class="lead text-light text-center">Where comfort meets personalized care, our hotel is a
@@ -163,6 +181,7 @@
                                             make up the bulk of the card's content.</p>
                                     </div>
                                 </div>
+                                <br>
                             </div>
                             <div class="col-md-4">
                                 <div class="card">
@@ -172,6 +191,7 @@
                                             make up the bulk of the card's content.</p>
                                     </div>
                                 </div>
+                                <br>
                             </div>
                             <div class="col-md-4">
                                 <div class="card">
@@ -181,6 +201,7 @@
                                             make up the bulk of the card's content.</p>
                                     </div>
                                 </div>
+                                <br>
                             </div>
                         </div>
                     </div>
@@ -192,7 +213,7 @@
 
     {{-- benefit member --}}
     <div class="container-fluid">
-        <div class="row mt-4">
+        <div class="row mt-2">
             <div class="d-flex justify-content-center mt-3">
                 <div class="col-md-8">
                     <div class="container-xl">
@@ -354,12 +375,20 @@
     {{-- end of footer --}}
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-</script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+{{-- aos library cdn --}}
+<script src="/external_js_file/aos.js"></script>
 
-<script src="/member/index.js"></script>
+{{-- jquery cdn --}}
+<script src="/external_js_file/jquery.min.js"></script>
+
+{{-- popper cdn --}}
+<script src="/external_js_file/popper.min.js"></script>
+
+{{-- bootstrap bundle cdn --}}
+<script src="/external_js_file/bootstrap.bundle.min.js"></script>
+
+{{-- bootstrap javascript cdn --}}
+<script src="/external_js_file/bootstrap.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -377,8 +406,6 @@
     });
 </script>
 
-{{-- aos library cdn --}}
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({
         disable: 'mobile'

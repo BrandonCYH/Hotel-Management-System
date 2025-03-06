@@ -6,15 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="/restaurant/style.css">
+    <link rel="stylesheet" href="/User_Page/restaurant/restaurant.css">
 
     {{-- website icon --}}
     <link rel="icon" href="../images/ocean_heaven.png" type="image/x-icon">
     <link rel="shortcut icon" href="../images/ocean_heaven.png" type="image/x-icon">
 
     {{-- bootstrap CSS cdn --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/external_css_file/bootstrap.min.css">
 
     {{-- bootstrap icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -23,7 +22,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="/external_css_file/aos.css" rel="stylesheet">
 
     <title>Hotel Restaurant</title>
 </head>
@@ -33,9 +32,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <img src="../images/ocean_heaven.png" class="logo-image">
-            <a class="navbar-brand mt-2 " href="{{ route('main-page') }}">
-                <h5 class="font-weight-bold" style="margin: 1px 6px !important;">OCEAN HEAVEN</h5>
-                <h5 class="font-weight-normal mx-2" style="font-size: 0.95rem;">WORLD 1 FIRST CLASS HOTEL</h5>
+            <a class="navbar-brand mt-2 mx-2" href="{{ route('main-page') }}">
+                <h5 class="font-weight-bold" style="margin: 0px !important;">OCEAN HEAVEN</h5>
+                <h5 class="font-weight-normal" style="font-size: 15px;">WORLD 1 FIRST CLASS HOTEL</h5>
             </a>
             <button class="navbar-toggler" style="background-color: white; border: 1px solid white;" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNavAltMarkup"
@@ -118,7 +117,7 @@
         <!-- Mobile View -->
         <div class="col-sm-12 d-md-none" data-aos="zoom-in" data-aos-duration="1000">
             <div class="text-center mb-4">
-                <h1 class="fs-1 display-4 mt-5 text-light">BlueWave Bistro & Grill</h1>
+                <h1 class="fs-1 display-4 text-light">BlueWave Bistro & Grill</h1>
             </div>
             <div class="col-sm-6 mx-auto">
                 <p class="lead text-light text-center">Welcome to BlueWave Bistro & Grill at Ocean Heaven Hotel.
@@ -144,7 +143,7 @@
                     </h4>
                 </div>
             </div>
-            <div class="d-flex justify-content-center mt-4">
+            <div class="d-flex justify-content-center mt-2">
                 <div class="col-md-8">
                     <div class="container-xl mt-4">
                         <div class="row">
@@ -220,7 +219,7 @@
 
     {{-- start of restaurant menu --}}
     <div class="container-fluid">
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-md-12">
                 <div class="d-flex justify-content-center">
                     <h4 class="text-center fs-3" style="font-family: cursive;">
@@ -597,7 +596,7 @@
                                     <!-- Card 1 -->
                                     <div class="col">
                                         <div class="testimonial-card">
-                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                            <img src="/images/ShaniaYan_5.jpg" alt="Testimonial Image"
                                                 class="testimonial-img">
                                             <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
@@ -611,7 +610,7 @@
                                     <!-- Card 2 -->
                                     <div class="col">
                                         <div class="testimonial-card">
-                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                            <img src="/images/ShaniaYan_5.jpg" alt="Testimonial Image"
                                                 class="testimonial-img">
                                             <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
@@ -625,7 +624,7 @@
                                     <!-- Card 3 -->
                                     <div class="col">
                                         <div class="testimonial-card">
-                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                            <img src="/images/ShaniaYan_5.jpg" alt="Testimonial Image"
                                                 class="testimonial-img">
                                             <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
@@ -646,7 +645,7 @@
                                     <!-- Card 5 -->
                                     <div class="col">
                                         <div class="testimonial-card">
-                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                            <img src="/images/ShaniaYan_5.jpg" alt="Testimonial Image"
                                                 class="testimonial-img">
                                             <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
@@ -660,7 +659,7 @@
                                     <!-- Card 6 -->
                                     <div class="col">
                                         <div class="testimonial-card">
-                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                            <img src="/images/ShaniaYan_5.jpg" alt="Testimonial Image"
                                                 class="testimonial-img">
                                             <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
@@ -674,7 +673,7 @@
                                     <!-- Card 7 -->
                                     <div class="col">
                                         <div class="testimonial-card">
-                                            <img src="https://via.placeholder.com/80" alt="Testimonial Image"
+                                            <img src="/images/ShaniaYan_5.jpg" alt="Testimonial Image"
                                                 class="testimonial-img">
                                             <p class="testimonial-text">"Lorem ipsum dolor sit amet, consectetur
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
@@ -856,12 +855,23 @@
     {{-- end of footer --}}
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-</script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+{{-- aos library cdn --}}
+<script src="/external_js_file/aos.js"></script>
 
-<script src="/restaurant/index.js"></script>
+{{-- jquery cdn --}}
+<script src="/external_js_file/jquery.min.js"></script>
+
+{{-- popper cdn --}}
+<script src="/external_js_file/popper.min.js"></script>
+
+{{-- bootstrap bundle cdn --}}
+<script src="/external_js_file/bootstrap.bundle.min.js"></script>
+
+{{-- bootstrap javascript cdn --}}
+<script src="/external_js_file/bootstrap.min.js"></script>
+
+{{-- link with other js file --}}
+<script src="/User_Page/restaurant/restaurant.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -879,8 +889,6 @@
     });
 </script>
 
-{{-- aos library cdn --}}
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({
         disable: 'mobile'
