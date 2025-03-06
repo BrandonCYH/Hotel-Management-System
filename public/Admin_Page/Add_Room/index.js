@@ -1,23 +1,3 @@
-document.getElementById('button-increment').addEventListener('click', function () {
-    let input = document.getElementById('number');
-    let value = parseInt(input.value);
-    if (value < input.max) {
-        input.value = value + 1;
-    }
-});
-
-document.getElementById('button-decrement').addEventListener('click', function () {
-    let input = document.getElementById('number');
-    let value = parseInt(input.value);
-    if (value > input.min) {
-        input.value = value - 1;
-    }
-});
-
-function room_full() {
-    alert("Room Not Available...");
-}
-
 function fetch_room_data(page) {
     $.ajax({
         url: "/hotel-room/fetch_room_data?page=" + page,

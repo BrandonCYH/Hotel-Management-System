@@ -30,54 +30,79 @@
 
 <body>
     {{-- start of nav bar --}}
-    <div class="container-xl">
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('main-page') }}"
-                    style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Ocean
-                    Heaven</a>
-                <button class="navbar-toggler mx-1" style="background-color: white; border: 1px solid white;"
-                    type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('main-page') }}">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('about-us') }}">About
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <img src="../images/ocean_heaven.png" class="logo-image">
+            <a class="navbar-brand mt-2 " href="{{ route('main-page') }}">
+                <h5 class="font-weight-bold" style="margin: 1px 6px !important;">OCEAN HEAVEN</h5>
+                <h5 class="font-weight-normal mx-2" style="font-size: 0.95rem;">WORLD 1 FIRST CLASS HOTEL</h5>
+            </a>
+            <button class="navbar-toggler" style="background-color: white; border: 1px solid white;" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNavAltMarkup"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="{{ route('main-page') }}">Home</a>
+                    </li>
+                    <li class="nav-item dropdown hover-dropdown">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="features_menu" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Features
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="features_menu">
+                            <a class="dropdown-item" href="{{ route('about-us') }}">About
                                 Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('hotel-room') }}">Room</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active mx-2" style="font-size: 17px;"
-                                href="{{ route('hotel-restaurant') }}">Dining</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link mx-2" style="font-size: 17px;"
-                                href="{{ route('exclusive-member') }}">Member</a>
-                        </li>
-                        <!-- Add more items as needed -->
-                    </ul>
-                </div>
+                            <a class="dropdown-item" href="#">Gallery</a>
+                            <a class="dropdown-item" href="{{ route('terms-and-conditions') }}">Terms And
+                                Conditions</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown hover-dropdown">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="facilities_menu" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Facilities
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="facilities_menu">
+                            <a class="dropdown-item" href="{{ route('hotel-room') }}">Our
+                                Room</a>
+                            <a class="dropdown-item" href="#">Our Hall</a>
+                        </div>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active mx-2" style="" href="{{ route('hotel-restaurant') }}">Dining</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" style="" href="{{ route('exclusive-member') }}">Member</a>
+                    </li>
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                    </li>
+                    <!-- Add more items as needed -->
+                </ul>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
     {{-- end of nav bar --}}
+
+    {{-- button to back to top --}}
+    <button id="back-to-top" class="btn btn-info back-to-top-btn">
+        <i class="fa-solid fa-angles-up"></i>
+    </button>
+    {{-- end of button back to top --}}
 
     {{-- banner --}}
     <div class="jumbotron p-5" id="banner">
         <div class="row">
             <div class="col-md-12 text-center d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000">
-                <h1 class="display-4 mt-5 text-light">BlueWave Bistro & Grill</h1>
+                <h1 class="display-4 text-light">BlueWave Bistro & Grill</h1>
             </div>
             <div class="row">
                 <div class="d-flex justify-content-center">
-                    <div class="col-md-6 d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000"
+                    <div class="col-lg-6 col-md-12 d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000"
                         data-aos-delay="1000">
                         <p class="lead text-light text-center">Welcome to BlueWave Bistro & Grill at Ocean Heaven Hotel.
                             We serve delicious dishes made with fresh local ingredients. Whether you prefer our indoor
@@ -123,8 +148,7 @@
                 <div class="col-md-8">
                     <div class="container-xl mt-4">
                         <div class="row">
-                            <div class="col-md-5" data-aos="fade-right" data-aos-duration="1000"
-                                data-aos-delay="1000">
+                            <div class="col-md-5" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="1000">
                                 <div class="d-flex justify-content-center">
                                     <div class="image_frame" style="background-image: url('../images/chef.jpg');">
                                     </div>
@@ -326,8 +350,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="card">
-                                    <img class="card-img-top" src="../images/vegie_omelette.jpg"
-                                        alt="Card image cap">
+                                    <img class="card-img-top" src="../images/vegie_omelette.jpg" alt="Card image cap">
                                     <div class="card-body bg-dark">
                                         <div class="row">
                                             <div class="col-8">
@@ -436,8 +459,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="card">
-                                    <img class="card-img-top" src="../images/chocolate_juice.jpg"
-                                        alt="Card image cap">
+                                    <img class="card-img-top" src="../images/chocolate_juice.jpg" alt="Card image cap">
                                     <div class="card-body bg-dark">
                                         <div class="row">
                                             <div class="col-8">
@@ -700,38 +722,30 @@
                     <div class="container-xl mt-2">
                         <div class="row" data-aos="fade-right" data-aos-duration="1000">
                             <div class="col-md-3">
-                                <img src="../images/wedding_memory_1.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/wedding_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/wedding_memory_2.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/wedding_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/birthday_memory_1.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/birthday_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/birthday_memory_2.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/birthday_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                         </div>
                         <div class="row mt-3" data-aos="fade-left" data-aos-duration="1000">
                             <div class="col-md-3">
-                                <img src="../images/aniversary_memory_1.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/aniversary_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/aniversary_memory_2.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/aniversary_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/graduation_memory_1.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/graduation_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/graduation_memory_2.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/graduation_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                         </div>
                     </div>

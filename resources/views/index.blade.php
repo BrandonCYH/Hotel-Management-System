@@ -7,28 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     {{-- link to the css file --}}
-    <link rel="stylesheet" href="/index/style.css">
-    <link rel="stylesheet" href="/index/classic.css">
-    <link rel="stylesheet" href="/index/classic.date.css">
+    <link rel="stylesheet" href="/User_Page/index/style.css">
+    <link rel="stylesheet" href="/User_Page/index/classic.css">
+    <link rel="stylesheet" href="/User_Page/index/classic.date.css">
 
     {{-- website icon --}}
     <link rel="icon" href="../images/ocean_heaven.png" type="image/x-icon">
     <link rel="shortcut icon" href="../images/ocean_heaven.png" type="image/x-icon">
 
     {{-- bootstrap CSS cdn --}}
-    <link href="/bootstrap_css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/external_css_file/bootstrap.min.css">
 
     {{-- bootstrap datepicker css cdn --}}
-    <link rel="stylesheet" href="/bootstrap_css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/external_css_file/bootstrap-datepicker.min.css">
+
+    <!-- Animation On Scroll CDN -->
+    <link rel="stylesheet" href="/external_css_file/aos.css">
 
     {{-- bootstrap icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
     {{-- bootstrap font awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- Animation On Scroll CDN -->
-    <link href="/bootstrap_css/aos.css" rel="stylesheet">
 
     <title>Ocean Heaven Hotel</title>
 </head>
@@ -38,9 +38,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <img src="../images/ocean_heaven.png" class="logo-image">
-            <a class="navbar-brand mt-2 " href="{{ route('main-page') }}">
-                <h5 class="font-weight-bold" style="margin: 1px 6px !important;">OCEAN HEAVEN</h5>
-                <h5 class="font-weight-normal mx-2" style="font-size: 0.95rem;">WORLD 1 FIRST CLASS HOTEL</h5>
+            <a class="navbar-brand mt-2 mx-2" href="{{ route('main-page') }}">
+                <h5 class="font-weight-bold" style="margin: 0px !important;">OCEAN HEAVEN</h5>
+                <h5 class="font-weight-normal" style="font-size: 15px;">WORLD 1 FIRST CLASS HOTEL</h5>
             </a>
             <button class="navbar-toggler" style="background-color: white; border: 1px solid white;" type="button"
                 data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNavAltMarkup"
@@ -53,8 +53,8 @@
                         <a class="nav-link active mx-2" href="{{ route('main-page') }}">Home</a>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="features_menu"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="features_menu" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             Features
                         </a>
                         <div class="dropdown-menu" aria-labelledby="features_menu">
@@ -66,8 +66,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="facilities_menu"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="facilities_menu" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             Facilities
                         </a>
                         <div class="dropdown-menu" aria-labelledby="facilities_menu">
@@ -123,16 +123,14 @@
 
         <!-- Mobile View -->
         <div class="col-sm-12 d-md-none" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="text-center mb-4">
+            <div class="text-center mb-2">
                 <h1 class="fs-1 display-4 text-light">Ocean Heaven Hotel</h1>
             </div>
             <div class="col-sm-6 mx-auto">
                 <p class="lead text-light text-center" style="font-size: 1rem;">Where comfort meets personalized care,
-                    our hotel is a
-                    sanctuary of
-                    hospitality. From the warm welcome at arrival to the attentive service during your stay, we
-                    strive
-                    to create memorable experiences that linger long after you've departed.</p>
+                    our hotel is a sanctuary of hospitality.
+                    From the warm welcome at arrival to the attentive service during your stay, we
+                    strive to create memorable experiences that linger long after you've departed.</p>
                 <hr class="my-4 text-light">
                 <p class="text-light text-center">Come, stay and enjoy your day.</p>
             </div>
@@ -142,33 +140,32 @@
     {{-- end of banner --}}
 
     {{-- search room bar --}}
-    <div class="container-xl">
+    <div class="container">
         <div class="row">
-            <div class="col-12 col-md-12">
+            <div class="col-12">
                 <div class="card card-body" id="search_room_bar" data-aos="fade-down" data-aos-duration="1000"
                     data-aos-delay="1000">
                     <div class="search-bar">
-                        <form class="form-inline justify-content-center">
-                            <div class="row">
-                                <div class="col-12 col-md-3 mb-3 mb-md-0">
-                                    <div class="form-group" style="position: relative;">
-                                        <input type="text" class="form-control mt-1" id="input_from"
+                        <form class="form-inline">
+                            <div class="row g-2"> {{-- Added spacing between rows --}}
+                                <div class="col-12 col-sm-6 col-md-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="input_from"
                                             placeholder="Start Date">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 mb-3 mb-md-0">
-                                    <div class="form-group" style="position: relative;">
-                                        <input type="text" class="form-control mt-1" id="input_to"
-                                            placeholder="End Date">
+                                <div class="col-12 col-sm-6 col-md-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="input_to" placeholder="End Date">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 mb-3 mb-md-0">
-                                    <div class="form-group" style="position: relative;">
-                                        <input type="number" class="form-control mt-1" placeholder="Guest">
+                                <div class="col-12 col-sm-6 col-md-3">
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" placeholder="Guest">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
-                                    <button type="button" class="btn btn-primary text-light w-100 mt-1">Check
+                                <div class="col-12 col-sm-6 col-md-3">
+                                    <button type="button" class="btn btn-primary text-light w-100">Check
                                         Availability</button>
                                 </div>
                             </div>
@@ -193,7 +190,7 @@
                         <div class="row" style="position: relative; z-index: -1;" data-aos="zoom-out"
                             data-aos-duration="1000" data-aos-delay="1000">
                             <div class="col-lg-4 col-md-6">
-                                <div class="card">
+                                <div class="card shadow bg-white rounded">
                                     <img class="card-img-top" src="../images/gym_centre.jpg" alt="Gym Workout Image">
                                     <div class="card-body">
                                         <h5 class="text-center">Gym Workout</h5>
@@ -204,7 +201,7 @@
                                 <br>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                                <div class="card" style="position: relative; z-index; -10;">
+                                <div class="card shadow bg-white rounded" style="position: relative; z-index; -10;">
                                     <img class="card-img-top" src="../images/pet_accomodation.jpg"
                                         alt="Pet Accomodation Image">
                                     <div class="card-body">
@@ -216,7 +213,7 @@
                                 <br>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                                <div class="card">
+                                <div class="card shadow bg-white rounded">
                                     <img class="card-img-top" src="../images/spa.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="text-center">SPA Service</h5>
@@ -227,7 +224,7 @@
                                 <br>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                                <div class="card">
+                                <div class="card shadow bg-white rounded">
                                     <img class="card-img-top" src="../images/entertainment.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="text-center">Entertainment</h5>
@@ -238,7 +235,7 @@
                                 <br>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                                <div class="card">
+                                <div class="card shadow bg-white rounded">
                                     <img class="card-img-top" src="../images/parking_lot.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="text-center">Secure Parking Lot</h5>
@@ -249,9 +246,8 @@
                                 <br>
                             </div>
                             <div class="col-lg-4 col-md-6">
-                                <div class="card">
-                                    <img class="card-img-top" src="../images/transportation.jpg"
-                                        alt="Card image cap">
+                                <div class="card shadow bg-white rounded">
+                                    <img class="card-img-top" src="../images/transportation.jpg" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="text-center">Car Service</h5>
                                         <p class="card-text">
@@ -294,58 +290,57 @@
                                     <div class="carousel-inner">
                                         {{-- start of the room introduction --}}
                                         @foreach ($room_data->chunk(3) as $index => $room_chunk)
-                                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                                <div class="row">
-                                                    @foreach ($room_chunk as $room_d)
-                                                        <div class="col-md-4">
-                                                            <div class="card bg-light border border-dark">
-                                                                <img class="card-img-top"
-                                                                    alt="{{ $room_d->room_type_name }} . image"
-                                                                    src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}">
-                                                                <div class="card-body">
-                                                                    <h4 class="card-title">
-                                                                        {{ $room_d->room_type_name }}
-                                                                    </h4>
-                                                                    <h5 style="font-size: 13px;">
-                                                                        {{ $room_d->room_description }}</h5>
+                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                            <div class="row">
+                                                @foreach ($room_chunk as $room_d)
+                                                <div class="col-md-4">
+                                                    <div class="card bg-light border border-dark">
+                                                        <img class="card-img-top"
+                                                            alt="{{ $room_d->room_type_name }} . image"
+                                                            src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">
+                                                                {{ $room_d->room_type_name }}
+                                                            </h4>
+                                                            <h5 style="font-size: 13px;">
+                                                                {{ $room_d->room_description }}</h5>
+                                                            </h5>
+                                                            <h5 style="font-size: 18px;">Only <span
+                                                                    class="text-success"><b>$
+                                                                        {{ $room_d->room_price }}</b></span>
+                                                                /
+                                                                <small class="text-secondary">night</small>
+                                                            </h5>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-4 col-lg-4 col-md-6">
+                                                                    <h5 style="font-size: 14px;"><i
+                                                                            class="fa fa-bed"></i>
+                                                                        {{ $room_d->room_bed }}
+                                                                        Bed</h5>
+                                                                </div>
+                                                                <div class="col-4 col-lg-4 col-md-6">
+                                                                    <h5 style="font-size: 14px;"><i
+                                                                            class="fa fa-user"></i>
+                                                                        {{ $room_d->room_guest }} Guest
                                                                     </h5>
-                                                                    <h5 style="font-size: 18px;">Only <span
-                                                                            class="text-success"><b>$
-                                                                                {{ $room_d->room_price }}</b></span>
-                                                                        /
-                                                                        <small class="text-secondary">night</small>
-                                                                    </h5>
-                                                                    <hr>
-                                                                    <div class="row">
-                                                                        <div class="col-4 col-lg-4 col-md-6">
-                                                                            <h5 style="font-size: 14px;"><i
-                                                                                    class="fa fa-bed"></i>
-                                                                                {{ $room_d->room_bed }}
-                                                                                Bed</h5>
-                                                                        </div>
-                                                                        <div class="col-4 col-lg-4 col-md-6">
-                                                                            <h5 style="font-size: 14px;"><i
-                                                                                    class="fa fa-user"></i>
-                                                                                {{ $room_d->room_guest }} Guest
-                                                                            </h5>
-                                                                        </div>
-                                                                        <div class="col-4 col-lg-4 col-md-6">
-                                                                            <h5 style="font-size: 14px;"><i
-                                                                                    class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                                                                &radic;{{ $room_d->room_size }}
-                                                                        </div>
-                                                                    </div>
-                                                                    <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
-                                                                        type="button"
-                                                                        class="btn btn-primary w-100 mt-2">View
-                                                                        Details</a>
+                                                                </div>
+                                                                <div class="col-4 col-lg-4 col-md-6">
+                                                                    <h5 style="font-size: 14px;"><i
+                                                                            class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                                                        &radic;{{ $room_d->room_size }}
                                                                 </div>
                                                             </div>
-                                                            <br>
+                                                            <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
+                                                                type="button" class="btn btn-primary w-100 mt-2">View
+                                                                Details</a>
                                                         </div>
-                                                    @endforeach
+                                                    </div>
+                                                    <br>
                                                 </div>
+                                                @endforeach
                                             </div>
+                                        </div>
                                         @endforeach
                                         {{-- end of the room introduction --}}
                                     </div>
@@ -374,8 +369,7 @@
                                     data-bs-slide="prev">
                                     <i class="fa fa-arrow-left"></i>
                                 </a>
-                                <a class="btn btn-primary mb-3" href="#hall_intro" role="button"
-                                    data-bs-slide="next">
+                                <a class="btn btn-primary mb-3" href="#hall_intro" role="button" data-bs-slide="next">
                                     <i class="fa fa-arrow-right"></i>
                                 </a>
                             </div>
@@ -440,8 +434,7 @@
                                                                         Support</h5>
                                                                 </div>
                                                             </div>
-                                                            <button type="button"
-                                                                class="btn btn-info w-100 mt-2">View
+                                                            <button type="button" class="btn btn-info w-100 mt-2">View
                                                                 Details</button>
                                                         </div>
                                                     </div>
@@ -510,8 +503,7 @@
                                                                         Music</h5>
                                                                 </div>
                                                             </div>
-                                                            <button type="button"
-                                                                class="btn btn-info w-100 mt-2">View
+                                                            <button type="button" class="btn btn-info w-100 mt-2">View
                                                                 Details</button>
                                                         </div>
                                                     </div>
@@ -580,8 +572,7 @@
                                                                         Dressing Room</h5>
                                                                 </div>
                                                             </div>
-                                                            <button type="button"
-                                                                class="btn btn-info w-100 mt-2">View
+                                                            <button type="button" class="btn btn-info w-100 mt-2">View
                                                                 Details</button>
                                                         </div>
                                                     </div>
@@ -648,8 +639,7 @@
                                                                     </h5>
                                                                 </div>
                                                             </div>
-                                                            <button type="button"
-                                                                class="btn btn-info w-100 mt-2">View
+                                                            <button type="button" class="btn btn-info w-100 mt-2">View
                                                                 Details</button>
                                                         </div>
                                                     </div>
@@ -718,8 +708,7 @@
                                                                         Cake</h5>
                                                                 </div>
                                                             </div>
-                                                            <button type="button"
-                                                                class="btn btn-info w-100 mt-2">View
+                                                            <button type="button" class="btn btn-info w-100 mt-2">View
                                                                 Details</button>
                                                         </div>
                                                     </div>
@@ -753,38 +742,30 @@
                     <div class="container-xl mt-2">
                         <div class="row" data-aos="fade-right" data-aos-duration="1000">
                             <div class="col-md-3">
-                                <img src="../images/wedding_memory_1.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/wedding_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/wedding_memory_2.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/wedding_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/birthday_memory_1.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/birthday_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/birthday_memory_2.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/birthday_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                         </div>
                         <div class="row mt-3" data-aos="fade-left" data-aos-duration="1000">
                             <div class="col-md-3">
-                                <img src="../images/aniversary_memory_1.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/aniversary_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/aniversary_memory_2.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/aniversary_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/graduation_memory_1.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/graduation_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/graduation_memory_2.jpg" alt="..."
-                                    class="img-thumbnail"><br><br>
+                                <img src="../images/graduation_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
                             </div>
                         </div>
                     </div>
@@ -894,13 +875,11 @@
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                         <h6 class="text-uppercase mb-4 font-weight-bold">Services</h6>
                         <p>
-                            <a class="text-white" style="text-decoration: none;"
-                                href="{{ route('main-page') }}">Home
+                            <a class="text-white" style="text-decoration: none;" href="{{ route('main-page') }}">Home
                             </a>
                         </p>
                         <p>
-                            <a class="text-white" style="text-decoration: none;"
-                                href="{{ route('about-us') }}">About
+                            <a class="text-white" style="text-decoration: none;" href="{{ route('about-us') }}">About
                                 Us</a>
                         </p>
                         <p>
@@ -972,30 +951,30 @@
 </body>
 
 {{-- aos library cdn --}}
-<script src="/bootstrap_js/aos.js"></script>
+<script src="/external_js_file/aos.js"></script>
 
 {{-- Jquery cdn --}}
-<script src="/bootstrap_js/jquery.min.js"></script>
+<script src="/external_js_file/jquery.min.js"></script>
 
 {{-- Jquery popper cdn --}}
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="/external_js_file/popper.min.js"></script>
 
 {{-- Jquery pickadate cdn --}}
-<script src="/index/picker.js"></script>
-<script src="/index/picker.date.js"></script>
+<script src="/User_Page/index/picker.js"></script>
+<script src="/User_Page/index/picker.date.js"></script>
 
 {{-- bootstrap js cdn --}}
-<script src="/bootstrap_js/bootstrap.min.js"></script>
+<script src="/external_js_file/bootstrap.min.js"></script>
 
 <!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="/external_js_file/bootstrap.bundle.min.js"></script>
 
 {{-- bootstrap datepicker cdn --}}
-<script src="/bootstrap_js/bootstrap-datepicker.min.js"></script>
+<script src="/external_js_file/bootstrap-datepicker.min.js"></script>
 
 {{-- link with index.js file --}}
-<script src="/index/main.js"></script>
-<script src="/index/index.js"></script>
+<script src="/User_Page/index/main.js"></script>
+<script src="/User_Page/index/index.js"></script>
 
 <script>
     AOS.init({

@@ -7,15 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     {{-- link with other css file --}}
-    <link rel="stylesheet" href="/about_us/style.css">
+    <link rel="stylesheet" href="/User_Page/about_us/about_us.css">
 
     {{-- website icon --}}
     <link rel="icon" href="../images/ocean_heaven.png" type="image/x-icon">
     <link rel="shortcut icon" href="../images/ocean_heaven.png" type="image/x-icon">
 
     {{-- bootstrap CSS cdn --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="/external_css_file/bootstrap.min.css" rel="stylesheet">
 
     {{-- bootstrap icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -24,7 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="/external_css_file/aos.css" rel="stylesheet">
 
     <title>About Us</title>
 </head>
@@ -34,7 +33,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <img src="../images/ocean_heaven.png" class="logo-image">
-            <a class="navbar-brand mt-2 " href="{{ route('main-page') }}">
+            <a class="navbar-brand mt-2 mx-2" href="{{ route('main-page') }}">
                 <h5 class="font-weight-bold" style="margin: 0px !important;">OCEAN HEAVEN</h5>
                 <h5 class="font-weight-normal" style="font-size: 15px;">WORLD 1 FIRST CLASS HOTEL</h5>
             </a>
@@ -63,8 +62,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#"
-                            id="facilities_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#" id="facilities_menu"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Facilities
                         </a>
                         <div class="dropdown-menu" aria-labelledby="facilities_menu">
@@ -100,13 +99,14 @@
 
     {{-- Vision of Ocean Heaven Hotel --}}
     <div class="container-fluid">
-        <div class="row mt-4" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+        <div class="row mt-4">
             <div class="col-md-12">
-                <h4 class="text-center fs-3" style="font-family: cursive;">Where Luxury Meets Ocean Conservation</h4>
+                <h4 class="text-center fs-3" style="font-family: cursive;" data-aos="zoom-in" data-aos-duration="1000">
+                    Where Luxury Meets Ocean Conservation</h4>
             </div>
             <div class="d-flex justify-content-center mt-3">
                 <div class="col-md-7">
-                    <div class="container-xl">
+                    <div class="container-xl" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="card">
@@ -157,11 +157,13 @@
                         <div class="card card-body border border-white">
                             <div class="row">
                                 <!-- Accommodation Options (Image Left, Text Right on Desktop; Image First on Mobile) -->
-                                <div class="col-md-6 order-1 order-md-1">
+                                <div class="col-md-6 order-1 order-md-1" data-aos="zoom-in-up" data-aos-duration="1000"
+                                    data-aos-delay="1000">
                                     <img class="card-img-top img-fluid mt-4" src="../images/accommodation.jpg"
                                         alt="Accommodation Options">
                                 </div>
-                                <div class="col-md-6 order-2 order-md-2">
+                                <div class="col-md-6 order-2 order-md-2" data-aos="zoom-in-up" data-aos-duration="1000"
+                                    data-aos-delay="1000">
                                     <br>
                                     <h3>Accommodation Options</h3>
                                     <p class="text-justify">Our hotel features a range of luxurious rooms and suites,
@@ -171,7 +173,7 @@
                                 </div>
 
                                 <!-- Dining Options (Image Left, Text Right on Desktop; Image First on Mobile) -->
-                                <div class="col-md-6 order-4 order-md-3">
+                                <div class="col-md-6 order-4 order-md-3" data-aos="zoom-in-up" data-aos-duration="1000">
                                     <br>
                                     <h3>Dining Options</h3>
                                     <p class="text-justify">Savor culinary delights at our signature restaurant, The
@@ -179,19 +181,18 @@
                                         a more casual setting, visit The Terrace Café, where you can enjoy a light meal
                                         with stunning ocean views.</p>
                                 </div>
-                                <div class="col-md-6 order-3 order-md-4">
+                                <div class="col-md-6 order-3 order-md-4" data-aos="zoom-in-up" data-aos-duration="1000">
                                     <br>
-                                    <img class="card-img-top img-fluid" src="../images/dining.jpg"
-                                        alt="Dining Options">
+                                    <img class="card-img-top img-fluid" src="../images/dining.jpg" alt="Dining Options">
                                 </div>
 
                                 <!-- Swimming Pool (Image Left, Text Right on Desktop; Image First on Mobile) -->
-                                <div class="col-md-6 order-5 order-md-6">
+                                <div class="col-md-6 order-5 order-md-6" data-aos="zoom-in-up" data-aos-duration="1000">
                                     <br>
                                     <img class="card-img-top img-fluid" src="../images/swimming_pool.jpg"
                                         alt="Swimming Pool">
                                 </div>
-                                <div class="col-md-6 order-6 order-last">
+                                <div class="col-md-6 order-6 order-last" data-aos="zoom-in-up" data-aos-duration="1000">
                                     <br>
                                     <h3>Leisure and Wellness</h3>
                                     <p class="text-justify">Unwind at our tranquil spa, complete with massage therapy,
@@ -253,7 +254,7 @@
         <div class="row mt-4 ">
             <div class="d-flex justify-content-center mt-2">
                 <div class="col-md-8">
-                    <div class="container-xl">
+                    <div class="container-xl" data-aos="fade-up" data-aos-duration="1000">
                         <div class="row">
                             <div class="col-md-6 d-flex align-items-stretch">
                                 <img class="card-img-top img-fluid w-100 h-100" src="../images/reception.jpg"
@@ -270,7 +271,8 @@
                                     <input type="text" class="form-control" placeholder="Your Email">
                                 </div>
                                 <div class="input-group mb-3">
-                                    <textarea class="form-control" placeholder="Tell us your destination idea..."></textarea>
+                                    <textarea class="form-control"
+                                        placeholder="Tell us your destination idea..."></textarea>
                                 </div>
                                 <button type="button" class="btn btn-primary w-100 mt-auto">Submit</button>
                             </div>
@@ -383,16 +385,20 @@
     {{-- end of footer --}}
 </body>
 
-{{-- link with other js file --}}
-<script src="/about_us/about_us.js"></script>
-
-{{-- bootstrap javascript cdn --}}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-</script>
+{{-- aos library cdn --}}
+<script src="/external_js_file/aos.js"></script>
 
 {{-- jquery cdn --}}
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/external_js_file/jquery.min.js"></script>
+
+{{-- Jquery popper cdn --}}
+<script src="/external_js_file/popper.min.js"></script>
+
+{{-- bootstrap js cdn --}}
+<script src="/external_js_file/bootstrap.min.js"></script>
+
+{{-- link with other js file --}}
+<script src="/User_Page/about_us/about_us.js"></script>
 
 {{-- start of navigation bar function --}}
 <script>
@@ -412,13 +418,10 @@
 </script>
 {{-- end of navigation bar function --}}
 
-{{-- aos library cdn --}}
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({
         disable: 'mobile'
     });
 </script>
-{{-- end of aos library cdn --}}
 
 </html>

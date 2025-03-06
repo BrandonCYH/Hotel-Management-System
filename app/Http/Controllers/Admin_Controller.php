@@ -25,7 +25,17 @@ class Admin_Controller extends Controller
             ->orderBy('room_type.room_price')
             ->get();
 
-        return view('Admin_Page.add_room', ['room_data' => $room_data, 'room_info' => $room_info]);
+        $room_facilities = DB::table("facilities")
+            ->get();
+
+        return view(
+            'Admin_Page.add_room',
+            [
+                'room_data' => $room_data,
+                'room_info' => $room_info,
+                'room_facilities' => $room_facilities,
+            ]
+        );
     }
 
     public function fetch_room_data(Request $request)

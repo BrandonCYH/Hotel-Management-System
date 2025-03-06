@@ -64,13 +64,8 @@
     z-index: 1000;
 }
 
-.responsive-text {
-    font-size: 1rem;
-    /* Default size for all screens */
-}
-
 #banner {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../images/ocean_heaven_hotel.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../../images/ocean_heaven_hotel.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -79,13 +74,6 @@
     background: rgba(2, 21, 38, 0.2);
     backdrop-filter: blur(5px);
     margin-top: -30px;
-}
-
-#room_image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../images/Single\ Room.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 100%;
 }
 
 @keyframes fadeInUp {
@@ -108,11 +96,6 @@
     .navbar {
         height: auto;
     }
-
-    .responsive-text {
-        font-size: 0.875rem;
-        /* Smaller size for mobile */
-    }
 }
 
 /* Medium devices (tablets, less than 992px) */
@@ -124,10 +107,5 @@
 
     .navbar {
         height: auto;
-    }
-
-    .responsive-text {
-        font-size: 0.875rem;
-        /* Smaller size for mobile */
     }
 }

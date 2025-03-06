@@ -23,6 +23,35 @@
 </head>
 
 <body>
+    {{-- start of list available facilities --}}
+    <div class="modal fade" id="listFacilities_modal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">List Facilities Available</h5>
+                </div>
+                <div class="modal-body">
+                    {{-- start of list services --}}
+                    <div class="row">
+                        @foreach ($room_facilities as $room_f)
+                        <div class="col-6">
+                            <p>
+                                <i class="fa-solid fa-circle-check" style="color: green;"></i>
+                                {{ $room_f->facility_name }}
+                            </p>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end of list available facilities --}}
+
     <!-- Start of edit Room Modal -->
     <div class="modal fade" id="updateRoomModal" tabindex="-1" aria-labelledby="updateRoomModalLabel"
         aria-hidden="true">
@@ -66,12 +95,6 @@
                             <div id="list_roomFacilities" style="display: none">
 
                             </div>
-                        </div>
-
-                        <!-- Image Upload -->
-                        <div class="mb-3">
-                            <label for="roomImage" class="form-label">Upload Image</label>
-                            <input type="file" class="form-control editable" id="roomImage" disabled>
                         </div>
 
                         <!-- Edit Button -->
@@ -185,143 +208,23 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="1000">
-                                <div class="card-header">Choose Your Hotel Room</div>
+                                <div class="card-header">List Operation Available</div>
                                 <div class="card-body">
-                                    {{-- start of list services --}}
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <input class="form-check-input mx-1" type="checkbox"
-                                                value="Air Conditioners" id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="Air_Conditioners">
-                                                Air Conditioners
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox"
-                                                value="Computer Facility" id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="Computer_Facility">
-                                                Computer Facility
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox" value="Coffee Maker"
-                                                id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="Coffee_Maker">
-                                                Coffee Maker
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox" value="Gaming Console"
-                                                id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="Gamming_Console">
-                                                Gaming Console
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox" value="High Security"
-                                                id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="High_Security">
-                                                High Security
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox" value="King Bed"
-                                                id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="King_Bed">
-                                                King Bed
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox" value="Laundry Service"
-                                                id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="Laundry_Service">
-                                                Laundry Service
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox" value="Luggage Storage"
-                                                id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="Luggage_Storage">
-                                                Luggage Storage
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox"
-                                                value="Pet Accommodation" id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="Pet_Accommodations">
-                                                Pet Accommodation
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox" value="Queen Bed"
-                                                id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="Queen_Bed">
-                                                Queen Bed
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox"
-                                                value="Room Purification" id="flexCheckDefault" name="facilites[]">
-                                            <label class="form-check-label" for="Room Purification">
-                                                Room Purification
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox" value="Smart TV"
-                                                id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="Smart_TV">
-                                                Smart TV
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox"
-                                                value="Turndown Service" id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="Turndown_Service">
-                                                Turndown Service
-                                            </label>
-                                        </div>
-                                        <div class="col-12 mt-1">
-                                            <input class="form-check-input mx-1" type="checkbox" value="WI-FI"
-                                                id="flexCheckDefault" name="facilities[]">
-                                            <label class="form-check-label" for="WI-FI">
-                                                WI-FI
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    {{-- end of list services --}}
+                                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal"
+                                        data-bs-target="#listFacilities_modal">View
+                                        All Facilities</button>
+                                    <button type="button" class="btn btn-primary w-100 mt-3">Add New Facilities</button>
+                                </div>
+                            </div>
+                            <br>
 
-                                    {{-- start of guest capacity --}}
-                                    <label for="guest-capacity">Guest Capacity</label>
-                                    <div class="input-group mt-2">
-                                        <button class="btn btn-outline-secondary" type="button"
-                                            id="button-decrement">-</button>
-                                        <input type="number" class="form-control text-center" id="number" value="0"
-                                            min="0" max="100" name="room_guest">
-                                        <button class="btn btn-outline-secondary" type="button"
-                                            id="button-increment">+</button>
-                                    </div>
-                                    {{-- end of guest capacity --}}
-
-                                    {{-- start of price range --}}
-                                    <div class="form-group">
-                                        <label for="priceRange" class="mt-2">Price Range:</label>
-                                        <div class="input-group mt-2">
-                                            <input type="text" name="price_before" id="priceRange" class="form-control"
-                                                readonly>
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">-</span>
-                                            </div>
-                                            <input type="text" name="price_after" id="priceMax" class="form-control"
-                                                readonly>
-                                        </div>
-                                        <input type="range" class="custom-range" id="priceSlider" min="0" max="1000"
-                                            step="10" value="1000">
-                                    </div>
-                                    {{-- end of price range --}}
-
-                                    <input type="submit" id="btn_filterRoom" class="btn btn-success w-100 mt-2"
-                                        value="Search Room"><br>
+                            {{-- start of list page pagination --}}
+                            <div class="card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="1000">
+                                <div class="card-header">
+                                    List Page Pagination
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="text-center">Currently in page ---</h5>
                                     <div id="pagination-links" class="pagination-links">
                                         @foreach ($room_data->links()->elements[0] as $page => $url)
                                         <a href="{{ $url }}"
@@ -331,7 +234,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <br>
+                            {{-- end of list page pagination --}}
                         </div>
                         <div class="col-lg-9 col-md-12" id="room_card">
                             @foreach ($room_data as $room_d)

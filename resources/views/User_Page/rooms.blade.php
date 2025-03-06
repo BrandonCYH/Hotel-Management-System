@@ -7,15 +7,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="../room/style.css">
+    <link rel="stylesheet" href="../User_Page/rooms/rooms.css">
 
     {{-- website icon --}}
     <link rel="icon" href="../images/ocean_heaven.png" type="image/x-icon">
     <link rel="shortcut icon" href="../images/ocean_heaven.png" type="image/x-icon">
 
     {{-- bootstrap CSS cdn --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="/external_css_file/bootstrap.min.css" rel="stylesheet">
 
     {{-- bootstrap icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -24,11 +23,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Bootstrap Datepicker CSS -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="/external_css_file/bootstrap-datepicker.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="/external_css_file/aos.css" rel="stylesheet">
 
     <title>Hotel Room</title>
 </head>
@@ -38,7 +36,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <img src="../images/ocean_heaven.png" class="logo-image">
-            <a class="navbar-brand mt-2 " href="{{ route('main-page') }}">
+            <a class="navbar-brand mt-2 mx-2" href="{{ route('main-page') }}">
                 <h5 class="font-weight-bold" style="margin: 0px !important;">OCEAN HEAVEN</h5>
                 <h5 class="font-weight-normal" style="font-size: 15px;">WORLD 1 FIRST CLASS HOTEL</h5>
             </a>
@@ -53,8 +51,8 @@
                         <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('main-page') }}">Home</a>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#"
-                            id="features_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#" id="features_menu"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Features
                         </a>
                         <div class="dropdown-menu" aria-labelledby="features_menu">
@@ -141,24 +139,21 @@
                         <div class="row">
                             {{-- start of filter hotel room form --}}
                             <div class="col-lg-3 col-md-12">
-                                <div class="card" data-aos="fade-right" data-aos-duration="1000"
-                                    data-aos-delay="1000">
+                                <div class="card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="1000">
                                     <div class="card-header">Choose Your Hotel Room</div>
                                     <div class="card-body">
                                         {{-- start of list services --}}
                                         <div class="row">
                                             <div class="col-12">
                                                 <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Air Conditioners" id="flexCheckDefault"
-                                                    name="facilities[]">
+                                                    value="Air Conditioners" id="flexCheckDefault" name="facilities[]">
                                                 <label class="form-check-label" for="Air_Conditioners">
-                                                    Air Conditioners
+                                                    Air Conditioner
                                                 </label>
                                             </div>
                                             <div class="col-12 mt-1">
                                                 <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Computer Facility" id="flexCheckDefault"
-                                                    name="facilities[]">
+                                                    value="Computer Facility" id="flexCheckDefault" name="facilities[]">
                                                 <label class="form-check-label" for="Computer_Facility">
                                                     Computer Facility
                                                 </label>
@@ -193,39 +188,35 @@
                                             </div>
                                             <div class="col-12 mt-1">
                                                 <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Laundry Service" id="flexCheckDefault"
-                                                    name="facilities[]">
+                                                    value="Laundry Service" id="flexCheckDefault" name="facilities[]">
                                                 <label class="form-check-label" for="Laundry_Service">
                                                     Laundry Service
                                                 </label>
                                             </div>
                                             <div class="col-12 mt-1">
                                                 <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Luggage Storage" id="flexCheckDefault"
-                                                    name="facilities[]">
+                                                    value="Luggage Storage" id="flexCheckDefault" name="facilities[]">
                                                 <label class="form-check-label" for="Luggage_Storage">
                                                     Luggage Storage
                                                 </label>
                                             </div>
                                             <div class="col-12 mt-1">
                                                 <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Pet Accommodation" id="flexCheckDefault"
-                                                    name="facilities[]">
+                                                    value="Pet Accommodation" id="flexCheckDefault" name="facilities[]">
                                                 <label class="form-check-label" for="Pet_Accommodations">
                                                     Pet Accommodation
                                                 </label>
                                             </div>
                                             <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Queen Bed" id="flexCheckDefault" name="facilities[]">
+                                                <input class="form-check-input mx-1" type="checkbox" value="Queen Bed"
+                                                    id="flexCheckDefault" name="facilities[]">
                                                 <label class="form-check-label" for="Queen_Bed">
                                                     Queen Bed
                                                 </label>
                                             </div>
                                             <div class="col-12 mt-1">
                                                 <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Room Purification" id="flexCheckDefault"
-                                                    name="facilites[]">
+                                                    value="Room Purification" id="flexCheckDefault" name="facilites[]">
                                                 <label class="form-check-label" for="Room Purification">
                                                     Room Purification
                                                 </label>
@@ -239,8 +230,7 @@
                                             </div>
                                             <div class="col-12 mt-1">
                                                 <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Turndown Service" id="flexCheckDefault"
-                                                    name="facilities[]">
+                                                    value="Turndown Service" id="flexCheckDefault" name="facilities[]">
                                                 <label class="form-check-label" for="Turndown_Service">
                                                     Turndown Service
                                                 </label>
@@ -261,8 +251,8 @@
                                         <div class="input-group mt-2">
                                             <button class="btn btn-outline-secondary" type="button"
                                                 id="button-decrement">-</button>
-                                            <input type="number" class="form-control text-center" id="number"
-                                                value="0" min="0" max="100" name="room_guest">
+                                            <input type="number" class="form-control text-center" id="number" value="0"
+                                                min="0" max="100" name="room_guest">
                                             <button class="btn btn-outline-secondary" type="button"
                                                 id="button-increment">+</button>
                                         </div>
@@ -277,11 +267,11 @@
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">-</span>
                                                 </div>
-                                                <input type="text" name="price_after" id="priceMax"
-                                                    class="form-control" readonly>
+                                                <input type="text" name="price_after" id="priceMax" class="form-control"
+                                                    readonly>
                                             </div>
-                                            <input type="range" class="custom-range" id="priceSlider"
-                                                min="0" max="1000" step="10" value="1000">
+                                            <input type="range" class="custom-range" id="priceSlider" min="0" max="1000"
+                                                step="10" value="1000">
                                         </div>
                                         {{-- end of price range --}}
 
@@ -289,8 +279,9 @@
                                             value="Search Room"><br>
                                         <div id="pagination-links" class="pagination-links">
                                             @foreach ($room_data->links()->elements[0] as $page => $url)
-                                                <a href="{{ $url }}"
-                                                    class="page-link {{ $page == $room_data->currentPage() ? 'active' : '' }}">{{ $page }}</a>
+                                            <a href="{{ $url }}"
+                                                class="page-link {{ $page == $room_data->currentPage() ? 'active' : '' }}">{{
+                                                $page }}</a>
                                             @endforeach
                                         </div>
                                     </div>
@@ -302,115 +293,232 @@
                             <div class="col-lg-9 col-md-12" id="room_card">
                                 {{-- start of single room card (desktop view) --}}
                                 @foreach ($room_data as $room_d)
-                                    <div class="card shadow p-3 bg-white rounded d-none d-md-block"
-                                        data-aos="fade-left" data-aos-duration="1000">
-                                        <div class="row no-gutters">
-                                            <div class="col-lg-4 col-md-4">
-                                                <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
-                                                    class="card-img-top" alt="{{ $room_d->room_type_name }}">
-                                            </div>
-                                            <div class="col-lg-8 col-md-8">
-                                                <div class="card card-body border border-white">
-                                                    <div class="row">
-                                                        <div class="col-lg-8 col-md-8">
-                                                            <h3>{{ $room_d->room_type_name }}</h3>
-                                                            <div class="row">
-                                                                @php
-                                                                    $available_count = 0;
-                                                                @endphp
-                                                                @foreach ($room_info as $room_i)
-                                                                    @if ($room_d->room_type_name == $room_i->room_type_name)
-                                                                        @if (strpos(strtolower($room_i->availability_status), 'available') !== false)
-                                                                            @php
-                                                                                $available_count++;
-                                                                            @endphp
-                                                                        @endif
-                                                                    @endif
-                                                                @endforeach
-                                                                @if ($available_count > 0)
-                                                                    <div class="col-lg-7 col-md-7">
-                                                                        <h5 style="font-size: 15px;">
-                                                                            <i class="fa-solid fa-bell mt-1"
-                                                                                style="color: crimson; font-size: 17px;"></i>
-                                                                            Status : {{ $available_count }} Remains
-                                                                        </h5>
-                                                                    </div>
-                                                                @else
-                                                                    <div class="col-lg-7 col-md-7">
-                                                                        <h5 style="font-size: 15px;">
-                                                                            <i class="fa-solid fa-bell mt-1"
-                                                                                style="color: crimson; font-size: 17px;"></i>
-                                                                            Status : Full
-                                                                        </h5>
-                                                                    </div>
-                                                                @endif
-                                                                <div class="col-lg-5 col-md-5">
-                                                                    <h5 style="font-size: 15px;">
-                                                                        <i class="fa-solid fa-user mt-1"
-                                                                            style="color: black; font-size: 17px;"></i>
-                                                                        Guest : {{ $room_d->room_guest }}
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-lg-7 col-md-7">
-                                                                    <h5 style="font-size: 15px;">
-                                                                        <i class="fa-solid fa-circle-up mt-1"
-                                                                            style="color: orange; font-size: 17px;"></i>
-                                                                        Upgrade: <span
-                                                                            class="text-success"><b>Available</b></span>
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-lg-5 col-md-5">
-                                                                    <h5 class="text-success" style="font-size: 15px;">
-                                                                        <i class="fa-solid fa-check mt-1"
-                                                                            style="font-size: 15px; color: green;"></i>
-                                                                        Refundable
-                                                                    </h5>
-                                                                </div>
-                                                                <hr>
-                                                                <div class="col-lg-12 col-md-12">
-                                                                    <h5 style="font-size: 15px;">
-                                                                        <i class="fa-solid fa-money-check-dollar mt-1"
-                                                                            style="color: green; font-size: 17px;"></i>
-                                                                        Payment : {{ $room_d->deposit }}%
-                                                                        deposit required
-                                                                    </h5>
-                                                                </div>
+                                <div class="card shadow p-3 bg-white rounded d-none d-md-block" data-aos="fade-left"
+                                    data-aos-duration="1000">
+                                    <div class="row no-gutters">
+                                        <div class="col-lg-4 col-md-4">
+                                            <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
+                                                class="card-img-top" alt="{{ $room_d->room_type_name }}">
+                                        </div>
+                                        <div class="col-lg-8 col-md-8">
+                                            <div class="card card-body border border-white">
+                                                <div class="row">
+                                                    <div class="col-lg-8 col-md-8">
+                                                        <h3>{{ $room_d->room_type_name }}</h3>
+                                                        <div class="row">
+                                                            @php
+                                                            $available_count = 0;
+                                                            @endphp
+                                                            @foreach ($room_info as $room_i)
+                                                            @if ($room_d->room_type_name == $room_i->room_type_name)
+                                                            @if (strpos(strtolower($room_i->availability_status),
+                                                            'available') !== false)
+                                                            @php
+                                                            $available_count++;
+                                                            @endphp
+                                                            @endif
+                                                            @endif
+                                                            @endforeach
+                                                            @if ($available_count > 0)
+                                                            <div class="col-lg-7 col-md-7">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-bell mt-1"
+                                                                        style="color: crimson; font-size: 17px;"></i>
+                                                                    Status : {{ $available_count }} Remains
+                                                                </h5>
+                                                            </div>
+                                                            @else
+                                                            <div class="col-lg-7 col-md-7">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-bell mt-1"
+                                                                        style="color: crimson; font-size: 17px;"></i>
+                                                                    Status : Full
+                                                                </h5>
+                                                            </div>
+                                                            @endif
+                                                            <div class="col-lg-5 col-md-5">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-user mt-1"
+                                                                        style="color: black; font-size: 17px;"></i>
+                                                                    Guest : {{ $room_d->room_guest }}
+                                                                </h5>
+                                                            </div>
+                                                            <div class="col-lg-7 col-md-7">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-circle-up mt-1"
+                                                                        style="color: orange; font-size: 17px;"></i>
+                                                                    Upgrade: <span
+                                                                        class="text-success"><b>Available</b></span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="col-lg-5 col-md-5">
+                                                                <h5 class="text-success" style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-check mt-1"
+                                                                        style="font-size: 15px; color: green;"></i>
+                                                                    Refundable
+                                                                </h5>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="col-lg-12 col-md-12">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-money-check-dollar mt-1"
+                                                                        style="color: green; font-size: 17px;"></i>
+                                                                    Payment : {{ $room_d->deposit }}%
+                                                                    deposit required
+                                                                </h5>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-4 col-md-4">
-                                                            <div class="d-flex justify-content-center">
-                                                                <h2 class="text-success">$
-                                                                    {{ $room_d->room_price }}</h2>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4">
+                                                        <div class="d-flex justify-content-center">
+                                                            <h2 class="text-success">$
+                                                                {{ $room_d->room_price }}</h2>
+                                                        </div>
+                                                        <h5 class="text-secondary text-center fs-5"><i>per
+                                                                night</i>
+                                                        </h5>
+                                                        <div class="d-flex justify-content-center">
+                                                            <i class="fa-solid fa-star" style="color: orange;"></i>
+                                                            <i class="fa-solid fa-star" style="color: orange;"></i>
+                                                            <i class="fa-solid fa-star" style="color: orange;"></i>
+                                                            <i class="fa-solid fa-star" style="color: orange;"></i>
+                                                            <i class="fa-solid fa-star" style="color: orange;"></i>
+                                                        </div>
+                                                        @if ($available_count > 0)
+                                                        <div class="d-flex justify-content-center mt-4">
+                                                            <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
+                                                                type="button" class="btn btn-default text-light"
+                                                                style="background-color: #3b5998">Book
+                                                                Room</a>
+                                                        </div>
+                                                        @else
+                                                        <div class="d-flex justify-content-center mt-4">
+                                                            <a type="button" onclick="room_full()"
+                                                                class="btn btn-default bg-secondary text-light">Book
+                                                                Room</a>
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- end of room card (desktop view) --}}
+
+                                {{-- start of room card (mobile view) --}}
+                                <div
+                                    class="card border border-secondary shadow-lg shadow-light shadow-offset-down-sm shadow-intensity-lg bg-white rounded d-md-none">
+                                    <div class="row no-gutters">
+                                        <div class="col-md-4">
+                                            <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
+                                                class="card-img-top" alt="...">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <h3>{{ $room_d->room_type_name }}</h3>
+                                                        <div class="row mt-1">
+                                                            @php
+                                                            $available_count = 0;
+                                                            @endphp
+                                                            @foreach ($room_info as $room_i)
+                                                            @if ($room_d->room_type_name == $room_i->room_type_name)
+                                                            @if (strpos(strtolower($room_i->availability_status),
+                                                            'available') !== false)
+                                                            @php
+                                                            $available_count++;
+                                                            @endphp
+                                                            @endif
+                                                            @endif
+                                                            @endforeach
+                                                            @if ($available_count > 0)
+                                                            <div class="col-7">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-bell mt-1"
+                                                                        style="color: crimson; font-size: 17px;"></i>
+                                                                    Status : {{ $available_count }} Remains
+                                                                </h5>
                                                             </div>
-                                                            <h5 class="text-secondary text-center fs-5"><i>per
-                                                                    night</i>
-                                                            </h5>
-                                                            <div class="d-flex justify-content-center">
-                                                                <i class="fa-solid fa-star"
-                                                                    style="color: orange;"></i>
-                                                                <i class="fa-solid fa-star"
-                                                                    style="color: orange;"></i>
-                                                                <i class="fa-solid fa-star"
-                                                                    style="color: orange;"></i>
-                                                                <i class="fa-solid fa-star"
-                                                                    style="color: orange;"></i>
-                                                                <i class="fa-solid fa-star"
-                                                                    style="color: orange;"></i>
+                                                            @else
+                                                            <div class="col-7">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-bell mt-1"
+                                                                        style="color: crimson; font-size: 17px;"></i>
+                                                                    Status : Full
+                                                                </h5>
+                                                            </div>
+                                                            @endif
+                                                            <div class="col-5">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-user mt-1"
+                                                                        style="color: black; font-size: 17px;"></i>
+                                                                    Guest : {{ $room_d->room_guest }}
+                                                                </h5>
+                                                            </div>
+                                                            <div class="col-7">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-circle-up mt-1"
+                                                                        style="color: orange; font-size: 17px;"></i>
+                                                                    Upgrade : <span
+                                                                        class="text-success"><b>Available</b></span>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="col-5">
+                                                                <h5 class="text-success" style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-check mt-1"
+                                                                        style="font-size: 15px; color: green;"></i>
+                                                                    Refundable
+                                                                </h5>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="col-12">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-money-check-dollar mt-1"
+                                                                        style="color: green; font-size: 17px;"></i>
+                                                                    Payment : {{ $room_d->deposit }}%
+                                                                    deposit required
+                                                                </h5>
+                                                                <h5 class="text-success" style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-money-bill-1 mt-1"
+                                                                        style="color: green; font-size: 17px;"></i>
+                                                                    <b>Price : $ {{ $room_d->room_price }}</b>
+                                                                    /
+                                                                    <small class="text-dark">night</small>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="col-12">
+                                                                <div class="d-flex align-items-center">
+                                                                    <h5 class="mr-2 mt-2">Rating:</h5>
+                                                                    <div class="d-flex px-1">
+                                                                        <i class="fa-solid fa-star"
+                                                                            style="color: orange; font-size: 17px;"></i>
+                                                                        <i class="fa-solid fa-star"
+                                                                            style="color: orange; font-size: 17px;"></i>
+                                                                        <i class="fa-solid fa-star"
+                                                                            style="color: orange; font-size: 17px;"></i>
+                                                                        <i class="fa-solid fa-star"
+                                                                            style="color: orange; font-size: 17px;"></i>
+                                                                        <i class="fa-solid fa-star"
+                                                                            style="color: orange; font-size: 17px;"></i>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                             @if ($available_count > 0)
-                                                                <div class="d-flex justify-content-center mt-4">
-                                                                    <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
-                                                                        type="button"
-                                                                        class="btn btn-default text-light"
-                                                                        style="background-color: #3b5998">Book
-                                                                        Room</a>
-                                                                </div>
+                                                            <div class="d-flex justify-content-center mt-2">
+                                                                <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
+                                                                    type="button"
+                                                                    class="btn btn-default text-light w-100"
+                                                                    style="background-color: #3b5998">Book
+                                                                    Room</a>
+                                                            </div>
                                                             @else
-                                                                <div class="d-flex justify-content-center mt-4">
-                                                                    <a type="button" onclick="room_full()"
-                                                                        class="btn btn-default bg-secondary text-light">Book
-                                                                        Room</a>
-                                                                </div>
+                                                            <div class="d-flex justify-content-center mt-2">
+                                                                <a type="button" onclick="room_full()"
+                                                                    class="btn btn-default bg-secondary w-100 text-light">Book
+                                                                    Room</a>
+                                                            </div>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -418,130 +526,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{-- end of room card (desktop view) --}}
-
-                                    {{-- start of room card (mobile view) --}}
-                                    <div
-                                        class="card border border-secondary shadow-lg shadow-light shadow-offset-down-sm shadow-intensity-lg bg-white rounded d-md-none">
-                                        <div class="row no-gutters">
-                                            <div class="col-md-4">
-                                                <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
-                                                    class="card-img-top" alt="...">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <h3>{{ $room_d->room_type_name }}</h3>
-                                                            <div class="row mt-1">
-                                                                @php
-                                                                    $available_count = 0;
-                                                                @endphp
-                                                                @foreach ($room_info as $room_i)
-                                                                    @if ($room_d->room_type_name == $room_i->room_type_name)
-                                                                        @if (strpos(strtolower($room_i->availability_status), 'available') !== false)
-                                                                            @php
-                                                                                $available_count++;
-                                                                            @endphp
-                                                                        @endif
-                                                                    @endif
-                                                                @endforeach
-                                                                @if ($available_count > 0)
-                                                                    <div class="col-7">
-                                                                        <h5 style="font-size: 15px;">
-                                                                            <i class="fa-solid fa-bell mt-1"
-                                                                                style="color: crimson; font-size: 17px;"></i>
-                                                                            Status : {{ $available_count }} Remains
-                                                                        </h5>
-                                                                    </div>
-                                                                @else
-                                                                    <div class="col-7">
-                                                                        <h5 style="font-size: 15px;">
-                                                                            <i class="fa-solid fa-bell mt-1"
-                                                                                style="color: crimson; font-size: 17px;"></i>
-                                                                            Status : Full
-                                                                        </h5>
-                                                                    </div>
-                                                                @endif
-                                                                <div class="col-5">
-                                                                    <h5 style="font-size: 15px;">
-                                                                        <i class="fa-solid fa-user mt-1"
-                                                                            style="color: black; font-size: 17px;"></i>
-                                                                        Guest : {{ $room_d->room_guest }}
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-7">
-                                                                    <h5 style="font-size: 15px;">
-                                                                        <i class="fa-solid fa-circle-up mt-1"
-                                                                            style="color: orange; font-size: 17px;"></i>
-                                                                        Upgrade : <span
-                                                                            class="text-success"><b>Available</b></span>
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-5">
-                                                                    <h5 class="text-success" style="font-size: 15px;">
-                                                                        <i class="fa-solid fa-check mt-1"
-                                                                            style="font-size: 15px; color: green;"></i>
-                                                                        Refundable
-                                                                    </h5>
-                                                                </div>
-                                                                <hr>
-                                                                <div class="col-12">
-                                                                    <h5 style="font-size: 15px;">
-                                                                        <i class="fa-solid fa-money-check-dollar mt-1"
-                                                                            style="color: green; font-size: 17px;"></i>
-                                                                        Payment : {{ $room_d->deposit }}%
-                                                                        deposit required
-                                                                    </h5>
-                                                                    <h5 class="text-success" style="font-size: 15px;">
-                                                                        <i class="fa-solid fa-money-bill-1 mt-1"
-                                                                            style="color: green; font-size: 17px;"></i>
-                                                                        <b>Price : $ {{ $room_d->room_price }}</b>
-                                                                        /
-                                                                        <small class="text-dark">night</small>
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-12">
-                                                                    <div class="d-flex align-items-center">
-                                                                        <h5 class="mr-2 mt-2">Rating:</h5>
-                                                                        <div class="d-flex px-1">
-                                                                            <i class="fa-solid fa-star"
-                                                                                style="color: orange; font-size: 17px;"></i>
-                                                                            <i class="fa-solid fa-star"
-                                                                                style="color: orange; font-size: 17px;"></i>
-                                                                            <i class="fa-solid fa-star"
-                                                                                style="color: orange; font-size: 17px;"></i>
-                                                                            <i class="fa-solid fa-star"
-                                                                                style="color: orange; font-size: 17px;"></i>
-                                                                            <i class="fa-solid fa-star"
-                                                                                style="color: orange; font-size: 17px;"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                @if ($available_count > 0)
-                                                                    <div class="d-flex justify-content-center mt-2">
-                                                                        <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
-                                                                            type="button"
-                                                                            class="btn btn-default text-light w-100"
-                                                                            style="background-color: #3b5998">Book
-                                                                            Room</a>
-                                                                    </div>
-                                                                @else
-                                                                    <div class="d-flex justify-content-center mt-2">
-                                                                        <a type="button" onclick="room_full()"
-                                                                            class="btn btn-default bg-secondary w-100 text-light">Book
-                                                                            Room</a>
-                                                                    </div>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    {{-- end of room card (mobile view) --}}
+                                </div>
+                                <br>
+                                {{-- end of room card (mobile view) --}}
                                 @endforeach
                                 {{-- end of room card (desktop view) --}}
                             </div>
@@ -579,13 +566,11 @@
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                         <h6 class="text-uppercase mb-4 font-weight-bold">Services</h6>
                         <p>
-                            <a class="text-white" style="text-decoration: none;"
-                                href="{{ route('main-page') }}">Home
+                            <a class="text-white" style="text-decoration: none;" href="{{ route('main-page') }}">Home
                             </a>
                         </p>
                         <p>
-                            <a class="text-white" style="text-decoration: none;"
-                                href="{{ route('about-us') }}">About
+                            <a class="text-white" style="text-decoration: none;" href="{{ route('about-us') }}">About
                                 Us</a>
                         </p>
                         <p>
@@ -656,17 +641,23 @@
     {{-- end of footer --}}
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-</script>
+{{-- aos library cdn --}}
+<script src="/external_js_file/aos.js"></script>
 
 {{-- jquery cdn --}}
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/external_js_file/jquery.min.js"></script>
+
+{{-- popper cdn --}}
+<script src="/external_js_file/popper.min.js"></script>
+
+<!-- Bootstrap bundle JS -->
+<script src="/external_js_file/bootstrap.bundle.min.js"></script>
 
 <!-- Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="/external_js_file/bootstrap.min.js"></script>
 
-<script src="../room/index.js"></script>
+{{-- link with other js file --}}
+<script src="../User_Page/rooms/rooms.js"></script>
 
 {{-- start of navigation bar function --}}
 <script>
@@ -704,8 +695,6 @@
 </script>
 {{-- end of navigation bar function --}}
 
-{{-- aos library cdn --}}
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({
         disable: 'mobile'
