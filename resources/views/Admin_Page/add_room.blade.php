@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Settings</title>
 
-    <link rel="stylesheet" href="../Admin_Page/Add_Room/style.css">
+    <link rel="stylesheet" href="/Admin_Page/Add_Room/add_room.css">
 
     <!-- Bootstrap CSS -->
-    <link href="../bootstrap_css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/external_css_file/bootstrap.min.css">
 
     <!-- Bootstrap Icons (Optional) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/external_css_file/aos.css">
 </head>
 
 <body>
@@ -359,36 +359,23 @@
         </div>
     </div>
 </body>
-<!-- Bootstrap JS (Optional) -->
-<script src="../bootstrap_js/bootstrap.min.js"></script>
-<script src="../bootstrap_js/jquery.min.js"></script>
 
-<script src="../Admin_Page/Add_Room/index.js"></script>
+{{-- aos library cdn --}}
+<script src="/external_js_file/aos.js"></script>
+
+{{-- jquery cdn --}}
+<script src="/external_js_file/jquery.min.js"></script>
+
+<!-- Bootstrap JS (Optional) -->
+<script src="/external_js_file/bootstrap.min.js"></script>
+
+{{-- link with other js file --}}
+<script src="/Admin_Page/Add_Room/add_room.js"></script>
 
 <script>
-    $(document).ready(function () {
-    var priceSlider = document.getElementById('priceSlider');
-    var priceRange = document.getElementById('priceRange');
-    var priceMax = document.getElementById('priceMax');
-
-    priceSlider.oninput = function () {
-        var min = this.value;
-        var max = parseInt(this.max);
-        priceRange.value = '$' + min;
-        priceMax.value = '$' + max;
-    };
-    // Get the current path of the URL
-    var currentPath = window.location.pathname;
-
-    // Add "active" class to the corresponding menu item
-    $('.navbar-nav a[href="' + currentPath + '"]').addClass('active');
-
-    // Handle click event to set "active" class
-    $('.navbar-nav a').on('click', function () {
-        $('.navbar-nav a').removeClass('active');
-        $(this).addClass('active');
+    AOS.init({
+        disable: 'mobile'
     });
-});
 
 $(document).on('click', '.page-link', function (event) {
     event.preventDefault();
@@ -397,14 +384,6 @@ $(document).on('click', '.page-link', function (event) {
     var page = $(this).attr('href').split('page=')[1];
     fetch_room_data(page);
 });
-</script>
-
-{{-- aos library cdn --}}
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({
-        disable: 'mobile'
-    });
 </script>
 
 </html>

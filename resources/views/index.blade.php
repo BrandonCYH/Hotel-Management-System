@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     {{-- link to the css file --}}
-    <link rel="stylesheet" href="/User_Page/index/style.css">
+    <link rel="stylesheet" href="/User_Page/index/index.css">
     <link rel="stylesheet" href="/User_Page/index/classic.css">
     <link rel="stylesheet" href="/User_Page/index/classic.date.css">
 
@@ -23,9 +23,6 @@
 
     <!-- Animation On Scroll CDN -->
     <link rel="stylesheet" href="/external_css_file/aos.css">
-
-    {{-- bootstrap icon --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
 
     {{-- bootstrap font awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -78,10 +75,10 @@
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" style="" href="{{ route('hotel-restaurant') }}">Dining</a>
+                        <a class="nav-link mx-2" href="{{ route('hotel-restaurant') }}">Dining</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" style="" href="{{ route('exclusive-member') }}">Member</a>
+                        <a class="nav-link mx-2" href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
@@ -102,41 +99,34 @@
     {{-- banner --}}
     <div class="jumbotron p-5" id="banner">
         <div class="row">
+            <!-- Desktop View -->
             <div class="col-md-12 text-center d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000">
                 <h1 class="display-4 text-light">Ocean Heaven Hotel</h1>
             </div>
-            <div class="row">
-                <div class="d-flex justify-content-center">
-                    <div class="col-lg-6 col-md-12 d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000"
-                        data-aos-delay="1000">
-                        <p class="lead text-light text-center">Where comfort meets personalized care, our hotel is a
-                            sanctuary of
-                            hospitality. From the warm welcome at arrival to the attentive service during your stay, we
-                            strive
-                            to create memorable experiences that linger long after you've departed.</p>
-                        <hr class="my-4 text-light">
-                        <p class="text-light text-center">Book Your Room Now</p>
-                    </div>
+            <div class="col-lg-6 col-md-12 mx-auto d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000"
+                data-aos-delay="1000">
+                <p class="lead text-light text-center">Where comfort meets personalized care, our hotel is a sanctuary of
+                    hospitality. From the warm welcome at arrival to the attentive service during your stay, we strive
+                    to create memorable experiences that linger long after you've departed.</p>
+                <hr class="my-4 text-light">
+                <p class="text-light text-center">Book Your Room Now</p>
+            </div>
+    
+            <!-- Mobile View -->
+            <div class="col-sm-12 d-md-none" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="text-center mb-2">
+                    <h1 class="fs-1 display-4 text-light">Ocean Heaven Hotel</h1>
+                </div>
+                <div class="col-sm-6 mx-auto">
+                    <p class="lead text-light text-center" style="font-size: 1rem;">Where comfort meets personalized care,
+                        our hotel is a sanctuary of hospitality. From the warm welcome at arrival to the attentive service
+                        during your stay, we strive to create memorable experiences that linger long after you've departed.</p>
+                    <hr class="my-4 text-light">
+                    <p class="text-light text-center">Come, stay and enjoy your day.</p>
                 </div>
             </div>
         </div>
-
-        <!-- Mobile View -->
-        <div class="col-sm-12 d-md-none" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="text-center mb-2">
-                <h1 class="fs-1 display-4 text-light">Ocean Heaven Hotel</h1>
-            </div>
-            <div class="col-sm-6 mx-auto">
-                <p class="lead text-light text-center" style="font-size: 1rem;">Where comfort meets personalized care,
-                    our hotel is a sanctuary of hospitality.
-                    From the warm welcome at arrival to the attentive service during your stay, we
-                    strive to create memorable experiences that linger long after you've departed.</p>
-                <hr class="my-4 text-light">
-                <p class="text-light text-center">Come, stay and enjoy your day.</p>
-            </div>
-        </div>
-        <!-- End of Mobile View -->
-    </div>
+    </div>    
     {{-- end of banner --}}
 
     {{-- search room bar --}}
@@ -147,24 +137,24 @@
                     data-aos-delay="1000">
                     <div class="search-bar">
                         <form class="form-inline">
-                            <div class="row g-2"> {{-- Added spacing between rows --}}
-                                <div class="col-12 col-sm-6 col-md-3">
+                            <div class="row"> {{-- Added spacing between rows --}}
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="input_from"
                                             placeholder="Start Date">
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-6 col-md-3">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="input_to" placeholder="End Date">
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-6 col-md-3">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <input type="number" class="form-control" placeholder="Guest">
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-6 col-md-3">
+                                <div class="col-md-3">
                                     <button type="button" class="btn btn-primary text-light w-100">Check
                                         Availability</button>
                                 </div>
@@ -727,54 +717,6 @@
     </div>
     {{-- end of the hall introduction --}}
 
-    {{-- Gallery from the hall --}}
-    {{-- <div class="container-fluid">
-        <div class="row mt-5">
-            <div class="col-md-12">
-                <div class="d-flex justify-content-center">
-                    <h4 class="text-center fs-3" style="font-family: cursive;">
-                        Where Creativity Unveils Timeless Stories – A Gallery Beyond Boundaries.
-                    </h4>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center mt-4">
-                <div class="col-md-8">
-                    <div class="container-xl mt-2">
-                        <div class="row" data-aos="fade-right" data-aos-duration="1000">
-                            <div class="col-md-3">
-                                <img src="../images/wedding_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
-                            </div>
-                            <div class="col-md-3">
-                                <img src="../images/wedding_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
-                            </div>
-                            <div class="col-md-3">
-                                <img src="../images/birthday_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
-                            </div>
-                            <div class="col-md-3">
-                                <img src="../images/birthday_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
-                            </div>
-                        </div>
-                        <div class="row mt-3" data-aos="fade-left" data-aos-duration="1000">
-                            <div class="col-md-3">
-                                <img src="../images/aniversary_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
-                            </div>
-                            <div class="col-md-3">
-                                <img src="../images/aniversary_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
-                            </div>
-                            <div class="col-md-3">
-                                <img src="../images/graduation_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
-                            </div>
-                            <div class="col-md-3">
-                                <img src="../images/graduation_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-    {{-- end of the gallery from the hall --}}
-
     {{-- start of the latest news of the hotel --}}
     <div class="container-fluid">
         <div class="row mt-5">
@@ -979,20 +921,6 @@
 <script>
     AOS.init({
         disable: 'mobile'
-    });
-
-    $(document).ready(function() {
-        // Get the current path of the URL
-        var currentPath = window.location.pathname;
-
-        // Add "active" class to the corresponding menu item
-        $('.navbar-nav a[href="' + currentPath + '"]').addClass('active');
-
-        // Handle click event to set "active" class
-        $('.navbar-nav a').on('click', function() {
-            $('.navbar-nav a').removeClass('active');
-            $(this).addClass('active');
-        });
     });
 </script>
 

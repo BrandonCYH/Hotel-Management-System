@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Admin Dashboard</title>
     <!-- Bootstrap CSS -->
-    <link href="../bootstrap_css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/external_css_file/bootstrap.min.css">
     <!-- Bootstrap Icons (Optional) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"
         rel="stylesheet">
 
     {{-- link with other css file --}}
-    <link rel="stylesheet" href="../Admin Page/Dashboard/dashboard.css">
+    <link rel="stylesheet" href="/Admin_Page/Dashboard/dashboard.css">
 </head>
 
 <body>
@@ -160,7 +160,7 @@
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex align-items-center">
-                                                            <img src="https://via.placeholder.com/40" alt="Avatar"
+                                                            <img src="/images/ShaniaYan_5.jpg" alt="Avatar"
                                                                 class="table-avatar me-2">
                                                             <div>
                                                                 <span class="d-block fw-bold">Ram Kailash</span>
@@ -183,7 +183,7 @@
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex align-items-center">
-                                                            <img src="https://via.placeholder.com/40" alt="Avatar"
+                                                            <img src="/images/ShaniaYan_5.jpg" alt="Avatar"
                                                                 class="table-avatar me-2">
                                                             <div>
                                                                 <span class="d-block fw-bold">Amit Thapa</span>
@@ -206,7 +206,7 @@
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex align-items-center">
-                                                            <img src="https://via.placeholder.com/40" alt="Avatar"
+                                                            <img src="/images/ShaniaYan_5.jpg" alt="Avatar"
                                                                 class="table-avatar me-2">
                                                             <div>
                                                                 <span class="d-block fw-bold">Amit Thapa</span>
@@ -229,7 +229,7 @@
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex align-items-center">
-                                                            <img src="https://via.placeholder.com/40" alt="Avatar"
+                                                            <img src="/images/ShaniaYan_5.jpg" alt="Avatar"
                                                                 class="table-avatar me-2">
                                                             <div>
                                                                 <span class="d-block fw-bold">Amit Thapa</span>
@@ -296,10 +296,11 @@
         </div>
     </div>
 </body>
+
 <!-- Bootstrap JS (Optional) -->
-<script src="../bootstrap_js/bootstrap.min.js"></script>
-<script src="../bootstrap_js/chart.js"></script>
-<script src="../bootstrap_js/jquery.min.js"></script>
-<script src="../Admin Page/Dashboard/dashboard.js"></script>
+<script src="/external_js_file/bootstrap.min.js"></script>
+<script src="/external_js_file/chart.js"></script>
+<script src="/external_js_file/jquery.min.js"></script>
+<script src="/Admin_Page/Dashboard/dashboard.js"></script>
 
 </html>

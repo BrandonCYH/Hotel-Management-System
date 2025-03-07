@@ -23,11 +23,11 @@ Route::get('/', function () {
 Route::get('/sign-in', [App\Http\Controllers\System_Controller::class, 'sign_in'])->name('sign-in');
 
 // main page functions
-Route::get('/future-hotel-management-system', [User_Controller::class, 'home_page'])->name("main-page");
+Route::get('/ocean-heaven-hotel', [User_Controller::class, 'home_page'])->name("main-page");
 Route::view('/about-us', 'User_Page.about_us')->name('about-us');
 Route::get('/terms-and-conditions', [User_Controller::class, 'terms_and_conditions'])->name('terms-and-conditions');
-Route::view('/hotel-restaurant', 'User_Page.restaurant')->name('hotel-restaurant')->name('hotel-restaurant');
-Route::view('/exclusive-member', 'User_Page.member')->name('exclusive-member')->name('exclusive-member');
+Route::view('/hotel-restaurant', 'User_Page.restaurant')->name('hotel-restaurant');
+Route::view('/exclusive-member', 'User_Page.member')->name('exclusive-member');
 
 // hotel rooms functions
 Route::get('/hotel-room', [User_Controller::class, 'hotel_room'])->name('hotel-room');
