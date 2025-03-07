@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\guest_info;
+use App\Models\guest_services;
+use App\Models\room_facilities;
+use App\Models\rooms;
+use App\Models\room_booking;
+
 use DB;
 use Carbon\Carbon;
 use Session;
 use Illuminate\Http\Request;
 
+use App\Models\room_type;
+
 class User_Controller extends Controller
 {
     public function home_page()
     {
-        $room_data = DB::table('room_type')
-            ->orderBy('room_price')
-            ->get();
+        $room_data = room_type::orderBy('room_price')->get();
 
         return view('index', ['room_data' => $room_data]);
     }
@@ -30,33 +36,38 @@ class User_Controller extends Controller
 
     public function hotel_room()
     {
-        $room_data = DB::table('room_type')
-            ->orderBy('room_price')
-            ->paginate(4);
+        $room_data = room_type::orderBy('room_price')->paginate(4);
 
-        $room_info = DB::table('rooms')
+        $room_info = rooms::select('room_type.room_type_name', 'rooms.availability_status')
             ->join('room_type', 'room_type.room_type_id', '=', 'rooms.room_type_id')
-            ->select('room_type.room_type_name', 'rooms.availability_status')
             ->orderBy('room_type.room_price')
             ->get();
 
-        return view('User_Page.rooms', ['room_data' => $room_data, 'room_info' => $room_info]);
+        return view(
+            'User_Page.rooms',
+            [
+                'room_data' => $room_data,
+                'room_info' => $room_info,
+            ]
+        );
     }
 
     public function fetch_room_data(Request $request)
     {
         if ($request->ajax()) {
-            $room_data = DB::table('room_type')
-                ->orderBy('room_price')
-                ->paginate(4);
+            $room_data = room_type::orderBy('room_price')->paginate(4);
 
-            $room_info = DB::table('rooms')
+            $room_info = rooms::select('room_type.room_type_name', 'rooms.availability_status')
                 ->join('room_type', 'room_type.room_type_id', '=', 'rooms.room_type_id')
-                ->select('room_type.room_type_name', 'rooms.availability_status')
                 ->orderBy('room_type.room_price')
                 ->get();
 
-            return response()->json(['room_data' => $room_data, 'room_info' => $room_info]);
+            return response()->json(
+                [
+                    'room_data' => $room_data,
+                    'room_info' => $room_info,
+                ]
+            );
         }
     }
 
@@ -76,16 +87,13 @@ class User_Controller extends Controller
             $actual_priceMin = doubleval($replace_priceMin);
             $actual_priceMax = doubleval($replace_priceMax);
 
-            $room_info = DB::table('rooms')
+            $room_info = rooms::select('room_type.room_type_name', 'rooms.availability_status')
                 ->join('room_type', 'room_type.room_type_id', '=', 'rooms.room_type_id')
-                ->select('room_type.room_type_name', 'rooms.availability_status')
                 ->orderBy('room_type.room_price')
                 ->get();
 
-            $room_data = DB::table('room_facilities')
-                ->join('room_type', 'room_type.room_type_id', '=', 'room_facilities.room_type_id')
+            $room_data = room_facilities::join('room_type', 'room_type.room_type_id', '=', 'room_facilities.room_type_id')
                 ->join('facilities', 'facilities.facility_id', '=', 'room_facilities.facility_id')
-
                 ->when($actual_priceMin && $actual_priceMax, function ($query) use ($actual_priceMin, $actual_priceMax) {
                     return $query->whereBetween('room_type.room_price', [$actual_priceMin, $actual_priceMax]);
                 })
@@ -95,7 +103,6 @@ class User_Controller extends Controller
                 ->when($facilities, function ($query, $facilities) {
                     return $query->whereIn('facilities.facility_name', $facilities);
                 })
-
                 ->orderBy('room_type.room_price')
                 ->groupBy('room_facilities.room_type_id')
                 ->paginate(4);
@@ -107,29 +114,39 @@ class User_Controller extends Controller
                 $pagination .= ' pagination-link" data-page="' . $page . '">' . $page . '</a>';
             }
 
-            return response()->json(['room_data' => $room_data, 'pagination' => $pagination, 'room_info' => $room_info]);
+            return response()->json(
+                [
+                    'room_data' => $room_data,
+                    'pagination' => $pagination,
+                    'room_info' => $room_info,
+                ]
+            );
         }
     }
 
     public function room_booking($room_name)
     {
-        $room_data = DB::table('room_type')
-            ->where('room_type_name', '=', $room_name)
-            ->get();
+        $room_data = room_type::where('room_type_name', '=', $room_name)->get();
 
-        $room_facilities = DB::table('room_facilities')
+        $room_facilities = room_facilities::select('*')
             ->join('room_type', 'room_type.room_type_id', '=', 'room_facilities.room_type_id')
             ->join('facilities', 'facilities.facility_id', '=', 'room_facilities.facility_id')
             ->where('room_type.room_type_name', '=', $room_name)
             ->get();
 
-        $room_info = DB::table('rooms')
+        $room_info = rooms::select('room_type.room_type_name', 'rooms.availability_status')
             ->join('room_type', 'room_type.room_type_id', '=', 'rooms.room_type_id')
-            ->select('room_type.room_type_name', 'rooms.availability_status')
             ->where('room_type.room_type_name', '=', $room_name)
             ->get();
 
-        return view('User_Page.room_booking_details', ['room_data' => $room_data, 'room_facilities' => $room_facilities, 'room_info' => $room_info]);
+        return view(
+            'User_Page.room_booking_details',
+            [
+                'room_data' => $room_data,
+                'room_facilities' => $room_facilities,
+                'room_info' => $room_info,
+            ]
+        );
     }
 
     public function booking_registration(Request $request, $room_name)
@@ -137,17 +154,23 @@ class User_Controller extends Controller
         $checkInDate = $request->checkIn_date;
         $checkOutDate = $request->checkOut_date;
 
-        $room_data = DB::table('room_type')
-            ->where('room_type_name', '=', $room_name)
-            ->get();
+        $room_data = room_type::where('room_type_name', '=', $room_name)->get();
 
-        $room_facilities = DB::table('room_facilities')
+        $room_facilities = room_facilities::select('*')
             ->join('room_type', 'room_type.room_type_id', '=', 'room_facilities.room_type_id')
             ->join('facilities', 'facilities.facility_id', '=', 'room_facilities.facility_id')
             ->where('room_type.room_type_name', '=', $room_name)
             ->get();
 
-        return view('User_Page.booking_registration', ['room_data' => $room_data, 'room_facilities' => $room_facilities, 'checkIn_date' => $checkInDate, 'checkOut_date' => $checkOutDate]);
+        return view(
+            'User_Page.booking_registration',
+            [
+                'room_data' => $room_data,
+                'room_facilities' => $room_facilities,
+                'checkIn_date' => $checkInDate,
+                'checkOut_date' => $checkOutDate,
+            ]
+        );
     }
 
     public function booking_confirmation()
@@ -190,9 +213,8 @@ class User_Controller extends Controller
                 $booking_id = $this->generateBookingID();
                 $guest_id = $this->generateGuestInfoID();
 
-                $random_roomID = DB::table("rooms")
+                $random_roomID = rooms::select('rooms.room_id', 'room_type.room_price')
                     ->join("room_type", 'room_type.room_type_id', '=', 'rooms.room_type_id')
-                    ->select('rooms.room_id', 'room_type.room_price')
                     ->where('room_type.room_type_name', '=', $room_type_name)
                     ->where('rooms.availability_status', '!=', "Not Available")
                     ->inRandomOrder()
@@ -220,20 +242,17 @@ class User_Controller extends Controller
             $guest_specialRequest = $request->special_request;
             $guest_requestServices = $request->services;
 
-            DB::table('guest_info')
-                ->updateOrInsert(
-                    [
-                        "guest_id" => $guest_id
-                    ],
-                    [
-                        "guest_name" => $guest_fullName,
-                        "guest_email" => $guest_email,
-                        "guest_phoneNumber" => $guest_phoneNumber,
-                        "guest_country" => $guest_country,
-                        "guest_city" => $guest_city,
-                        "guest_specialRequest" => $guest_specialRequest,
-                    ]
-                );
+            guest_info::updateOrInsert(
+                ["guest_id" => $guest_id],
+                [
+                    "guest_name" => $guest_fullName,
+                    "guest_email" => $guest_email,
+                    "guest_phoneNumber" => $guest_phoneNumber,
+                    "guest_country" => $guest_country,
+                    "guest_city" => $guest_city,
+                    "guest_specialRequest" => $guest_specialRequest,
+                ]
+            );
 
             foreach ($guest_requestServices as $serviceName => $serviceDetails) {
                 $services_quantity = $serviceDetails['quantity']; // Get quantity
@@ -243,15 +262,15 @@ class User_Controller extends Controller
                     $serviceTotal = $services_quantity * $services_price; // Calculate total for this service
                     $totalServicesPrice += $serviceTotal; // Add to total services price
 
-                    DB::table('guest_services')->updateOrInsert(
+                    guest_services::updateOrInsert(
                         [
-                            'guest_id' => $guest_id, // Store guest ID
-                            'services_name' => $serviceName, // Store service name
+                            'guest_id' => $guest_id,
+                            'services_name' => $serviceName,
                         ],
                         [
-                            'quantity' => $services_quantity, // Store quantity
-                            'price' => $services_price, // Store price per unit
-                            'total_price' => $serviceTotal, // Store total price
+                            'quantity' => $services_quantity,
+                            'price' => $services_price,
+                            'total_price' => $serviceTotal,
                         ]
                     );
                 }
@@ -259,40 +278,33 @@ class User_Controller extends Controller
 
             $totalBookingPrice = floatval($target_roomPrice) + floatval($totalServicesPrice);
 
-            DB::table('room_booking')
-                ->updateOrInsert(
-                    [
-                        'booking_id' => $booking_id,
-                    ],
-                    [
-                        'guest_id' => $guest_id,
-                        'room_id' => $target_roomID,
-                        'check_in_date' => $formatted_checkInDate,
-                        'check_out_date' => $formatted_checkOutDate,
-                        'total_price' => $totalBookingPrice,
-                        'booking_status' => "Pending",
-                    ]
-                );
+            room_booking::updateOrInsert(
+                [
+                    'booking_id' => $booking_id,
+                ],
+                [
+                    'guest_id' => $guest_id,
+                    'room_id' => $target_roomID,
+                    'check_in_date' => $formatted_checkInDate,
+                    'check_out_date' => $formatted_checkOutDate,
+                    'total_price' => $totalBookingPrice,
+                    'booking_status' => "Pending",
+                ]
+            );
 
-            DB::table("rooms")
-                ->where("room_id", '=', $target_roomID)
-                ->update(['availability_status' => 'Not Available']);
+            rooms::where("room_id", '=', $target_roomID)->update(['availability_status' => 'Not Available']);
 
-            $guest_bookingInfo = DB::table("room_booking")
+            $guest_bookingInfo = room_booking::select("*")
                 ->join("guest_info", 'guest_info.guest_id', '=', 'room_booking.guest_id')
                 ->where("room_booking.guest_id", '=', $guest_id)
                 ->where("guest_info.guest_id", '=', $guest_id)
                 ->get();
 
-            $guest_servicesInfo = DB::table("guest_services")
-                ->where("guest_id", $guest_id)
-                ->get();
+            $guest_servicesInfo = guest_services::where("guest_id", $guest_id)->get();
 
-            $guest_roomInfo = DB::table("room_booking")
+            $guest_roomInfo = room_booking::select("*")
                 ->join("rooms", 'rooms.room_id', '=', 'room_booking.room_id')
                 ->get();
-
-            // dump($guest_roomInfo);
 
             return view(
                 'User_Page.booking_payment',

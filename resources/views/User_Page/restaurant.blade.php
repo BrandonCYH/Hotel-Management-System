@@ -15,14 +15,11 @@
     {{-- bootstrap CSS cdn --}}
     <link rel="stylesheet" href="/external_css_file/bootstrap.min.css">
 
-    {{-- bootstrap icon --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-
     {{-- bootstrap font awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="/external_css_file/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/external_css_file/aos.css">
 
     <title>Hotel Restaurant</title>
 </head>
@@ -872,22 +869,6 @@
 
 {{-- link with other js file --}}
 <script src="/User_Page/restaurant/restaurant.js"></script>
-
-<script>
-    $(document).ready(function() {
-        // Get the current path of the URL
-        var currentPath = window.location.pathname;
-
-        // Add "active" class to the corresponding menu item
-        $('.navbar-nav a[href="' + currentPath + '"]').addClass('active');
-
-        // Handle click event to set "active" class
-        $('.navbar-nav a').on('click', function() {
-            $('.navbar-nav a').removeClass('active');
-            $(this).addClass('active');
-        });
-    });
-</script>
 
 <script>
     AOS.init({

@@ -105,57 +105,62 @@
             </div>
             <div class="col-lg-6 col-md-12 mx-auto d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000"
                 data-aos-delay="1000">
-                <p class="lead text-light text-center">Where comfort meets personalized care, our hotel is a sanctuary of
+                <p class="lead text-light text-center">Where comfort meets personalized care, our hotel is a sanctuary
+                    of
                     hospitality. From the warm welcome at arrival to the attentive service during your stay, we strive
                     to create memorable experiences that linger long after you've departed.</p>
                 <hr class="my-4 text-light">
                 <p class="text-light text-center">Book Your Room Now</p>
             </div>
-    
+
             <!-- Mobile View -->
             <div class="col-sm-12 d-md-none" data-aos="zoom-in" data-aos-duration="1000">
                 <div class="text-center mb-2">
                     <h1 class="fs-1 display-4 text-light">Ocean Heaven Hotel</h1>
                 </div>
                 <div class="col-sm-6 mx-auto">
-                    <p class="lead text-light text-center" style="font-size: 1rem;">Where comfort meets personalized care,
-                        our hotel is a sanctuary of hospitality. From the warm welcome at arrival to the attentive service
-                        during your stay, we strive to create memorable experiences that linger long after you've departed.</p>
+                    <p class="lead text-light text-center" style="font-size: 1rem;">Where comfort meets personalized
+                        care,
+                        our hotel is a sanctuary of hospitality. From the warm welcome at arrival to the attentive
+                        service
+                        during your stay, we strive to create memorable experiences that linger long after you've
+                        departed.</p>
                     <hr class="my-4 text-light">
                     <p class="text-light text-center">Come, stay and enjoy your day.</p>
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
     {{-- end of banner --}}
 
     {{-- search room bar --}}
-    <div class="container">
+    <div class="container-xl">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-md-12">
                 <div class="card card-body" id="search_room_bar" data-aos="fade-down" data-aos-duration="1000"
                     data-aos-delay="1000">
                     <div class="search-bar">
-                        <form class="form-inline">
-                            <div class="row"> {{-- Added spacing between rows --}}
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="input_from"
+                        <form class="form-inline justify-content-center">
+                            <div class="row">
+                                <div class="col-12 col-md-3 mb-3 mb-md-0">
+                                    <div class="form-group" style="position: relative;">
+                                        <input type="text" class="form-control mt-1" id="input_from"
                                             placeholder="Start Date">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="input_to" placeholder="End Date">
+                                <div class="col-12 col-md-3 mb-3 mb-md-0">
+                                    <div class="form-group" style="position: relative;">
+                                        <input type="text" class="form-control mt-1" id="input_to"
+                                            placeholder="End Date">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <input type="number" class="form-control" placeholder="Guest">
+                                <div class="col-12 col-md-3 mb-3 mb-md-0">
+                                    <div class="form-group" style="position: relative;">
+                                        <input type="number" class="form-control mt-1" placeholder="Guest">
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-primary text-light w-100">Check
+                                <div class="col-12 col-md-3">
+                                    <button type="button" class="btn btn-primary text-light w-100 mt-1">Check
                                         Availability</button>
                                 </div>
                             </div>

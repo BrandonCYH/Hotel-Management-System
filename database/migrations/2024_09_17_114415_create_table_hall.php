@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('hall_id');
             $table->string('hall_name');
             $table->string('hall_description');
+            $table->double("hall_price");
             $table->string('availability_status');
             $table->timestamps();
         });
@@ -25,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_hall');
+        Schema::dropIfExists('hall');
     }
 };

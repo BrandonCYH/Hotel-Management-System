@@ -14,10 +14,7 @@
     <link rel="shortcut icon" href="../images/ocean_heaven.png" type="image/x-icon">
 
     {{-- bootstrap CSS cdn --}}
-    <link href="/external_css_file/bootstrap.min.css" rel="stylesheet">
-
-    {{-- bootstrap icon --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/external_css_file/bootstrap.min.css">
 
     {{-- bootstrap font awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -26,7 +23,7 @@
     <link rel="stylesheet" href="/external_css_file/bootstrap-datepicker.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="/external_css_file/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/external_css_file/aos.css">
 
     <title>Hotel Room</title>
 </head>
@@ -661,6 +658,10 @@
 
 {{-- start of navigation bar function --}}
 <script>
+    AOS.init({
+        disable: 'mobile'
+    });
+
     $(document).ready(function() {
         var priceSlider = document.getElementById('priceSlider');
         var priceRange = document.getElementById('priceRange');
@@ -672,17 +673,6 @@
             priceRange.value = '$' + min;
             priceMax.value = '$' + max;
         };
-        // Get the current path of the URL
-        var currentPath = window.location.pathname;
-
-        // Add "active" class to the corresponding menu item
-        $('.navbar-nav a[href="' + currentPath + '"]').addClass('active');
-
-        // Handle click event to set "active" class
-        $('.navbar-nav a').on('click', function() {
-            $('.navbar-nav a').removeClass('active');
-            $(this).addClass('active');
-        });
     });
 
     $(document).on('click', '.page-link', function(event) {
@@ -694,11 +684,5 @@
     });
 </script>
 {{-- end of navigation bar function --}}
-
-<script>
-    AOS.init({
-        disable: 'mobile'
-    });
-</script>
 
 </html>

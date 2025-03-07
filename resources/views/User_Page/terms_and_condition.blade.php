@@ -16,14 +16,11 @@
     {{-- bootstrap CSS cdn --}}
     <link rel="stylesheet" href="/external_css_file/bootstrap.min.css">
 
-    {{-- bootstrap icon --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-
     {{-- bootstrap font awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="/external_css_file/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/external_css_file/aos.css">
 
     <title>Terms And Conditions</title>
 </head>
@@ -89,6 +86,12 @@
         </div>
     </nav>
     {{-- end of nav bar --}}
+
+    {{-- button to back to top --}}
+    <button id="back-to-top" class="btn btn-info back-to-top-btn">
+        <i class="fa-solid fa-angles-up"></i>
+    </button>
+    {{-- end of button back to top --}}
 
     {{-- start of terms and conditions introduction --}}
     <div class="container-fluid">
@@ -286,23 +289,12 @@
 {{-- bootstrap javascript cdn --}}
 <script src="/external_js_file/bootstrap.min.js"></script>
 
+{{-- link with other js file --}}
+<script src="/User_Page/terms_and_condition/terms_and_condition.js"></script>
+
 <script>
     AOS.init({
         disable: 'mobile'
-    });
-
-    $(document).ready(function() {
-        // Get the current path of the URL
-        var currentPath = window.location.pathname;
-
-        // Add "active" class to the corresponding menu item
-        $('.navbar-nav a[href="' + currentPath + '"]').addClass('active');
-
-        // Handle click event to set "active" class
-        $('.navbar-nav a').on('click', function() {
-            $('.navbar-nav a').removeClass('active');
-            $(this).addClass('active');
-        });
     });
 </script>
 
