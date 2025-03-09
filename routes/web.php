@@ -34,6 +34,9 @@ Route::get('/hotel-room', [User_Controller::class, 'hotel_room'])->name('hotel-r
 Route::get('hotel-room/fetch_room_data', [User_Controller::class, 'fetch_room_data']);
 Route::post('/hotel-room-selection', [User_Controller::class, 'hotel_room_selection'])->name('hotel-room-selection');
 
+// hotel hall functions
+Route::get('/hotel-hall', [User_Controller::class, 'hotel_hall'])->name("hotel-hall");
+
 // hotel room bookings functions
 Route::get('/room-booking/{room_type_name}', [User_Controller::class, 'room_booking'])->name('room-booking');
 Route::post('/booking-registration/{room_type_name}', [User_Controller::class, 'booking_registration'])->name('booking-registration');
@@ -44,6 +47,8 @@ Route::get('/booking-confirmation', [User_Controller::class, 'booking_confirmati
 Route::get('/admin-dashboard', [Admin_Controller::class, 'dashboard'])->name('admin-dashboard');
 
 // Route for adding the new room type
-Route::get('/add-room', [Admin_Controller::class, 'add_room'])->name('add-room');
-Route::get('/add-room/fetch_room_data', [Admin_Controller::class, 'fetch_room_data']);
-Route::get("/add-room/{roomName}", [Admin_Controller::class, 'getHotelData'])->name('getHotelData');
+Route::get('/room-setting', [Admin_Controller::class, 'room_setting'])->name('room-setting');
+Route::get('/room-setting/fetch_room_data', [Admin_Controller::class, 'fetch_room_data']);
+Route::get("/room-setting/{roomName}", [Admin_Controller::class, 'getHotelData'])->name('getHotelData');
+Route::post('/add-new-facilities', [Admin_Controller::class, 'add_newFacilities'])->name('addNewFacilities');
+Route::post('/update-room-data', [Admin_Controller::class, 'update_roomData'])->name('update-room-data');

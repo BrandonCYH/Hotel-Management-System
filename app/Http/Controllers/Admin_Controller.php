@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\hotel_event;
+use App\Models\facilities;
+use App\Models\room_facilities;
+use App\Models\room_type;
 use DB;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,7 @@ class Admin_Controller extends Controller
         return view('Admin_Page.dashboard');
     }
 
-    public function add_room()
+    public function room_setting()
     {
         $room_data = DB::table('room_type')
             ->orderBy('room_price')
@@ -25,15 +27,21 @@ class Admin_Controller extends Controller
             ->orderBy('room_type.room_price')
             ->get();
 
-        $room_facilities = DB::table("facilities")
+        $room_facilities = room_facilities::select('*')
+            ->join('room_type', 'room_type.room_type_id', '=', 'room_facilities.room_type_id')
+            ->join('facilities', 'facilities.facility_id', '=', 'room_facilities.facility_id')
+            ->get();
+
+        $list_room_facilities = DB::table("facilities")
             ->get();
 
         return view(
-            'Admin_Page.add_room',
+            'Admin_Page.room_setting',
             [
                 'room_data' => $room_data,
                 'room_info' => $room_info,
                 'room_facilities' => $room_facilities,
+                'list_room_facilities' => $list_room_facilities,
             ]
         );
     }
@@ -51,7 +59,12 @@ class Admin_Controller extends Controller
                 ->orderBy('room_type.room_price')
                 ->get();
 
-            return response()->json(['room_data' => $room_data, 'room_info' => $room_info]);
+            $room_facilities = room_facilities::select('*')
+                ->join('room_type', 'room_type.room_type_id', '=', 'room_facilities.room_type_id')
+                ->join('facilities', 'facilities.facility_id', '=', 'room_facilities.facility_id')
+                ->get();
+
+            return response()->json(['room_data' => $room_data, 'room_info' => $room_info, 'room_facilities' => $room_facilities]);
         }
     }
 
@@ -81,54 +94,31 @@ class Admin_Controller extends Controller
         }
     }
 
-    public function hotel_room_selection(Request $request)
+    public function add_newFacilities(Request $request)
     {
-        if ($request->ajax()) {
-            $facilities = $request->facilities;
-            $guest = $request->room_guest;
-            $user_priceRange_before = $request->price_min;
-            $user_priceRange_after = $request->price_max;
+        $facility_id = $request->facility_id;
+        $facility_name = $request->facility_name;
 
-            $number_guest = (int) $guest;
+        facilities::create([
+            "facility_id" => $facility_id,
+            'facility_name' => $facility_name,
+        ]);
 
-            $replace_priceMin = str_replace("$", "", $user_priceRange_before);
-            $replace_priceMax = str_replace("$", "", $user_priceRange_after);
+        return redirect()->route('room-setting')->with("success_newFacilities", 'New Facilities Added Successfully');
+    }
 
-            $actual_priceMin = doubleval($replace_priceMin);
-            $actual_priceMax = doubleval($replace_priceMax);
+    public function update_roomData(Request $request)
+    {
+        $room_name = $request->room_name;
+        $room_price = $request->room_price;
+        $room_capacity = $request->room_capacity;
+        $room_description = $request->room_description;
+        $room_facility = $request->facilities;
 
-            $room_info = DB::table('rooms')
-                ->join('room_type', 'room_type.room_type_id', '=', 'rooms.room_type_id')
-                ->select('room_type.room_type_name', 'rooms.availability_status')
-                ->orderBy('room_type.room_price')
-                ->get();
+        // $new_roomData = room_type::where("room_type", $room_name);
 
-            $room_data = DB::table('room_facilities')
-                ->join('room_type', 'room_type.room_type_id', '=', 'room_facilities.room_type_id')
-                ->join('facilities', 'facilities.facility_id', '=', 'room_facilities.facility_id')
+        // $new_roomData->sync($room_name, $room_price, $room_capacity, $room_description, $room_capacity);
 
-                ->when($actual_priceMin && $actual_priceMax, function ($query) use ($actual_priceMin, $actual_priceMax) {
-                    return $query->whereBetween('room_type.room_price', [$actual_priceMin, $actual_priceMax]);
-                })
-                ->when($number_guest, function ($query, $number_guest) {
-                    return $query->where('room_type.room_guest', '=', $number_guest);
-                })
-                ->when($facilities, function ($query, $facilities) {
-                    return $query->whereIn('facilities.facility_name', $facilities);
-                })
-
-                ->orderBy('room_type.room_price')
-                ->groupBy('room_facilities.room_type_id')
-                ->paginate(4);
-
-            $pagination = '';
-            foreach ($room_data->links()->elements[0] as $page => $url) {
-                $pagination .= '<a href="' . $url . '" class="page-link ';
-                $pagination .= $page == $room_data->currentPage() ? 'active' : '';
-                $pagination .= ' pagination-link" data-page="' . $page . '">' . $page . '</a>';
-            }
-
-            return response()->json(['room_data' => $room_data, 'pagination' => $pagination, 'room_info' => $room_info]);
-        }
+        return redirect()->route('room-setting')->with("success_updateRoom", "Room Updated Successfully");
     }
 }

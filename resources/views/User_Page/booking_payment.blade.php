@@ -125,7 +125,7 @@
                                                     {{$guest_serviceInfo->quantity}}</h5>
                                             </div>
                                             <div class="col-3">
-                                                <h5 id="service_price">{{$guest_serviceInfo->price}}</h5>
+                                                <h5 id="service_price">{{$guest_serviceInfo->total_price}}</h5>
                                             </div>
                                             @endforeach
                                         </div>

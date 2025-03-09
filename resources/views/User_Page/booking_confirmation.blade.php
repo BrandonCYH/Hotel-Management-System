@@ -5,35 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Confirmation</title>
+
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/external_css_file/bootstrap.min.css">
+
     <!-- Bootstrap Icons (Optional) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"
-        rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css">
 
-        .confirmation-card {
-            max-width: 600px;
-            margin: 50px auto;
-        }
-
-        .confirmation-icon {
-            font-size: 80px;
-            color: #28a745;
-        }
-
-        .summary-card {
-            margin-top: 20px;
-        }
-
-        .card-header {
-            background-color: #28a745;
-            color: white;
-        }
-    </style>
+    {{-- link with other css file --}}
+    <link rel="stylesheet" href="/User_Page/booking_confirmation/booking_confirmation.css">
 </head>
 
 <body>
@@ -56,41 +37,44 @@
                     <h5 class="mb-0">Booking Details</h5>
                 </div>
                 <div class="card-body">
+                    @foreach ($guest_bookingInfo as $booking_info)
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <strong>Booking ID:</strong> <span>SDK12345</span>
+                            <strong>Booking ID:</strong> <span>{{$booking_info->booking_id}}</span>
                         </li>
                         <li class="list-group-item">
-                            <strong>Guest Name:</strong> <span>John Doe</span>
+                            <strong>Guest Name:</strong> <span>{{$booking_info->guest_name}}</span>
                         </li>
                         <li class="list-group-item">
-                            <strong>Room Type:</strong> <span>Deluxe King Room</span>
+                            <strong>Room Type:</strong> <span>{{$booking_info->room_type_name}}</span>
                         </li>
                         <li class="list-group-item">
-                            <strong>Check-in Date:</strong> <span>September 30, 2024</span>
+                            <strong>Room Number:</strong> <span>{{$booking_info->room_number}}</span>
                         </li>
                         <li class="list-group-item">
-                            <strong>Check-out Date:</strong> <span>October 3, 2024</span>
+                            <strong>Check-in Date:</strong> <span>{{$booking_info->check_in_date}}</span>
                         </li>
                         <li class="list-group-item">
-                            <strong>Total Nights:</strong> <span>3</span>
+                            <strong>Check-out Date:</strong> <span>{{$booking_info->check_out_date}}</span>
                         </li>
                         <li class="list-group-item">
-                            <strong>Total Price:</strong> <span>NRP 10,500</span>
+                            <strong>Total Price:</strong> <span>${{$booking_info->room_price}}</span>
                         </li>
                         <li class="list-group-item">
-                            <strong>Payment Status:</strong> <span class="badge bg-success">Paid</span>
+                            <strong>Payment Status:</strong> <span
+                                class="badge bg-success">{{$booking_info->booking_status}}</span>
                         </li>
                     </ul>
+                    @endforeach
                 </div>
             </div>
 
             <!-- Hotel Information -->
             <div class="card shadow-sm mt-3">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Hotel ABC</h5>
-                    <p class="card-text">123 Street, Kathmandu, Nepal</p>
-                    <p class="card-text">Phone: +977-123456789</p>
+                    <h5 class="card-title">Ocean Heaven Hotel</h5>
+                    <p class="card-text">Austin, Texas</p>
+                    <p class="card-text">Phone: + 01 234 567 88</p>
                     <a href="#" class="btn btn-outline-secondary"><i class="bi bi-telephone"></i> Contact
                         Hotel</a>
                 </div>
@@ -99,7 +83,7 @@
     </div>
 
     <!-- Bootstrap JS (Optional) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/external_js_file/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

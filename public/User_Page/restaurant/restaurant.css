@@ -135,7 +135,7 @@
 }
 
 #hall_reservation {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../../images/wedding_hall.jpg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)), url('../../images/Wedding Hall.jpg');
     background-size: cover;
     background-position: center;
 }

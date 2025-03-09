@@ -97,6 +97,7 @@ function fetch_room_data(page) {
                 if (!Array.isArray(data.room_data)) {
                     data.room_data = [data.room_data];
                     data.room_info = [data.room_info];
+                    data.room_facilities = [data.room_facilities];
                 }
 
                 // Initialize an empty string to accumulate HTML content
@@ -149,18 +150,24 @@ function fetch_room_data(page) {
                             htmlContent += '<div class="col-lg-5 col-md-5">';
                             htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-user mt-1" style="color: black; font-size: 17px;"></i> Guest: ' + room_d.data[i].room_guest + '</h5>';
                             htmlContent += '</div>';
-                            htmlContent += '<div class="col-lg-7 col-md-7">';
-                            htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-circle-up mt-1" style="color: orange; font-size: 17px;"></i> Upgrade: <span class="text-success fw-bold">Available</span></h5>';
-                            htmlContent += '</div>';
-                            htmlContent += '<div class="col-lg-5 col-md-5">';
-                            htmlContent += '<h5 class="text-success" style="font-size: 15px;"><i class="fa-solid fa-check mt-1" style="color: green; font-size: 17px;"></i> Refundable </h5>';
-                            htmlContent += '</div>';
-                            htmlContent += '<hr>';
+
                             htmlContent += '<div class="col-lg-12 col-md-12">';
                             htmlContent += '<h5 style="font-size: 15px;">';
                             htmlContent += '<i class="fa-solid fa-money-check-dollar mt-1" style="color: green; font-size: 17px;"></i> Payment : ' + room_d.data[i].deposit + '% deposit required';
                             htmlContent += '</h5>';
                             htmlContent += '</div>';
+                            htmlContent += '<hr>';
+
+                            data.room_facilities.forEach(function (room_f) {
+                                for (let f = 0; f < room_f.length; f++) {
+                                    if (room_d.data[i].room_type_name == room_f[f].room_type_name) {
+                                        htmlContent += '<div class="col-lg-6 col-md-6">';
+                                        htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-check-square mt-1" style="color: rgb(81, 81, 202);; font-size: 17px;"></i> ' + room_f[f].facility_name + '</h5>';
+                                        htmlContent += '</div>';
+                                    }
+                                }
+                            });
+
                             htmlContent += '</div>';
                             htmlContent += '</div>';
                             htmlContent += '<div class="col-lg-4 col-md-4">';
@@ -241,18 +248,25 @@ function fetch_room_data(page) {
                             htmlContent += '<div class="col-5">';
                             htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-user mt-1" style="color: black; font-size: 17px;"></i> Guest: ' + room_d.data[i].room_guest + '</h5>';
                             htmlContent += '</div>';
-                            htmlContent += '<div class="col-7">';
-                            htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-circle-up mt-1" style="color: orange; font-size: 17px;"></i> Upgrade: <span class="text-success"><b>Available</b></span></h5>';
-                            htmlContent += '</div>';
-                            htmlContent += '<div class="col-5">';
-                            htmlContent += '<h5 class="text-success" style="font-size: 15px;"><i class="fa-solid fa-check mt-1" style="color: green; font-size: 17px;"></i> Refundable </h5>';
-                            htmlContent += '</div>';
-                            htmlContent += '<hr>';
                             htmlContent += '<div class="col-12">';
                             htmlContent += '<h5 style="font-size: 15px;">';
                             htmlContent += '<i class="fa-solid fa-money-check-dollar mt-1" style="color: green; font-size: 17px;"></i> Payment : ' + room_d.data[i].deposit + '% deposit required';
                             htmlContent += '</h5>';
                             htmlContent += '</div>';
+                            htmlContent += '<hr>';
+                            htmlContent += '<h5 style="font-size: 15px;" class="text-primary fw-bold">Facility Include: </h5>';
+
+                            data.room_facilities.forEach(function (room_f) {
+                                for (let f = 0; f < room_f.length; f++) {
+                                    if (room_d.data[i].room_type_name == room_f[f].room_type_name) {
+                                        htmlContent += '<div class="col-lg-7 col-md-6">';
+                                        htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-check-square mt-1" style="color: rgb(81, 81, 202);; font-size: 17px;"></i> ' + room_f[f].facility_name + '</h5>';
+                                        htmlContent += '</div>';
+                                    }
+                                }
+                            });
+
+                            htmlContent += '<hr>';
                             htmlContent += '<h5 class="text-success" style="font-size: 15px;"><i class="fa-solid fa-money-bill-1 mt-1" style="color: green; font-size: 17px;"></i><b> Price : $ ' + room_d.data[i].room_price + '</b> / <small class="text-dark">night</small></h5>';
                             htmlContent += '<div class="col-12">';
                             htmlContent += '<div class="d-flex align-items-center">';
@@ -318,11 +332,10 @@ $('#btn_filterRoom').on("click", function () {
             "room_guest": room_guest,
         },
         success: function (response) {
-            console.log(response);
-
             if (!Array.isArray(response.room_data)) {
                 response.room_data = [response.room_data];
                 response.room_info = [response.room_info];
+                response.room_facilities = [response.room_facilities];
             }
 
             var htmlContent = '';
@@ -375,18 +388,23 @@ $('#btn_filterRoom').on("click", function () {
                         htmlContent += '<div class="col-lg-5 col-md-5">';
                         htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-user mt-1" style="color: black; font-size: 17px;"></i> Guest: ' + room_d.data[i].room_guest + '</h5>';
                         htmlContent += '</div>';
-                        htmlContent += '<div class="col-lg-7 col-md-7">';
-                        htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-tag mt-1" style="color: orange; font-size: 17px;"></i> Upgrade: <span class="text-success fw-bold">Available</span></h5>';
-                        htmlContent += '</div>';
-                        htmlContent += '<div class="col-lg-5 col-md-5">';
-                        htmlContent += '<h5 class="text-success" style="font-size: 15px;"><i class="fa-solid fa-check mt-1" style="color: green; font-size: 17px;"></i> Refundable </h5>';
-                        htmlContent += '</div>';
-                        htmlContent += '<hr>';
                         htmlContent += '<div class="col-lg-12 col-md-12">';
                         htmlContent += '<h5 style="font-size: 15px;">';
                         htmlContent += '<i class="fa-solid fa-money-check-dollar mt-1" style="color: green; font-size: 17px;"></i> Payment : ' + room_d.data[i].deposit + '% deposit required';
                         htmlContent += '</h5>';
                         htmlContent += '</div>';
+                        htmlContent += '<hr>';
+
+                        response.room_facilities.forEach(function (room_f) {
+                            for (let f = 0; f < room_f.length; f++) {
+                                if (room_d.data[i].room_type_name == room_f[f].room_type_name) {
+                                    htmlContent += '<div class="col-lg-6 col-md-6">';
+                                    htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-check-square mt-1" style="color: rgb(81, 81, 202);; font-size: 17px;"></i> ' + room_f[f].facility_name + '</h5>';
+                                    htmlContent += '</div>';
+                                }
+                            }
+                        });
+
                         htmlContent += '</div>';
                         htmlContent += '</div>';
                         htmlContent += '<div class="col-lg-4 col-md-4">';
@@ -467,18 +485,25 @@ $('#btn_filterRoom').on("click", function () {
                         htmlContent += '<div class="col-5">';
                         htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-user mt-1" style="color: black; font-size: 17px;"></i> Guest: ' + room_d.data[i].room_guest + '</h5>';
                         htmlContent += '</div>';
-                        htmlContent += '<div class="col-7">';
-                        htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-tag mt-1" style="color: orange; font-size: 17px;"></i> Upgrade: <span class="text-success fw-bold">Available</span></h5>';
-                        htmlContent += '</div>';
-                        htmlContent += '<div class="col-5">';
-                        htmlContent += '<h5 class="text-success" style="font-size: 15px;"><i class="fa-solid fa-check mt-1" style="color: green; font-size: 17px;"></i> Refundable </h5>';
-                        htmlContent += '</div>';
-                        htmlContent += '<hr>';
                         htmlContent += '<div class="col-12">';
                         htmlContent += '<h5 style="font-size: 15px;">';
                         htmlContent += '<i class="fa-solid fa-money-check-dollar mt-1" style="color: green; font-size: 17px;"></i> Payment : ' + room_d.data[i].deposit + '% deposit required';
                         htmlContent += '</h5>';
                         htmlContent += '</div>';
+                        htmlContent += '<hr>';
+                        htmlContent += '<h5 style="font-size: 15px;" class="text-primary fw-bold">Facility Include: </h5>';
+
+                        response.room_facilities.forEach(function (room_f) {
+                            for (let f = 0; f < room_f.length; f++) {
+                                if (room_d.data[i].room_type_name == room_f[f].room_type_name) {
+                                    htmlContent += '<div class="col-lg-7 col-md-6">';
+                                    htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-check-square mt-1" style="color: rgb(81, 81, 202);; font-size: 17px;"></i> ' + room_f[f].facility_name + '</h5>';
+                                    htmlContent += '</div>';
+                                }
+                            }
+                        });
+
+                        htmlContent += '<hr>';
                         htmlContent += '<h5 class="text-success" style="font-size: 15px;"><i class="fa-solid fa-money-bill-1 mt-1" style="color: green; font-size: 17px;"></i> <b> Price : $ ' + room_d.data[i].room_price + '</b> / <small class="text-dark">night</small></h5>';
                         htmlContent += '<div class="col-12">';
                         htmlContent += '<div class="d-flex align-items-center">';

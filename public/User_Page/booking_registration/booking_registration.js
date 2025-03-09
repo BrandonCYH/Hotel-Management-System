@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (quantity > 0) {
                     // Append the service data to the HTML output
-                    service_name.innerHTML += `<h5 style="font-size: 1rem;"><i class="fa-solid fa-circle-check" style="color: green;"></i> ${serviceName} <span class="text-success"> ($${price.toFixed(2)}) X ${quantity}</span> each:</h5>`;
-                    service_price.innerHTML += `<h5 style="font-size: 1rem;" class="text-success mt-2"> $${(price * quantity).toFixed(2)}</h5>`;
+                    service_name.innerHTML += `<h5 style="font-size: clamp(0.85rem, 1.1vw, 1.2rem)"><i class="fa-solid fa-circle-check" style="color: green;"></i> ${serviceName} <span class="text-success"> ($${price.toFixed(2)}) X ${quantity}</span></h5>`;
+                    service_price.innerHTML += `<h5 style="font-size: clamp(0.9rem, 1.2vw, 1.4rem)" class="text-success mt-2"> $${(price * quantity).toFixed(2)}</h5>`;
 
                     // Add the selected service data to the array
                     selectedServicesData.push({
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle increment buttons
     document.querySelectorAll('.button-increment').forEach(button => {
         button.addEventListener('click', function () {
-            const parent = this.closest('.col-4').previousElementSibling;  // Get the sibling with the service name and price
+            const parent = this.closest('.col-md-4').previousElementSibling;  // Get the sibling with the service name and price
             const serviceName = parent.querySelector('h5').dataset.serviceName;
             const price = parseFloat(parent.querySelector('h5').dataset.servicePrice);
             const input = this.parentElement.querySelector('.number-input');
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Handle decrement buttons
     document.querySelectorAll('.button-decrement').forEach(button => {
         button.addEventListener('click', function () {
-            const parent = this.closest('.col-4').previousElementSibling;  // Get the sibling with the service name and price
+            const parent = this.closest('.col-md-4').previousElementSibling;  // Get the sibling with the service name and price
             const serviceName = parent.querySelector('h5').dataset.serviceName;
             const price = parseFloat(parent.querySelector('h5').dataset.servicePrice);
             const input = this.parentElement.querySelector('.number-input');

@@ -51,7 +51,6 @@
                         <div class="dropdown-menu" aria-labelledby="features_menu">
                             <a class="dropdown-item" href="{{ route('about-us') }}">About
                                 Us</a>
-                            <a class="dropdown-item" href="#">Gallery</a>
                             <a class="dropdown-item" href="{{ route('terms-and-conditions') }}">Terms And
                                 Conditions</a>
                         </div>
@@ -75,7 +74,9 @@
                         <a class="nav-link mx-2" style="" href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                        <a href="{{route('hotel-room')}}" type="button"
+                            class="btn btn-primary rounded-pill text-light">Book
+                            Room</a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -599,7 +600,7 @@
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
                                                 dolore
                                                 magna aliqua."</p>
-                                            <p class="testimonial-name">John Doe</p>
+                                            <p class="testimonial-name">Shania Yan</p>
                                             <p>Company XYZ</p>
                                         </div>
                                     </div>
@@ -613,7 +614,7 @@
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
                                                 dolore
                                                 magna aliqua."</p>
-                                            <p class="testimonial-name">John Doe</p>
+                                            <p class="testimonial-name">Shania Yan</p>
                                             <p>Company XYZ</p>
                                         </div>
                                     </div>
@@ -627,7 +628,7 @@
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
                                                 dolore
                                                 magna aliqua."</p>
-                                            <p class="testimonial-name">John Doe</p>
+                                            <p class="testimonial-name">Shania Yan</p>
                                             <p>Company XYZ</p>
                                         </div>
                                     </div>
@@ -648,7 +649,7 @@
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
                                                 dolore
                                                 magna aliqua."</p>
-                                            <p class="testimonial-name">John Doe</p>
+                                            <p class="testimonial-name">Shania Yan</p>
                                             <p>Company XYZ</p>
                                         </div>
                                     </div>
@@ -662,7 +663,7 @@
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
                                                 dolore
                                                 magna aliqua."</p>
-                                            <p class="testimonial-name">John Doe</p>
+                                            <p class="testimonial-name">Shania Yan</p>
                                             <p>Company XYZ</p>
                                         </div>
                                     </div>
@@ -676,7 +677,7 @@
                                                 adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
                                                 dolore
                                                 magna aliqua."</p>
-                                            <p class="testimonial-name">John Doe</p>
+                                            <p class="testimonial-name">Shania Yan</p>
                                             <p>Company XYZ</p>
                                         </div>
                                     </div>

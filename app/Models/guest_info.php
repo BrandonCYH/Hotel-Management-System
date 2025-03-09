@@ -9,6 +9,7 @@ class guest_info extends Model
 {
     use HasFactory;
 
+    protected $table ="guest_info";
     protected $fillable = [
         'guest_id',
         'guest_name',

@@ -57,7 +57,6 @@
                         <div class="dropdown-menu" aria-labelledby="features_menu">
                             <a class="dropdown-item" href="{{ route('about-us') }}">About
                                 Us</a>
-                            <a class="dropdown-item" href="#">Gallery</a>
                             <a class="dropdown-item" href="{{ route('terms-and-conditions') }}">Terms And
                                 Conditions</a>
                         </div>
@@ -72,7 +71,6 @@
                                 Room</a>
                             <a class="dropdown-item" href="#">Our Hall</a>
                         </div>
-
                     </li>
                     <li class="nav-item">
                         <a class="nav-link mx-2" href="{{ route('hotel-restaurant') }}">Dining</a>
@@ -81,7 +79,9 @@
                         <a class="nav-link mx-2" href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                        <a href="{{route('hotel-room')}}" type="button"
+                            class="btn btn-primary rounded-pill text-light">Book
+                            Room</a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -156,7 +156,18 @@
                                 </div>
                                 <div class="col-12 col-md-3 mb-3 mb-md-0">
                                     <div class="form-group" style="position: relative;">
-                                        <input type="number" class="form-control mt-1" placeholder="Guest">
+                                        <select class="form-select form-control" aria-label="Default select example">
+                                            <option selected>Room Type</option>
+                                            <option value="Couple Room">Couple Room</option>
+                                            <option value="Deluxe Room">Deluxe Room</option>
+                                            <option value="Executive Room">Executive Room</option>
+                                            <option value="Family Room">Family Room</option>
+                                            <option value="King Room">King Room</option>
+                                            <option value="Residential Room">Residential Room</option>
+                                            <option value="Single Room">Single Room</option>
+                                            <option value="Standard Room">Standard Room</option>
+                                            <option value="VIP Room">VIP Room</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
@@ -184,7 +195,7 @@
                     <div class="container-xl mt-3">
                         <div class="row" style="position: relative; z-index: -1;" data-aos="zoom-out"
                             data-aos-duration="1000" data-aos-delay="1000">
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-4 col-md-6">
                                 <div class="card shadow bg-white rounded">
                                     <img class="card-img-top" src="../images/gym_centre.jpg" alt="Gym Workout Image">
                                     <div class="card-body">
@@ -195,7 +206,7 @@
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-4 col-md-6">
                                 <div class="card shadow bg-white rounded" style="position: relative; z-index; -10;">
                                     <img class="card-img-top" src="../images/pet_accomodation.jpg"
                                         alt="Pet Accomodation Image">
@@ -207,7 +218,7 @@
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-4 col-md-6">
                                 <div class="card shadow bg-white rounded">
                                     <img class="card-img-top" src="../images/spa.jpg" alt="Card image cap">
                                     <div class="card-body">
@@ -218,7 +229,7 @@
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-4 col-md-6">
                                 <div class="card shadow bg-white rounded">
                                     <img class="card-img-top" src="../images/entertainment.jpg" alt="Card image cap">
                                     <div class="card-body">
@@ -229,7 +240,7 @@
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-4 col-md-6">
                                 <div class="card shadow bg-white rounded">
                                     <img class="card-img-top" src="../images/parking_lot.jpg" alt="Card image cap">
                                     <div class="card-body">
@@ -240,7 +251,7 @@
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-4 col-md-6">
                                 <div class="card shadow bg-white rounded">
                                     <img class="card-img-top" src="../images/transportation.jpg" alt="Card image cap">
                                     <div class="card-body">
@@ -280,7 +291,7 @@
                                     <i class="fa fa-arrow-right"></i>
                                 </a>
                             </div>
-                            <div class="col-12">
+                            <div class="col-lg-12">
                                 <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
                                         {{-- start of the room introduction --}}
@@ -289,7 +300,7 @@
                                             <div class="row">
                                                 @foreach ($room_chunk as $room_d)
                                                 <div class="col-md-4">
-                                                    <div class="card bg-light border border-dark">
+                                                    <div class="card shadow bg-white rounded">
                                                         <img class="card-img-top"
                                                             alt="{{ $room_d->room_type_name }} . image"
                                                             src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}">
@@ -372,62 +383,37 @@
                                 <div id="hall_intro" class="carousel slide" data-bs-ride="carousel">
                                     <div class="carousel-inner">
                                         {{-- start of the first row of the room introduction (Banquet Hall) --}}
-                                        <div class="carousel-item active">
+                                        @foreach ($hall_data as $index => $hallData)
+                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                             <div class="card bg-light border border-dark">
                                                 <div class="card-body">
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-5">
-                                                            <img class="card-img-top" alt="banquet_hall"
-                                                                src="../images/banquet_hall.jpg">
+                                                            <img class="card-img-top"
+                                                                alt="{{ $hallData->hall_name }} . image"
+                                                                src="{{ asset('../images/' . $hallData->hall_name . '.jpg') }}">
                                                         </div>
                                                         <div class="col-lg-6 col-md-7">
-                                                            <h4 class="card-title mt-lg-0 mt-md-0 mt-2">Banquet Hall
-                                                            </h4>
-                                                            <h5 style="font-size: 13px;">Our spacious and beautiful
-                                                                venue can host everything from small gatherings to large
-                                                                celebrations. With modern facilities and a helpful team,
-                                                                we make sure your event runs smoothly.
+                                                            <h4 class="card-title mt-lg-0 mt-md-0 mt-2">
+                                                                {{$hallData->hall_name}}</h4>
+                                                            <h5 style="font-size: 13px;">{{$hallData->hall_description}}
                                                             </h5>
                                                             <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$499.99</b></span> /
+                                                                    class="text-success"><b>{{$hallData->hall_price}}</b></span>
+                                                                /
                                                                 <small class="text-secondary">night</small>
                                                             </h5>
                                                             <hr>
                                                             <div class="row">
+                                                                @foreach ($hall_facilities->where('hall_id',
+                                                                $hallData->hall_id) as $hallFacilities)
                                                                 <div class="col-6 col-lg-4 col-md-4">
                                                                     <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-square-parking"
-                                                                            style="color: #dd4b39;"></i>
-                                                                        Free Parking</h5>
+                                                                            class="fa-solid fa-check-square"
+                                                                            style="color: rgba(11, 125, 76, 0.733);"></i>
+                                                                        {{$hallFacilities->facility_name}}</h5>
                                                                 </div>
-                                                                <div class="col-6 col-lg-3 col-md-3">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-chair"
-                                                                            style="color: chocolate;"></i>&nbsp;200
-                                                                        Seat
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-5 col-md-5">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-volume-high"></i> Audio
-                                                                        Equipment</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-4 col-md-4">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-lightbulb"
-                                                                            style="color: orange;"></i>&nbsp;Stage
-                                                                        Lighting</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-3 col-md-3">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-wifi"
-                                                                            style="color: blue;"></i> Free WIFI</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-5 col-md-5">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-gear"></i> Technical
-                                                                        Support</h5>
-                                                                </div>
+                                                                @endforeach
                                                             </div>
                                                             <button type="button" class="btn btn-info w-100 mt-2">View
                                                                 Details</button>
@@ -436,281 +422,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                         {{-- end of first row of the room introduction (Banquet Hall) --}}
-
-                                        {{-- start of the second hall introduction (Birthday Hall) --}}
-                                        <div class="carousel-item">
-                                            <div class="card bg-light border border-dark">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-5">
-                                                            <img class="card-img-top" alt="Birthday Hall Image"
-                                                                src="../images/birthday_hall.jpg">
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-7">
-                                                            <h4 class="card-title mt-lg-0 mt-md-0 mt-2">Birthday Hall
-                                                            </h4>
-                                                            <h5 style="font-size: 13px;">The perfect venue for
-                                                                unforgettable birthday parties. Whether
-                                                                you're planning a small gathering or a big bash, we have
-                                                                everything you need to make your birthday celebration
-                                                                extra special.
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$250.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-6 col-lg-5 col-md-5">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-cake-candles"
-                                                                            style="color: pink;"></i>&nbsp;&nbsp;Free
-                                                                        Birthday Cake
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-3 col-md-3">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-chair"
-                                                                            style="color: chocolate;"></i> 100 Seat
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-4 col-md-4">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-gifts"
-                                                                            style="color: #dd4b39;"></i>
-                                                                        Mysterious Gift</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-5 col-md-5">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-camera"></i> Free
-                                                                        Photography</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-3 col-md-3">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-wifi"
-                                                                            style="color: blue;"></i> Free WIFI</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-4 col-md-4">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-music"
-                                                                            style="color: orange;"></i>&nbsp;Birthday
-                                                                        Music</h5>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button" class="btn btn-info w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- end of second hall introduction (Birthday Hall) --}}
-
-                                        {{-- start of third hall introduction (Graduation Hall) --}}
-                                        <div class="carousel-item">
-                                            <div class="card bg-light border border-dark">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-5">
-                                                            <img class="card-img-top" alt="graduation_hall"
-                                                                src="../images/graduation_hall.jpg">
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-7">
-                                                            <h4 class="card-title mt-lg-0 mt-md-0 mt-2">Graduation Hall
-                                                            </h4>
-                                                            <h5 style="font-size: 13px;">The
-                                                                perfect venue for your graduation ceremony or party.
-                                                                Our hall offers a
-                                                                comfortable space to honor this important milestone.
-                                                                We provide everything you need to make your
-                                                                event memorable.
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$400.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-6 col-lg-5 col-md-5">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-graduation-cap"
-                                                                            style="color: purple;"></i>
-                                                                        Graduation Gap</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-3 col-md-3">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-chair"
-                                                                            style="color: chocolate;"></i> 300 Seat
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-4 col-md-4">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-lightbulb"
-                                                                            style="color: orange;"></i>&nbsp;Stage
-                                                                        Lighting</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-5 col-md-5">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-camera"
-                                                                            style="color: #dd4b39;"></i>
-                                                                        Free Photography</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-3 col-md-3">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-wifi"
-                                                                            style="color: blue;"></i> Free WIFI</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-4 col-md-4">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-person-booth"></i>
-                                                                        Dressing Room</h5>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button" class="btn btn-info w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- end of third hall introduction (Graduation Hall) --}}
-
-                                        {{-- start of fourth hall introduction --}}
-                                        <div class="carousel-item">
-                                            <div class="card bg-light border border-dark">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-5">
-                                                            <img class="card-img-top" alt="Private Hall Image"
-                                                                src="../images/private_hall.jpg">
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-7">
-                                                            <h4 class="card-title mt-lg-0 mt-md-0 mt-2">Private Hall
-                                                            </h4>
-                                                            <h5 style="font-size: 13px;">Our private hall offers a cozy
-                                                                and elegant space tailored to your needs. Whether you're
-                                                                hosting a small party, a family celebration, or a
-                                                                private meeting, we provide the ideal setting with
-                                                                personalized service.
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$300.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-6 col-lg-5 col-md-5">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-person"></i>&nbsp;&nbsp;Dedicated
-                                                                        Staff</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-4 col-md-3">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-chair"
-                                                                            style="color: chocolate;"></i> 100 Seat
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-4 col-md-4">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-shield"
-                                                                            style="color: #0082ca;"></i>
-                                                                        100% Secure</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-5 col-md-5">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-star"
-                                                                            style="color: orange;"></i>&nbsp;Exclusive
-                                                                        Use</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-3 col-md-3">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-wifi"
-                                                                            style="color: blue;"></i> Free WIFI</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-4 col-md-4">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-music"></i> Free Music
-                                                                    </h5>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button" class="btn btn-info w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- end of fourth hall introduction (Private Hall) --}}
-
-                                        {{-- start of fifth hall introduction (Wedding Hall) --}}
-                                        <div class="carousel-item">
-                                            <div class="card bg-light border border-dark">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-5">
-                                                            <img class="card-img-top" alt="Wedding Hall Image"
-                                                                src="../images/wedding_hall.jpg">
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-7">
-                                                            <h4 class="card-title mt-lg-0 mt-md-0 mt-2">Wedding Hall
-                                                            </h4>
-                                                            <h5 style="font-size: 13px;">Celebrate your love story at
-                                                                "The Truth Love Hall". Our elegant hall
-                                                                provides a beautiful setting for weddings of all sizes.
-                                                                With stunning decor, modern amenities, and a dedicated
-                                                                team.
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$520.99</b></span> /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-6 col-lg-5 col-md-5">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-volume-high"></i>&nbsp;Audio
-                                                                        Equipment</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-3 col-md-3">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-chair"
-                                                                            style="color: chocolate;"></i>&nbsp;
-                                                                        300 Seat
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-4 col-md-4">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-square-parking"
-                                                                            style="color: #dd4b39;"></i>
-                                                                        Free Parking
-                                                                </div>
-                                                                <div class="col-6 col-lg-5 col-md-5">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-lightbulb"
-                                                                            style="color: orange;"></i>&nbsp;Stage
-                                                                        Lighting</h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-3 col-md-3">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-wifi"
-                                                                            style="color: blue;"></i>&nbsp; Free WIFI
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="col-6 col-lg-4 col-md-4">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-cake-candles"></i>&nbsp;Free
-                                                                        Cake</h5>
-                                                                </div>
-                                                            </div>
-                                                            <button type="button" class="btn btn-info w-100 mt-2">View
-                                                                Details</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {{-- end of fifth hall introduction (Wedding Hall) --}}
                                     </div>
                                 </div>
                             </div>
@@ -736,7 +449,7 @@
                 <div class="col-lg-8 col-md-12">
                     <div class="container-xl mt-4">
                         <div class="row" data-aos="fade-up" data-aos-duration="1000">
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-4 col-md-6">
                                 <div class="card">
                                     <img src="../images/special_offer.jpg" class="card-img-top" alt="News Image">
                                     <div class="card-body">
@@ -753,7 +466,7 @@
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-4 col-md-6">
                                 <div class="card">
                                     <img src="../images/travel_tips.jpg" class="card-img-top" alt="News Image">
                                     <div class="card-body">
@@ -771,7 +484,7 @@
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-lg-4 col-md-6">
+                            <div class="col-12 col-lg-4 col-md-6">
                                 <div class="card">
                                     <img src="../images/charity_events.jpg" class="card-img-top" alt="News Image">
                                     <div class="card-body">

@@ -9,6 +9,7 @@ class guest_services extends Model
 {
     use HasFactory;
 
+    protected $table = "guest_services";
     protected $fillable = [
         'guest_id',
         'services_name',

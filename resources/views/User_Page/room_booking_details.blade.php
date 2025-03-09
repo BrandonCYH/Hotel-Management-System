@@ -57,7 +57,6 @@
                         <div class="dropdown-menu" aria-labelledby="features_menu">
                             <a class="dropdown-item" href="{{ route('about-us') }}">About
                                 Us</a>
-                            <a class="dropdown-item" style="font-size: 17px;" href="#">Gallery</a>
                             <a class="dropdown-item" style="font-size: 17px;"
                                 href="{{ route('terms-and-conditions') }}">Terms And Conditions</a>
                         </div>
@@ -83,7 +82,9 @@
                             href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                        <a href="{{route('hotel-room')}}" type="button"
+                            class="btn btn-primary rounded-pill text-light">Book
+                            Room</a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -208,11 +209,11 @@
                                             class="text-secondary">night</span></h3>
                                     <div class="d-flex justify-content-center mt-2">
                                         <button type="button" style="font-size: 0.85rem;"
-                                            class="btn btn-primary text-light w-100"
+                                            class="btn btn-primary text-light w-100" id="btn_checkAvailability"
                                             onclick="call_checkAvailability_Form()">Check
                                             Availability</button>
                                         <button type="button" style="font-size: 0.85rem;"
-                                            class="btn btn-secondary mx-2 w-100"
+                                            class="btn btn-secondary mx-2 w-100" id="btn_directBooking"
                                             onclick="call_directBooking_Form()">Direct
                                             Booking</button>
                                     </div>
@@ -221,21 +222,22 @@
                                         <div class="card-body p-3">
                                             <div class="form-group">
                                                 <label for="full_name">Full Name</label>
-                                                <input type="text" class="form-control mt-1">
+                                                <input type="text" class="form-control mt-1" name="guest_name" required>
                                             </div>
                                             <div class="form-group mt-2">
                                                 <label for="email">Email</label>
-                                                <input type="email" class="form-control mt-1">
+                                                <input type="email" class="form-control mt-1" name="guest_email"
+                                                    required>
                                             </div>
                                             <div class="form-group mt-2" style="position: relative;">
                                                 <label for="input_from">From</label>
                                                 <input type="text" class="form-control input_from mt-1"
-                                                    placeholder="Start Date" name="checkIn_date">
+                                                    placeholder="Start Date" name="checkIn_date" required>
                                             </div>
                                             <div class="form-group mt-2" style="position: relative;">
                                                 <label for="input_to">To</label>
                                                 <input type="text" class="form-control input_to mt-1"
-                                                    placeholder="End Date" name="checkOut_date">
+                                                    placeholder="End Date" name="checkOut_date" required>
                                                 <br>
                                             </div>
                                             <a href="{{ route('booking-registration', ['room_type_name' => $room_d->room_type_name]) }}"
@@ -253,12 +255,12 @@
                                                 <div class="form-group mt-2" style="position: relative;">
                                                     <label for="input_from">From</label>
                                                     <input type="text" class="form-control input_from mt-1"
-                                                        placeholder="Start Date" name="checkIn_date">
+                                                        placeholder="Start Date" name="checkIn_date" required>
                                                 </div>
                                                 <div class="form-group mt-2" style="position: relative;">
                                                     <label for="input_to">To</label>
                                                     <input type="text" class="form-control input_to mt-1"
-                                                        placeholder="End Date" name="checkOut_date">
+                                                        placeholder="End Date" name="checkOut_date" required>
                                                 </div>
                                                 <button type="submit" class="btn btn-success w-100 mt-3">Book
                                                     Room</button>

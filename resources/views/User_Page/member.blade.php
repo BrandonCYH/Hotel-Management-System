@@ -77,7 +77,6 @@
                         <div class="dropdown-menu" aria-labelledby="features_menu">
                             <a class="dropdown-item" href="{{ route('about-us') }}">About
                                 Us</a>
-                            <a class="dropdown-item" href="#">Gallery</a>
                             <a class="dropdown-item" href="{{ route('terms-and-conditions') }}">Terms And
                                 Conditions</a>
                         </div>
@@ -101,7 +100,9 @@
                         <a class="nav-link active mx-2" style="" href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                        <a href="{{route('hotel-room')}}" type="button"
+                            class="btn btn-primary rounded-pill text-light">Book
+                            Room</a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -389,22 +390,6 @@
 
 {{-- bootstrap javascript cdn --}}
 <script src="/external_js_file/bootstrap.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        // Get the current path of the URL
-        var currentPath = window.location.pathname;
-
-        // Add "active" class to the corresponding menu item
-        $('.navbar-nav a[href="' + currentPath + '"]').addClass('active');
-
-        // Handle click event to set "active" class
-        $('.navbar-nav a').on('click', function() {
-            $('.navbar-nav a').removeClass('active');
-            $(this).addClass('active');
-        });
-    });
-</script>
 
 <script>
     AOS.init({

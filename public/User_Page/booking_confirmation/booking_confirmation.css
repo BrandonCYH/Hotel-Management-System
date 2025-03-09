@@ -1,0 +1,22 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.confirmation-card {
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.confirmation-icon {
+    font-size: 80px;
+    color: #28a745;
+}
+
+.summary-card {
+    margin-top: 20px;
+}
+
+.card-header {
+    background-color: #28a745;
+    color: white;
+}

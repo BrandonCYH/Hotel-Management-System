@@ -68,8 +68,8 @@ const list_hall_description = [
     "Crafting timeless memories, our wedding reception service ensures every detail is perfect, from the grandest ballroom to the smallest detail. Entrust us with your dream day, and let love's journey begin in elegance and joy."
 ];
 
-const images = ['../images/birthday_hall.jpg', '../images/aniversary_parties.jpg',
-    '../images/graduation_hall.jpg', '../images/wedding_hall.jpg'
+const images = ['../images/Birthday Hall.jpg', '../images/aniversary_parties.jpg',
+    '../images/Graduation Hall.jpg', '../images/Wedding Hall.jpg'
 ]; // Replace with your image URLs
 
 let currentImageIndex = -1;

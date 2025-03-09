@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="/external_css_file/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/external_css_file/aos.css">
 
     <title>About Us</title>
 </head>
@@ -53,7 +53,6 @@
                             <a class="dropdown-item" style="font-size: 17px; color: #000080; font-weight: bold;"
                                 href="{{ route('about-us') }}">About
                                 Us</a>
-                            <a class="dropdown-item" style="font-size: 17px;" href="#">Gallery</a>
                             <a class="dropdown-item" style="font-size: 17px;"
                                 href="{{ route('terms-and-conditions') }}">Terms And Conditions</a>
                         </div>
@@ -79,7 +78,9 @@
                             href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                        <a href="{{route('hotel-room')}}" type="button"
+                            class="btn btn-primary rounded-pill text-light">Book
+                            Room</a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -105,7 +106,7 @@
                 <div class="col-md-7">
                     <div class="container-xl" data-aos="flip-up" data-aos-duration="1000" data-aos-delay="1000">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-12 col-md-4">
                                 <div class="card">
                                     <img class="card-img-top" src="../images/vision.jpg" alt="Card image cap">
                                     <div class="card-body">
@@ -115,7 +116,7 @@
                                     </div>
                                 </div><br>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-12 col-md-4">
                                 <div class="card">
                                     <img class="card-img-top" src="../images/mission.jpg" alt="Card image cap">
                                     <div class="card-body">
@@ -125,7 +126,7 @@
                                     </div>
                                 </div><br>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-12 col-md-4">
                                 <div class="card">
                                     <img class="card-img-top" src="../images/charity_partnerships.jpg"
                                         alt="Card image cap">

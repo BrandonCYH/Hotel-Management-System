@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('hall_name');
             $table->string('hall_description');
             $table->double("hall_price");
+            $table->integer('hall_seat');
             $table->string('availability_status');
             $table->timestamps();
         });

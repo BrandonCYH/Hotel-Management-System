@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\guest_info;
 use App\Models\guest_services;
+use App\Models\hall;
+use App\Models\hall_facilities;
 use App\Models\room_facilities;
 use App\Models\rooms;
 use App\Models\room_booking;
@@ -21,7 +23,22 @@ class User_Controller extends Controller
     {
         $room_data = room_type::orderBy('room_price')->get();
 
-        return view('index', ['room_data' => $room_data]);
+        $hall_data = hall::orderBy('hall_price')->get();
+
+        $hall_facilities = hall_facilities::select("*")
+            ->join('facilities', 'facilities.facility_id', '=', 'hall_facilities.facility_id')
+            ->join('hall', 'hall.hall_id', '=', 'hall_facilities.hall_id')
+            ->orderBy('hall.hall_price')
+            ->get();
+
+        return view(
+            'index',
+            [
+                'room_data' => $room_data,
+                'hall_data' => $hall_data,
+                'hall_facilities' => $hall_facilities,
+            ]
+        );
     }
 
     public function about_us()
@@ -43,11 +60,17 @@ class User_Controller extends Controller
             ->orderBy('room_type.room_price')
             ->get();
 
+        $room_facilities = room_facilities::select('*')
+            ->join('room_type', 'room_type.room_type_id', '=', 'room_facilities.room_type_id')
+            ->join('facilities', 'facilities.facility_id', '=', 'room_facilities.facility_id')
+            ->get();
+
         return view(
             'User_Page.rooms',
             [
                 'room_data' => $room_data,
                 'room_info' => $room_info,
+                'room_facilities' => $room_facilities,
             ]
         );
     }
@@ -62,10 +85,16 @@ class User_Controller extends Controller
                 ->orderBy('room_type.room_price')
                 ->get();
 
+            $room_facilities = room_facilities::select('*')
+                ->join('room_type', 'room_type.room_type_id', '=', 'room_facilities.room_type_id')
+                ->join('facilities', 'facilities.facility_id', '=', 'room_facilities.facility_id')
+                ->get();
+
             return response()->json(
                 [
                     'room_data' => $room_data,
                     'room_info' => $room_info,
+                    'room_facilities' => $room_facilities,
                 ]
             );
         }
@@ -101,11 +130,16 @@ class User_Controller extends Controller
                     return $query->where('room_type.room_guest', '=', $number_guest);
                 })
                 ->when($facilities, function ($query, $facilities) {
-                    return $query->whereIn('facilities.facility_name', $facilities);
+                    return $query->where('facilities.facility_name', '=', $facilities);
                 })
                 ->orderBy('room_type.room_price')
                 ->groupBy('room_facilities.room_type_id')
                 ->paginate(4);
+
+            $room_facilities = room_facilities::select('*')
+                ->join('room_type', 'room_type.room_type_id', '=', 'room_facilities.room_type_id')
+                ->join('facilities', 'facilities.facility_id', '=', 'room_facilities.facility_id')
+                ->get();
 
             $pagination = '';
             foreach ($room_data->links()->elements[0] as $page => $url) {
@@ -119,9 +153,15 @@ class User_Controller extends Controller
                     'room_data' => $room_data,
                     'pagination' => $pagination,
                     'room_info' => $room_info,
+                    'room_facilities' => $room_facilities,
                 ]
             );
         }
+    }
+
+    public function hotel_hall()
+    {
+        return view('User_Page.hall');
     }
 
     public function room_booking($room_name)
@@ -173,11 +213,6 @@ class User_Controller extends Controller
         );
     }
 
-    public function booking_confirmation()
-    {
-        return view('User_Page.booking_confirmation');
-    }
-
     private function generateGuestInfoID()
     {
         $prefix = "GUEST"; // Prefix for guest info
@@ -213,8 +248,8 @@ class User_Controller extends Controller
                 $booking_id = $this->generateBookingID();
                 $guest_id = $this->generateGuestInfoID();
 
-                $random_roomID = rooms::select('rooms.room_id', 'room_type.room_price')
-                    ->join("room_type", 'room_type.room_type_id', '=', 'rooms.room_type_id')
+                $random_roomID = rooms::join("room_type", 'room_type.room_type_id', '=', 'rooms.room_type_id')
+                    ->select('rooms.room_id', 'room_type.room_price')
                     ->where('room_type.room_type_name', '=', $room_type_name)
                     ->where('rooms.availability_status', '!=', "Not Available")
                     ->inRandomOrder()
@@ -302,10 +337,6 @@ class User_Controller extends Controller
 
             $guest_servicesInfo = guest_services::where("guest_id", $guest_id)->get();
 
-            $guest_roomInfo = room_booking::select("*")
-                ->join("rooms", 'rooms.room_id', '=', 'room_booking.room_id')
-                ->get();
-
             return view(
                 'User_Page.booking_payment',
                 [
@@ -318,6 +349,18 @@ class User_Controller extends Controller
             DB::rollBack();
             return back()->with('error', 'Booking Failed: ' . $e->getMessage());
         }
+    }
+
+    public function booking_confirmation()
+    {
+        $guest_bookingInfo = room_booking::select("*")
+            ->join('guest_info', 'guest_info.guest_id', '=', 'room_booking.guest_id')
+            ->join('rooms', 'rooms.room_id', '=', 'room_booking.room_id')
+            ->join('room_type', 'room_type.room_type_id', '=', 'rooms.room_type_id')
+            ->get();
+
+        // dump($guest_bookingInfo);
+        return view('User_Page.booking_confirmation', ['guest_bookingInfo' => $guest_bookingInfo]);
     }
 
     public function hotel_restaurant()

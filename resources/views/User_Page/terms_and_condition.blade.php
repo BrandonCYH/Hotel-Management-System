@@ -52,8 +52,7 @@
                         <div class="dropdown-menu" aria-labelledby="features_menu">
                             <a class="dropdown-item" style="font-size: 17px;" href="{{ route('about-us') }}">About
                                 Us</a>
-                            <a class="dropdown-item" style="font-size: 17px;" href="#">Gallery</a>
-                            <a class="dropdown-item" style="font-size: 17px;"
+                            <a class="dropdown-item" style="font-size: 17px; color: #000080; font-weight: bold;"
                                 href="{{ route('terms-and-conditions') }}">Terms And Conditions</a>
                         </div>
                     </li>
@@ -78,7 +77,9 @@
                             href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                        <a href="{{route('hotel-room')}}" type="button"
+                            class="btn btn-primary rounded-pill text-light">Book
+                            Room</a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>

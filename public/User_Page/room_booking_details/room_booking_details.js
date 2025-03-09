@@ -58,10 +58,19 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 });
 
+const btn_checkAvailability = document.getElementById("btn_checkAvailability");
 const checkAvailability_form = document.getElementById('check_availability_form');
+
+const btn_directBooking = document.getElementById("btn_directBooking");
 const directBooking_form = document.getElementById('directBooking_form');
 
 function call_directBooking_Form() {
+    btn_directBooking.classList.remove("btn-secondary");
+    btn_directBooking.classList.add("btn-primary");
+
+    btn_checkAvailability.classList.remove("btn-primary");
+    btn_checkAvailability.classList.add("btn-secondary");
+
     checkAvailability_form.style.display = "none";
 
     directBooking_form.style.display = "block";
@@ -69,6 +78,12 @@ function call_directBooking_Form() {
 }
 
 function call_checkAvailability_Form() {
+    btn_checkAvailability.classList.add("btn-primary");
+    btn_checkAvailability.classList.remove("btn-secondary");
+
+    btn_directBooking.classList.remove("btn-primary");
+    btn_directBooking.classList.add("btn-secondary");
+
     checkAvailability_form.style.display = "block";
     checkAvailability_form.style.animation = "fadeInUp 1s ease";
 

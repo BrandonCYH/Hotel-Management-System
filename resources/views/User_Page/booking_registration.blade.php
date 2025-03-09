@@ -62,12 +62,13 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#" id="facilities_menu"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle active" style="font-size: 17px;" href="#"
+                            id="facilities_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Facilities
                         </a>
                         <div class="dropdown-menu" aria-labelledby="facilities_menu">
-                            <a class="dropdown-item" style="font-size: 17px;" href="{{ route('hotel-room') }}">Our
+                            <a class="dropdown-item" style="font-size: 17px; color: #000080; font-weight: bold;"
+                                href="{{ route('hotel-room') }}">Our
                                 Room</a>
                             <a class="dropdown-item" style="font-size: 17px;" href="#">Our Hall</a>
                         </div>
@@ -91,6 +92,13 @@
     </nav>
     {{-- end of nav bar --}}
 
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
+
+
     {{-- start of booking registration form --}}
     <div class="container-fluid">
         <div class="row mt-3">
@@ -100,7 +108,7 @@
                         @foreach ($room_data as $room_d )
                         <form
                             action="{{ route('booking-payment', ['room_type_name' => $room_d->room_type_name, 'checkInDate' => $checkIn_date, 'checkOutDate' => $checkOut_date]) }}"
-                            method="POST">
+                            method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-7 col-md-12">
@@ -161,69 +169,87 @@
                                                 @endforeach
                                             </div>
 
-                                            <h5 class="mt-2">Additional Facilities And Service Request</h5>
+                                            <h5 class="mt-2">Additional Facilities And Service
+                                                Request</h5>
                                             <hr>
-                                            <div class="row">
-                                                <div class="row" id="service-row">
-                                                    <div class="col-8">
-                                                        <h5 class="mt-1" data-service-name="Car Park"
-                                                            data-service-price="5.00">1. Car Park </h5>
-                                                        <span class="text-success"><b>$5.00</b> / each</span>
+                                            <div class="row align-items-center" id="service-row">
+                                                <div class="col-12 col-md-8">
+                                                    <div class="d-flex justify-content-between d-sm-block">
+                                                        <h5 style="font-size: clamp(1.1rem, 1.2vw, 1.5rem)"
+                                                            class="mt-1 mb-0" data-service-name="Car Park"
+                                                            data-service-price="5.00">1. Car Park</h5>
+                                                        <span class="text-success text-end d-sm-none"><b>$5.00</b> /
+                                                            each</span>
                                                     </div>
-                                                    <div class="col-4">
-                                                        <div class="input-group" style="width: 150px;">
-                                                            <button class="btn btn-outline-secondary button-decrement"
-                                                                type="button">-</button>
-                                                            <input type="number"
-                                                                class="form-control text-center number-input" value="0"
-                                                                min="0" max="100" name="services[Car Park][quantity]">
-                                                            <button class="btn btn-outline-secondary button-increment"
-                                                                type="button">+</button>
-                                                        </div>
-                                                        <input type="hidden" name="services[Car Park][price]"
-                                                            value="5.00">
+                                                    <!-- Desktop View: Price below the text -->
+                                                    <span class="text-success d-none d-sm-block"><b>$5.00</b> /
+                                                        each</span>
+                                                </div>
+                                                <div class="col-12 col-md-4 mt-2 mt-sm-0">
+                                                    <div class="input-group">
+                                                        <button class="btn btn-outline-secondary button-decrement"
+                                                            type="button">-</button>
+                                                        <input type="number"
+                                                            class="form-control text-center number-input" value="0"
+                                                            min="0" max="100" name="services[Car Park][quantity]">
+                                                        <button class="btn btn-outline-secondary button-increment"
+                                                            type="button">+</button>
                                                     </div>
-                                                    <div class="col-8 mt-2">
-                                                        <h5 class="mt-1" data-service-name="Spa Service"
+                                                    <input type="hidden" name="services[Car Park][price]" value="5.00">
+                                                </div>
+                                                <div class="col-12 col-md-8 mt-2">
+                                                    <div class="d-flex justify-content-between d-sm-block">
+                                                        <h5 style="font-size: clamp(1rem, 1.2vw, 1.5rem)"
+                                                            class="mt-1 mb-0" data-service-name="Spa Service"
                                                             data-service-price="10.00">2. Spa Service
                                                         </h5>
-                                                        <span class="text-success"><b>$10.00</b> / each</span>
+                                                        <span class="text-success text-end d-sm-none"><b>$10.00</b> /
+                                                            each</span>
                                                     </div>
-                                                    <div class="col-4 mt-2">
-                                                        <div class="input-group" style="width: 150px;">
-                                                            <button class="btn btn-outline-secondary button-decrement"
-                                                                type="button">-</button>
-                                                            <input type="number"
-                                                                class="form-control text-center number-input" value="0"
-                                                                min="0" max="100"
-                                                                name="services[Spa Service][quantity]">
-                                                            <button class="btn btn-outline-secondary button-increment"
-                                                                type="button">+</button>
-                                                        </div>
-                                                        <input type="hidden" name="services[Spa Service][price]"
-                                                            value="10.00">
+                                                    <!-- Desktop View: Price below the text -->
+                                                    <span class="text-success d-none d-sm-block"><b>$10.00</b> /
+                                                        each</span>
+                                                </div>
+                                                <div class="col-12 col-md-4 mt-2 mt-sm-0">
+                                                    <div class="input-group">
+                                                        <button class="btn btn-outline-secondary button-decrement"
+                                                            type="button">-</button>
+                                                        <input type="number"
+                                                            class="form-control text-center number-input" value="0"
+                                                            min="0" max="100" name="services[Spa Service][quantity]">
+                                                        <button class="btn btn-outline-secondary button-increment"
+                                                            type="button">+</button>
                                                     </div>
-                                                    <div class="col-8 mt-2">
-                                                        <h5 class="mt-1" data-service-name="Pet Accommodation"
+                                                    <input type="hidden" name="services[Spa Service][price]"
+                                                        value="10.00">
+                                                </div>
+                                                <div class="col-12 col-md-8 mt-2">
+                                                    <div class="d-flex justify-content-between d-sm-block">
+                                                        <h5 style="font-size: clamp(1rem, 1.2vw, 1.5rem)"
+                                                            class="mt-1 mb-0" data-service-name="Pet Accommodation"
                                                             data-service-price="5.00">3. Pet
                                                             Accommodation
                                                         </h5>
-                                                        <span class="text-success"><b>$5.00</b> / each</span>
+                                                        <span class="text-success text-end d-sm-none"><b>$10.00</b> /
+                                                            each</span>
                                                     </div>
-                                                    <div class="col-4 mt-2">
-                                                        <div class="input-group" style="width: 150px;">
-                                                            <button class="btn btn-outline-secondary button-decrement"
-                                                                type="button">-</button>
-                                                            <input type="number"
-                                                                class="form-control text-center number-input" value="0"
-                                                                min="0" max="100"
-                                                                name="services[Pet Accommodation][quantity]">
-                                                            <button class="btn btn-outline-secondary button-increment"
-                                                                type="button">+</button>
-                                                        </div>
-                                                        <input type="hidden" name="services[Pet Accommodation][price]"
-                                                            value="5.00">
+                                                    <!-- Desktop View: Price below the text -->
+                                                    <span class="text-success d-none d-sm-block"><b>$5.00</b> /
+                                                        each</span>
+                                                </div>
+                                                <div class="col-12 col-md-4 mt-2 mt-sm-0">
+                                                    <div class="input-group">
+                                                        <button class="btn btn-outline-secondary button-decrement"
+                                                            type="button">-</button>
+                                                        <input type="number"
+                                                            class="form-control text-center number-input" value="0"
+                                                            min="0" max="100"
+                                                            name="services[Pet Accommodation][quantity]">
+                                                        <button class="btn btn-outline-secondary button-increment"
+                                                            type="button">+</button>
                                                     </div>
+                                                    <input type="hidden" name="services[Pet Accommodation][price]"
+                                                        value="5.00">
                                                 </div>
                                             </div>
                                         </div>
@@ -242,25 +268,23 @@
                                             <p>Check Out: <span class="fw-bold">{{$checkOut_date}}</span></p>
                                             <hr>
                                             <h5>Price Details</h5>
-                                            <div class="row">
-                                                <div class="col-8">
-                                                    <h5 style="font-size: 15px;">Room Price (Include Tax) : <span
-                                                            class="text-success fw-bold">$
-                                                            {{$room_d->room_price}}</span>
-                                                    </h5>
-                                                </div>
-                                                <div class="col-4">
-
-                                                </div>
-                                            </div>
+                                            <h5 style="font-size: 15px;">Room Price
+                                                (Include Tax) : <span class="text-success fw-bold">$
+                                                    {{$room_d->room_price}}</span>
+                                            </h5>
+                                            <h5 style="font-size: 15px;">Room Deposit :
+                                                <span class="text-success fw-bold">
+                                                    {{$room_d->deposit}}%</span>
+                                            </h5>
                                             <hr>
-                                            <h5>Additional Facilities And Service Request</h5>
+                                            <h5>Additional Facilities And Service
+                                                Request</h5>
                                             <div class="row">
-                                                <div class="col-9">
+                                                <div class="col-9 col-md-9">
                                                     <h5 class="text-danger" id="output">No Service Selected</h5>
                                                     <h5 id="service_name"></h5>
                                                 </div>
-                                                <div class="col-3">
+                                                <div class="col-3 col-md-3">
                                                     <h5 id="service_price"></h5>
                                                 </div>
                                             </div>

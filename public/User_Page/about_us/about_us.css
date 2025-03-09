@@ -90,3 +90,19 @@
         height: auto;
     }
 }
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .logo-image {
+        width: 70px;
+        height: 70px;
+    }
+
+    .navbar {
+        height: auto;
+    }
+
+    #archievement {
+        height: auto;
+    }
+}

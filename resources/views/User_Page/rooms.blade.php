@@ -55,7 +55,6 @@
                         <div class="dropdown-menu" aria-labelledby="features_menu">
                             <a class="dropdown-item" style="font-size: 17px;" href="{{ route('about-us') }}">About
                                 Us</a>
-                            <a class="dropdown-item" style="font-size: 17px;" href="#">Gallery</a>
                             <a class="dropdown-item" style="font-size: 17px;"
                                 href="{{ route('terms-and-conditions') }}">Terms And Conditions</a>
                         </div>
@@ -82,7 +81,9 @@
                             href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                        <a href="{{route('hotel-room')}}" type="button"
+                            class="btn btn-primary rounded-pill text-light">Book
+                            Room</a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -143,8 +144,8 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Air Conditioners" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Air_Conditioners">
+                                                    value="Air Conditioner" id="flexCheckDefault" name="facilities[]">
+                                                <label class="form-check-label" for="Air_Conditioner">
                                                     Air Conditioner
                                                 </label>
                                             </div>
@@ -306,6 +307,7 @@
                                                             @php
                                                             $available_count = 0;
                                                             @endphp
+
                                                             @foreach ($room_info as $room_i)
                                                             @if ($room_d->room_type_name == $room_i->room_type_name)
                                                             @if (strpos(strtolower($room_i->availability_status),
@@ -316,46 +318,22 @@
                                                             @endif
                                                             @endif
                                                             @endforeach
-                                                            @if ($available_count > 0)
-                                                            <div class="col-lg-7 col-md-7">
+
+                                                            <div class="col-lg-6 col-md-6">
                                                                 <h5 style="font-size: 15px;">
                                                                     <i class="fa-solid fa-bell mt-1"
                                                                         style="color: crimson; font-size: 17px;"></i>
-                                                                    Status : {{ $available_count }} Remains
+                                                                    Status : {{ $available_count > 0 ? "$available_count
+                                                                    Remains" : "Full" }}
                                                                 </h5>
                                                             </div>
-                                                            @else
-                                                            <div class="col-lg-7 col-md-7">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-bell mt-1"
-                                                                        style="color: crimson; font-size: 17px;"></i>
-                                                                    Status : Full
-                                                                </h5>
-                                                            </div>
-                                                            @endif
-                                                            <div class="col-lg-5 col-md-5">
+                                                            <div class="col-lg-6 col-md-6">
                                                                 <h5 style="font-size: 15px;">
                                                                     <i class="fa-solid fa-user mt-1"
                                                                         style="color: black; font-size: 17px;"></i>
                                                                     Guest : {{ $room_d->room_guest }}
                                                                 </h5>
                                                             </div>
-                                                            <div class="col-lg-7 col-md-7">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-circle-up mt-1"
-                                                                        style="color: orange; font-size: 17px;"></i>
-                                                                    Upgrade: <span
-                                                                        class="text-success"><b>Available</b></span>
-                                                                </h5>
-                                                            </div>
-                                                            <div class="col-lg-5 col-md-5">
-                                                                <h5 class="text-success" style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-check mt-1"
-                                                                        style="font-size: 15px; color: green;"></i>
-                                                                    Refundable
-                                                                </h5>
-                                                            </div>
-                                                            <hr>
                                                             <div class="col-lg-12 col-md-12">
                                                                 <h5 style="font-size: 15px;">
                                                                     <i class="fa-solid fa-money-check-dollar mt-1"
@@ -364,6 +342,17 @@
                                                                     deposit required
                                                                 </h5>
                                                             </div>
+                                                            <hr>
+                                                            @foreach($room_facilities->where('room_type_name',$room_d->room_type_name)
+                                                            as $room_f)
+                                                            <div class="col-lg-6 col-md-6">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-check-square mt-1"
+                                                                        style="color: rgb(81, 81, 202); font-size: 17px;"></i>
+                                                                    {{$room_f->facility_name}}
+                                                                </h5>
+                                                            </div>
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4 col-md-4">
@@ -430,23 +419,14 @@
                                                             @endif
                                                             @endif
                                                             @endforeach
-                                                            @if ($available_count > 0)
                                                             <div class="col-7">
                                                                 <h5 style="font-size: 15px;">
                                                                     <i class="fa-solid fa-bell mt-1"
                                                                         style="color: crimson; font-size: 17px;"></i>
-                                                                    Status : {{ $available_count }} Remains
+                                                                    Status : {{ $available_count > 0 ? "$available_count
+                                                                    Remains" : "Full" }}
                                                                 </h5>
                                                             </div>
-                                                            @else
-                                                            <div class="col-7">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-bell mt-1"
-                                                                        style="color: crimson; font-size: 17px;"></i>
-                                                                    Status : Full
-                                                                </h5>
-                                                            </div>
-                                                            @endif
                                                             <div class="col-5">
                                                                 <h5 style="font-size: 15px;">
                                                                     <i class="fa-solid fa-user mt-1"
@@ -454,22 +434,6 @@
                                                                     Guest : {{ $room_d->room_guest }}
                                                                 </h5>
                                                             </div>
-                                                            <div class="col-7">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-circle-up mt-1"
-                                                                        style="color: orange; font-size: 17px;"></i>
-                                                                    Upgrade : <span
-                                                                        class="text-success"><b>Available</b></span>
-                                                                </h5>
-                                                            </div>
-                                                            <div class="col-5">
-                                                                <h5 class="text-success" style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-check mt-1"
-                                                                        style="font-size: 15px; color: green;"></i>
-                                                                    Refundable
-                                                                </h5>
-                                                            </div>
-                                                            <hr>
                                                             <div class="col-12">
                                                                 <h5 style="font-size: 15px;">
                                                                     <i class="fa-solid fa-money-check-dollar mt-1"
@@ -477,6 +441,23 @@
                                                                     Payment : {{ $room_d->deposit }}%
                                                                     deposit required
                                                                 </h5>
+                                                            </div>
+                                                            <hr>
+                                                            <h5 style="font-size: 15px;" class="text-primary fw-bold">
+                                                                Facility Include: </h5>
+                                                            @foreach($room_facilities->where('room_type_name',$room_d->room_type_name)
+                                                            as $room_f)
+                                                            <div class="col-7 col-lg-6 col-md-6">
+                                                                <h5 style="font-size: 15px;">
+                                                                    <i class="fa-solid fa-check-square mt-1"
+                                                                        style="color: rgb(81, 81, 202); font-size: 17px;"></i>
+                                                                    {{$room_f->facility_name}}
+                                                                </h5>
+                                                            </div>
+                                                            @endforeach
+                                                            <hr>
+                                                            <div class="col-12">
+
                                                                 <h5 class="text-success" style="font-size: 15px;">
                                                                     <i class="fa-solid fa-money-bill-1 mt-1"
                                                                         style="color: green; font-size: 17px;"></i>
