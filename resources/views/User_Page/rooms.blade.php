@@ -142,104 +142,30 @@
                                     <div class="card-body">
                                         {{-- start of list services --}}
                                         <div class="row">
-                                            <div class="col-12">
+                                            @php
+                                            $added_facilities = []; // Store added facilities
+                                            @endphp
+
+                                            @foreach ($room_data as $room_d)
+                                            @foreach ($room_facilities->where("room_type_name", $room_d->room_type_name)
+                                            as $list_facilities)
+                                            @if (!in_array($list_facilities->facility_name, $added_facilities))
+                                            <div class="col-12 mb-1">
                                                 <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Air Conditioner" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Air_Conditioner">
-                                                    Air Conditioner
+                                                    value="{{ $list_facilities->facility_name }}" id="flexCheckDefault"
+                                                    name="facilities[]">
+                                                <label class="form-check-label"
+                                                    for="{{ $list_facilities->facility_name }}">
+                                                    {{ $list_facilities->facility_name }}
                                                 </label>
                                             </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Computer Facility" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Computer_Facility">
-                                                    Computer Facility
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Coffee Maker" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Coffee_Maker">
-                                                    Coffee Maker
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Gaming Console" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Gamming_Console">
-                                                    Gaming Console
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="High Security" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="High_Security">
-                                                    High Security
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox" value="King Bed"
-                                                    id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="King_Bed">
-                                                    King Bed
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Laundry Service" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Laundry_Service">
-                                                    Laundry Service
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Luggage Storage" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Luggage_Storage">
-                                                    Luggage Storage
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Pet Accommodation" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Pet_Accommodations">
-                                                    Pet Accommodation
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox" value="Queen Bed"
-                                                    id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Queen_Bed">
-                                                    Queen Bed
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Room Purification" id="flexCheckDefault" name="facilites[]">
-                                                <label class="form-check-label" for="Room Purification">
-                                                    Room Purification
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox" value="Smart TV"
-                                                    id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Smart_TV">
-                                                    Smart TV
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="Turndown Service" id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="Turndown_Service">
-                                                    Turndown Service
-                                                </label>
-                                            </div>
-                                            <div class="col-12 mt-1">
-                                                <input class="form-check-input mx-1" type="checkbox" value="WI-FI"
-                                                    id="flexCheckDefault" name="facilities[]">
-                                                <label class="form-check-label" for="WI-FI">
-                                                    WI-FI
-                                                </label>
-                                            </div>
+                                            @php
+                                            // Add to list to prevent duplicate
+                                            $added_facilities[] = $list_facilities->facility_name;
+                                            @endphp
+                                            @endif
+                                            @endforeach
+                                            @endforeach
                                         </div>
                                         <hr>
                                         {{-- end of list services --}}
@@ -311,7 +237,7 @@
                                                             @foreach ($room_info as $room_i)
                                                             @if ($room_d->room_type_name == $room_i->room_type_name)
                                                             @if (strpos(strtolower($room_i->availability_status),
-                                                            'available') !== false)
+                                                            'available') == false)
                                                             @php
                                                             $available_count++;
                                                             @endphp
@@ -612,8 +538,8 @@
             </section>
         </div>
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2024 Copyright:
-            <a class="text-white" href="https://github.com/BrandonCYH">Danny CYH</a>
+            © 2025 Copyright:
+            <a class="text-white" href="https://github.com/BrandonCYH">Brandon CYH</a>
         </div>
     </footer>
     {{-- end of footer --}}

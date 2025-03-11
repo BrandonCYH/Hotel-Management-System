@@ -27,8 +27,25 @@
     <!-- Animation On Scroll CDN -->
     <link href="/external_css_file/aos.css" rel="stylesheet">
 
+    {{-- sweet alert css cdn --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css">
+
+    {{-- sweet alert js cdn --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+
     <title>Room Booking Details</title>
 </head>
+
+@if(session('message'))
+<script>
+    var info = '{{ session('message') }}';
+    Swal.fire({
+        title: "Cancel Booking Successfully",
+        text: info,
+        icon: "success"
+    });
+</script>
+@endif
 
 <body>
     {{-- start of nav bar --}}
@@ -255,12 +272,12 @@
                                                 <div class="form-group mt-2" style="position: relative;">
                                                     <label for="input_from">From</label>
                                                     <input type="text" class="form-control input_from mt-1"
-                                                        placeholder="Start Date" name="checkIn_date" required>
+                                                        placeholder="Start Date" name="checkIn_date">
                                                 </div>
                                                 <div class="form-group mt-2" style="position: relative;">
                                                     <label for="input_to">To</label>
                                                     <input type="text" class="form-control input_to mt-1"
-                                                        placeholder="End Date" name="checkOut_date" required>
+                                                        placeholder="End Date" name="checkOut_date">
                                                 </div>
                                                 <button type="submit" class="btn btn-success w-100 mt-3">Book
                                                     Room</button>
@@ -376,8 +393,8 @@
             </section>
         </div>
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2024 Copyright:
-            <a class="text-white" href="https://github.com/BrandonCYH">Danny CYH</a>
+            © 2025 Copyright:
+            <a class="text-white" href="https://github.com/BrandonCYH">Brandon CYH</a>
         </div>
     </footer>
     {{-- end of footer --}}

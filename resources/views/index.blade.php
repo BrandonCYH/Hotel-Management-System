@@ -144,13 +144,13 @@
                             <div class="row">
                                 <div class="col-12 col-md-3 mb-3 mb-md-0">
                                     <div class="form-group" style="position: relative;">
-                                        <input type="text" class="form-control mt-1" id="input_from"
+                                        <input type="text" class="form-control" id="input_from"
                                             placeholder="Start Date">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3 mb-3 mb-md-0">
                                     <div class="form-group" style="position: relative;">
-                                        <input type="text" class="form-control mt-1" id="input_to"
+                                        <input type="text" class="form-control" id="input_to"
                                             placeholder="End Date">
                                     </div>
                                 </div>
@@ -170,8 +170,8 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
-                                    <button type="button" class="btn btn-primary text-light w-100 mt-1">Check
+                                <div class="col-12 col-md-3 mb-3 mb-md-0">
+                                    <button type="button" class="btn btn-primary text-light w-100">Check
                                         Availability</button>
                                 </div>
                             </div>
@@ -603,8 +603,8 @@
             </section>
         </div>
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2024 Copyright:
-            <a class="text-white" href="https://github.com/BrandonCYH">Danny CYH</a>
+            © 2025 Copyright:
+            <a class="text-white" href="https://github.com/BrandonCYH">Brandon CYH</a>
         </div>
     </footer>
     {{-- end of footer --}}

@@ -107,7 +107,7 @@
                     <div class="container-xl">
                         @foreach ($room_data as $room_d )
                         <form
-                            action="{{ route('booking-payment', ['room_type_name' => $room_d->room_type_name, 'checkInDate' => $checkIn_date, 'checkOutDate' => $checkOut_date]) }}"
+                            action="{{ route('booking-payment', ['room_type_name' => $room_d->room_type_name]) }}"
                             method="post">
                             @csrf
                             <div class="row">
@@ -118,30 +118,35 @@
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-12">
                                                     <label for="first_name">First Name</label>
-                                                    <input type="text" name="first_name" class="form-control mt-1">
+                                                    <input type="text" name="first_name" class="form-control mt-1"
+                                                        required autocomplete="off">
                                                 </div>
                                                 <div class="col-lg-6 col-md-12">
                                                     <label for="last_name">Last Name</label>
-                                                    <input type="text" name="last_name" class="form-control mt-1">
+                                                    <input type="text" name="last_name" class="form-control mt-1"
+                                                        required autocomplete="off">
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 mt-2">
                                                     <label for="email">Email</label>
-                                                    <input type="email" name="email" class="form-control mt-1">
+                                                    <input type="email" name="email" class="form-control mt-1" required
+                                                        autocomplete="off">
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 mt-2">
                                                     <label for="phone_number">Phone Number</label>
                                                     <input type="tel" name="phone_number" class="form-control mt-1"
-                                                        id="phone_number">
+                                                        required autocomplete="off" id="phone_number">
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 mt-2">
                                                     <label for="states">Country</label>
                                                     <select name="country"
-                                                        class="selectpicker countrypicker form-select form-control mt-1">
+                                                        class="selectpicker countrypicker form-select form-control mt-1"
+                                                        required>
                                                     </select>
                                                 </div>
                                                 <div class="col-lg-6 col-md-12 mt-2">
                                                     <label for="city">City</label>
-                                                    <input type="text" name="city" class="form-control mt-1">
+                                                    <input type="text" name="city" class="form-control mt-1" required
+                                                        autocomplete="off">
                                                 </div>
                                                 <div class="col-12 mt-2">
                                                     <label for="special_request">Special Request</label>
@@ -262,7 +267,8 @@
                                 <div class="col-lg-5 col-md-12">
                                     {{-- start of receipt overview --}}
                                     <div class="card">
-                                        <img src="../images/Single Room.jpg" class="card-img-top" alt="...">
+                                        <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
+                                            class="card-img-top" alt="{{$room_d->room_type_name}}">
                                         <div class="card-body">
                                             <p>Check In: <span class="fw-bold">{{$checkIn_date}}</span></p>
                                             <p>Check Out: <span class="fw-bold">{{$checkOut_date}}</span></p>
@@ -293,9 +299,9 @@
                                     <br>
                                     {{-- end of receipt overview --}}
 
-                                    <input type="submit" class="btn btn-primary w-100" value="CheckOut">
+                                    <input type="submit" class="btn btn-primary w-100" value="Check Out">
 
-                                    <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
+                                    <a href="{{ route('cancel-booking', ['room_type_name' => $room_d->room_type_name]) }}"
                                         class="btn btn-danger w-100 mt-3">Cancel Booking</a>
                                 </div>
                             </div>

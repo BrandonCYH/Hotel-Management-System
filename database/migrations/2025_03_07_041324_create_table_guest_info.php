@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string("guest_id")->primary();
             $table->string("guest_name");
             $table->string("guest_email");
-            $table->integer("guest_phoneNumber");
+            $table->string("guest_phoneNumber");
             $table->string("guest_country");
             $table->string("guest_city");
             $table->string("guest_specialRequest");

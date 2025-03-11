@@ -9,13 +9,12 @@ use App\Models\hall_facilities;
 use App\Models\room_facilities;
 use App\Models\rooms;
 use App\Models\room_booking;
+use App\Models\room_type;
 
 use DB;
 use Carbon\Carbon;
 use Session;
 use Illuminate\Http\Request;
-
-use App\Models\room_type;
 
 class User_Controller extends Controller
 {
@@ -194,6 +193,9 @@ class User_Controller extends Controller
         $checkInDate = $request->checkIn_date;
         $checkOutDate = $request->checkOut_date;
 
+        Session::put("check_in_date", $checkInDate);
+        Session::put("check_out_date", $checkOutDate);
+
         $room_data = room_type::where('room_type_name', '=', $room_name)->get();
 
         $room_facilities = room_facilities::select('*')
@@ -229,19 +231,25 @@ class User_Controller extends Controller
         return $prefix . $randomNumber;
     }
 
-    public function booking_payment(Request $request, $room_type_name, $checkInDate, $checkOutDate)
+    public function booking_payment(Request $request, $room_type_name)
     {
         try {
+            $checkInDate = Session::get("check_in_date");
+            $checkOutDate = Session::get("check_out_date");
+
             $totalServicesPrice = 0; // Initialize total service price
+
             $target_roomPrice = 0;
 
             $formatted_checkInDate = Carbon::createFromFormat('j F, Y', $checkInDate)->format('Y-m-d');
             $formatted_checkOutDate = Carbon::createFromFormat('j F, Y', $checkOutDate)->format('Y-m-d');
 
             // Check if the booking ID already exists in the session
-            if (Session::has('booking_id') && Session::has('guest_id')) {
+            if (Session::has('booking_id') && Session::has('guest_id') && Session::has('room_id')) {
                 $booking_id = Session::get('booking_id');
                 $guest_id = Session::get('guest_id');
+
+                $target_room_type_id = Session::get('room_type_id');
                 $target_roomID = Session::get('room_id');
                 $target_roomPrice = Session::get('room_price');
             } else {
@@ -249,18 +257,20 @@ class User_Controller extends Controller
                 $guest_id = $this->generateGuestInfoID();
 
                 $random_roomID = rooms::join("room_type", 'room_type.room_type_id', '=', 'rooms.room_type_id')
-                    ->select('rooms.room_id', 'room_type.room_price')
+                    ->select('room_type.room_type_id', 'rooms.room_id', 'room_type.room_price')
                     ->where('room_type.room_type_name', '=', $room_type_name)
                     ->where('rooms.availability_status', '!=', "Not Available")
                     ->inRandomOrder()
                     ->first();
 
                 if ($random_roomID) {
+                    $target_room_type_id = $random_roomID->room_type_id;
                     $target_roomID = $random_roomID->room_id;  // Use -> instead of []
                     $target_roomPrice = $random_roomID->room_price;
 
                     Session::put('booking_id', $booking_id);
                     Session::put('guest_id', $guest_id);
+                    Session::put('room_type_id', $target_room_type_id);
                     Session::put('room_id', $target_roomID);
                     Session::put('room_price', $target_roomPrice);
                 }
@@ -319,6 +329,7 @@ class User_Controller extends Controller
                 ],
                 [
                     'guest_id' => $guest_id,
+                    'room_type_id' => $target_room_type_id,
                     'room_id' => $target_roomID,
                     'check_in_date' => $formatted_checkInDate,
                     'check_out_date' => $formatted_checkOutDate,
@@ -331,6 +342,7 @@ class User_Controller extends Controller
 
             $guest_bookingInfo = room_booking::select("*")
                 ->join("guest_info", 'guest_info.guest_id', '=', 'room_booking.guest_id')
+                ->join("room_type", 'room_type.room_type_id', '=', 'room_booking.room_type_id')
                 ->where("room_booking.guest_id", '=', $guest_id)
                 ->where("guest_info.guest_id", '=', $guest_id)
                 ->get();
@@ -351,16 +363,50 @@ class User_Controller extends Controller
         }
     }
 
-    public function booking_confirmation()
+    public function booking_confirmation($booking_id)
     {
+        room_booking::where("booking_id", $booking_id)
+            ->update([
+                "booking_status" => "Paid",
+            ]);
+
         $guest_bookingInfo = room_booking::select("*")
             ->join('guest_info', 'guest_info.guest_id', '=', 'room_booking.guest_id')
             ->join('rooms', 'rooms.room_id', '=', 'room_booking.room_id')
             ->join('room_type', 'room_type.room_type_id', '=', 'rooms.room_type_id')
+            ->where('room_booking.booking_id', '=', $booking_id)
             ->get();
 
-        // dump($guest_bookingInfo);
+        // Clear session data
+        Session::forget(['booking_id', 'guest_id', 'room_type_id', 'room_id', 'room_price']);
+
         return view('User_Page.booking_confirmation', ['guest_bookingInfo' => $guest_bookingInfo]);
+    }
+
+    public function cancel_booking(Request $request)
+    {
+        $booking_id = $request->booking_id; // Get from request instead of session
+        $guest_id = room_booking::where('booking_id', $booking_id)->value('guest_id');
+        $room_id = room_booking::where("booking_id", $booking_id)->value("room_id");
+
+        if (!$booking_id || !$guest_id) {
+            return response()->json(['success' => false, 'message' => 'Invalid booking ID']);
+        }
+
+        // Delete related guest info & services first
+        guest_info::where("guest_id", $guest_id)->delete();
+        guest_services::where("guest_id", $guest_id)->delete();
+
+        // Delete the room booking
+        room_booking::where("booking_id", $booking_id)->delete();
+
+        // update the room availability
+        rooms::where("room_id", $room_id)->update(["availability_status" => "Available"]);
+
+        // Clear session data
+        Session::forget(['booking_id', 'guest_id', 'room_type_id', 'room_id', 'room_price']);
+
+        return response()->json(['success' => true, 'message' => 'Booking canceled successfully']);
     }
 
     public function hotel_restaurant()

@@ -225,22 +225,28 @@ document.addEventListener("DOMContentLoaded", function () {
         $.ajax({
             url: "/room-setting/" + roomName,
             success: function (response) {
-                console.log(response);
-
                 var existingFacilities = response.room_facilities.map(facility => facility.facility_name);
 
                 response.room_data.forEach(function (room_info) {
+                    document.getElementById("roomId").value = room_info.room_type_id;
                     document.getElementById("roomName").value = room_info.room_type_name;
                     document.getElementById("roomPrice").value = room_info.room_price;
-                    document.getElementById("roomCapacity").value = room_info.room_guest;
+                    document.getElementById("roomGuest").value = room_info.room_guest;
                     document.getElementById("roomDescription").value = room_info.room_description;
+                    document.getElementById("roomBed").value = room_info.room_bed;
+                    document.getElementById("roomSize").value = room_info.room_size;
+                    document.getElementById("roomDeposit").value = room_info.deposit;
                 });
 
                 response.room_facilities.forEach(function (room_facilities) {
                     var checkbox = `
-                    <div class="form-check">
-                        <input class="form-check-input editable" type="checkbox" name="facilities[]" value="${room_facilities.facility_name}" checked disabled>
-                        <label class="form-check-label">${room_facilities.facility_name}</label>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-check">
+                                <input class="form-check-input editable" type="checkbox" name="facilities[]" value="${room_facilities.facility_id}" checked disabled>
+                                <label class="form-check-label">${room_facilities.facility_name}</label>
+                            </div>
+                        </div>
                     </div>
                     `;
 
@@ -251,7 +257,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (!existingFacilities.includes(list_room_facilities.facility_name)) {
                         var checkbox = `
                         <div class="form-check">
-                            <input class="form-check-input editable" type="checkbox" name="facilities[]" value="${list_room_facilities.facility_name}">
+                            <input class="form-check-input editable" type="checkbox" name="facilities[]" value="${list_room_facilities.facility_id}">
                             <label class="form-check-label">${list_room_facilities.facility_name}</label>
                         </div>
                         `;
@@ -288,7 +294,7 @@ document.getElementById("cancelButton").addEventListener("click", function () {
     });
 
     // Hide Save & Cancel buttons
-    document.getElementById("saveButton").style.display = "none";
+    document.getElementById("updateButton").style.display = "none";
     document.getElementById("list_roomFacilities").style.display = "none";
     this.style.display = "none";
 

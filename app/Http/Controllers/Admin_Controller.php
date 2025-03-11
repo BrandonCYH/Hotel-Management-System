@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\facilities;
+use App\Models\room_booking;
 use App\Models\room_facilities;
 use App\Models\room_type;
+use App\Models\rooms;
 use DB;
 use Illuminate\Http\Request;
 
@@ -12,7 +14,18 @@ class Admin_Controller extends Controller
 {
     public function dashboard()
     {
-        return view('Admin_Page.dashboard');
+        $total_booking_guest = room_booking::count();
+        $total_room_available = rooms::where("availability_status", '=', "Available")->count();
+        $guest_bookingInfo = room_booking::select("*")
+            ->join('guest_info', 'guest_info.guest_id', '=', 'room_booking.guest_id')
+            ->join('room_type', 'room_type.room_type_id', '=', 'room_booking.room_type_id')
+            ->paginate(4);
+
+        return view('Admin_Page.dashboard', [
+            'total_booking_guest' => $total_booking_guest,
+            'total_room_available' => $total_room_available,
+            'guest_bookingInfo' => $guest_bookingInfo,
+        ]);
     }
 
     public function room_setting()
@@ -109,15 +122,35 @@ class Admin_Controller extends Controller
 
     public function update_roomData(Request $request)
     {
+        $room_id = $request->room_id;
         $room_name = $request->room_name;
         $room_price = $request->room_price;
-        $room_capacity = $request->room_capacity;
         $room_description = $request->room_description;
+        $room_guest = $request->room_guest;
+        $room_bed = $request->room_bed;
+        $room_size = $request->room_size;
+        $room_deposit = $request->room_deposit;
         $room_facility = $request->facilities;
 
-        // $new_roomData = room_type::where("room_type", $room_name);
+        room_type::where("room_type_name", $room_name)
+            ->update([
+                'room_type_name' => $room_name,
+                'room_price' => $room_price,
+                'room_description' => $room_description,
+                'room_guest' => $room_guest,
+                'room_bed' => $room_bed,
+                'room_size' => $room_size,
+                'deposit' => $room_deposit,
+            ]);
 
-        // $new_roomData->sync($room_name, $room_price, $room_capacity, $room_description, $room_capacity);
+        room_facilities::where("room_type_id", '=', $room_id)->delete();
+
+        foreach ($room_facility as $facility) {
+            room_facilities::create([
+                "room_type_id" => $room_id,
+                'facility_id' => $facility,
+            ]);
+        }
 
         return redirect()->route('room-setting')->with("success_updateRoom", "Room Updated Successfully");
     }

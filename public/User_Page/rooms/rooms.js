@@ -285,7 +285,7 @@ function fetch_room_data(page) {
                             if (available_count > 0) {
                                 htmlContent += '<a href="/room-booking/' + encodeURIComponent(room_d.data[i].room_type_name) + '" class="btn btn-default text-light w-100" style="background-color: #3b5998">Book Room </a>';
                             } else {
-                                htmlContent += '<a type="button" onclick="room_full()" class="btn btn-default bg-secondary text-light">Book Room</a>';
+                                htmlContent += '<a type="button" onclick="room_full()" class="btn btn-default bg-secondary text-light w-100">Book Room</a>';
                             }
                         });
 
@@ -424,7 +424,7 @@ $('#btn_filterRoom').on("click", function () {
                         if (available_count > 0) {
                             htmlContent += '<a href="/room-booking/' + encodeURIComponent(room_d.data[i].room_type_name) + '" class="btn btn-default text-light" style="background-color: #3b5998">Book Room </a>';
                         } else {
-                            htmlContent += '<a type="button" onclick="room_full()" class="btn btn-default bg-secondary text-light">Book Room</a>';
+                            htmlContent += '<a type="button" onclick="room_full()" class="btn btn-default bg-secondary text-light w-100">Book Room</a>';
                         }
                     });
                     htmlContent += '</div>';

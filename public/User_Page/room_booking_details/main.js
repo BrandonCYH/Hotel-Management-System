@@ -33,4 +33,27 @@ $(function () {
     }
   })
 
+  $(".input_from, .input_to").each(function () {
+    $(this).pickadate(); // Initialize pickadate for each input field
+  });
+
+  $("#directBooking_form form").on("submit", function (event) {
+    let from_picker = $(this).find(".input_from").pickadate("picker");
+    let to_picker = $(this).find(".input_to").pickadate("picker");
+
+    if (!from_picker.get("select") || !to_picker.get("select")) {
+      alert("Please select both check-in and check-out dates for Direct Booking.");
+      event.preventDefault(); // Stop form submission
+    }
+  });
+
+  $("#check_availability_form form").on("submit", function (event) {
+    let from_picker = $(this).find(".input_from").pickadate("picker");
+    let to_picker = $(this).find(".input_to").pickadate("picker");
+
+    if (!from_picker.get("select") || !to_picker.get("select")) {
+      alert("Please select both check-in and check-out dates for Check Availability.");
+      event.preventDefault(); // Stop form submission
+    }
+  });
 });

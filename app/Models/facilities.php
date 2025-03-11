@@ -9,8 +9,15 @@ class facilities extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'facility_id';
+
     protected $fillable = [
         'facility_id',
         'facility_name',
     ];
+
+    public function rooms()
+    {
+        return $this->belongsToMany(room_type::class, 'room_facility', 'facility_id', 'room_type_id');
+    }
 }

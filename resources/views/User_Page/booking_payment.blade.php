@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     {{-- website icon --}}
@@ -20,7 +21,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <!-- Animation On Scroll CDN -->
-    <link href="/external_css_file/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/external_css_file/aos.css">
+
+    {{-- sweet alert css cdn --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css">
 
     <title>Booking Payment</title>
 </head>
@@ -38,8 +42,9 @@
                                 <h3>Booking Payment</h3>
                             </div>
                             <div class="col-lg-2">
-                                <a href="{{route('room-booking', ['room_type_name'=> $room_type_name])}}"
-                                    class="btn btn-danger w-100">Cancel
+                                <a href="{{route('cancel-booking', ['room_type_name'=> $room_type_name])}}"
+                                    class="btn btn-danger w-100" id="cancel-booking"
+                                    data-room-type="{{$room_type_name}}" data-booking-id="{{$info->booking_id}}">Cancel
                                     Booking</a>
                             </div>
                             <div class="col-lg-7">
@@ -58,19 +63,20 @@
                                         <hr>
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">Full Name: {{$info->guest_name}}</p>
+                                                <p>Full Name: <span class="fw-bold"> {{$info->guest_name}}</span></p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">Email: {{$info->guest_email}}</p>
+                                                <p>Email: <span class="fw-bold"> {{$info->guest_email}}</span></p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">Phone Number: {{$info->guest_phoneNumber}}</p>
+                                                <p>Phone Number: <span class="fw-bold">
+                                                        {{$info->guest_phoneNumber}}</span></p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">Country: {{$info->guest_country}}</p>
+                                                <p>Country: <span class="fw-bold"> {{$info->guest_country}}</span></p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-secondary">City: {{$info->guest_city}}</p>
+                                                <p>City: <span class="fw-bold"> {{$info->guest_city}}</span></p>
                                             </div>
                                         </div>
                                     </div>
@@ -113,21 +119,64 @@
                                     <div class="card-body">
                                         <h4>Summary</h4>
                                         <hr>
-                                        <h5 class="text-secondary">Room Name: </h5>
-                                        <h5 class="text-secondary">Room Price: </h5>
-                                        <h5 class="text-secondary">Room Tax: 6%</h5>
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <h5>Room Name:</h5>
+                                            </div>
+                                            <div class="col-4">
+                                                <span class="fw-bold">{{$info->room_type_name}}</span>
+                                            </div>
+                                            <div class="col-8">
+                                                <h5>Room Number:</h5>
+                                            </div>
+                                            <div class="col-4">
+                                                <span class="fw-bold">{{$info->room_id}}</span>
+                                            </div>
+                                            <div class="col-8">
+                                                <h5>Room Price:</h5>
+                                            </div>
+                                            <div class="col-4">
+                                                <span class="text-success fw-bold">$ {{$info->room_price}}</span>
+                                            </div>
+                                            <div class="col-8">
+                                                <h5>Room Tax:</h5>
+                                            </div>
+                                            <div class="col-4">
+                                                <span class="fw-bold">6%</span>
+                                            </div>
+                                        </div>
                                         <hr>
                                         <h4>Additional Service Price</h4>
                                         <div class="row">
+                                            @if ($guest_servicesInfo->isEmpty())
+                                            <div class="col-12">
+                                                <h5 class="text-danger fw-bold">No service selected</h5>
+                                            </div>
+                                            @else
                                             @foreach ($guest_servicesInfo as $guest_serviceInfo)
                                             <div class="col-9">
-                                                <h5 id="service_name">{{$guest_serviceInfo->services_name}} x
-                                                    {{$guest_serviceInfo->quantity}}</h5>
+                                                <h5 style="font-size: clamp(0.85rem, 1.1vw, 1.2rem)" id="service_name">
+                                                    <i class="fa-solid fa-circle-check" style="color: green;"></i>
+                                                    <span class="text-success">{{$guest_serviceInfo->services_name}}
+                                                        X {{$guest_serviceInfo->quantity}} </span>
+                                                </h5>
                                             </div>
                                             <div class="col-3">
-                                                <h5 id="service_price">{{$guest_serviceInfo->total_price}}</h5>
+                                                <h5 style="font-size: clamp(0.9rem, 1.2vw, 1.4rem)" id="service_price"
+                                                    class="text-success">$
+                                                    {{number_format($guest_serviceInfo->total_price, 2)}}</h5>
                                             </div>
                                             @endforeach
+                                            @endif
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <h4>Total Price :</h4>
+                                            </div>
+                                            <div class="col-4">
+                                                <h4 class="text-success fw-bold">$ {{$info->total_price}}</h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -137,16 +186,16 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault">
+                                            <input class="form-check-input" type="checkbox" value="" id="agreeCheckbox">
                                             <label class="form-check-label" for="flexCheckDefault">
                                                 By clicking this, you agree to the Ocean Heaven <span
                                                     class="text-primary fw-bold">Terms & Conditions</span> and <span
                                                     class="text-primary fw-bold">Privacy Policy</span>
                                             </label>
                                         </div>
-                                        <a href="{{ route('booking-confirmation') }}" type="button"
-                                            class="btn btn-primary w-100 mt-3">Pay for My
+                                        <a href="{{ route('booking-confirmation',['booking_id' => $info->booking_id]) }}"
+                                            type="button" class="btn btn-primary w-100 mt-3 disabled" id="payButton">Pay
+                                            for My
                                             Booking</a>
                                     </div>
                                 </div>
@@ -163,6 +212,9 @@
     </div>
 </body>
 
+{{-- sweet alert js cdn --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
+
 {{-- jquery cdn --}}
 <script src="/external_js_file/jquery.min.js"></script>
 
@@ -171,5 +223,8 @@
 
 {{-- bootstrap javascript cdn --}}
 <script src="/external_js_file/bootstrap.min.js"></script>
+
+{{-- link with other js file --}}
+<script src="/User_Page/booking_payment/booking_payment.js"></script>
 
 </html>

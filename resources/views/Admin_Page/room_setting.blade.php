@@ -100,55 +100,93 @@
                 <div class="modal-body">
                     <form action="{{route('update-room-data')}}" method="POST" id="roomForm">
                         @csrf
-                        <!-- Room Name -->
-                        <div class="mb-3">
-                            <label for="roomName" class="form-label">Room Name</label>
-                            <input type="text" class="form-control editable" name="room_name" id="roomName" readonly>
-                        </div>
-
-                        <!-- Price -->
-                        <div class="mb-3">
-                            <label for="roomPrice" class="form-label">Price per Night ($)</label>
-                            <input type="text" class="form-control editable" name="room_price" id="roomPrice" readonly>
-                        </div>
-
-                        <!-- Room Capacity -->
-                        <div class="mb-3">
-                            <label for="roomCapacity" class="form-label">Room Capacity</label>
-                            <input type="number" class="form-control editable" name="room_capacity" id="roomCapacity"
-                                readonly>
-                        </div>
-
-                        <!-- Description -->
-                        <div class="mb-3">
-                            <label for="roomDescription" class="form-label">Description</label>
-                            <textarea class="form-control editable" name="room_description" id="roomDescription"
-                                rows="3" readonly></textarea>
-                        </div>
-
-                        <!-- Amenities -->
-                        <div class="mb-3">
-                            <label class="form-label">Amenities</label>
-
-                            <div id="roomFacilities"></div> <!-- Checkboxes will be inserted here -->
-                            <div id="list_roomFacilities" style="display: none">
-
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <label for="roomId" class="form-label">Room ID</label>
+                                    <input type="text" class="form-control editable" name="room_id" id="roomId"
+                                        readonly>
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-6">
+                                <!-- Room Name -->
+                                <div class="mb-3">
+                                    <label for="roomName" class="form-label">Room Name</label>
+                                    <input type="text" class="form-control editable" name="room_name" id="roomName"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <!-- Price -->
+                                <div class="mb-3">
+                                    <label for="roomPrice" class="form-label">Price per Night ($)</label>
+                                    <input type="text" class="form-control editable" name="room_price" id="roomPrice"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <!-- Room Capacity -->
+                                <div class="mb-3">
+                                    <label for="roomCapacity" class="form-label">Room Guest</label>
+                                    <input type="number" class="form-control editable" name="room_guest" id="roomGuest"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                {{-- Room Bed --}}
+                                <div class="mb-3">
+                                    <label for="roomCapacity" class="form-label">Room Bed</label>
+                                    <input type="number" class="form-control editable" name="room_bed" id="roomBed"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                {{-- Room Size --}}
+                                <div class="mb-3">
+                                    <label for="roomCapacity" class="form-label">Room Size</label>
+                                    <input type="number" class="form-control editable" name="room_size" id="roomSize"
+                                        readonly>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                {{-- Room Deposit --}}
+                                <div class="mb-3">
+                                    <label for="roomCapacity" class="form-label">Room Deposit</label>
+                                    <input type="number" class="form-control editable" name="room_deposit"
+                                        id="roomDeposit" readonly>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <!-- Description -->
+                                <div class="mb-3">
+                                    <label for="roomDescription" class="form-label">Description</label>
+                                    <textarea class="form-control editable" name="room_description" id="roomDescription"
+                                        rows="3" readonly></textarea>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <!-- Amenities -->
+                                <div class="mb-3">
+                                    <label class="form-label">Amenities</label>
+                                    <div id="roomFacilities"></div> <!-- Checkboxes will be inserted here -->
+                                    <div id="list_roomFacilities" style="display: none"></div>
+                                </div>
+                            </div>
+                            <!-- Edit Button -->
+                            <div class="d-flex justify-content-end mb-2">
+                                <button type="button" class="btn btn-warning w-100" id="editButton">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                            </div>
 
-                        <!-- Edit Button -->
-                        <div class="d-flex justify-content-end mb-2">
-                            <button type="button" class="btn btn-warning w-100" id="editButton">
-                                <i class="fas fa-edit"></i> Edit
-                            </button>
-                        </div>
-
-                        <!-- Save & Cancel Buttons (Hidden by Default) -->
-                        <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-secondary me-2" id="cancelButton"
-                                style="display: none;">Cancel</button>
-                            <button type="submit" class="btn btn-primary" id="updateButton"
-                                style="display: none;">Update Info</button>
+                            <!-- Save & Cancel Buttons (Hidden by Default) -->
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-secondary me-2" id="cancelButton"
+                                    style="display: none;">Cancel</button>
+                                <button type="submit" class="btn btn-primary" id="updateButton"
+                                    style="display: none;">Update
+                                    Info</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -214,7 +252,7 @@
                             <img src="../images/ShaniaYan_5.jpg" id="profileImageDisplay" alt="User Profile"
                                 class="rounded-circle img-fluid mb-2 object-fit-cover"
                                 style="width: 80px; height: 80px;">
-                            <h5 class="text-center mb-0 mt-2" id="user_name"></h5>
+                            <h5 class="text-center mb-0 mt-2">Shania Yan</h5>
                         </div>
 
                         <ul class="nav flex-column mb-auto">
@@ -227,40 +265,20 @@
                             <li>
                                 <a href="{{route('room-setting')}}"
                                     class="nav-link text-white d-flex align-items-center">
-                                    <i class="bi bi-patch-plus-fill me-2"></i> Room Setting
+                                    <i class="fa fa-bed me-2"></i> Room Setting
                                 </a>
                             </li>
                             <li>
                                 <a href="#" class="nav-link text-white d-flex align-items-center">
-                                    <i class="bi bi-pencil-square me-2"></i> Edit Room
+                                    <i class="fa fa-bookmark me-2"></i> Manage Reservation
                                 </a>
                             </li>
                             <li>
                                 <a href="delete_expense.html" class="nav-link text-white d-flex align-items-center">
-                                    <i class="bi bi-trash3 me-2"></i> Delete Expense
-                                </a>
-                            </li>
-                            <li>
-                                <a href="summary_expense.html" class="nav-link text-white d-flex align-items-center">
-                                    <i class="bi bi-bar-chart-fill me-2"></i> View Summary
-                                </a>
-                            </li>
-                            <li>
-                                <a href="login.html" class="nav-link text-white d-flex align-items-center">
-                                    <i class="bi bi-box-arrow-right me-2"></i> Logout
+                                    <i class="fa fa-user me-2"></i> Guest Management
                                 </a>
                             </li>
                         </ul>
-
-                        <!-- Light/Dark Mode Toggle -->
-                        <div class="mt-auto text-center">
-                            <div class="toolbar mb-3">
-                                <button id="toggleMode" class="btn btn-sm btn-light-dark border border-light">
-                                    <i id="modeIcon" class="fas fa-sun" style="color: orange;"></i> <span
-                                        class="text-light mx-2">Light Mode</span>
-                                </button>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -289,7 +307,7 @@
                                     List Page Pagination
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="text-center">Currently in page ---</h5>
+                                    <h5 class="text-center">Currently in Page</h5>
                                     <div id="pagination-links" class="pagination-links">
                                         @foreach ($room_data->links()->elements[0] as $page => $url)
                                         <a href="{{ $url }}"
