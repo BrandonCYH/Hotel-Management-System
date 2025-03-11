@@ -34,7 +34,7 @@ This **Hotel Management System** is my first project using Laravel. It is not fu
    ```sh
    php artisan serve
    ```
-5. Open **http://127.0.0.1:8000** in your browser to access the system.
+5. Open **http://127.0.0.1:8000/ocean-heaven-hotel** in your browser to access the system.
 
 ## 🔧 Notes
 - Since this is my first project, some features may have bugs and will be improved over time.
