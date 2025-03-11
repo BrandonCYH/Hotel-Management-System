@@ -1,0 +1,553 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Mar 11, 2025 at 02:41 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `hotel_management_system`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `facilities`
+--
+
+CREATE TABLE `facilities` (
+  `facility_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facility_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `facilities`
+--
+
+INSERT INTO `facilities` (`facility_id`, `facility_name`, `created_at`, `updated_at`) VALUES
+('AC-0052', 'Air Conditioner', '2024-03-06 14:12:29', '2024-03-06 14:12:29'),
+('AE-9283', 'Audio Equipment', '2025-03-07 06:51:38', '2025-03-07 06:51:38'),
+('BM-3425', 'Birthday Music', '2025-03-07 06:54:11', '2025-03-07 06:54:11'),
+('CF-6625', 'Computer Facility', '2024-03-06 14:16:24', '2024-03-06 14:16:24'),
+('CM-7667', 'Coffee Maker', '2024-03-06 14:12:29', '2024-03-06 14:12:29'),
+('DR-7677', 'Dressing Room', '2025-03-07 06:54:33', '2025-03-07 06:54:33'),
+('FG-0021', 'Free Gift', '2025-03-07 07:10:50', '2025-03-07 07:10:50'),
+('FM-6674', 'Free Music', '2025-03-07 07:10:33', '2025-03-07 07:10:33'),
+('FP-6453', 'Free Parking', '2025-03-07 06:55:37', '2025-03-07 06:55:37'),
+('FP-8723', 'Free Parking', '2025-03-07 07:11:06', '2025-03-07 07:11:06'),
+('GC-9912', 'Gaming Console', '2024-03-06 14:13:47', '2024-03-06 14:13:47'),
+('GG-8878', 'Graduation Gap', '2025-03-07 06:55:01', '2025-03-07 06:55:01'),
+('HS-9999', 'High Security', '2024-03-06 14:20:08', '2024-03-06 14:20:08'),
+('KB-0019', 'King Bed', '2024-03-09 15:11:42', '2024-03-09 15:11:42'),
+('LS-2812', 'Laundry Service', '2024-03-06 14:15:32', '2024-03-06 14:15:32'),
+('LS-7623', 'Luggage Storage ', '2024-03-06 14:18:39', '2024-03-06 14:18:39'),
+('PA-2212', 'Pet Accomodation', '2024-03-06 14:14:18', '2024-03-06 14:14:18'),
+('PC-7764', 'Public Computer', '2025-03-09 03:56:22', '2025-03-09 03:56:22'),
+('PG-7654', 'Photography', '2025-03-07 06:53:20', '2025-03-07 06:53:20'),
+('QB-0020', 'Queen Bed', '2024-03-09 15:11:42', '2024-03-09 15:11:42'),
+('RP-4363', 'Room Purification', '2024-03-06 14:17:43', '2024-03-06 14:17:43'),
+('SL-0162', 'Stage Lightning', '2025-03-07 06:52:39', '2025-03-07 06:52:39'),
+('SP-9102', 'Swimming Pool', '2025-03-09 05:44:56', '2025-03-09 05:44:56'),
+('STV-7261', 'Smart TV', '2024-03-06 14:11:21', '2024-03-06 14:11:21'),
+('TS-0876', 'Technical Support', '2025-03-07 06:56:09', '2025-03-07 06:56:09'),
+('TS-9032', 'Turndown Service', '2024-03-06 14:12:00', '2024-03-06 14:12:00'),
+('WF-7647', 'WI-FI', '2024-03-06 14:12:00', '2024-03-06 14:12:00'),
+('WPS-0324', 'Water Purification System', '2025-03-09 03:36:11', '2025-03-09 03:36:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guest_info`
+--
+
+CREATE TABLE `guest_info` (
+  `guest_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guest_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guest_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guest_phoneNumber` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guest_country` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guest_city` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guest_specialRequest` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guest_services`
+--
+
+CREATE TABLE `guest_services` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `guest_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `services_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `price` double NOT NULL,
+  `total_price` double NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hall`
+--
+
+CREATE TABLE `hall` (
+  `hall_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hall_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hall_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `hall_price` double NOT NULL,
+  `hall_seat` int(11) NOT NULL,
+  `availability_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `hall`
+--
+
+INSERT INTO `hall` (`hall_id`, `hall_name`, `hall_description`, `hall_price`, `hall_seat`, `availability_status`, `created_at`, `updated_at`) VALUES
+('BH-8271', 'Birthday Hall', 'The perfect venue for unforgettable birthday parties. Whether you\'re planning a small gathering or a big bash, we have everything you need to make your birthday celebration extra special.', 250.99, 100, 'Available', '2024-09-22 01:55:38', '2024-09-22 01:55:38'),
+('BH-9082', 'Banquet Hall', 'Our spacious and beautiful venue can host everything from small gatherings to large celebrations. With modern facilities and a helpful team, we make sure your event runs smoothly.', 499.99, 200, 'Available', '2024-09-22 01:54:48', '2024-09-22 01:54:48'),
+('GH-4563', 'Graduation Hall', 'The perfect venue for your graduation ceremony or party. Our hall offers a comfortable space to honor this important milestone. We provide everything you need to make your event memorable.', 400.99, 300, 'Available', '2024-09-22 01:57:43', '2024-09-22 01:57:43'),
+('PH-2837', 'Private Hall', 'Our private hall offers a cozy and elegant space tailored to your needs. Whether you\'re hosting a small party, a family celebration, or a private meeting, we provide the ideal setting with personalized service.', 300.99, 100, 'Available', '2024-09-22 02:00:00', '2024-09-22 02:00:00'),
+('WH-0520', 'Wedding Hall', 'Celebrate your love story at \"The Truth Love Hall\". Our elegant hall provides a beautiful setting for weddings of all sizes. With stunning decor, modern amenities, and a dedicated team.', 520.99, 300, 'Available', '2024-09-22 02:01:37', '2024-09-22 02:01:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hall_facilities`
+--
+
+CREATE TABLE `hall_facilities` (
+  `id` int(255) NOT NULL,
+  `hall_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facility_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(25, '2014_10_12_000000_create_users_table', 1),
+(26, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(27, '2019_08_19_000000_create_failed_jobs_table', 1),
+(28, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(29, '2024_03_02_084559_create_table_room', 1),
+(30, '2024_03_02_084613_create_table_room_type', 1),
+(31, '2024_03_03_062644_create_table_facilities', 1),
+(32, '2024_03_03_062710_create_table_room_facilities', 1),
+(33, '2024_03_07_055257_create_table_booking', 1),
+(34, '2024_09_17_114415_create_table_hall', 1),
+(35, '2025_03_07_041324_create_table_guest_info', 1),
+(36, '2025_03_07_041544_create_table_guest_services', 1),
+(37, '2025_03_07_065756_create_table_hall_facilities', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+
+CREATE TABLE `personal_access_tokens` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms`
+--
+
+CREATE TABLE `rooms` (
+  `room_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `room_number` int(11) NOT NULL,
+  `room_type_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `availability_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `rooms`
+--
+
+INSERT INTO `rooms` (`room_id`, `room_number`, `room_type_id`, `availability_status`, `created_at`, `updated_at`) VALUES
+('CR-601', 601, 'CR-60', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('CR-602', 602, 'CR-60', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('CR-603', 603, 'CR-60', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('CR-604', 604, 'CR-60', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('CR-605', 605, 'CR-60', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('DR-501', 501, 'DR-50', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('DR-502', 502, 'DR-50', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('DR-503', 503, 'DR-50', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('DR-504', 504, 'DR-50', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('DR-505', 505, 'DR-50', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('ER-901', 901, 'ER-90', 'Available', '2024-03-10 17:11:57', '2025-03-10 23:31:29'),
+('FR-201', 201, 'FR-20', 'Available', '2024-03-06 14:21:42', '2025-03-10 21:27:33'),
+('FR-202', 202, 'FR-20', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('FR-203', 203, 'FR-20', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('FR-204', 204, 'FR-20', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('FR-205', 205, 'FR-20', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('KR-801', 801, 'KR-80', 'Available', '2024-03-10 17:11:21', '2025-03-11 02:12:08'),
+('RR-301', 301, 'RR-30', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('RR-302', 202, 'RR-30', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('RR-303', 303, 'RR-30', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('RR-304', 304, 'RR-30', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('RR-305', 305, 'RR-30', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('SR-101', 101, 'SR-10', 'Available', '2024-03-06 14:21:42', '2025-03-11 00:53:16'),
+('SR-102', 102, 'SR-10', 'Available', '2024-03-06 14:21:42', '2025-03-11 01:57:54'),
+('SR-103', 103, 'SR-10', 'Available', '2024-03-06 14:21:42', '2025-03-11 00:52:59'),
+('SR-104', 104, 'SR-10', 'Available', '2024-03-06 14:21:42', '2025-03-10 20:04:12'),
+('SR-105', 105, 'SR-10', 'Available', '2024-03-06 14:21:42', '2025-03-08 02:52:19'),
+('SR-701', 701, 'SR-70', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('SR-702', 702, 'SR-70', 'Available', '2024-03-06 14:21:42', '2025-03-10 05:43:37'),
+('SR-703', 703, 'SR-70', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('SR-704', 704, 'SR-70', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('SR-705', 705, 'SR-70', 'Available', '2024-03-06 14:21:42', '2025-03-10 05:42:15'),
+('VIP-401', 401, 'VIP-40', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('VIP-402', 402, 'VIP-40', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('VIP-403', 403, 'VIP-40', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('VIP-404', 404, 'VIP-40', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42'),
+('VIP-405', 405, 'VIP-40', 'Available', '2024-03-06 14:21:42', '2024-03-06 14:21:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_booking`
+--
+
+CREATE TABLE `room_booking` (
+  `booking_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guest_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `room_type_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `room_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `check_in_date` date NOT NULL,
+  `check_out_date` date NOT NULL,
+  `total_price` double NOT NULL,
+  `booking_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_facilities`
+--
+
+CREATE TABLE `room_facilities` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `room_type_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facility_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `room_facilities`
+--
+
+INSERT INTO `room_facilities` (`id`, `room_type_id`, `facility_id`, `created_at`, `updated_at`) VALUES
+(1, 'CR-60', 'WF-7647', '2024-03-06 06:26:47', '2024-03-06 06:26:47'),
+(2, 'CR-60', 'CM-7667', '2024-03-06 06:26:47', '2024-03-06 06:26:47'),
+(3, 'CR-60', 'PA-2212', '2024-03-07 06:59:15', '2024-03-07 06:59:15'),
+(4, 'CR-60', 'TS-9032', '2024-03-07 06:59:15', '2024-03-07 06:59:15'),
+(5, 'DR-50', 'HS-9999', '2024-03-07 08:52:26', '2024-03-07 08:52:26'),
+(6, 'DR-50', 'RP-4363', '2024-03-07 08:52:26', '2024-03-07 08:52:26'),
+(7, 'DR-50', 'WF-7647', '2024-03-07 08:52:42', '2024-03-07 08:52:42'),
+(8, 'DR-50', 'PA-2212', '2024-03-07 08:52:42', '2024-03-07 08:52:42'),
+(9, 'ER-90', 'LS-2812', '2024-03-07 08:57:04', '2024-03-07 08:57:04'),
+(10, 'ER-90', 'CF-6625', '2024-03-07 08:57:04', '2024-03-07 08:57:04'),
+(11, 'ER-90', 'HS-9999', '2024-03-07 08:57:17', '2024-03-07 08:57:17'),
+(12, 'ER-90', 'STV-7261', '2024-03-07 08:57:17', '2024-03-07 08:57:17'),
+(13, 'FR-20', 'CM-7667', '2024-03-07 08:57:40', '2024-03-07 08:57:40'),
+(14, 'FR-20', 'HS-9999', '2024-03-07 08:57:40', '2024-03-07 08:57:40'),
+(15, 'FR-20', 'PA-2212', '2024-03-07 09:00:41', '2024-03-07 09:00:41'),
+(16, 'FR-20', 'LS-2812', '2024-03-07 09:00:41', '2024-03-07 09:00:41'),
+(17, 'KR-80', 'HS-9999', '2024-03-07 09:00:55', '2024-03-07 09:00:55'),
+(18, 'KR-80', 'TS-9032', '2024-03-07 09:00:55', '2024-03-07 09:00:55'),
+(19, 'KR-80', 'AC-0052', '2024-03-07 09:01:12', '2024-03-07 09:01:12'),
+(20, 'KR-80', 'CM-7667', '2024-03-07 09:01:12', '2024-03-07 09:01:12'),
+(21, 'RR-30', 'LS-2812', '2024-03-07 09:01:33', '2024-03-07 09:01:33'),
+(22, 'RR-30', 'RP-4363', '2024-03-07 09:01:33', '2024-03-07 09:01:33'),
+(23, 'RR-30', 'GC-9912', '2024-03-07 09:02:20', '2024-03-07 09:02:20'),
+(24, 'RR-30', 'PA-2212', '2024-03-07 09:02:20', '2024-03-07 09:02:20'),
+(29, 'SR-70', 'CM-7667', '2024-03-07 16:23:47', '2024-03-07 16:23:47'),
+(30, 'SR-70', 'CF-6625', '2024-03-07 16:23:47', '2024-03-07 16:23:47'),
+(31, 'SR-70', 'AC-0052', '2024-03-07 16:24:00', '2024-03-07 16:24:00'),
+(32, 'SR-70', 'TS-9032', '2024-03-07 16:24:00', '2024-03-07 16:24:00'),
+(33, 'VIP-40', 'AC-0052', '2024-03-07 16:25:40', '2024-03-07 16:25:40'),
+(34, 'VIP-40', 'WF-7647', '2024-03-07 16:25:40', '2024-03-07 16:25:40'),
+(35, 'VIP-40', 'CM-7667', '2024-03-07 16:25:57', '2024-03-07 16:25:57'),
+(36, 'VIP-40', 'HS-9999', '2024-03-07 16:25:57', '2024-03-07 16:25:57'),
+(52, 'SR-10', 'GC-9912', '2025-03-10 03:08:10', '2025-03-10 03:08:10'),
+(53, 'SR-10', 'AC-0052', '2025-03-10 03:08:10', '2025-03-10 03:08:10'),
+(54, 'SR-10', 'HS-9999', '2025-03-10 03:08:10', '2025-03-10 03:08:10'),
+(55, 'SR-10', 'STV-7261', '2025-03-10 03:08:10', '2025-03-10 03:08:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_type`
+--
+
+CREATE TABLE `room_type` (
+  `room_type_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `room_type_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `room_price` double NOT NULL,
+  `room_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `room_guest` int(255) NOT NULL,
+  `room_bed` int(11) NOT NULL,
+  `room_size` int(11) NOT NULL,
+  `deposit` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `room_type`
+--
+
+INSERT INTO `room_type` (`room_type_id`, `room_type_name`, `room_price`, `room_description`, `room_guest`, `room_bed`, `room_size`, `deposit`, `created_at`, `updated_at`) VALUES
+('CR-60', 'Couple Room', 521.99, 'Our Couple Rooms provide a serene escape for you and your loved one. Our Couple Rooms offer a tranquil retreat designed for deep connections and lasting memories.', 2, 1, 70, 15, '2025-03-10 14:26:57', '2025-03-10 14:26:57'),
+('DR-50', 'Deluxe Room', 251.99, 'Designed to exceed expectations, our Deluxe Rooms offer an unparalleled blend of elegance and comfort, ensuring an unforgettable stay for our esteemed guests.', 4, 3, 90, 20, '2025-03-10 14:26:57', '2025-03-10 14:26:57'),
+('ER-90', 'Executive Room', 271.99, 'Designed for discerning travelers, this option offers refined luxury and unmatched comfort. Experience a world of exclusivity that caters to your every need during your stay.', 6, 5, 85, 25, '2025-03-10 14:26:57', '2025-03-10 14:26:57'),
+('FR-20', 'Family Room', 141.99, 'Our family room is spacious and inviting, designed to comfortably fit families. It has plenty of space and amenities to make sure both adults and children have a pleasant stay.', 5, 4, 70, 20, '2025-03-10 14:26:57', '2025-03-10 14:26:57'),
+('KR-80', 'King Room', 151.99, 'A spacious and luxurious choice for guests who want extra comfort. It includes a stylish private bathroom with a shower or bathtub and a cozy seating area for relaxation.', 1, 2, 65, 10, '2025-03-10 14:26:57', '2025-03-10 14:26:57'),
+('RR-30', 'Residential Room', 181.99, 'A residential room in our hotel provides a homely atmosphere and essential amenities for a comfortable long-term stay, making it feel like a home away from home.', 4, 4, 80, 15, '2025-03-10 14:26:57', '2025-03-10 14:26:57'),
+('SR-10', 'Single Room', 111.99, 'Experience comfort and relaxation in our cozy, stylish rooms, designed for your convenience. Enjoy modern amenities and a welcoming ambiance for a delightful stay.', 1, 1, 50, 0, '2025-03-10 14:26:57', '2025-03-10 09:24:05'),
+('SR-70', 'Standard Room', 121.99, 'A comfy space with modern decor.It has a queen or twin beds, a private bathroom, and a work desk. It\'s a cozy spot for your stay, whether you\'re here for work or play.', 2, 2, 60, 5, '2025-03-10 14:26:57', '2025-03-10 14:26:57'),
+('VIP-40', 'VIP Room', 201.99, 'The VIP room in our hotel is the pinnacle of luxury and comfort. The VIP room ensures an unforgettable experience, where every detail is curated to surpass expectations.', 2, 2, 70, 10, '2025-03-10 14:26:57', '2025-03-10 14:26:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `facilities`
+--
+ALTER TABLE `facilities`
+  ADD PRIMARY KEY (`facility_id`);
+
+--
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `guest_info`
+--
+ALTER TABLE `guest_info`
+  ADD PRIMARY KEY (`guest_id`);
+
+--
+-- Indexes for table `guest_services`
+--
+ALTER TABLE `guest_services`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hall`
+--
+ALTER TABLE `hall`
+  ADD PRIMARY KEY (`hall_id`);
+
+--
+-- Indexes for table `hall_facilities`
+--
+ALTER TABLE `hall_facilities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`room_id`);
+
+--
+-- Indexes for table `room_booking`
+--
+ALTER TABLE `room_booking`
+  ADD PRIMARY KEY (`booking_id`);
+
+--
+-- Indexes for table `room_facilities`
+--
+ALTER TABLE `room_facilities`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `room_type`
+--
+ALTER TABLE `room_type`
+  ADD PRIMARY KEY (`room_type_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `guest_services`
+--
+ALTER TABLE `guest_services`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `hall_facilities`
+--
+ALTER TABLE `hall_facilities`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `room_facilities`
+--
+ALTER TABLE `room_facilities`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
