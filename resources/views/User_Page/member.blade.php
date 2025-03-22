@@ -70,8 +70,8 @@
                         <a class="nav-link mx-2" href="{{ route('main-page') }}">Home</a>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="features_menu" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="features_menu"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Features
                         </a>
                         <div class="dropdown-menu" aria-labelledby="features_menu">
@@ -82,8 +82,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="facilities_menu" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="facilities_menu"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Facilities
                         </a>
                         <div class="dropdown-menu" aria-labelledby="facilities_menu">
@@ -91,18 +91,15 @@
                                 Room</a>
                             <a class="dropdown-item" href="#">Our Hall</a>
                         </div>
-
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link mx-2" style="" href="{{ route('hotel-restaurant') }}">Dining</a>
+                        <a class="nav-link mx-2" href="{{ route('hotel-restaurant') }}">Dining</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active mx-2" style="" href="{{ route('exclusive-member') }}">Member</a>
+                        <a class="nav-link active mx-2" href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('hotel-room')}}" type="button"
-                            class="btn btn-primary rounded-pill text-light">Book
-                            Room</a>
+                        <a href="#" type="button" class="btn btn-primary rounded-pill text-light">Sign In</a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -112,41 +109,17 @@
     {{-- end of nav bar --}}
 
     {{-- banner --}}
-    <div class="jumbotron p-5" id="banner">
+    <div class="jumbotron p-4 p-md-4" id="banner">
         <div class="row">
-            <div class="col-md-12 text-center d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000">
-                <h1 class="display-4 text-light">Become Our Valueable Member</h1>
+            <div class="col-md-12 text-center" data-aos="zoom-in" data-aos-duration="1000">
+                <h1 class="display-4 text-light">Become One of Us</h1>
             </div>
-            <div class="row">
-                <div class="d-flex justify-content-center">
-                    <div class="col-md-6 d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000"
-                        data-aos-delay="1000">
-                        <p class="lead text-light text-center">Join Ocean Heaven Hotel's membership program for
-                            exclusive perks! Enjoy discounted rates, early check-in, late check-out, priority booking,
-                            and personalized service. Earn points for rewards. Sign up now for a premium stay
-                            experience!</p>
-                        <hr class="my-4 text-light">
-                        <p class="text-light text-center">Come, stay and enjoy your day.</p>
-                        <p class="lead text-center">
-                            <button class="btn btn-outline-light btn-lg" data-mdb-ripple-init data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" data-mdb-ripple-color="dark">Become Our Member</button>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile View -->
-        <div class="col-sm-12 d-md-none" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="text-center mb-4">
-                <h1 class="fs-1 display-4 text-light">Ocean Heaven Hotel</h1>
-            </div>
-            <div class="col-sm-6 mx-auto">
-                <p class="lead text-light text-center">Where comfort meets personalized care, our hotel is a
-                    sanctuary of
-                    hospitality. From the warm welcome at arrival to the attentive service during your stay, we
-                    strive
-                    to create memorable experiences that linger long after you've departed.</p>
+            <div class="col-lg-6 col-12 mx-auto" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+                <p class="lead text-light text-center" style="font-size: clamp(1rem, 1.2vw, 1.2rem);">Join Ocean
+                    Heaven Hotel's membership program for
+                    exclusive perks! Enjoy discounted rates, early check-in, late check-out, priority booking,
+                    and personalized service. Earn points for rewards. Sign up now for a premium stay
+                    experience!</p>
                 <hr class="my-4 text-light">
                 <p class="text-light text-center">Come, stay and enjoy your day.</p>
                 <p class="lead text-center">
@@ -155,13 +128,12 @@
                 </p>
             </div>
         </div>
-        <!-- End of Mobile View -->
     </div>
     {{-- end of banner --}}
 
     {{-- Membership Tiers --}}
     <div class="container-fluid">
-        <div class="row mt-5">
+        <div class="row mt-3 mt-md-5">
             <div class="col-md-12">
                 <div class="d-flex justify-content-center">
                     <h4 class="text-center fs-3" data-aos="zoom-in" data-aos-duration="1000"
@@ -202,7 +174,6 @@
                                             make up the bulk of the card's content.</p>
                                     </div>
                                 </div>
-                                <br>
                             </div>
                         </div>
                     </div>
@@ -219,14 +190,15 @@
                 <div class="col-md-8">
                     <div class="container-xl">
                         <div class="row">
-                            <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
-                                <div class="frame">
-                                    <img src="../images/dining_voucher.jpg">
-                                </div>
+                            {{-- first benefit --}}
+                            <div class="col-md-6 order-1 order-md-1" data-aos="fade-right" data-aos-duration="1000">
+                                <img class="card-img-top mt-2 mt-md-4" src="../images/dining_voucher.jpg"
+                                    alt="dining voucher">
                             </div>
-                            <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
+                            <div class="col-md-6 order-2 order-md-2 mt-4 d-flex flex-column justify-content-center text-left"
+                                data-aos="fade-left" data-aos-duration="1000">
                                 <h4>Discounted Rates for our Valuable Guest In Our Hotel </h4>
-                                <p>
+                                <p class="text-justify">
                                     A discount rate is a special offer available exclusively to members of our hotel
                                     loyalty program. As a member, you can enjoy reduced prices on room bookings compared
                                     to non-members. These discounted rates are our way of showing appreciation for your
@@ -234,7 +206,11 @@
                                     unlock access to these exclusive savings on your future stays.
                                 </p>
                             </div>
-                            <div class="col-md-6 mt-4" data-aos="fade-right" data-aos-duration="1000">
+                            {{-- end of first benefit --}}
+
+                            {{-- start of second benefit --}}
+                            <div class="col-md-6 mt-3 mt-md-5 order-4 order-md-3 d-flex flex-column justify-content-center text-start"
+                                data-aos="fade-right" data-aos-duration="1000">
                                 <h4>Early Check-In and Late Check-Out </h4>
                                 <p>
                                     Early check-in
@@ -246,17 +222,18 @@
                                     overall experience with us.
                                 </p>
                             </div>
-                            <div class="col-md-6" data-aos="fade-left" data-aos-duration="1000">
-                                <div class="frame">
-                                    <img src="../images/check_in.jpg">
-                                </div>
+                            <div class="col-md-6 order-3 order-md-4" data-aos="fade-left" data-aos-duration="1000">
+                                <img class="card-img-top mt-2 mt-md-5" src="../images/check_in.jpg" alt="Check In">
                             </div>
-                            <div class="col-md-6" data-aos="fade-right" data-aos-duration="1000">
-                                <div class="frame">
-                                    <img src="../images/priority_booking.jpg">
-                                </div>
+                            {{-- end of second benefit --}}
+
+                            {{-- start of third benefit --}}
+                            <div class="col-md-6 order-5 order-md-6" data-aos="fade-right" data-aos-duration="1000">
+                                <img class="card-img-top mt-4 mt-md-5" src="../images/priority_booking.jpg"
+                                    alt="priority booking">
                             </div>
-                            <div class="col-md-6 mt-4" data-aos="fade-left" data-aos-duration="1000">
+                            <div class="col-md-6 mt-3 mt-md-5 order-6 order-last" data-aos="fade-left"
+                                data-aos-duration="1000">
                                 <h4>Priority Booking and Waitlist Priority </h4>
                                 <p>
                                     As a member, you gain exclusive access to priority booking privileges, allowing you
@@ -267,6 +244,7 @@
                                     and that you have the best possible experience with us.
                                 </p>
                             </div>
+                            {{-- end of third benefit --}}
                         </div>
                     </div>
                 </div>
@@ -276,7 +254,7 @@
     {{-- end of benefit member --}}
 
     <!-- Footer -->
-    <footer class="text-center text-lg-start text-white bg-dark mt-5">
+    <footer class="text-center text-lg-start text-white bg-dark mt-3">
         <!-- Grid container -->
         <div class="container p-4 pb-0">
             <!-- Section: Links -->

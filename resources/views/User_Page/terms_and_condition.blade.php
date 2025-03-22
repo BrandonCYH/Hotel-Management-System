@@ -57,8 +57,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#" id="facilities_menu"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#"
+                            id="facilities_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Facilities
                         </a>
                         <div class="dropdown-menu" aria-labelledby="facilities_menu">
@@ -77,9 +77,7 @@
                             href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('hotel-room')}}" type="button"
-                            class="btn btn-primary rounded-pill text-light">Book
-                            Room</a>
+                        <a href="#" type="button" class="btn btn-primary rounded-pill text-light">Sign In</a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -268,8 +266,8 @@
             </section>
         </div>
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2024 Copyright:
-            <a class="text-white" href="https://github.com/BrandonCYH">Danny CYH</a>
+            © 2025 Copyright:
+            <a class="text-white" href="https://github.com/BrandonCYH">Brandon CYH</a>
         </div>
     </footer>
     {{-- end of footer --}}

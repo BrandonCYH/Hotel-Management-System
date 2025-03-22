@@ -16,6 +16,8 @@ use Carbon\Carbon;
 use Session;
 use Illuminate\Http\Request;
 
+\Stripe\Stripe::setVerifySslCerts(false);
+
 class User_Controller extends Controller
 {
     public function home_page()
@@ -163,8 +165,12 @@ class User_Controller extends Controller
         return view('User_Page.hall');
     }
 
-    public function room_booking($room_name)
+    public function room_booking_details($room_name)
     {
+        $list_roomData = room_type::where('room_type_name', '!=', $room_name)
+            ->inRandomOrder()
+            ->paginate(3);
+
         $room_data = room_type::where('room_type_name', '=', $room_name)->get();
 
         $room_facilities = room_facilities::select('*')
@@ -178,12 +184,19 @@ class User_Controller extends Controller
             ->where('room_type.room_type_name', '=', $room_name)
             ->get();
 
+        $room_availability = rooms::join('room_type', 'room_type.room_type_id', '=', 'rooms.room_type_id')
+            ->where('room_type.room_type_name', '=', $room_name)
+            ->where('rooms.availability_status', '!=', 'Not Available')
+            ->count();
+
         return view(
             'User_Page.room_booking_details',
             [
+                'list_roomData' => $list_roomData,
                 'room_data' => $room_data,
                 'room_facilities' => $room_facilities,
                 'room_info' => $room_info,
+                'room_availability' => $room_availability,
             ]
         );
     }
@@ -363,8 +376,11 @@ class User_Controller extends Controller
         }
     }
 
-    public function booking_confirmation($booking_id)
+    public function booking_confirmation(Request $request)
     {
+        $booking_id = Session::get('booking_id');
+        $payment_token = $request->stripeToken;
+
         room_booking::where("booking_id", $booking_id)
             ->update([
                 "booking_status" => "Paid",
@@ -377,8 +393,30 @@ class User_Controller extends Controller
             ->where('room_booking.booking_id', '=', $booking_id)
             ->get();
 
-        // Clear session data
-        Session::forget(['booking_id', 'guest_id', 'room_type_id', 'room_id', 'room_price']);
+        if (!$guest_bookingInfo) {
+            return response()->json(['error' => 'Booking not found'], 404);
+        } else {
+            foreach ($guest_bookingInfo as $guest_info) {
+                $guest_bookingFee = $guest_info->total_price;
+                $guest_roomType = $guest_info->room_type_name;
+            }
+
+            try {
+                $stripe = new \Stripe\StripeClient(env("STRIPE_SECRET"));
+
+                $stripe->charges->create([
+                    'amount' => $guest_bookingFee * 100, // Ensure it's an integer
+                    'currency' => "USD",
+                    'source' => $payment_token,
+                    'description' => "Paying for booking " . $guest_roomType,
+                ]);
+            } catch (\Exception $e) {
+                return redirect()->route('main-page')->with('error', "Session end...thanks for your booking!");
+            }
+
+            // Clear session data
+            Session::forget(['booking_id', 'guest_id', 'room_type_id', 'room_id', 'room_price']);
+        }
 
         return view('User_Page.booking_confirmation', ['guest_bookingInfo' => $guest_bookingInfo]);
     }

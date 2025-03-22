@@ -83,7 +83,7 @@
                             href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary rounded-pill">Book Room</button>
+                        <button type="button" class="btn btn-primary rounded-pill">Sign In</button>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -97,7 +97,6 @@
         {{ session('error') }}
     </div>
     @endif
-
 
     {{-- start of booking registration form --}}
     <div class="container-fluid">
@@ -232,8 +231,7 @@
                                                     <div class="d-flex justify-content-between d-sm-block">
                                                         <h5 style="font-size: clamp(1rem, 1.2vw, 1.5rem)"
                                                             class="mt-1 mb-0" data-service-name="Pet Accommodation"
-                                                            data-service-price="5.00">3. Pet
-                                                            Accommodation
+                                                            data-service-price="5.00">3. Pet Accommodation
                                                         </h5>
                                                         <span class="text-success text-end d-sm-none"><b>$10.00</b> /
                                                             each</span>
@@ -262,7 +260,6 @@
                                     <br>
                                     {{-- end of service and any request form --}}
                                 </div>
-
 
                                 <div class="col-lg-5 col-md-12">
                                     {{-- start of receipt overview --}}
@@ -301,8 +298,8 @@
 
                                     <input type="submit" class="btn btn-primary w-100" value="Check Out">
 
-                                    <a href="{{ route('cancel-booking', ['room_type_name' => $room_d->room_type_name]) }}"
-                                        class="btn btn-danger w-100 mt-3">Cancel Booking</a>
+                                    <a href="{{ route('room-booking-details', ['room_type_name' => $room_d->room_type_name]) }}"
+                                        class="btn btn-danger w-100 mt-3 mb-3">Cancel Booking</a>
                                 </div>
                             </div>
                         </form>

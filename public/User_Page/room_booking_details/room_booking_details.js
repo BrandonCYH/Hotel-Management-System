@@ -3,17 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const list_room_title = ['Standard Room', 'Family Room', 'King Room', 'Residential Room', 'VIP Room',
         'Deluxe Room', 'Executive Room', 'Couple Room', 'Single Room'
     ];
-    const list_room_description = [
-        "A comfy space with modern decor. It has a queen or twin beds, a private bathroom, and a work desk. It's a cozy spot for your stay, whether you're here for work or play.",
-        "A family room in our hotel is a spacious, welcoming space designed to accommodate families comfortably. It offers ample room and amenities to ensure a pleasant stay for both adults and children.",
-        "A spacious and luxurious option for guests seeking extra comfort during their stay. It features a stylish private bathroom with a shower or bathtub, and a cozy seating area for relaxation.",
-        "A residential room in our hotel provides a homely atmosphere and essential amenities for a comfortable long-term stay, making it feel like a home away from home.",
-        "The VIP room in our hotel is the pinnacle of luxury and comfort. The VIP room ensures an unforgettable experience, where every detail is curated to surpass expectations.",
-        "Designed to exceed expectations, our Deluxe Rooms offer an unparalleled blend of elegance and comfort, ensuring an unforgettable stay for our esteemed guests.",
-        "Crafted with discerning travelers in mind, embody refined luxury and unparalleled comfort. Immerse yourself in a world of exclusivity to meet your every need during your stay.",
-        "Where romance meets luxury. Nestled in a serene ambiance, our Couple Rooms offer the perfect sanctuary for you and your loved one to escape and create unforgettable memories together.",
-        "Experience comfort and relaxation in our cozy and stylish hotel rooms designed for your convenience. Providing modern amenities and a welcoming ambiance for a delightful stay."
-    ];
 
     const list_room_overview = [
         "A cozy and affordable stay with all the essentials. It typically features a comfortable queen-size or twin bed, a private bathroom, free Wi-Fi, a flat-screen TV, and a work desk. The room is ideal for 1-2 guests looking for a simple, relaxing space with modern conveniences at a budget-friendly rate.",
@@ -26,21 +15,6 @@ document.addEventListener('DOMContentLoaded', function () {
         "A romantic retreat designed for pairs seeking a cozy and intimate escape. This charming room features a comfortable queen-sized bed, stylish decor, and soft lighting to create a warm atmosphere. It includes thoughtful amenities like a private balcony, a relaxing seating area, and a mini-bar. With its inviting ambiance and attention to detail, the Couple Room provides the perfect setting for a memorable stay together.",
         "A well-appointed space ideal for solo travelers seeking comfort and convenience. It features a cozy single bed, a functional work desk, and modern amenities like a flat-screen TV and high-speed internet access. The room is thoughtfully designed with a stylish and contemporary decor, ensuring a pleasant and relaxing stay. It also includes essential conveniences such as a mini-fridge and a private bathroom with quality toiletries.",
     ];
-
-    document.querySelectorAll('.room-description').forEach(function (container) {
-        const bladeValue = container.dataset.roomType;
-
-        // Find the index of the bladeValue in the list_room_title array
-        const roomIndex = list_room_title.indexOf(bladeValue);
-
-        if (roomIndex !== -1) {
-            // If the room name is found, get the corresponding description
-            const roomDescription = list_room_description[roomIndex];
-
-            // Display the description in the DOM
-            container.querySelector('.room_description').textContent = roomDescription;
-        }
-    });
 
     document.querySelectorAll('.room-overview').forEach(function (container) {
         const bladeValue = container.dataset.roomType;
@@ -57,6 +31,14 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })
 });
+
+function room_notAvailable() {
+    Swal.fire({
+        icon: "error",
+        title: "Room not available for booking!",
+        text: "You can use 'Check Availability' function for further assistance",
+    });
+}
 
 const btn_checkAvailability = document.getElementById("btn_checkAvailability");
 const checkAvailability_form = document.getElementById('check_availability_form');

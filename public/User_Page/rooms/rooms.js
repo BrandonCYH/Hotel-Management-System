@@ -84,8 +84,18 @@ function changeBackgroundImage() {
 
 setInterval(changeBackgroundImage, 5000); // Change image every 1000ms (1 second)
 
-function room_full() {
-    alert("Room Not Available...");
+function room_full(room_type_name) {
+    Swal.fire({
+        icon: "error",
+        title: "Room Not Available",
+        text: "You still can view the room",
+        confirmButtonText: "View Room",
+        showCancelButton: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "room-booking-details/" + room_type_name;
+        }
+    });
 }
 
 function fetch_room_data(page) {
@@ -108,18 +118,18 @@ function fetch_room_data(page) {
                     var room_data_length = room_d.data.length;
 
                     for (let i = 0; i < room_data_length; i++) {
-                        //start of desktop view
-                        htmlContent += '<div class="card shadow p-3 bg-white rounded d-none d-md-block" data-aos="fade-left" data-aos-duration="1000">';
+                        //start of desktop mobile view
+                        htmlContent += '<div class="card shadow p-md-3 bg-white rounded" data-aos="fade-left" data-aos-duration="1000">';
                         htmlContent += '<div class="row no-gutters">';
                         htmlContent += '<div class="col-lg-4 col-md-4">';
-                        htmlContent += '<img src="../images/' + room_d.data[i].room_type_name + '.jpg" class="card-img-top" alt="...">';
+                        htmlContent += '<img src="../images/' + room_d.data[i].room_type_name + '.jpg" class="card-img-top" alt="' + room_d.data[i].room_type_name + '">';
                         htmlContent += '</div>';
                         htmlContent += '<div class="col-lg-8 col-md-8">';
                         htmlContent += '<div class="card-body">';
                         htmlContent += '<div class="row">';
-                        htmlContent += '<div class="col-lg-8 col-md-8">';
+                        htmlContent += '<div class="col-lg-8 col-md-12">';
                         htmlContent += '<h3>' + room_d.data[i].room_type_name + '</h3>';
-                        htmlContent += '<div class="row mt-1">';
+                        htmlContent += '<div class="row">';
 
                         data.room_info.forEach(function (room_i) {
                             var room_available_length = room_i.length;
@@ -134,20 +144,20 @@ function fetch_room_data(page) {
                             }
 
                             if (available_count > 0) {
-                                htmlContent += '<div class="col-lg-7 col-md-7">';
+                                htmlContent += '<div class="col-lg-6 col-7">';
                                 htmlContent += '<h5 style="font-size: 15px;">';
                                 htmlContent += '<i class="fa-solid fa-bell mt-1" style="color: crimson; font-size: 17px;"></i>  Status : ' + available_count + ' remains';
                                 htmlContent += '</h5>';
                                 htmlContent += '</div>';
                             } else {
-                                htmlContent += '<div class="col-lg-7 col-md-7">';
+                                htmlContent += '<div class="col-lg-6 col-7">';
                                 htmlContent += '<h5 style="font-size: 15px;">';
                                 htmlContent += '<i class="fa-solid fa-bell mt-1" style="color: crimson; font-size: 17px;"></i>  Status : Full';
                                 htmlContent += '</h5>';
                                 htmlContent += '</div>';
                             }
 
-                            htmlContent += '<div class="col-lg-5 col-md-5">';
+                            htmlContent += '<div class="col-lg-6 col-5">';
                             htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-user mt-1" style="color: black; font-size: 17px;"></i> Guest: ' + room_d.data[i].room_guest + '</h5>';
                             htmlContent += '</div>';
 
@@ -157,6 +167,8 @@ function fetch_room_data(page) {
                             htmlContent += '</h5>';
                             htmlContent += '</div>';
                             htmlContent += '<hr>';
+
+                            htmlContent += '<h5 style="font-size: 15px;" class="text-primary fw-bold d-md-none">Facility Include: </h5>';
 
                             data.room_facilities.forEach(function (room_f) {
                                 for (let f = 0; f < room_f.length; f++) {
@@ -168,13 +180,18 @@ function fetch_room_data(page) {
                                 }
                             });
 
+                            htmlContent += '<hr class="d-md-none">';
+
                             htmlContent += '</div>';
                             htmlContent += '</div>';
                             htmlContent += '<div class="col-lg-4 col-md-4">';
                             htmlContent += '<div class="d-flex justify-content-center">';
-                            htmlContent += '<h2 class="text-success">$ ' + room_d.data[i].room_price + '</h2>';
+                            htmlContent += '<h2 class="text-success d-none d-md-block">$ ' + room_d.data[i].room_price + '</h2>';
                             htmlContent += '</div>';
-                            htmlContent += '<h5 class="text-secondary text-center fs-5"><i>per night</i></h5>';
+
+                            htmlContent += '<h5 class="text-secondary text-center fs-5 d-none d-md-block"><i>per night</i></h5>';
+
+                            htmlContent += '<div class="d-none d-md-block">';
                             htmlContent += '<div class="d-flex justify-content-center">';
                             htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
                             htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
@@ -182,113 +199,34 @@ function fetch_room_data(page) {
                             htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
                             htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
                             htmlContent += '</div>';
-                            htmlContent += '<div class="d-flex justify-content-center mt-4">';
-
-                            if (available_count > 0) {
-                                htmlContent += '<a href="/room-booking/' + encodeURIComponent(room_d.data[i].room_type_name) + '" class="btn btn-default text-light" style="background-color: #3b5998">Book Room </a>';
-                            } else {
-                                htmlContent += '<a type="button" onclick="room_full()" class="btn btn-default bg-secondary text-light">Book Room</a>';
-                            }
-                        });
-
-                        htmlContent += '</div>';
-                        htmlContent += '</div>';
-                        htmlContent += '</div>';
-                        htmlContent += '</div>';
-                        htmlContent += '</div>';
-                        htmlContent += '</div>';
-                        htmlContent += '</div>';
-                        htmlContent += '</div>';
-                        htmlContent += '</div>';
-                        // end of room card (desktop view)
-
-                        // start of room card (mobile view)
-                        htmlContent += '<div class="card border border-secondary shadow-lg shadow-light shadow-offset-down-sm shadow-intensity-lg bg-white rounded d-md-none">';
-                        htmlContent += '<div class="row no-gutters">';
-                        htmlContent += '<div class="col-md-4">';
-                        htmlContent += '<img src="../images/' + room_d.data[i].room_type_name + '.jpg" class="card-img-top" alt="...">';
-                        htmlContent += '</div>';
-                        htmlContent += '<div class="col-md-8">';
-                        htmlContent += '<div class="card-body">';
-                        htmlContent += '<div class="row">';
-                        htmlContent += '<div class="col-md-8">';
-                        htmlContent += '<div class="row">';
-                        htmlContent += '<div class="col-12">';
-                        htmlContent += '<h3>' + room_d.data[i].room_type_name + '</h3>';
-                        htmlContent += '</div>';
-                        htmlContent += '</div>';
-                        htmlContent += '<div class="row mt-1">';
-
-                        data.room_info.forEach(function (room_i) {
-                            var room_available_length = room_i.length;
-                            var available_count = 0;
-
-                            for (let j = 0; j < room_available_length; j++) {
-                                if (room_d.data[i].room_type_name == room_i[j].room_type_name) {
-                                    if (room_i[j].availability_status == 'Available') {
-                                        available_count++;
-                                    }
-                                }
-                            }
-
-                            if (available_count > 0) {
-                                htmlContent += '<div class="col-7">';
-                                htmlContent += '<h5 style="font-size: 15px;">';
-                                htmlContent += '<i class="fa-solid fa-bell mt-1" style="color: crimson; font-size: 17px;"></i>  Status : ' + available_count + ' remains';
-                                htmlContent += '</h5>';
-                                htmlContent += '</div>';
-                            } else {
-                                htmlContent += '<div class="col-7">';
-                                htmlContent += '<h5 style="font-size: 15px;">';
-                                htmlContent += '<i class="fa-solid fa-bell mt-1" style="color: crimson; font-size: 17px;"></i>  Status : Full';
-                                htmlContent += '</h5>';
-                                htmlContent += '</div>';
-                            }
-
-                            htmlContent += '<div class="col-5">';
-                            htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-user mt-1" style="color: black; font-size: 17px;"></i> Guest: ' + room_d.data[i].room_guest + '</h5>';
                             htmlContent += '</div>';
-                            htmlContent += '<div class="col-12">';
-                            htmlContent += '<h5 style="font-size: 15px;">';
-                            htmlContent += '<i class="fa-solid fa-money-check-dollar mt-1" style="color: green; font-size: 17px;"></i> Payment : ' + room_d.data[i].deposit + '% deposit required';
+
+                            htmlContent += '<h5 class="text-success d-md-none" style="font-size: 15px;">';
+                            htmlContent += '<i class="fa-solid fa-money-bill-1 mt-1" style="color: green; font-size: 17px;"></i>';
+                            htmlContent += '<b> Price : $ ' + room_d.data[i].room_price + '</b> / <small class="text-dark">night</small>';
                             htmlContent += '</h5>';
-                            htmlContent += '</div>';
-                            htmlContent += '<hr>';
-                            htmlContent += '<h5 style="font-size: 15px;" class="text-primary fw-bold">Facility Include: </h5>';
 
-                            data.room_facilities.forEach(function (room_f) {
-                                for (let f = 0; f < room_f.length; f++) {
-                                    if (room_d.data[i].room_type_name == room_f[f].room_type_name) {
-                                        htmlContent += '<div class="col-lg-7 col-md-6">';
-                                        htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-check-square mt-1" style="color: rgb(81, 81, 202);; font-size: 17px;"></i> ' + room_f[f].facility_name + '</h5>';
-                                        htmlContent += '</div>';
-                                    }
-                                }
-                            });
-
-                            htmlContent += '<hr>';
-                            htmlContent += '<h5 class="text-success" style="font-size: 15px;"><i class="fa-solid fa-money-bill-1 mt-1" style="color: green; font-size: 17px;"></i><b> Price : $ ' + room_d.data[i].room_price + '</b> / <small class="text-dark">night</small></h5>';
-                            htmlContent += '<div class="col-12">';
-                            htmlContent += '<div class="d-flex align-items-center">';
-                            htmlContent += '<h5 class="mr-2 mt-1">Rating:</h5>';
+                            htmlContent += '<div class="d-flex align-items-center d-md-none">';
+                            htmlContent += '<h5 class="mr-2 mt-2">Rating:</h5>';
                             htmlContent += '<div class="d-flex px-1">';
-                            htmlContent += '<i class="fa-solid fa-star" style="color: orange; font-size: 17px;"></i>';
-                            htmlContent += '<i class="fa-solid fa-star" style="color: orange; font-size: 17px;"></i>';
-                            htmlContent += '<i class="fa-solid fa-star" style="color: orange; font-size: 17px;"></i>';
-                            htmlContent += '<i class="fa-solid fa-star" style="color: orange; font-size: 17px;"></i>';
-                            htmlContent += '<i class="fa-solid fa-star" style="color: orange; font-size: 17px;"></i>';
+                            htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
+                            htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
+                            htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
+                            htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
+                            htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
                             htmlContent += '</div>';
                             htmlContent += '</div>';
-                            htmlContent += '</div>';
-                            htmlContent += '<div class="d-flex justify-content-center mt-2">';
+
+                            htmlContent += '<div class="d-flex justify-content-center mt-md-4 mt-2">';
 
                             if (available_count > 0) {
                                 htmlContent += '<a href="/room-booking/' + encodeURIComponent(room_d.data[i].room_type_name) + '" class="btn btn-default text-light w-100" style="background-color: #3b5998">Book Room </a>';
                             } else {
-                                htmlContent += '<a type="button" onclick="room_full()" class="btn btn-default bg-secondary text-light w-100">Book Room</a>';
+                                htmlContent += '<a type="button" onclick="room_full(\'' + room_d.data[i].room_type_name + '\')" class="btn btn-default bg-secondary text-light w-100">Book Room</a>';
                             }
                         });
 
+                        htmlContent += '</div>';
                         htmlContent += '</div>';
                         htmlContent += '</div>';
                         htmlContent += '</div>';
@@ -298,7 +236,7 @@ function fetch_room_data(page) {
                         htmlContent += '</div>';
                         htmlContent += '</div>';
                         htmlContent += '<br>';
-                        // end of room card (mobile view)
+                        // end of room card (desktop mobile view)
                     }
                 });
 
@@ -346,10 +284,10 @@ $('#btn_filterRoom').on("click", function () {
 
                 for (let i = 0; i < room_data_length; i++) {
                     // start of room card (desktop view)
-                    htmlContent += '<div class="card shadow p-3 bg-white rounded d-none d-md-block" data-aos="fade-left" data-aos-duration="1000">';
+                    htmlContent += '<div class="card shadow p-md-3 bg-white rounded d-none d-md-block" data-aos="fade-left" data-aos-duration="1000">';
                     htmlContent += '<div class="row no-gutters">';
                     htmlContent += '<div class="col-lg-4 col-md-4">';
-                    htmlContent += '<img src="../images/' + room_d.data[i].room_type_name + '.jpg" class="card-img-top" alt="...">';
+                    htmlContent += '<img src="../images/' + room_d.data[i].room_type_name + '.jpg" class="card-img-top" alt="' + room_d.data[i].room_type_name + '">';
                     htmlContent += '</div>';
                     htmlContent += '<div class="col-lg-8 col-md-8">';
                     htmlContent += '<div class="card-body">';
@@ -372,20 +310,20 @@ $('#btn_filterRoom').on("click", function () {
                         }
 
                         if (available_count > 0) {
-                            htmlContent += '<div class="col-lg-7 col-md-7">';
+                            htmlContent += '<div class="col-lg-6 col-7">';
                             htmlContent += '<h5 style="font-size: 15px;">';
                             htmlContent += '<i class="fa-solid fa-bell mt-1" style="color: crimson; font-size: 17px;"></i>  Status : ' + available_count + ' remains';
                             htmlContent += '</h5>';
                             htmlContent += '</div>';
                         } else {
-                            htmlContent += '<div class="col-lg-7 col-md-7">';
+                            htmlContent += '<div class="col-lg-6 col-7">';
                             htmlContent += '<h5 style="font-size: 15px;">';
                             htmlContent += '<i class="fa-solid fa-bell mt-1" style="color: crimson; font-size: 17px;"></i>  Status : Full';
                             htmlContent += '</h5>';
                             htmlContent += '</div>';
                         }
 
-                        htmlContent += '<div class="col-lg-5 col-md-5">';
+                        htmlContent += '<div class="col-lg-6 col-5">';
                         htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-user mt-1" style="color: black; font-size: 17px;"></i> Guest: ' + room_d.data[i].room_guest + '</h5>';
                         htmlContent += '</div>';
                         htmlContent += '<div class="col-lg-12 col-md-12">';
@@ -394,6 +332,8 @@ $('#btn_filterRoom').on("click", function () {
                         htmlContent += '</h5>';
                         htmlContent += '</div>';
                         htmlContent += '<hr>';
+
+                        htmlContent += '<h5 style="font-size: 15px;" class="text-primary fw-bold d-md-none">Facility Include: </h5>';
 
                         response.room_facilities.forEach(function (room_f) {
                             for (let f = 0; f < room_f.length; f++) {
@@ -405,13 +345,18 @@ $('#btn_filterRoom').on("click", function () {
                             }
                         });
 
+                        htmlContent += '<hr class="d-md-none">';
+
                         htmlContent += '</div>';
                         htmlContent += '</div>';
+
                         htmlContent += '<div class="col-lg-4 col-md-4">';
                         htmlContent += '<div class="d-flex justify-content-center">';
-                        htmlContent += '<h2 class="card-title text-success">$ ' + room_d.data[i].room_price + '</h2>';
+                        htmlContent += '<h2 class="text-success d-none d-md-block">$ ' + room_d.data[i].room_price + '</h2>';
                         htmlContent += '</div>';
-                        htmlContent += '<h5 class="text-secondary text-center fs-5"><i>per night</i></h5>';
+                        htmlContent += '<h5 class="text-secondary text-center fs-5 d-none d-md-block"><i>per night</i></h5>';
+
+                        htmlContent += '<div class="d-none d-md-block">';
                         htmlContent += '<div class="d-flex justify-content-center">';
                         htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
                         htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
@@ -419,113 +364,33 @@ $('#btn_filterRoom').on("click", function () {
                         htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
                         htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
                         htmlContent += '</div>';
-                        htmlContent += '<div class="d-flex justify-content-center mt-4">';
-
-                        if (available_count > 0) {
-                            htmlContent += '<a href="/room-booking/' + encodeURIComponent(room_d.data[i].room_type_name) + '" class="btn btn-default text-light" style="background-color: #3b5998">Book Room </a>';
-                        } else {
-                            htmlContent += '<a type="button" onclick="room_full()" class="btn btn-default bg-secondary text-light w-100">Book Room</a>';
-                        }
-                    });
-                    htmlContent += '</div>';
-                    htmlContent += '</div>';
-                    htmlContent += '</div>';
-                    htmlContent += '</div>';
-                    htmlContent += '</div>';
-                    htmlContent += '</div>';
-                    htmlContent += '</div>';
-                    htmlContent += '</div>';
-                    htmlContent += '</div>';
-                    // end of room card (desktop view)
-
-                    // start of room card (mobile view)
-                    htmlContent += '<div class="card border border-secondary shadow-lg shadow-light shadow-offset-down-sm shadow-intensity-lg bg-white rounded d-md-none">';
-                    htmlContent += '<div class="row no-gutters">';
-                    htmlContent += '<div class="col-md-4">';
-                    htmlContent += '<img src="../images/' + room_d.data[i].room_type_name + '.jpg" class="card-img-top" alt="...">';
-                    htmlContent += '</div>';
-                    htmlContent += '<div class="col-md-8">';
-                    htmlContent += '<div class="card-body">';
-                    htmlContent += '<div class="row">';
-                    htmlContent += '<div class="col-md-8">';
-                    htmlContent += '<div class="row">';
-                    htmlContent += '<div class="col-12">';
-                    htmlContent += '<h3>' + room_d.data[i].room_type_name + '</h3>';
-                    htmlContent += '</div>';
-                    htmlContent += '</div>';
-                    htmlContent += '<div class="row mt-1">';
-
-                    response.room_info.forEach(function (room_i) {
-                        var room_available_length = room_i.length;
-                        var available_count = 0;
-
-                        for (let j = 0; j < room_available_length; j++) {
-                            if (room_d.data[i].room_type_name == room_i[j]
-                                .room_type_name) {
-                                if (room_i[j].availability_status == 'Available') {
-                                    available_count++;
-                                }
-                            }
-                        }
-
-                        if (available_count > 0) {
-                            htmlContent += '<div class="col-7">';
-                            htmlContent += '<h5 style="font-size: 15px;">';
-                            htmlContent += '<i class="fa-solid fa-bell mt-1" style="color: crimson; font-size: 17px;"></i>  Status : ' + available_count + ' remains';
-                            htmlContent += '</h5>';
-                            htmlContent += '</div>';
-                        } else {
-                            htmlContent += '<div class="col-7">';
-                            htmlContent += '<h5 style="font-size: 15px;">';
-                            htmlContent += '<i class="fa-solid fa-bell mt-1" style="color: crimson; font-size: 17px;"></i>  Status : Full';
-                            htmlContent += '</h5>';
-                            htmlContent += '</div>';
-                        }
-
-                        htmlContent += '<div class="col-5">';
-                        htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-user mt-1" style="color: black; font-size: 17px;"></i> Guest: ' + room_d.data[i].room_guest + '</h5>';
                         htmlContent += '</div>';
-                        htmlContent += '<div class="col-12">';
-                        htmlContent += '<h5 style="font-size: 15px;">';
-                        htmlContent += '<i class="fa-solid fa-money-check-dollar mt-1" style="color: green; font-size: 17px;"></i> Payment : ' + room_d.data[i].deposit + '% deposit required';
+
+                        htmlContent += '<h5 class="text-success d-md-none" style="font-size: 15px;">';
+                        htmlContent += '<i class="fa-solid fa-money-bill-1 mt-1" style="color: green; font-size: 17px;"></i>';
+                        htmlContent += '<b> Price : $ ' + room_d.data[i].room_price + '</b> / <small class="text-dark">night</small>';
                         htmlContent += '</h5>';
-                        htmlContent += '</div>';
-                        htmlContent += '<hr>';
-                        htmlContent += '<h5 style="font-size: 15px;" class="text-primary fw-bold">Facility Include: </h5>';
 
-                        response.room_facilities.forEach(function (room_f) {
-                            for (let f = 0; f < room_f.length; f++) {
-                                if (room_d.data[i].room_type_name == room_f[f].room_type_name) {
-                                    htmlContent += '<div class="col-lg-7 col-md-6">';
-                                    htmlContent += '<h5 style="font-size: 15px;"><i class="fa-solid fa-check-square mt-1" style="color: rgb(81, 81, 202);; font-size: 17px;"></i> ' + room_f[f].facility_name + '</h5>';
-                                    htmlContent += '</div>';
-                                }
-                            }
-                        });
-
-                        htmlContent += '<hr>';
-                        htmlContent += '<h5 class="text-success" style="font-size: 15px;"><i class="fa-solid fa-money-bill-1 mt-1" style="color: green; font-size: 17px;"></i> <b> Price : $ ' + room_d.data[i].room_price + '</b> / <small class="text-dark">night</small></h5>';
-                        htmlContent += '<div class="col-12">';
-                        htmlContent += '<div class="d-flex align-items-center">';
-                        htmlContent += '<h5 class="mr-2 mt-1">Rating:</h5>';
+                        htmlContent += '<div class="d-flex align-items-center d-md-none">';
+                        htmlContent += '<h5 class="mr-2 mt-2">Rating:</h5>';
                         htmlContent += '<div class="d-flex px-1">';
-                        htmlContent += '<i class="fa-solid fa-star" style="color: orange; font-size: 17px;"></i>';
-                        htmlContent += '<i class="fa-solid fa-star" style="color: orange; font-size: 17px;"></i>';
-                        htmlContent += '<i class="fa-solid fa-star" style="color: orange; font-size: 17px;"></i>';
-                        htmlContent += '<i class="fa-solid fa-star" style="color: orange; font-size: 17px;"></i>';
-                        htmlContent += '<i class="fa-solid fa-star" style="color: orange; font-size: 17px;"></i>';
+                        htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
+                        htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
+                        htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
+                        htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
+                        htmlContent += '<i class="fa-solid fa-star" style="color: orange;"></i>';
                         htmlContent += '</div>';
                         htmlContent += '</div>';
-                        htmlContent += '</div>';
-                        htmlContent += '<div class="d-flex justify-content-center mt-2">';
+
+                        htmlContent += '<div class="d-flex justify-content-center mt-md-4 mt-2">';
 
                         if (available_count > 0) {
                             htmlContent += '<a href="/room-booking/' + encodeURIComponent(room_d.data[i].room_type_name) + '" class="btn btn-default text-light w-100" style="background-color: #3b5998">Book Room </a>';
                         } else {
-                            htmlContent += '<a type="button" onclick="room_full()" class="btn btn-default w-100 bg-secondary text-light">Book Room</a>';
+                            htmlContent += '<a type="button" onclick="room_full(\'' + room_d.data[i].room_type_name + '\')" class="btn btn-default bg-secondary text-light w-100">Book Room</a>';
                         }
                     });
-
+                    htmlContent += '</div>';
                     htmlContent += '</div>';
                     htmlContent += '</div>';
                     htmlContent += '</div>';
@@ -535,7 +400,7 @@ $('#btn_filterRoom').on("click", function () {
                     htmlContent += '</div>';
                     htmlContent += '</div>';
                     htmlContent += '<br>';
-                    // end of room card (mobile view)
+                    // end of room card (desktop mobile view)
                 }
             });
 

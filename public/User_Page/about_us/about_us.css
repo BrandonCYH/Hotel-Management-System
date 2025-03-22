@@ -68,6 +68,12 @@
     background-color: #0056b3;
 }
 
+.card-img-top {
+    width: 100%;
+    height: 12rem;
+    object-fit: cover;
+}
+
 #archievement {
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../../images/archievement_bg.jpg');
     background-size: cover;

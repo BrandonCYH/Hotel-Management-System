@@ -11,7 +11,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.8",
-        "stripe/stripe-php": "^15.4",
+        "stripe/stripe-php": "^15.9",
         "yajra/laravel-datatables-oracle": "^10.11"
     },
     "require-dev": {

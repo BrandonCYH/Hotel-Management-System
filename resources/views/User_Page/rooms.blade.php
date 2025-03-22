@@ -25,6 +25,9 @@
     <!-- Animation On Scroll CDN -->
     <link rel="stylesheet" href="/external_css_file/aos.css">
 
+    {{-- sweet alert css cdn --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.min.css">
+
     <title>Hotel Room</title>
 </head>
 
@@ -48,8 +51,8 @@
                         <a class="nav-link mx-2" style="font-size: 17px;" href="{{ route('main-page') }}">Home</a>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#" id="features_menu"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#"
+                            id="features_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Features
                         </a>
                         <div class="dropdown-menu" aria-labelledby="features_menu">
@@ -81,7 +84,7 @@
                             href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('hotel-room')}}" type="button"
+                        <a href="{{ route('hotel-room') }}" type="button"
                             class="btn btn-primary rounded-pill text-light">Book
                             Room</a>
                     </li>
@@ -99,21 +102,20 @@
     {{-- end of button back to top --}}
 
     {{-- intro of the hotel --}}
-    <div class="jumbotron p-5" id="room_image">
+    <div class="jumbotron p-4 p-md-5" id="room_image">
         <div class="row">
             <div class="col-md-12 text-center" data-aos="zoom-in" data-aos-duration="1000">
                 <h1 class="display-4 text-light" id="room_title">Single Room</h1>
             </div>
             <div class="d-flex justify-content-center">
                 <div class="col-lg-5 col-md-9" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
-                    <p class="lead text-light text-center" id="room_description">Experience comfort and relaxation in
-                        our cozy and
-                        stylish hotel rooms designed for your most convenience. Providing modern amenities and a
-                        welcoming
-                        ambiance for a delightful stay.
+                    <p class="lead text-light text-center" id="room_description"
+                        style="font-size: clamp(1rem, 1.2vw, 1.5rem);">Experience comfort and relaxation in
+                        our cozy and stylish hotel rooms designed for your most convenience. Providing modern amenities
+                        and a welcoming ambiance for a delightful stay.
                     </p>
                     <hr class="my-4 text-light">
-                    <p class="text-light text-center">
+                    <p class="text-light text-center" style="font-size: clamp(1rem, 1.2vw, 1.5rem);">
                         Come, stay and enjoy your day.</p>
                 </div>
             </div>
@@ -123,7 +125,7 @@
 
     {{-- Each Hotel room description --}}
     <div class="container-fluid">
-        <div class="row mt-5">
+        <div class="row mt-3 mt-md-5">
             <div class="col-lg-12">
                 <div class="d-flex justify-content-center">
                     <h4 class="text-center fs-3" data-aos="zoom-in" data-aos-duration="1000">
@@ -137,34 +139,34 @@
                         <div class="row">
                             {{-- start of filter hotel room form --}}
                             <div class="col-lg-3 col-md-12">
-                                <div class="card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="1000">
+                                <div class="card" data-aos="fade-right" data-aos-duration="1000"
+                                    data-aos-delay="1000">
                                     <div class="card-header">Choose Your Hotel Room</div>
                                     <div class="card-body">
                                         {{-- start of list services --}}
                                         <div class="row">
                                             @php
-                                            $added_facilities = []; // Store added facilities
+                                                $added_facilities = []; // Store added facilities
                                             @endphp
 
                                             @foreach ($room_data as $room_d)
-                                            @foreach ($room_facilities->where("room_type_name", $room_d->room_type_name)
-                                            as $list_facilities)
-                                            @if (!in_array($list_facilities->facility_name, $added_facilities))
-                                            <div class="col-12 mb-1">
-                                                <input class="form-check-input mx-1" type="checkbox"
-                                                    value="{{ $list_facilities->facility_name }}" id="flexCheckDefault"
-                                                    name="facilities[]">
-                                                <label class="form-check-label"
-                                                    for="{{ $list_facilities->facility_name }}">
-                                                    {{ $list_facilities->facility_name }}
-                                                </label>
-                                            </div>
-                                            @php
-                                            // Add to list to prevent duplicate
-                                            $added_facilities[] = $list_facilities->facility_name;
-                                            @endphp
-                                            @endif
-                                            @endforeach
+                                                @foreach ($room_facilities->where('room_type_name', $room_d->room_type_name) as $list_facilities)
+                                                    @if (!in_array($list_facilities->facility_name, $added_facilities))
+                                                        <div class="col-12 mb-1">
+                                                            <input class="form-check-input mx-1" type="checkbox"
+                                                                value="{{ $list_facilities->facility_name }}"
+                                                                id="flexCheckDefault" name="facilities[]">
+                                                            <label class="form-check-label"
+                                                                for="{{ $list_facilities->facility_name }}">
+                                                                {{ $list_facilities->facility_name }}
+                                                            </label>
+                                                        </div>
+                                                        @php
+                                                            // Add to list to prevent duplicate
+                                                            $added_facilities[] = $list_facilities->facility_name;
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
                                             @endforeach
                                         </div>
                                         <hr>
@@ -175,8 +177,8 @@
                                         <div class="input-group mt-2">
                                             <button class="btn btn-outline-secondary" type="button"
                                                 id="button-decrement">-</button>
-                                            <input type="number" class="form-control text-center" id="number" value="0"
-                                                min="0" max="100" name="room_guest">
+                                            <input type="number" class="form-control text-center" id="number"
+                                                value="0" min="0" max="100" name="room_guest">
                                             <button class="btn btn-outline-secondary" type="button"
                                                 id="button-increment">+</button>
                                         </div>
@@ -191,11 +193,11 @@
                                                 <div class="input-group-append">
                                                     <span class="input-group-text">-</span>
                                                 </div>
-                                                <input type="text" name="price_after" id="priceMax" class="form-control"
-                                                    readonly>
+                                                <input type="text" name="price_after" id="priceMax"
+                                                    class="form-control" readonly>
                                             </div>
-                                            <input type="range" class="custom-range" id="priceSlider" min="0" max="1000"
-                                                step="10" value="1000">
+                                            <input type="range" class="custom-range" id="priceSlider"
+                                                min="0" max="1000" step="10" value="1000">
                                         </div>
                                         {{-- end of price range --}}
 
@@ -203,9 +205,8 @@
                                             value="Search Room"><br>
                                         <div id="pagination-links" class="pagination-links">
                                             @foreach ($room_data->links()->elements[0] as $page => $url)
-                                            <a href="{{ $url }}"
-                                                class="page-link {{ $page == $room_data->currentPage() ? 'active' : '' }}">{{
-                                                $page }}</a>
+                                                <a href="{{ $url }}"
+                                                    class="page-link {{ $page == $room_data->currentPage() ? 'active' : '' }}">{{ $page }}</a>
                                             @endforeach
                                         </div>
                                     </div>
@@ -215,214 +216,139 @@
                             {{-- end of filter hotel room form --}}
 
                             <div class="col-lg-9 col-md-12" id="room_card">
-                                {{-- start of single room card (desktop view) --}}
+                                {{-- start of room card (desktop mobile view) --}}
                                 @foreach ($room_data as $room_d)
-                                <div class="card shadow p-3 bg-white rounded d-none d-md-block" data-aos="fade-left"
-                                    data-aos-duration="1000">
-                                    <div class="row no-gutters">
-                                        <div class="col-lg-4 col-md-4">
-                                            <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
-                                                class="card-img-top" alt="{{ $room_d->room_type_name }}">
-                                        </div>
-                                        <div class="col-lg-8 col-md-8">
-                                            <div class="card card-body border border-white">
-                                                <div class="row">
-                                                    <div class="col-lg-8 col-md-8">
-                                                        <h3>{{ $room_d->room_type_name }}</h3>
-                                                        <div class="row">
-                                                            @php
-                                                            $available_count = 0;
-                                                            @endphp
-
-                                                            @foreach ($room_info as $room_i)
-                                                            @if ($room_d->room_type_name == $room_i->room_type_name)
-                                                            @if (strpos(strtolower($room_i->availability_status),
-                                                            'available') == false)
-                                                            @php
-                                                            $available_count++;
-                                                            @endphp
-                                                            @endif
-                                                            @endif
-                                                            @endforeach
-
-                                                            <div class="col-lg-6 col-md-6">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-bell mt-1"
-                                                                        style="color: crimson; font-size: 17px;"></i>
-                                                                    Status : {{ $available_count > 0 ? "$available_count
-                                                                    Remains" : "Full" }}
-                                                                </h5>
-                                                            </div>
-                                                            <div class="col-lg-6 col-md-6">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-user mt-1"
-                                                                        style="color: black; font-size: 17px;"></i>
-                                                                    Guest : {{ $room_d->room_guest }}
-                                                                </h5>
-                                                            </div>
-                                                            <div class="col-lg-12 col-md-12">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-money-check-dollar mt-1"
-                                                                        style="color: green; font-size: 17px;"></i>
-                                                                    Payment : {{ $room_d->deposit }}%
-                                                                    deposit required
-                                                                </h5>
-                                                            </div>
-                                                            <hr>
-                                                            @foreach($room_facilities->where('room_type_name',$room_d->room_type_name)
-                                                            as $room_f)
-                                                            <div class="col-lg-6 col-md-6">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-check-square mt-1"
-                                                                        style="color: rgb(81, 81, 202); font-size: 17px;"></i>
-                                                                    {{$room_f->facility_name}}
-                                                                </h5>
-                                                            </div>
-                                                            @endforeach
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4">
-                                                        <div class="d-flex justify-content-center">
-                                                            <h2 class="text-success">$
-                                                                {{ $room_d->room_price }}</h2>
-                                                        </div>
-                                                        <h5 class="text-secondary text-center fs-5"><i>per
-                                                                night</i>
-                                                        </h5>
-                                                        <div class="d-flex justify-content-center">
-                                                            <i class="fa-solid fa-star" style="color: orange;"></i>
-                                                            <i class="fa-solid fa-star" style="color: orange;"></i>
-                                                            <i class="fa-solid fa-star" style="color: orange;"></i>
-                                                            <i class="fa-solid fa-star" style="color: orange;"></i>
-                                                            <i class="fa-solid fa-star" style="color: orange;"></i>
-                                                        </div>
-                                                        @if ($available_count > 0)
-                                                        <div class="d-flex justify-content-center mt-4">
-                                                            <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
-                                                                type="button" class="btn btn-default text-light"
-                                                                style="background-color: #3b5998">Book
-                                                                Room</a>
-                                                        </div>
-                                                        @else
-                                                        <div class="d-flex justify-content-center mt-4">
-                                                            <a type="button" onclick="room_full()"
-                                                                class="btn btn-default bg-secondary text-light">Book
-                                                                Room</a>
-                                                        </div>
-                                                        @endif
-                                                    </div>
-                                                </div>
+                                    <div class="card shadow p-md-3 bg-white rounded" data-aos="fade-left"
+                                        data-aos-duration="1000">
+                                        <div class="row no-gutters">
+                                            <div class="col-lg-4 col-md-4">
+                                                <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
+                                                    class="card-img-top" alt="{{ $room_d->room_type_name }}">
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- end of room card (desktop view) --}}
+                                            <div class="col-lg-8 col-md-8">
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-lg-8 col-md-12">
+                                                            <h3>{{ $room_d->room_type_name }}</h3>
+                                                            <div class="row">
+                                                                @php
+                                                                    $available_count = 0;
+                                                                @endphp
 
-                                {{-- start of room card (mobile view) --}}
-                                <div
-                                    class="card border border-secondary shadow-lg shadow-light shadow-offset-down-sm shadow-intensity-lg bg-white rounded d-md-none">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-4">
-                                            <img src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}"
-                                                class="card-img-top" alt="...">
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <h3>{{ $room_d->room_type_name }}</h3>
-                                                        <div class="row mt-1">
-                                                            @php
-                                                            $available_count = 0;
-                                                            @endphp
-                                                            @foreach ($room_info as $room_i)
-                                                            @if ($room_d->room_type_name == $room_i->room_type_name)
-                                                            @if (strpos(strtolower($room_i->availability_status),
-                                                            'available') !== false)
-                                                            @php
-                                                            $available_count++;
-                                                            @endphp
-                                                            @endif
-                                                            @endif
-                                                            @endforeach
-                                                            <div class="col-7">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-bell mt-1"
-                                                                        style="color: crimson; font-size: 17px;"></i>
-                                                                    Status : {{ $available_count > 0 ? "$available_count
-                                                                    Remains" : "Full" }}
-                                                                </h5>
-                                                            </div>
-                                                            <div class="col-5">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-user mt-1"
-                                                                        style="color: black; font-size: 17px;"></i>
-                                                                    Guest : {{ $room_d->room_guest }}
-                                                                </h5>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-money-check-dollar mt-1"
-                                                                        style="color: green; font-size: 17px;"></i>
-                                                                    Payment : {{ $room_d->deposit }}%
-                                                                    deposit required
-                                                                </h5>
-                                                            </div>
-                                                            <hr>
-                                                            <h5 style="font-size: 15px;" class="text-primary fw-bold">
-                                                                Facility Include: </h5>
-                                                            @foreach($room_facilities->where('room_type_name',$room_d->room_type_name)
-                                                            as $room_f)
-                                                            <div class="col-7 col-lg-6 col-md-6">
-                                                                <h5 style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-check-square mt-1"
-                                                                        style="color: rgb(81, 81, 202); font-size: 17px;"></i>
-                                                                    {{$room_f->facility_name}}
-                                                                </h5>
-                                                            </div>
-                                                            @endforeach
-                                                            <hr>
-                                                            <div class="col-12">
+                                                                @foreach ($room_info as $room_i)
+                                                                    @if ($room_d->room_type_name == $room_i->room_type_name)
+                                                                        @if (strpos(strtolower($room_i->availability_status), 'available') == false)
+                                                                            @php
+                                                                                $available_count++;
+                                                                            @endphp
+                                                                        @endif
+                                                                    @endif
+                                                                @endforeach
 
-                                                                <h5 class="text-success" style="font-size: 15px;">
-                                                                    <i class="fa-solid fa-money-bill-1 mt-1"
-                                                                        style="color: green; font-size: 17px;"></i>
-                                                                    <b>Price : $ {{ $room_d->room_price }}</b>
-                                                                    /
-                                                                    <small class="text-dark">night</small>
-                                                                </h5>
-                                                            </div>
-                                                            <div class="col-12">
-                                                                <div class="d-flex align-items-center">
-                                                                    <h5 class="mr-2 mt-2">Rating:</h5>
-                                                                    <div class="d-flex px-1">
-                                                                        <i class="fa-solid fa-star"
-                                                                            style="color: orange; font-size: 17px;"></i>
-                                                                        <i class="fa-solid fa-star"
-                                                                            style="color: orange; font-size: 17px;"></i>
-                                                                        <i class="fa-solid fa-star"
-                                                                            style="color: orange; font-size: 17px;"></i>
-                                                                        <i class="fa-solid fa-star"
-                                                                            style="color: orange; font-size: 17px;"></i>
-                                                                        <i class="fa-solid fa-star"
-                                                                            style="color: orange; font-size: 17px;"></i>
+                                                                <div class="col-lg-6 col-7">
+                                                                    <h5 style="font-size: 15px;">
+                                                                        <i class="fa-solid fa-bell mt-1"
+                                                                            style="color: crimson; font-size: 17px;"></i>
+                                                                        Status :
+                                                                        {{ $available_count > 0 ? "$available_count Remains" : 'Full' }}
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="col-lg-6 col-5">
+                                                                    <h5 style="font-size: 15px;">
+                                                                        <i class="fa-solid fa-user mt-1"
+                                                                            style="color: black; font-size: 17px;"></i>
+                                                                        Guest : {{ $room_d->room_guest }}
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="col-lg-12 col-md-12">
+                                                                    <h5 style="font-size: 15px;">
+                                                                        <i class="fa-solid fa-money-check-dollar mt-1"
+                                                                            style="color: green; font-size: 17px;"></i>
+                                                                        Payment : {{ $room_d->deposit }}% deposit
+                                                                        required
+                                                                    </h5>
+                                                                </div>
+                                                                <hr>
+
+                                                                <h5 style="font-size: 15px;"
+                                                                    class="text-primary fw-bold d-md-none">Facility
+                                                                    Include: </h5>
+                                                                @foreach ($room_facilities->where('room_type_name', $room_d->room_type_name) as $room_f)
+                                                                    <div class="col-lg-6 col-md-6">
+                                                                        <h5 style="font-size: 15px;">
+                                                                            <i class="fa-solid fa-check-square mt-1"
+                                                                                style="color: rgb(81, 81, 202); font-size: 17px;"></i>
+                                                                            {{ $room_f->facility_name }}
+                                                                        </h5>
                                                                     </div>
+                                                                @endforeach
+                                                                <hr class="d-md-none">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 col-md-4">
+                                                            <div class="d-flex justify-content-center">
+                                                                <h2 class="text-success d-none d-md-block">$
+                                                                    {{ $room_d->room_price }}</h2>
+                                                            </div>
+                                                            <h5
+                                                                class="text-secondary text-center fs-5 d-none d-md-block">
+                                                                per night</h5>
+
+                                                            <div class="d-none d-md-block">
+                                                                <div class="d-flex justify-content-center">
+                                                                    <i class="fa-solid fa-star"
+                                                                        style="color: orange;"></i>
+                                                                    <i class="fa-solid fa-star"
+                                                                        style="color: orange;"></i>
+                                                                    <i class="fa-solid fa-star"
+                                                                        style="color: orange;"></i>
+                                                                    <i class="fa-solid fa-star"
+                                                                        style="color: orange;"></i>
+                                                                    <i class="fa-solid fa-star"
+                                                                        style="color: orange;"></i>
+                                                                </div>
+                                                            </div>
+
+                                                            <h5 class="text-success d-md-none"
+                                                                style="font-size: 15px;">
+                                                                <i class="fa-solid fa-money-bill-1 mt-1"
+                                                                    style="color: green; font-size: 17px;"></i>
+                                                                <b>Price : $ {{ $room_d->room_price }}</b>
+                                                                / <small class="text-dark">per night</small>
+                                                            </h5>
+
+                                                            <div class="d-flex align-items-center d-md-none">
+                                                                <h5 class="mr-2 mt-2">Rating:</h5>
+                                                                <div class="d-flex px-1">
+                                                                    <i class="fa-solid fa-star"
+                                                                        style="color: orange; font-size: 17px;"></i>
+                                                                    <i class="fa-solid fa-star"
+                                                                        style="color: orange; font-size: 17px;"></i>
+                                                                    <i class="fa-solid fa-star"
+                                                                        style="color: orange; font-size: 17px;"></i>
+                                                                    <i class="fa-solid fa-star"
+                                                                        style="color: orange; font-size: 17px;"></i>
+                                                                    <i class="fa-solid fa-star"
+                                                                        style="color: orange; font-size: 17px;"></i>
                                                                 </div>
                                                             </div>
                                                             @if ($available_count > 0)
-                                                            <div class="d-flex justify-content-center mt-2">
-                                                                <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
-                                                                    type="button"
-                                                                    class="btn btn-default text-light w-100"
-                                                                    style="background-color: #3b5998">Book
-                                                                    Room</a>
-                                                            </div>
+                                                                <div
+                                                                    class="d-flex justify-content-center mt-md-4 mt-2">
+                                                                    <a href="{{ route('room-booking-details', ['room_type_name' => $room_d->room_type_name]) }}"
+                                                                        class="btn btn-default text-light w-100"
+                                                                        style="background-color: #3b5998">
+                                                                        Book Room
+                                                                    </a>
+                                                                </div>
                                                             @else
-                                                            <div class="d-flex justify-content-center mt-2">
-                                                                <a type="button" onclick="room_full()"
-                                                                    class="btn btn-default bg-secondary w-100 text-light">Book
-                                                                    Room</a>
-                                                            </div>
+                                                                <div
+                                                                    class="d-flex justify-content-center mt-md-4 mt-2">
+                                                                    <a type="button"
+                                                                        onclick="room_full('{{ $room_d->room_type_name }}')"
+                                                                        class="btn btn-default bg-secondary text-light w-100">Book
+                                                                        Room</a>
+                                                                </div>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -430,11 +356,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <br>
-                                {{-- end of room card (mobile view) --}}
+                                    <br>
+                                    {{-- end of room card (desktop mobile view) --}}
                                 @endforeach
-                                {{-- end of room card (desktop view) --}}
                             </div>
                         </div>
                     </div>
@@ -470,11 +394,13 @@
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                         <h6 class="text-uppercase mb-4 font-weight-bold">Services</h6>
                         <p>
-                            <a class="text-white" style="text-decoration: none;" href="{{ route('main-page') }}">Home
+                            <a class="text-white" style="text-decoration: none;"
+                                href="{{ route('main-page') }}">Home
                             </a>
                         </p>
                         <p>
-                            <a class="text-white" style="text-decoration: none;" href="{{ route('about-us') }}">About
+                            <a class="text-white" style="text-decoration: none;"
+                                href="{{ route('about-us') }}">About
                                 Us</a>
                         </p>
                         <p>
@@ -559,6 +485,9 @@
 
 <!-- Bootstrap JS -->
 <script src="/external_js_file/bootstrap.min.js"></script>
+
+{{-- sweet alert js cdn --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.17.2/dist/sweetalert2.all.min.js"></script>
 
 {{-- link with other js file --}}
 <script src="../User_Page/rooms/rooms.js"></script>

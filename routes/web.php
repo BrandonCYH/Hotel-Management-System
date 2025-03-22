@@ -38,10 +38,10 @@ Route::post('/hotel-room-selection', [User_Controller::class, 'hotel_room_select
 Route::get('/hotel-hall', [User_Controller::class, 'hotel_hall'])->name("hotel-hall");
 
 // hotel room bookings functions
-Route::get('/room-booking/{room_type_name}', [User_Controller::class, 'room_booking'])->name('room-booking');
+Route::get('/room-booking-details/{room_type_name}', [User_Controller::class, 'room_booking_details'])->name('room-booking-details');
 Route::post('/booking-registration/{room_type_name}', [User_Controller::class, 'booking_registration'])->name('booking-registration');
 Route::post('/booking-payment/{room_type_name}', [User_Controller::class, 'booking_payment'])->name('booking-payment');
-Route::get('/booking-confirmation/{booking_id}', [User_Controller::class, 'booking_confirmation'])->name('booking-confirmation');
+Route::post('/booking-confirmation', [User_Controller::class, 'booking_confirmation'])->name('booking-confirmation');
 Route::post('/cancel-booking', [User_Controller::class, 'cancel_booking'])->name('cancel-booking');
 
 // Route for Admin View

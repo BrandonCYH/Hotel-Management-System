@@ -44,8 +44,8 @@
                         <a class="nav-link mx-2" href="{{ route('main-page') }}">Home</a>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="features_menu" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="features_menu"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Features
                         </a>
                         <div class="dropdown-menu" aria-labelledby="features_menu">
@@ -56,8 +56,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="facilities_menu" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="facilities_menu"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Facilities
                         </a>
                         <div class="dropdown-menu" aria-labelledby="facilities_menu">
@@ -74,9 +74,8 @@
                         <a class="nav-link mx-2" style="" href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('hotel-room')}}" type="button"
-                            class="btn btn-primary rounded-pill text-light">Book
-                            Room</a>
+                        <a href="#" type="button" class="btn btn-primary rounded-pill text-light">Sign In
+                        </a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -92,33 +91,14 @@
     {{-- end of button back to top --}}
 
     {{-- banner --}}
-    <div class="jumbotron p-5" id="banner">
+    <div class="jumbotron p-4 p-md-5" id="banner">
         <div class="row">
-            <div class="col-md-12 text-center d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="col-md-12 text-center" data-aos="zoom-in" data-aos-duration="1000">
                 <h1 class="display-4 text-light">BlueWave Bistro & Grill</h1>
             </div>
-            <div class="row">
-                <div class="d-flex justify-content-center">
-                    <div class="col-lg-6 col-md-12 d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000"
-                        data-aos-delay="1000">
-                        <p class="lead text-light text-center">Welcome to BlueWave Bistro & Grill at Ocean Heaven Hotel.
-                            We serve delicious dishes made with fresh local ingredients. Whether you prefer our indoor
-                            or outdoor seating, our inviting atmosphere ensures a memorable dining experience. Our
-                            friendly staff is here to make your visit special.</p>
-                        <hr class="my-4 text-light">
-                        <p class="text-light text-center">Savor the Symphony of Sea-Inspired Delights</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile View -->
-        <div class="col-sm-12 d-md-none" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="text-center mb-4">
-                <h1 class="fs-1 display-4 text-light">BlueWave Bistro & Grill</h1>
-            </div>
-            <div class="col-sm-6 mx-auto">
-                <p class="lead text-light text-center">Welcome to BlueWave Bistro & Grill at Ocean Heaven Hotel.
+            <div class="col-lg-6 col-12 mx-auto" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+                <p class="lead text-light text-center" style="font-size: clamp(1rem, 1.2vw, 1.2rem);">Welcome
+                    to BlueWave Bistro & Grill at Ocean Heaven Hotel.
                     We serve delicious dishes made with fresh local ingredients. Whether you prefer our indoor
                     or outdoor seating, our inviting atmosphere ensures a memorable dining experience. Our
                     friendly staff is here to make your visit special.</p>
@@ -126,7 +106,6 @@
                 <p class="text-light text-center">Savor the Symphony of Sea-Inspired Delights</p>
             </div>
         </div>
-        <!-- End of Mobile View -->
     </div>
     {{-- end of banner --}}
 
@@ -145,14 +124,15 @@
                 <div class="col-md-8">
                     <div class="container-xl mt-4">
                         <div class="row">
-                            <div class="col-md-5" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="1000">
+                            <div class="col-md-5" data-aos="fade-right" data-aos-duration="1000"
+                                data-aos-delay="1000">
                                 <div class="d-flex justify-content-center">
                                     <div class="image_frame" style="background-image: url('../images/chef.jpg');">
                                     </div>
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-md-7 d-none d-md-block" data-aos="fade-left" data-aos-duration="1000"
+                            <div class="col-md-7 col-12" data-aos="fade-left" data-aos-duration="1000"
                                 data-aos-delay="1000">
                                 <h4 class="text-center">Welcome to Ocean Heaven Hotel</h4>
                                 <p>
@@ -179,34 +159,6 @@
                                     <i class="fa-solid fa-signature fs-3"></i>
                                 </p>
                             </div>
-
-                            {{-- mobile view --}}
-                            <div class="col-12 d-md-none">
-                                <h4 class="text-center">Welcome to Ocean Heaven Hotel</h4>
-                                <p class="text-center">
-                                    Dear Esteemed Guests,
-
-                                    A warm welcome to Ocean Heaven Hotel! I am honored to extend my heartfelt greetings
-                                    to you. As the head chef, it is my pleasure to invite you on a culinary journey that
-                                    embraces the rich flavors of the sea.
-
-                                    At Ocean Heaven, our team takes great pride in curating a menu that reflects the
-                                    finest ingredients and a passion for culinary excellence. Whether you're joining us
-                                    for a casual dining experience or a special celebration, we strive to create
-                                    memorable moments for you.
-
-                                    Thank you for choosing Ocean Heaven Hotel. We are excited to have you with us and
-                                    look forward to serving you delectable dishes that capture the essence of our
-                                    coastal paradise.
-                                    <br><br>
-                                    Best,
-                                    Brandon
-                                    <br>
-                                    Head Chef of Ocean Heaven Hotel
-                                    <i class="fa-solid fa-signature fs-3"></i>
-                                </p>
-                            </div>
-                            {{-- end of mobile view --}}
                         </div>
                     </div>
                 </div>
@@ -340,14 +292,16 @@
                                             delightfully sweet way
                                             to
                                             start your day or
-                                            indulge at any moment.</p>
+                                            indulge at any moment.
+                                        </p>
                                     </div>
                                 </div>
                                 <br>
                             </div>
                             <div class="col-md-4">
                                 <div class="card">
-                                    <img class="card-img-top" src="../images/vegie_omelette.jpg" alt="Card image cap">
+                                    <img class="card-img-top" src="../images/vegie_omelette.jpg"
+                                        alt="Card image cap">
                                     <div class="card-body bg-dark">
                                         <div class="row">
                                             <div class="col-8">
@@ -367,7 +321,8 @@
                                             veggie omelette, a
                                             nutritious
                                             and flavorful way
-                                            to kickstart your day.</p>
+                                            to kickstart your day.
+                                        </p>
                                     </div>
                                 </div>
                                 <br>
@@ -456,7 +411,8 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="card">
-                                    <img class="card-img-top" src="../images/chocolate_juice.jpg" alt="Card image cap">
+                                    <img class="card-img-top" src="../images/chocolate_juice.jpg"
+                                        alt="Card image cap">
                                     <div class="card-body bg-dark">
                                         <div class="row">
                                             <div class="col-8">
@@ -566,11 +522,11 @@
     {{-- end of restaurant menu --}}
 
     {{-- reservation hotel hall --}}
-    <div class="jumbotron p-5" id="hall_reservation">
+    <div class="jumbotron p-4 p-md-5" id="hall_reservation">
         <div class="row">
-            <div class="col-md-5">
-                <h1 class="display-4 mt-5 text-light" id="hall_title">Wedding Hall</h1>
-                <p class="lead text-light" id="hall_description">Crafting timeless memories, our wedding reception
+            <div class="col-md-5 col-12">
+                <h1 class="display-4 mt-2 mt-md-3 text-light" id="hall_title">Wedding Hall</h1>
+                <p class="lead text-light" id="hall_description" style="font-size: clamp(1rem, 1.2vw, 1.2rem);">Crafting timeless memories, our wedding reception
                     service ensures every detail is perfect, from the grandest ballroom to the smallest detail. Entrust
                     us with your dream day, and let love's journey begin in elegance and joy.
                 </p>
@@ -719,30 +675,38 @@
                     <div class="container-xl mt-2">
                         <div class="row" data-aos="fade-right" data-aos-duration="1000">
                             <div class="col-md-3">
-                                <img src="../images/wedding_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
+                                <img src="../images/wedding_memory_1.jpg" alt="..."
+                                    class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/wedding_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
+                                <img src="../images/wedding_memory_2.jpg" alt="..."
+                                    class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/birthday_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
+                                <img src="../images/birthday_memory_1.jpg" alt="..."
+                                    class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/birthday_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
+                                <img src="../images/birthday_memory_2.jpg" alt="..."
+                                    class="img-thumbnail"><br><br>
                             </div>
                         </div>
                         <div class="row mt-3" data-aos="fade-left" data-aos-duration="1000">
                             <div class="col-md-3">
-                                <img src="../images/aniversary_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
+                                <img src="../images/aniversary_memory_1.jpg" alt="..."
+                                    class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/aniversary_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
+                                <img src="../images/aniversary_memory_2.jpg" alt="..."
+                                    class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/graduation_memory_1.jpg" alt="..." class="img-thumbnail"><br><br>
+                                <img src="../images/graduation_memory_1.jpg" alt="..."
+                                    class="img-thumbnail"><br><br>
                             </div>
                             <div class="col-md-3">
-                                <img src="../images/graduation_memory_2.jpg" alt="..." class="img-thumbnail"><br><br>
+                                <img src="../images/graduation_memory_2.jpg" alt="..."
+                                    class="img-thumbnail"><br><br>
                             </div>
                         </div>
                     </div>

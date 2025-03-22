@@ -27,7 +27,7 @@
                     <h2 class="card-title mt-3">Booking Confirmed!</h2>
                     <p class="card-text">Thank you for booking with us. Your reservation has been successfully
                         completed.</p>
-                    <a href="{{route('main-page')}}" class="btn btn-success mt-3">Back to Home</a>
+                    <a href="{{ route('main-page') }}" class="btn btn-success mt-3">Back to Home</a>
                 </div>
             </div>
 
@@ -36,37 +36,41 @@
                 <div class="card-header">
                     <h5 class="mb-0">Booking Details</h5>
                 </div>
-                <div class="card-body">
-                    @foreach ($guest_bookingInfo as $booking_info)
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <strong>Booking ID:</strong> <span>{{$booking_info->booking_id}}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Guest Name:</strong> <span>{{$booking_info->guest_name}}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Room Type:</strong> <span>{{$booking_info->room_type_name}}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Room Number:</strong> <span>{{$booking_info->room_number}}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Check-in Date:</strong> <span>{{$booking_info->check_in_date}}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Check-out Date:</strong> <span>{{$booking_info->check_out_date}}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Total Price:</strong> <span>${{$booking_info->room_price}}</span>
-                        </li>
-                        <li class="list-group-item">
-                            <strong>Payment Status:</strong> <span
-                                class="badge bg-success">{{$booking_info->booking_status}}</span>
-                        </li>
-                    </ul>
-                    @endforeach
-                </div>
+                @if ($guest_bookingInfo->isEmpty())
+                    <p>No booking information found.</p>
+                @else
+                    <div class="card-body">
+                        @foreach ($guest_bookingInfo as $booking_info)
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <strong>Booking ID:</strong> <span>{{ $booking_info->booking_id }}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Guest Name:</strong> <span>{{ $booking_info->guest_name }}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Room Type:</strong> <span>{{ $booking_info->room_type_name }}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Room Number:</strong> <span>{{ $booking_info->room_number }}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Check-in Date:</strong> <span>{{ $booking_info->check_in_date }}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Check-out Date:</strong> <span>{{ $booking_info->check_out_date }}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Total Price:</strong> <span>${{ $booking_info->room_price }}</span>
+                                </li>
+                                <li class="list-group-item">
+                                    <strong>Payment Status:</strong> <span
+                                        class="badge bg-success">{{ $booking_info->booking_status }}</span>
+                                </li>
+                            </ul>
+                        @endforeach
+                    </div>
+                @endif
             </div>
 
             <!-- Hotel Information -->
@@ -81,9 +85,15 @@
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS (Optional) -->
-    <script src="/external_js_file/bootstrap.bundle.min.js"></script>
 </body>
+
+{{-- jquery cdn --}}
+<script src="/external_js_file/jquery.min.js"></script>
+
+<!-- Bootstrap javascript bundle cdn -->
+<script src="/external_js_file/bootstrap.bundle.min.js"></script>
+
+{{-- bootstrap javascript cdn --}}
+<script src="/external_js_file/bootstrap.min.js"></script>
 
 </html>

@@ -26,6 +26,12 @@
 
     {{-- bootstrap font awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    {{-- sweet alert css cdn --}}
+    <link rel="stylesheet" href="/external_css_file/sweetalert2.min.css">
+
+    {{-- sweet alert js cdn --}}
+    <script src="/external_js_file/sweetalert2.all.min.js"></script>
 
     <title>Ocean Heaven Hotel</title>
 </head>
@@ -50,8 +56,8 @@
                         <a class="nav-link active mx-2" href="{{ route('main-page') }}">Home</a>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="features_menu" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="features_menu"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Features
                         </a>
                         <div class="dropdown-menu" aria-labelledby="features_menu">
@@ -62,8 +68,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="facilities_menu" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" href="#" id="facilities_menu"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Facilities
                         </a>
                         <div class="dropdown-menu" aria-labelledby="facilities_menu">
@@ -79,9 +85,7 @@
                         <a class="nav-link mx-2" href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('hotel-room')}}" type="button"
-                            class="btn btn-primary rounded-pill text-light">Book
-                            Room</a>
+                        <a href="#" type="button" class="btn btn-primary rounded-pill text-light">Sign In</a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -96,38 +100,34 @@
     </button>
     {{-- end of button back to top --}}
 
+    @if (session('error'))
+        <script>
+            var info = '{{ session('error') }}';
+            Swal.fire({
+                title: "Session End...",
+                text: info,
+                icon: "info"
+            });
+        </script>
+    @endif
+
     {{-- banner --}}
-    <div class="jumbotron p-5" id="banner">
+    <div class="jumbotron p-4 p-md-5" id="banner">
         <div class="row">
             <!-- Desktop View -->
-            <div class="col-md-12 text-center d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000">
+            <div class="col-md-12 text-center" data-aos="zoom-in" data-aos-duration="1000">
                 <h1 class="display-4 text-light">Ocean Heaven Hotel</h1>
             </div>
-            <div class="col-lg-6 col-md-12 mx-auto d-none d-md-block" data-aos="zoom-in" data-aos-duration="1000"
-                data-aos-delay="1000">
-                <p class="lead text-light text-center">Where comfort meets personalized care, our hotel is a sanctuary
-                    of
-                    hospitality. From the warm welcome at arrival to the attentive service during your stay, we strive
-                    to create memorable experiences that linger long after you've departed.</p>
-                <hr class="my-4 text-light">
-                <p class="text-light text-center">Book Your Room Now</p>
-            </div>
-
-            <!-- Mobile View -->
-            <div class="col-sm-12 d-md-none" data-aos="zoom-in" data-aos-duration="1000">
-                <div class="text-center mb-2">
-                    <h1 class="fs-1 display-4 text-light">Ocean Heaven Hotel</h1>
-                </div>
-                <div class="col-sm-6 mx-auto">
-                    <p class="lead text-light text-center" style="font-size: 1rem;">Where comfort meets personalized
-                        care,
-                        our hotel is a sanctuary of hospitality. From the warm welcome at arrival to the attentive
-                        service
-                        during your stay, we strive to create memorable experiences that linger long after you've
-                        departed.</p>
-                    <hr class="my-4 text-light">
-                    <p class="text-light text-center">Come, stay and enjoy your day.</p>
-                </div>
+            <div class="col-lg-6 col-12 mx-auto" data-aos="zoom-in" data-aos-duration="1000" data-aos-delay="1000">
+                <p class="lead text-light text-center" style="font-size: clamp(1rem, 1.2vw, 1.2rem);">Where comfort
+                    meets personalized care,
+                    our hotel is a sanctuary of hospitality. From the warm welcome at arrival to the attentive service
+                    during your stay, we strive to create memorable experiences that linger long after you've departed.
+                </p>
+                <hr class="my-2 my-md-4 text-light">
+                <p class="text-light text-center" style="font-size: clamp(1rem, 1.2vw, 1.5rem);">Come, stay and enjoy
+                    your day.
+                </p>
             </div>
         </div>
     </div>
@@ -140,6 +140,7 @@
                 <div class="card card-body" id="search_room_bar" data-aos="fade-down" data-aos-duration="1000"
                     data-aos-delay="1000">
                     <div class="search-bar">
+                        <h5 class="d-md-none text-center text-light bg-primary border border-primary rounded p-2">Book Your Room Now</h5>
                         <form class="form-inline justify-content-center">
                             <div class="row">
                                 <div class="col-12 col-md-3 mb-3 mb-md-0">
@@ -170,7 +171,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3 mb-3 mb-md-0">
+                                <div class="col-12 col-md-3 mb-0 mb-md-0">
                                     <button type="button" class="btn btn-primary text-light w-100">Check
                                         Availability</button>
                                 </div>
@@ -253,7 +254,8 @@
                             </div>
                             <div class="col-12 col-lg-4 col-md-6">
                                 <div class="card shadow bg-white rounded">
-                                    <img class="card-img-top" src="../images/transportation.jpg" alt="Card image cap">
+                                    <img class="card-img-top" src="../images/transportation.jpg"
+                                        alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="text-center">Car Service</h5>
                                         <p class="card-text">
@@ -296,57 +298,70 @@
                                     <div class="carousel-inner">
                                         {{-- start of the room introduction --}}
                                         @foreach ($room_data->chunk(3) as $index => $room_chunk)
-                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                            <div class="row">
-                                                @foreach ($room_chunk as $room_d)
-                                                <div class="col-md-4">
-                                                    <div class="card shadow bg-white rounded">
-                                                        <img class="card-img-top"
-                                                            alt="{{ $room_d->room_type_name }} . image"
-                                                            src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}">
-                                                        <div class="card-body">
-                                                            <h4 class="card-title">
-                                                                {{ $room_d->room_type_name }}
-                                                            </h4>
-                                                            <h5 style="font-size: 13px;">
-                                                                {{ $room_d->room_description }}</h5>
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>$
-                                                                        {{ $room_d->room_price }}</b></span>
-                                                                /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-bed"></i>
-                                                                        {{ $room_d->room_bed }}
-                                                                        Bed</h5>
+                                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                                <div class="row">
+                                                    @foreach ($room_chunk as $room_d)
+                                                        <div class="col-md-4">
+                                                            <div
+                                                                class="card shadow bg-white rounded position-relative">
+                                                                <!-- Availability Badge (Top-Right Corner) -->
+                                                                <div class="position-absolute top-0 end-0 m-2">
+                                                                    <span class="badge bg-danger">Top Booking</span>
                                                                 </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa fa-user"></i>
-                                                                        {{ $room_d->room_guest }} Guest
+
+                                                                <img class="card-img-top"
+                                                                    alt="{{ $room_d->room_type_name }} image"
+                                                                    src="{{ asset('../images/' . $room_d->room_type_name . '.jpg') }}">
+
+                                                                <div class="card-body">
+                                                                    <h4 class="card-title">
+                                                                        {{ $room_d->room_type_name }}
+                                                                    </h4>
+
+                                                                    <h5 style="font-size: clamp(0.8rem, 1.2vw, 0.6rem);">
+                                                                        {{ $room_d->room_description }}
                                                                     </h5>
-                                                                </div>
-                                                                <div class="col-4 col-lg-4 col-md-6">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-up-right-and-down-left-from-center"></i>
-                                                                        &radic;{{ $room_d->room_size }}
+
+                                                                    <h5 style="font-size: 18px;">
+                                                                        Only <span
+                                                                            class="text-success"><b>${{ $room_d->room_price }}</b></span>
+                                                                        / <small class="text-secondary">night</small>
+                                                                    </h5>
+
+                                                                    <hr>
+
+                                                                    <div class="row">
+                                                                        <div class="col-4 col-lg-4 col-md-6">
+                                                                            <h5 style="font-size: 14px;"><i
+                                                                                    class="fa fa-bed"></i>
+                                                                                {{ $room_d->room_bed }} Bed</h5>
+                                                                        </div>
+                                                                        <div class="col-4 col-lg-4 col-md-6">
+                                                                            <h5 style="font-size: 14px;"><i
+                                                                                    class="fa fa-user"></i>
+                                                                                {{ $room_d->room_guest }} Guest</h5>
+                                                                        </div>
+                                                                        <div class="col-4 col-lg-4 col-md-6">
+                                                                            <h5 style="font-size: 14px;">
+                                                                                <i
+                                                                                    class="fa-solid fa-up-right-and-down-left-from-center"></i>
+                                                                                &radic;{{ $room_d->room_size }}
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <a href="{{ route('room-booking-details', ['room_type_name' => $room_d->room_type_name]) }}"
+                                                                        type="button"
+                                                                        class="btn btn-primary w-100 mt-2">
+                                                                        View Details
+                                                                    </a>
                                                                 </div>
                                                             </div>
-                                                            <a href="{{ route('room-booking', ['room_type_name' => $room_d->room_type_name]) }}"
-                                                                type="button" class="btn btn-primary w-100 mt-2">View
-                                                                Details</a>
+                                                            <br>
                                                         </div>
-                                                    </div>
-                                                    <br>
+                                                    @endforeach
                                                 </div>
-                                                @endforeach
                                             </div>
-                                        </div>
                                         @endforeach
                                         {{-- end of the room introduction --}}
                                     </div>
@@ -375,7 +390,8 @@
                                     data-bs-slide="prev">
                                     <i class="fa fa-arrow-left"></i>
                                 </a>
-                                <a class="btn btn-primary mb-3" href="#hall_intro" role="button" data-bs-slide="next">
+                                <a class="btn btn-primary mb-3" href="#hall_intro" role="button"
+                                    data-bs-slide="next">
                                     <i class="fa fa-arrow-right"></i>
                                 </a>
                             </div>
@@ -384,44 +400,46 @@
                                     <div class="carousel-inner">
                                         {{-- start of the first row of the room introduction (Banquet Hall) --}}
                                         @foreach ($hall_data as $index => $hallData)
-                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                            <div class="card bg-light border border-dark">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col-lg-6 col-md-5">
-                                                            <img class="card-img-top"
-                                                                alt="{{ $hallData->hall_name }} . image"
-                                                                src="{{ asset('../images/' . $hallData->hall_name . '.jpg') }}">
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-7">
-                                                            <h4 class="card-title mt-lg-0 mt-md-0 mt-2">
-                                                                {{$hallData->hall_name}}</h4>
-                                                            <h5 style="font-size: 13px;">{{$hallData->hall_description}}
-                                                            </h5>
-                                                            <h5 style="font-size: 18px;">Only <span
-                                                                    class="text-success"><b>{{$hallData->hall_price}}</b></span>
-                                                                /
-                                                                <small class="text-secondary">night</small>
-                                                            </h5>
-                                                            <hr>
-                                                            <div class="row">
-                                                                @foreach ($hall_facilities->where('hall_id',
-                                                                $hallData->hall_id) as $hallFacilities)
-                                                                <div class="col-6 col-lg-4 col-md-4">
-                                                                    <h5 style="font-size: 14px;"><i
-                                                                            class="fa-solid fa-check-square"
-                                                                            style="color: rgba(11, 125, 76, 0.733);"></i>
-                                                                        {{$hallFacilities->facility_name}}</h5>
-                                                                </div>
-                                                                @endforeach
+                                            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                                <div class="card bg-light border border-dark">
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-lg-6 col-md-5">
+                                                                <img class="card-img-top" style="height: 12rem;"
+                                                                    alt="{{ $hallData->hall_name }} . image"
+                                                                    src="{{ asset('../images/' . $hallData->hall_name . '.jpg') }}">
                                                             </div>
-                                                            <button type="button" class="btn btn-info w-100 mt-2">View
-                                                                Details</button>
+                                                            <div class="col-lg-6 col-md-7">
+                                                                <h4 class="card-title mt-lg-0 mt-md-0 mt-2">
+                                                                    {{ $hallData->hall_name }}</h4>
+                                                                <h5 style="font-size: 13px;">
+                                                                    {{ $hallData->hall_description }}
+                                                                </h5>
+                                                                <h5 style="font-size: 18px;">Only <span
+                                                                        class="text-success"><b>{{ $hallData->hall_price }}</b></span>
+                                                                    /
+                                                                    <small class="text-secondary">night</small>
+                                                                </h5>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    @foreach ($hall_facilities->where('hall_id', $hallData->hall_id) as $hallFacilities)
+                                                                        <div class="col-6 col-lg-4 col-md-4">
+                                                                            <h5 style="font-size: 14px;"><i
+                                                                                    class="fa-solid fa-check-square"
+                                                                                    style="color: rgba(11, 125, 76, 0.733);"></i>
+                                                                                {{ $hallFacilities->facility_name }}
+                                                                            </h5>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                                <button type="button"
+                                                                    class="btn btn-primary w-100 mt-2">View
+                                                                    Details</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
                                         @endforeach
                                         {{-- end of first row of the room introduction (Banquet Hall) --}}
                                     </div>
@@ -535,11 +553,13 @@
                     <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                         <h6 class="text-uppercase mb-4 font-weight-bold">Services</h6>
                         <p>
-                            <a class="text-white" style="text-decoration: none;" href="{{ route('main-page') }}">Home
+                            <a class="text-white" style="text-decoration: none;"
+                                href="{{ route('main-page') }}">Home
                             </a>
                         </p>
                         <p>
-                            <a class="text-white" style="text-decoration: none;" href="{{ route('about-us') }}">About
+                            <a class="text-white" style="text-decoration: none;"
+                                href="{{ route('about-us') }}">About
                                 Us</a>
                         </p>
                         <p>

@@ -58,8 +58,8 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown hover-dropdown">
-                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#" id="facilities_menu"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link mx-2 dropdown-toggle" style="font-size: 17px;" href="#"
+                            id="facilities_menu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Facilities
                         </a>
                         <div class="dropdown-menu" aria-labelledby="facilities_menu">
@@ -78,9 +78,7 @@
                             href="{{ route('exclusive-member') }}">Member</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('hotel-room')}}" type="button"
-                            class="btn btn-primary rounded-pill text-light">Book
-                            Room</a>
+                        <a href="#" type="button" class="btn btn-primary rounded-pill text-light">Sign In</a>
                     </li>
                     <!-- Add more items as needed -->
                 </ul>
@@ -155,48 +153,50 @@
                         <div class="card card-body border border-white">
                             <div class="row">
                                 <!-- Accommodation Options (Image Left, Text Right on Desktop; Image First on Mobile) -->
-                                <div class="col-md-6 order-1 order-md-1" data-aos="zoom-in-up" data-aos-duration="1000"
-                                    data-aos-delay="1000">
-                                    <img class="card-img-top img-fluid mt-4" src="../images/accommodation.jpg"
+                                <div class="col-md-6 order-1 order-md-1" data-aos="zoom-in-up"
+                                    data-aos-duration="1000" data-aos-delay="1000">
+                                    <img class="card-img-top mt-2 mt-md-4" src="../images/accommodation.jpg"
                                         alt="Accommodation Options">
                                 </div>
-                                <div class="col-md-6 order-2 order-md-2" data-aos="zoom-in-up" data-aos-duration="1000"
-                                    data-aos-delay="1000">
-                                    <br>
+                                <div class="col-md-6 mt-3 mt-md-0 order-2 order-md-2 d-flex flex-column justify-content-center text-left text-md-end"
+                                    data-aos="zoom-in-up" data-aos-duration="1000" data-aos-delay="1000">
                                     <h3>Accommodation Options</h3>
-                                    <p class="text-justify">Our hotel features a range of luxurious rooms and suites,
-                                        each designed with comfort and style in mind. Whether you choose our Deluxe Room
-                                        with city views or the opulent Presidential Suite, your stay promises to be
-                                        nothing short of extraordinary.</p>
+                                    <p>Our hotel features a range of luxurious rooms and suites, each designed with
+                                        comfort and style in mind. Whether you choose our
+                                        Deluxe Room with city views or the opulent Presidential Suite, your stay
+                                        promises to be nothing short of extraordinary.
+                                    </p>
                                 </div>
 
                                 <!-- Dining Options (Image Left, Text Right on Desktop; Image First on Mobile) -->
-                                <div class="col-md-6 order-4 order-md-3" data-aos="zoom-in-up" data-aos-duration="1000">
+                                <div class="col-md-6 order-4 order-md-3 d-flex flex-column justify-content-center text-start"
+                                    data-aos="zoom-in-up" data-aos-duration="1000">
                                     <br>
                                     <h3>Dining Options</h3>
                                     <p class="text-justify">Savor culinary delights at our signature restaurant, The
                                         Vista Lounge, offering an eclectic menu of international and local cuisines. For
                                         a more casual setting, visit The Terrace Café, where you can enjoy a light meal
-                                        with stunning ocean views.</p>
+                                        with stunning ocean views.
+                                    </p>
                                 </div>
-                                <div class="col-md-6 order-3 order-md-4" data-aos="zoom-in-up" data-aos-duration="1000">
-                                    <br>
-                                    <img class="card-img-top img-fluid" src="../images/dining.jpg" alt="Dining Options">
+                                <div class="col-md-6 mt-2 mt-md-5 order-3 order-md-4" data-aos="zoom-in-up"
+                                    data-aos-duration="1000">
+                                    <img class="card-img-top" src="../images/dining.jpg" alt="Dining Options">
                                 </div>
 
                                 <!-- Swimming Pool (Image Left, Text Right on Desktop; Image First on Mobile) -->
-                                <div class="col-md-6 order-5 order-md-6" data-aos="zoom-in-up" data-aos-duration="1000">
-                                    <br>
-                                    <img class="card-img-top img-fluid" src="../images/swimming_pool.jpg"
-                                        alt="Swimming Pool">
+                                <div class="col-md-6 mt-2 mt-md-5 order-5 order-md-6 d-flex flex-column justify-content-center text-end"
+                                    data-aos="zoom-in-up" data-aos-duration="1000">
+                                    <img class="card-img-top" src="../images/swimming_pool.jpg" alt="Swimming Pool">
                                 </div>
-                                <div class="col-md-6 order-6 order-last" data-aos="zoom-in-up" data-aos-duration="1000">
-                                    <br>
+                                <div class="col-md-6 mt-2 mt-md-5 order-6 order-last" data-aos="zoom-in-up"
+                                    data-aos-duration="1000">
                                     <h3>Leisure and Wellness</h3>
                                     <p class="text-justify">Unwind at our tranquil spa, complete with massage therapy,
                                         sauna, and steam rooms. Stay active in our fully equipped fitness center or take
                                         a dip in our rooftop infinity pool, offering breathtaking views of the city
-                                        skyline.</p>
+                                        skyline.
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -269,8 +269,7 @@
                                     <input type="text" class="form-control" placeholder="Your Email">
                                 </div>
                                 <div class="input-group mb-3">
-                                    <textarea class="form-control"
-                                        placeholder="Tell us your destination idea..."></textarea>
+                                    <textarea class="form-control" placeholder="Tell us your destination idea..."></textarea>
                                 </div>
                                 <button type="button" class="btn btn-primary w-100 mt-auto">Submit</button>
                             </div>
